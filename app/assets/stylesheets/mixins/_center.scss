@@ -1,0 +1,27 @@
+/*------------------------------------*\
+    #CENTER
+\*------------------------------------*/
+
+/**
+ * Centers an element horizontally or vertically, regardless of it's width or
+ * height. Requires that the parent of the element is `position: relative;`
+ */
+@mixin center($to: 'both') {
+    position: absolute;
+
+    @if ($to == 'both') {
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+     }
+
+    @else if ($to == 'horizontal') {
+        transform: translate(-50%, 0);
+        left: 50%;
+    }
+
+    @else if ($to == 'vertical') {
+        transform: translate(0, -50%);
+        top: 50%;
+    }
+}

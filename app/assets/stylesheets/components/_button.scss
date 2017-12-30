@@ -1,0 +1,40 @@
+/*------------------------------------*\
+    #BUTTON
+\*------------------------------------*/
+
+.button {}
+
+    .button--danger {
+        display: inline-block;
+        background-color: #EE5F5B;
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        margin: $spacing-unit;
+        padding: $spacing-unit ($spacing-unit * 2);
+        border-radius: 5px;
+        border: 2px solid darken(#EE5F5B, 8%);
+        text-transform: capitalize;
+
+        i {
+            vertical-align: middle;
+        }
+
+    }
+
+    .button--primary {
+        display: inline-block;
+        background-color: #3ba3ff;
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        margin: $spacing-unit;
+        padding: $spacing-unit ($spacing-unit * 2);
+        border-radius: 5px;
+        border: 2px solid darken(#3ba3ff, 8%);
+        text-transform: capitalize;
+
+        i {
+            vertical-align: middle;
+        }
+    }

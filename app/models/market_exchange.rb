@@ -1,0 +1,2 @@
+class MarketExchange < ApplicationRecord
+end

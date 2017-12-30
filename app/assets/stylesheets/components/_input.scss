@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    #INPUT
+\*------------------------------------*/
+
+
+.input {
+}
+
+    .input--newsletter {
+        display: block;
+        width: 100%;
+        padding: $spacing-unit;
+        border: 0;
+        background-color: #f5f7f9;
+        border: 2px solid #dce1e6;
+        color: #000;
+        font-size: $font-size + 2px;
+        border-radius: 5px;
+    }

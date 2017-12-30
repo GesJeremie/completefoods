@@ -1,0 +1,14 @@
+/*------------------------------------*\
+    #AVATAR
+\*------------------------------------*/
+
+.avatar {}
+
+    .avatar--author {
+        display: inline-block;
+        background-size: cover;
+        background-repeat: no-repeat;
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }

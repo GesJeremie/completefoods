@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Coinbeat</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+
+    <link href="https://file.myfontastic.com/a83oM8CgRVGYLUrdUjUjb8/icons.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+    <div
+      data-component-flashes
+      data-success="<%= flash[:success] %>"
+      data-error="<%= flash[:error] %>"
+      data-warning="<%= flash[:warning] %>">
+    </div>
+
+    <%= yield %>
+  </body>
+</html>

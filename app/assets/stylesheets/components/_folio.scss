@@ -1,0 +1,46 @@
+/*------------------------------------*\
+    #FOLIO
+\*------------------------------------*/
+
+@keyframes totalUp {
+    0%   { color: #3E4651; }
+    50%  { color: #27AE60; }
+    100% { color: #3E4651; }
+}
+
+@keyframes totalDown {
+    0%   { color: #3E4651; }
+    50%  { color: #E74C3C; }
+    100% { color: #3E4651; }
+}
+
+.folio {
+    margin-bottom: $spacing-unit * 2;
+    text-align: center;
+    padding: ($spacing-unit * 3) 0;
+}
+
+    .folio__total {
+        font-family: $font-alt;
+        font-size: ($font-size * 4);
+        color: #3E4651;
+    }
+
+    .folio__total--up {
+        animation: totalUp 2s;
+    }
+
+    .folio__total--down {
+        animation: totalDown 2s;
+    }
+
+    .folio__title {
+        color: #3ba3ff;
+        font-weight: 800;
+        text-transform: uppercase;
+    }
+
+    .folio__updated {
+        margin-top: $spacing-unit;
+        font-style: italic;
+    }
