@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CreateAnonymousTest < ActiveSupport::TestCase
+class UserCreateAnonymousTest < ActiveSupport::TestCase
 
   test 'create user' do
     result = User::CreateAnonymous.()

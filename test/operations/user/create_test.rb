@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class CreateTest < ActiveSupport::TestCase
+class UserCreateTest < ActiveSupport::TestCase
 
   test 'create user' do
     result = User::Create.(email: 'hello@example.com', password: 'fakePassword')

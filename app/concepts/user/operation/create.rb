@@ -28,12 +28,11 @@ class User::Create < Trailblazer::Operation
   end
 
   def encrypt_password(options, params:, **)
-    options['data.password'] = BCrypt::Password.create(params[:password])
+    params[:password] = BCrypt::Password.create(params[:password])
   end
 
   def assign_user_values(options, params:, **)
     options['model'].token = options['data.token']
-    options['model'].password = options['data.password']
     options['model'].role = 'user'
   end
 

@@ -5,9 +5,11 @@ class PageController < ApplicationController
     # else
     # - create anonymous user
     # - create folio with anonymous attached
+    # - add default alt coins
     operation = User::CreateAnonymous.()
-    token = operation['model'].token
+    user_token = operation['model'].token
 
+    Folio::Create.(current_user: user_token)
 
   end
 end
