@@ -6,6 +6,7 @@ class CreateTest < ActiveSupport::TestCase
     result = User::Create.(email: 'hello@example.com', password: 'fakePassword')
     model = result['model']
 
+    assert result.success?
     assert model.email.present?
     assert model.password.present?
     assert model.token.present?

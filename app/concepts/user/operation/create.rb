@@ -10,17 +10,13 @@ class User::Create < Trailblazer::Operation
   end)
 
   step      Contract::Validate(name: 'params'), before: 'operation.new'
-  success   :encrypt_password
-  success   :generate_token
   step      Model(User, :new)
-  step      Contract::Build(constant: User::Contract::Create)
+  success   :generate_token
+  success   :encrypt_password
   success   :assign_user_values
+  step      Contract::Build(constant: User::Contract::Create)
   step      Contract::Validate()
   step      Contract::Persist()
-
-  def encrypt_password(options, params:, **)
-    options['data.password'] = BCrypt::Password.create(params[:password])
-  end
 
   def generate_token(options, *)
     token = loop do
@@ -31,7 +27,11 @@ class User::Create < Trailblazer::Operation
     options['data.token'] = token
   end
 
-  def assign_user_values(options, *)
+  def encrypt_password(options, params:, **)
+    options['data.password'] = BCrypt::Password.create(params[:password])
+  end
+
+  def assign_user_values(options, params:, **)
     options['model'].token = options['data.token']
     options['model'].password = options['data.password']
     options['model'].role = 'user'
