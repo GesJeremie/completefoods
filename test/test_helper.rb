@@ -7,7 +7,7 @@ require 'rails/test_help'
 # require 'minitest/rails/capybara'
 
 # Uncomment for awesome colorful output
-# require 'minitest/pride'
+require 'minitest/pride'
 
 class ActiveSupport::TestCase
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
@@ -19,6 +19,11 @@ class ActiveSupport::TestCase
   prepare
 
   def setup
+    CryptoCurrency.create(symbol: 'BTC', name: 'Bitcoin')
+    CryptoCurrency.create(symbol: 'STR', name: 'Stellar')
+    Currency.create(symbol: 'EUR', name: 'Euro')
+    Currency.create(symbol: 'USD', name: 'United States Dollar')
+
     # Add code that need to be executed before each test
   end
 

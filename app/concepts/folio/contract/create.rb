@@ -4,15 +4,14 @@ module Folio::Contract
   class Create < Reform::Form
 
     property :user_id
-    property :currency
+    property :currency_id
 
     validates :user_id,
       presence: true,
       unique: true
 
-    validates :currency,
-      presence: true,
-      inclusion: {in: %w(EUR USD)}
+    validates :currency_id,
+      presence: true
 
   end
 end

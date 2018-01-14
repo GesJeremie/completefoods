@@ -5,12 +5,11 @@ class FolioCreateTest < ActiveSupport::TestCase
   test 'create folio' do
     user = User::CreateAnonymous.()
     folio = Folio::Create.(user_token: user['model'].token)
-    folio_model = folio['model']
+    model = folio['model']
 
     assert folio.success?
-    assert folio_model.user_id.present?
-    assert folio_model.currency.present?
-    assert folio_model.currency == 'USD'
+    assert model.user_id.present?
+    assert model.currency_id.present?
   end
 
   test 'doesn\'t create if user doesn\'t exist' do
@@ -27,4 +26,5 @@ class FolioCreateTest < ActiveSupport::TestCase
     assert folio_first.success?
     assert !folio_second.success?
   end
+
 end

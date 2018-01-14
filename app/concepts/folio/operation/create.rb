@@ -16,12 +16,10 @@ class Folio::Create < Trailblazer::Operation
   step      Contract::Persist()
 
   def user_exists?(options, params:, **)
-    if User.exists?(token: params[:user_token])
-      true
-    else
-      options['errors'] = 'The user given doesn\'t exist'
-      false
-    end
+    return true if User.exists?(token: params[:user_token])
+
+    options['errors'] = 'The user given doesn\'t exist'
+    false
   end
 
   def get_user_id(options, params:, **)
@@ -30,7 +28,7 @@ class Folio::Create < Trailblazer::Operation
 
   def assign_folio_values(options, params:, **)
     options['model'].user_id = options['data.user_id']
-    options['model'].currency = 'USD'
+    options['model'].currency_id = Currency.where(symbol: 'USD').first.id
   end
 
 end

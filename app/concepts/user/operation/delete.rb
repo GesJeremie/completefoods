@@ -1,44 +1,58 @@
+=begin
+
+  Usage:
+  ---
+
+  User::Delete.(
+    {user_id: 10},
+    'current_user' => User<Model>
+  )
+
+=end
 class User::Delete < Trailblazer::Operation
   extend Contract::DSL
 
   contract 'params', (Dry::Validation.Schema do
-    required(:token).filled
+    required(:user_id).filled
   end)
 
   step    Contract::Validate(name: 'params'), before: 'operation.new'
-  step    :has_current_user_token!
-  step    :user_can_delete?
+  step    :has_current_user?
   step    :user_exists?
-  success :delete
+  step    :authorize!
+  step    :delete!
 
-  def has_current_user_token!(options, params:, **)
-    if options['current_user_token'].present?
-      true
-    else
-      options['errors'] = 'Current user not given'
-      false
-    end
-  end
+  def has_current_user?(options, params:, **)
+    return true if options['current_user'].present?
 
-  def user_can_delete?(options, params:, **)
-    if options['current_user_token'] == params[:token]
-      true
-    else
-      options['errors'] = 'This user can\'t delete this user'
-      false
-    end
+    options['errors'] = 'Current user not given'
+    false
   end
 
   def user_exists?(options, params:, **)
-    if User::where(token: params[:token]).take.nil?
-      options['errors'] = 'Can\'t find user to delete'
-      false
+    user = User::find(params[:user_id])
+
+    if !user.nil?
+      options['data.user'] = user
     else
-      true
+      options['errors'] = 'User doesn\'t exist'
+      false
     end
+
   end
 
-  def delete(optiosn, params:, **)
-    User::where(token: params[:token]).first.destroy
+  def authorize!(options, params:, **)
+    return true if options['data.user'].id == options['current_user'].id
+
+    options['errors'] = 'This user cant\'t delete this user'
+    false
   end
+
+  def delete!(options, params:, **)
+    return true if options['data.user'].destroy
+
+    options['errors'] = 'Impossible to delete this user at this time'
+    false
+  end
+
 end

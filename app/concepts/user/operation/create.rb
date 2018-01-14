@@ -1,3 +1,12 @@
+=begin
+
+  Usage:
+  ---
+
+  User::Create.(email: 'hello@gmail.com', password: 'fakePassword')
+
+=end
+
 require 'bcrypt'
 
 class User::Create < Trailblazer::Operation

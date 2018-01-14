@@ -26,4 +26,5 @@ class UserCreateTest < ActiveSupport::TestCase
     assert user1.success?
     assert !user2.success?
   end
+
 end

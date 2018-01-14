@@ -1,15 +1,16 @@
 class PageController < ApplicationController
 
   def home
-    # Check if session exists,
-    # else
-    # - create anonymous user
-    # - create folio with anonymous attached
-    # - add default alt coins
-    operation = User::CreateAnonymous.()
-    user_token = operation['model'].token
+    op_user = User::CreateAnonymous.()
+    op_folio = Folio::Create.(user_token: op_user['model'].token)
 
-    Folio::Create.(current_user: user_token)
+    %w(BTC ETH STR XRP XMR BCH ADA).each do |symbol|
+      Folio::AddCryptoCurrency.(
+        crypto_currency: symbol,
+        folio_id: op_folio['model'].id
+      )
+    end
 
+    @folio = op_folio['model']
   end
 end

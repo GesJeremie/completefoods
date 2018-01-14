@@ -1,9 +1,9 @@
 class CreateMarketExchanges < ActiveRecord::Migration[5.1]
   def up
     create_table :market_exchanges do |t|
-      t.string :crypto_currency
-      t.string :fiat_currency
-      t.string :price
+      t.references :crypto_currency
+      t.references :currency
+      t.decimal :price
 
       t.timestamps
     end

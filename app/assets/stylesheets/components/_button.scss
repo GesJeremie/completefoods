@@ -38,3 +38,21 @@
             vertical-align: middle;
         }
     }
+
+    .button--warning {
+        display: inline-block;
+        background-color: #F29B34;
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        margin: $spacing-unit;
+        padding: $spacing-unit ($spacing-unit * 2);
+        border-radius: 5px;
+        border: 2px solid darken(#F29B34, 8%);
+        text-transform: capitalize;
+
+        i {
+            vertical-align: middle;
+        }
+    }
+

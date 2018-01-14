@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180105021528) do
+ActiveRecord::Schema.define(version: 20180108082442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,20 +23,41 @@ ActiveRecord::Schema.define(version: 20180105021528) do
     t.index ["symbol"], name: "index_crypto_currencies_on_symbol", unique: true
   end
 
-  create_table "folios", force: :cascade do |t|
-    t.bigint "user_id"
-    t.string "currency"
+  create_table "currencies", force: :cascade do |t|
+    t.string "symbol"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["symbol"], name: "index_currencies_on_symbol", unique: true
+  end
+
+  create_table "folio_crypto_currencies", force: :cascade do |t|
+    t.bigint "folio_id"
+    t.bigint "crypto_currency_id"
+    t.decimal "holding"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["crypto_currency_id"], name: "index_folio_crypto_currencies_on_crypto_currency_id"
+    t.index ["folio_id"], name: "index_folio_crypto_currencies_on_folio_id"
+  end
+
+  create_table "folios", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "currency_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["currency_id"], name: "index_folios_on_currency_id"
     t.index ["user_id"], name: "index_folios_on_user_id"
   end
 
   create_table "market_exchanges", force: :cascade do |t|
-    t.string "crypto_currency"
-    t.string "fiat_currency"
-    t.string "price"
+    t.bigint "crypto_currency_id"
+    t.bigint "currency_id"
+    t.decimal "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["crypto_currency_id"], name: "index_market_exchanges_on_crypto_currency_id"
+    t.index ["currency_id"], name: "index_market_exchanges_on_currency_id"
   end
 
   create_table "users", force: :cascade do |t|

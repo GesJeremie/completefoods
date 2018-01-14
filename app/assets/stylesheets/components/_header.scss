@@ -1,63 +1,7 @@
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: $font-primary;
-    color: #3E4651;
-}
-
 .header {
-    position: relative;
-    background-color: white;
-    padding-bottom: $spacing-unit * 8;
+    text-align: center;
+    background-color: #3ba3ff;
+    border-bottom: 2px solid darken(#3ba3ff, 5%);
+    color: white;
+    padding: $spacing-unit * 2;
 }
-
-    .header__emoji {
-        margin: 0 auto;
-        margin-top: $spacing-unit * 6;
-        width: 100%;
-        max-width: 200px;
-
-        img {
-            max-width: 100%;
-        }
-    }
-
-    .header__actions {
-        margin: $spacing-unit * 2;
-        text-align: right;
-    }
-
-        .header__actions-text {
-            color: #969696;
-        }
-
-    .header__signup {
-        margin: 0 auto;
-        margin-top: $spacing-unit * 2;
-        width: 40%;
-    }
-
-    .header__logo {
-        margin-top: $spacing-unit;
-        text-transform: uppercase;
-        font-size: $font-size + 30px;
-        font-weight: bold;
-        letter-spacing: -2px;
-        text-align: center;
-    }
-
-    .header__punchline {
-        margin-top: $spacing-unit;
-        text-transform: capitalize;
-        font-size: $font-size + 8px;
-        font-weight: 200;
-        text-align: center;
-    }
-
-        .header__punchline-highlight {
-            font-weight: 800;
-            border-bottom: 1px solid #FEC606;
-            box-shadow: 0px -4px 0px #FEC606 inset;
-        }

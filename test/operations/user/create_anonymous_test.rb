@@ -14,4 +14,5 @@ class UserCreateAnonymousTest < ActiveSupport::TestCase
   test 'doesn\'t create duplicate token' do
     User::CreateAnonymous.()['model'].token != User::CreateAnonymous.()['model'].token
   end
+
 end
