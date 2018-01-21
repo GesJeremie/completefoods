@@ -1,7 +1,7 @@
 require 'reform/form/validation/unique_validator'
 
-module User::Contract
-  class CreateAnonymous < Reform::Form
+module UserAnonymous::Contract
+  class Create < Reform::Form
 
     property :role
     property :token

@@ -13,24 +13,18 @@
 
 <%
    %w(
-      jquery
+      vue
+      vue-select
+      axios
       lodash
+      numeral
       noty
+      filters/formatCurrency
+      components/component-select
+      components/component-currency
+      components/component-currency-add
       app
-      settings/config
-      templates/hello_world
-      components/flashes
-      components/folio
-      components/coin
     ).each do |asset|
       require_asset asset
    end
 %>
-
-
-/**
- * Boot
- */
- $(document).on('ready', function () {
-     window.App.initComponents($('body')); // Initialize all modules
- });

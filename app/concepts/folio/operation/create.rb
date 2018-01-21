@@ -28,7 +28,7 @@ class Folio::Create < Trailblazer::Operation
 
   def assign_folio_values(options, params:, **)
     options['model'].user_id = options['data.user_id']
-    options['model'].currency_id = Currency.where(symbol: 'USD').first.id
+    options['model'].currency_id = Currency.where(code: 'USD').first.id
   end
 
 end

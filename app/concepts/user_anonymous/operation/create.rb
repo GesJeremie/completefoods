@@ -3,7 +3,7 @@
   Usage:
   ---
 
-  User::CreateAnonymous.()
+  UserAnonymous::Create.()
 
 =end
 class User::CreateAnonymous < Trailblazer::Operation
@@ -11,7 +11,7 @@ class User::CreateAnonymous < Trailblazer::Operation
   success   :generate_token
   step      Model(User, :new)
   success   :assign_user_values
-  step      Contract::Build(constant: User::Contract::CreateAnonymous)
+  step      Contract::Build(constant: UserAnonymous::Contract::Create)
   step      Contract::Validate()
   step      Contract::Persist()
 

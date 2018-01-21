@@ -1,4 +1,5 @@
 class Folio < ApplicationRecord
   belongs_to :user
+  belongs_to :currency
   has_many :folio_crypto_currencies
 end

@@ -1,3 +1,4 @@
+/*
 App.component('flashes', function($scope) {
     'use strict';
 
@@ -49,3 +50,4 @@ App.component('flashes', function($scope) {
         new Flashes().init($(this));
     });
 });
+*/

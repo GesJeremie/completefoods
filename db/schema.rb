@@ -24,11 +24,12 @@ ActiveRecord::Schema.define(version: 20180108082442) do
   end
 
   create_table "currencies", force: :cascade do |t|
-    t.string "symbol"
+    t.string "code"
     t.string "name"
+    t.string "symbol"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["symbol"], name: "index_currencies_on_symbol", unique: true
+    t.index ["code"], name: "index_currencies_on_code", unique: true
   end
 
   create_table "folio_crypto_currencies", force: :cascade do |t|

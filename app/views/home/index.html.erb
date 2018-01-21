@@ -1,0 +1,85 @@
+<div class="header" style="display: none">
+    <div class="header__body">
+
+        The minimalist portfolio to track your crypto currencies
+    </div>
+</div>
+
+<div class="folio">
+    <div class="folio__total">$4050.333</div>
+    <div class="folio__title">Total value of your folio</div>
+</div>
+
+<div class="grid grid--center">
+    <div class="grid__cell grid__cell--80">
+        <div class="coins">
+            <div class="grid grid--left">
+
+                <% @folio.folio_crypto_currencies.each do |folio_crypto_currency| %>
+                    <component-currency v-cloak inline-template
+                        crypto-currency="<%= folio_crypto_currency.crypto_currency.to_json %>"
+                        folio-crypto-currency="<%= folio_crypto_currency.to_json %>"
+                        folio-currency="<%= folio_crypto_currency.folio.currency.to_json %>"
+                    >
+                        <div class="grid__cell grid__cell--25">
+                            <div class="coins__item">
+                                <div class="coins__item-name">
+                                    <span class="coins__item-name-name">{{crypto.name}}</span>
+                                    <span class="coins__item-name-symbol">{{crypto.symbol}}</span>
+                                </div>
+                                <div class="coins__item-price">
+                                    {{currency.symbol}}{{priceHolding | formatCurrency}}
+                                </div>
+                                <div class="coins__item-hold">
+                                    Holding: <input v-model="folio.holding" :value="holding" type="number" class="coins__item-hold-input">
+                                </div>
+                                <div class="coins__item-unit">
+                                    <br/>
+                                    1 {{crypto.symbol}} = {{unitCryptoPrice}}
+                                </div>
+                                <div class="coins__item-arrow">
+                                </div>
+                                <div class="coins__item-actions">
+                                    <a class="button button--danger" href="#">Delete</a>
+                                </div>
+                            </div>
+                        </div>
+                    </component-currency>
+                <% end %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="grid grid--center">
+    <div class="grid__cell grid__cell--80">
+        <div class="grid grid--center">
+            <div class="grid__cell grid__cell--50">
+                <div class="coin-add">
+                    <component-currency-add inline-template
+                        crypto-currencies="<%= @crypto_currencies.to_json %>"
+                    >
+                        <%= form_tag(controller:  'folio_crypto_currency', action: 'create') %>
+
+                            <div class="coins-add__center">
+                                <v-select v-model="selected" :options="options" class="coins-add__select"></v-select>
+
+                                <input type="hidden" name="crypto_currency_id" :value="selected.value"/>
+                                <button type="submit" class="button button--primary">Add Asset</button>
+                            </div>
+                        </form>
+                    </component-currency-add>
+                </div>
+            </div>
+
+            <div class="grid__cell grid__cell--50">
+                <div class="folio-save">
+                    <div class="folio-save__center">
+                        Don't forget to save your folio!
+                        <a class="button button--primary">Save Folio</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

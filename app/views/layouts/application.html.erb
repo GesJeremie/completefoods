@@ -4,21 +4,21 @@
     <title>Coinbeat</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
 
-    <link href="https://file.myfontastic.com/a83oM8CgRVGYLUrdUjUjb8/icons.css" rel="stylesheet">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
+
+    <link href="https://file.myfontastic.com/YFYw2AyECaqxQdAbuAFgBY/icons.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 
   </head>
 
   <body>
-    <div
-      data-component-flashes
-      data-success="<%= flash[:success] %>"
-      data-error="<%= flash[:error] %>"
-      data-warning="<%= flash[:warning] %>">
-    </div>
 
-    <%= yield %>
+    <div id="app">
+      <%= yield %>
+    </div>
   </body>
+
+  <%= javascript_include_tag 'application' %>
+
 </html>
