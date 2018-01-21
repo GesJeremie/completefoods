@@ -10,8 +10,7 @@ module FolioCryptoCurrency::Contract
       presence: true
 
     validates :crypto_currency_id,
-      presence: true,
-      unique: true
+      presence: true
 
   end
 end

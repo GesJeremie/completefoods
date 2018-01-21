@@ -1,3 +1,4 @@
+=begin
 require 'test_helper'
 
 class MarketExchangeCreateTest < ActiveSupport::TestCase
@@ -28,3 +29,4 @@ class MarketExchangeCreateTest < ActiveSupport::TestCase
   end
 
 end
+=end

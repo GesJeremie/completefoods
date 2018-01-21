@@ -12,9 +12,11 @@ class FolioCryptoCurrencyController < ApplicationController
     redirect_back fallback_location: '/'
   end
 
-  def delete
+  def destroy
+    byebug
+    op = FolioCryptoCurrency::Destroy.(params, 'current_user' => current_user)
+
+    redirect_back fallback_location: '/'
   end
 
-  def update
-  end
 end

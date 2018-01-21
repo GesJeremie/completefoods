@@ -6,7 +6,7 @@
   UserAnonymous::Create.()
 
 =end
-class User::CreateAnonymous < Trailblazer::Operation
+class UserAnonymous::Create < Trailblazer::Operation
 
   success   :generate_token
   step      Model(User, :new)

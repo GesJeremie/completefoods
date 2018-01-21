@@ -21,8 +21,8 @@ class ActiveSupport::TestCase
   def setup
     CryptoCurrency.create(symbol: 'BTC', name: 'Bitcoin')
     CryptoCurrency.create(symbol: 'STR', name: 'Stellar')
-    Currency.create(symbol: 'EUR', name: 'Euro')
-    Currency.create(symbol: 'USD', name: 'United States Dollar')
+    Currency.create(code: 'EUR', name: 'Euro', symbol: '€')
+    Currency.create(code: 'USD', name: 'United States Dollar', symbol: '$')
 
     # Add code that need to be executed before each test
   end

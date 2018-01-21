@@ -8,7 +8,7 @@
     'current_user' => User<Model>
   )
 
-=end
+
 class User::Delete < Trailblazer::Operation
   extend Contract::DSL
 
@@ -56,3 +56,4 @@ class User::Delete < Trailblazer::Operation
   end
 
 end
+=end

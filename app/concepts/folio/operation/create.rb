@@ -2,32 +2,24 @@ class Folio::Create < Trailblazer::Operation
 
   extend Contract::DSL
 
-  contract 'params', (Dry::Validation.Schema do
-    required(:user_token).filled
-  end)
-
-  step      Contract::Validate(name: 'params'), before: 'operation.new'
-  step      :user_exists?
-  success   :get_user_id
+  step      Policy::Guard(:options?)
+  step      :do_not_own_folio?
   step      Model(Folio, :new)
   success   :assign_folio_values
   step      Contract::Build(constant: Folio::Contract::Create)
   step      Contract::Validate()
   step      Contract::Persist()
 
-  def user_exists?(options, params:, **)
-    return true if User.exists?(token: params[:user_token])
-
-    options['errors'] = 'The user given doesn\'t exist'
-    false
+  def options?(options, params:, **)
+    options['current_user'].present? && options['current_user'].id.present?
   end
 
-  def get_user_id(options, params:, **)
-    options['data.user_id'] = User.where(token: params[:user_token]).first.id
+  def do_not_own_folio?(options, params:, **)
+    options['current_user'].folio.nil?
   end
 
   def assign_folio_values(options, params:, **)
-    options['model'].user_id = options['data.user_id']
+    options['model'].user_id = options['current_user'].id
     options['model'].currency_id = Currency.where(code: 'USD').first.id
   end
 

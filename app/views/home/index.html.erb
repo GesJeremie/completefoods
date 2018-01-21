@@ -40,7 +40,9 @@
                                 <div class="coins__item-arrow">
                                 </div>
                                 <div class="coins__item-actions">
-                                    <a class="button button--danger" href="#">Delete</a>
+                                    <%= form_tag(folio_crypto_currency_path(folio_crypto_currency.id), method: 'delete') %>
+                                        <button type="submit" class="button button--danger">Delete</a>
+                                    </form>
                                 </div>
                             </div>
                         </div>

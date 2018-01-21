@@ -15,6 +15,13 @@
   <body>
 
     <div id="app">
+      <component-flashes inline-template
+        alert="<%= flash[:alert] %>"
+        notice="<%= flash[:notice] %>"
+        error="<%= flash[:success] %>"
+      >
+      </component-flashes>
+
       <%= yield %>
     </div>
   </body>
