@@ -24,8 +24,11 @@
         },
 
         watch: {
+            priceHolding: function() {
+                this.notifyPrice();
+            },
+
             'folio.holding': function(newHolding, oldHolding) {
-                // Call endpoint
             }
         },
 
@@ -59,7 +62,15 @@
                         this.updatePrice();
                     }.bind(this), 3000);
 
-                }.bind(this))
+                }.bind(this));
+            },
+
+            notifyPrice: function() {
+                window.bus.$emit('currencyUpdated', {
+                    price: this.priceHolding,
+                    symbol: this.crypto.symbol,
+                    currency: this.currency.symbol
+                });
             }
         }
     });

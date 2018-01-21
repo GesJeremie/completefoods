@@ -5,10 +5,12 @@
     </div>
 </div>
 
-<div class="folio">
-    <div class="folio__total">$4050.333</div>
-    <div class="folio__title">Total value of your folio</div>
-</div>
+<component-folio v-cloak inline-template>
+    <div class="folio">
+        <div class="folio__total">{{currency}}{{humanizePrice | formatCurrency}}</div>
+        <div class="folio__title">Total value of your folio</div>
+    </div>
+</component-folio>
 
 <div class="grid grid--center">
     <div class="grid__cell grid__cell--80">
