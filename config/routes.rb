@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/' => 'home#index'
 
-  resources :folio_crypto_currency, only: [:create, :destroy]
+  resources :folio_crypto_currency, only: [:create, :destroy, :update]
 
 end
 
