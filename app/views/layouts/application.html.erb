@@ -15,10 +15,10 @@
   <body>
 
     <div id="app">
-      <component-flashes inline-template
-        alert="<%= flash[:alert] %>"
+      <component-flashes
+        error="<%= flash[:error] %>"
+        success="<%= flash[:success] %>"
         notice="<%= flash[:notice] %>"
-        error="<%= flash[:success] %>"
       >
       </component-flashes>
 
