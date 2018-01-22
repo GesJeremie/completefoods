@@ -2,6 +2,7 @@
     'use strict';
 
     Vue.component('component-currency', {
+        mixins: [window.mixins.notification],
         props: ['cryptoCurrency', 'folioCryptoCurrency', 'folioCurrency'],
 
         data: function() {
@@ -76,7 +77,7 @@
                     type = 'error';
                 }
 
-                this.showNotification(type, message);
+                this.notificationShow(type, message);
             },
 
             updatePrice: function() {
@@ -96,16 +97,6 @@
             // TODO: Could be a mixin since we gonna use for different XHR requests
             getCsrfToken: function() {
                 return document.querySelector('[name="csrf-token"]').getAttribute('content');
-            },
-
-            // TODO: Could be a mixin to avoid duplication with component-flashes
-            showNotification: function(type, message)  {
-                new Noty({
-                    type: type,
-                    text: message,
-                    timeout: 1000,
-                    theme: 'custom'
-                }).show();
             }
         }
     });

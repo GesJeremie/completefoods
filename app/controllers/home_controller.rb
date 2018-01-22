@@ -5,7 +5,6 @@ class HomeController < ApplicationController
     op = Home::Index.({}, 'current_user' => current_user)
 
     if op['data.new_user'] and current_user.nil?
-      byebug
       session['current_user_id'] = op['data.user'].id
     end
 

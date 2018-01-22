@@ -60,7 +60,7 @@
         <div class="grid grid--center">
             <div class="grid__cell grid__cell--50">
                 <div class="coin-add">
-                    <component-currency-add inline-template
+                    <component-currency-add v-cloak inline-template
                         crypto-currencies="<%= @crypto_currencies.to_json %>"
                     >
                         <%= form_tag(controller:  'folio_crypto_currency', action: 'create') %>
@@ -78,10 +78,48 @@
 
             <div class="grid__cell grid__cell--50">
                 <div class="folio-save">
-                    <div class="folio-save__center">
-                        Don't forget to save your folio!
-                        <a class="button button--primary">Save Folio</a>
-                    </div>
+                    <component-folio-save v-cloak inline-template
+                        current-user="<%= @user.to_json %>"
+                    >
+                        <div class="folio-save__center">
+
+                            <div v-if="shouldRenderSubscribe">
+                                <%= form_tag(controller: 'user_subscribe', action: 'create') %>
+                                    <p class="folio-save__description">Don't forget to save your folio!</p>
+
+                                    <div class="folio-save__inputs">
+                                        <input type="text" class="folio-save__input" name="email" placeholder="Email" />
+                                        <input type="password" class="folio-save__input" name="password" placeholder="Password"  />
+                                    </div>
+
+                                    <button type="submit" class="button button--primary">Save Folio</button>
+                                </form>
+                            </div>
+
+                            <div v-if="shouldRenderConnect">
+                                <%= form_tag(controller: 'user_connect', action: 'create') %>
+                                    <p class="folio-save__description">Log in to see your folio</p>
+                                    <div class="folio-save__inputs">
+                                        <input type="text" class="folio-save__input" name="email" placeholder="Email" />
+                                        <input type="password" class="folio-save__input" name="password" placeholder="Password"  />
+                                    </div>
+
+                                    <button type="submit" class="button button--primary">Log In</button>
+                                </form>
+                            </div>
+
+                            <div v-if="isUser">
+                                <%= form_tag(controller: 'user_disconnect', action: 'create') %>
+                                    <button type="submit" class="button button--large button--warning">Log out</button>
+                                </form>
+                            </div>
+
+                            <div v-if="isAnonymous">
+                                <a class="folio-save__link" v-on:click="onClickHaveAFolio">{{textHaveAFolio}}</a>
+                            </div>
+
+                        </div>
+                    </component-folio-save>
                 </div>
             </div>
         </div>

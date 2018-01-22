@@ -1,11 +1,3 @@
-=begin
-
-  Usage:
-  ---
-
-  UserAnonymous::Create.()
-
-=end
 class UserAnonymous::Create < Trailblazer::Operation
 
   success   :generate_token
