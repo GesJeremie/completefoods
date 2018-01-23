@@ -1,7 +1,10 @@
-<div class="header" style="display: none">
-    <div class="header__body">
-
-        The minimalist portfolio to track your crypto currencies
+<div class="header">
+    <div class="header__connected-as">
+        <% if @user.role == 'anonymous' %>
+            Connected as anonymous
+        <% else %>
+            Connect as <%= @user.email %>
+        <% end %>
     </div>
 </div>
 
