@@ -8,17 +8,17 @@ class UserAnonymous::Create < Trailblazer::Operation
   step      Contract::Persist()
 
   def generate_token(options, *)
-    token = loop do
-      random_token = SecureRandom.uuid
-      break random_token unless User.exists?(token: random_token)
-    end
-
-    options['data.token'] = token
+    options['data.token'] = loop do
+                              random_token = SecureRandom.uuid
+                              break random_token unless User.exists?(token: random_token)
+                            end
   end
 
   def assign_user_values(options, *)
-    options['model'].token = options['data.token']
-    options['model'].role = 'anonymous'
+    options['model'].assign_attributes(
+      token: options['data.token'],
+      role: 'anonymous'
+    )
   end
 
 end

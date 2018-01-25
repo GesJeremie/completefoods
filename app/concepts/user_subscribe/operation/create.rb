@@ -10,7 +10,7 @@ class UserSubscribe::Create < Trailblazer::Operation
   end)
 
   step      Contract::Validate(name: 'params'), before: 'operation.new'
-  step      Policy::Guard(:options?)
+  step      Policy::Guard(:current_user?)
   step      :find_user!
   step      :anonymous?
   success   :encrypt_password
@@ -19,7 +19,7 @@ class UserSubscribe::Create < Trailblazer::Operation
   step      Contract::Validate()
   step      Contract::Persist()
 
-  def options?(options, params:, **)
+  def current_user?(options, params:, **)
     options['current_user'].present? && options['current_user'].id.present?
   end
 
@@ -35,12 +35,10 @@ class UserSubscribe::Create < Trailblazer::Operation
   end
 
   def anonymous?(options, params:, **)
-    if options['model'].role == 'user'
-      options['errors'] = 'The user is already registered'
-      false
-    else
-      true
-    end
+    return true if options['model'].role == 'anonymous'
+
+    options['errors'] = 'The user is already registered'
+    false
   end
 
   def encrypt_password(options, params:, **)

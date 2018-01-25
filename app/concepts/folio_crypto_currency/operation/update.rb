@@ -24,5 +24,4 @@ class FolioCryptoCurrency::Update < Trailblazer::Operation
     options['current_user'].folio.id == FolioCryptoCurrency.find(params[:id]).folio_id
   end
 
-
 end

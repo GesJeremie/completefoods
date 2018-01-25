@@ -1,12 +1,3 @@
-=begin
-
-  Usage:
-  ---
-
-  User::Create.(email: 'hello@gmail.com', password: 'fakePassword')
-
-=end
-
 require 'bcrypt'
 
 class User::Create < Trailblazer::Operation
@@ -28,12 +19,10 @@ class User::Create < Trailblazer::Operation
   step      Contract::Persist()
 
   def generate_token(options, *)
-    token = loop do
-      random_token = SecureRandom.uuid
-      break random_token unless User.exists?(token: random_token)
-    end
-
-    options['data.token'] = token
+    options['data.token'] = loop do
+                              random_token = SecureRandom.uuid
+                              break random_token unless User.exists?(token: random_token)
+                            end
   end
 
   def encrypt_password(options, params:, **)
@@ -41,8 +30,10 @@ class User::Create < Trailblazer::Operation
   end
 
   def assign_user_values(options, params:, **)
-    options['model'].token = options['data.token']
-    options['model'].role = 'user'
+    options['model'].assign_attributes(
+      token: options['data.token'],
+      role: 'user'
+    )
   end
 
 end
