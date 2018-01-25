@@ -2,19 +2,15 @@
     'use strict';
 
     Vue.component('component-currency-add', {
-        props: ['cryptoCurrencies'],
+        props: [
+            'propCryptoCurrencies',
+            'propSelected'
+        ],
 
         data: function() {
             return {
-                cryptos: JSON.parse(this.cryptoCurrencies),
-                selected: {label: "ADA (ADA)", value: 1}
+                cryptos: JSON.parse(this.propCryptoCurrencies),
             }
-        },
-
-        watch: {
-        },
-
-        created: function() {
         },
 
         computed: {
@@ -23,10 +19,11 @@
                 return _.map(this.cryptos, function(crypto) {
                     return {label: crypto.name + ' (' + crypto.symbol + ')', value: crypto.id};
                 });
-            }
-        },
+            },
 
-        methods: {
+            selected: function() {
+                return _.first(this.options);
+            }
         }
     });
 

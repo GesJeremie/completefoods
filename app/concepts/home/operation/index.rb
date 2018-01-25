@@ -38,7 +38,7 @@ class Home::Index < Trailblazer::Operation
     def add_crypto_currencies(user)
       user.reload
 
-      %w(BTC BCH ETH LTC XRP XLM ADA XVG MANA).each do |symbol|
+      %w(BTC BCH ETH LTC XRP XLM ADA XVG).each do |symbol|
         add_crypto_currency(user, symbol)
       end
     end
