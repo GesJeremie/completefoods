@@ -3,8 +3,7 @@
 
     Vue.component('component-currency-add', {
         props: [
-            'propCryptoCurrencies',
-            'propSelected'
+            'propCryptoCurrencies'
         ],
 
         data: function() {
