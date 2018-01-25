@@ -12,8 +12,8 @@
     <div class="folio">
         <div class="folio__total">{{currency}}{{humanizePrice | formatCurrency}}</div>
         <div class="folio__title">Total value of your folio</div>
-        <div class="folio__label folio__label--high"><span>High 24h:</span> $6,800.27</div>
-        <div class="folio__label folio__label--low"><span>Low 24h:</span> $3,000.27</div>
+        <div class="folio__label folio__label--low"><span>Low 24h:</span> {{currency}}{{priceLow24Hours | formatCurrency}}</div>
+        <div class="folio__label folio__label--high"><span>High 24h:</span> {{currency}}{{priceHigh24Hours | formatCurrency}}</div>
     </div>
 </component-folio>
 
@@ -50,6 +50,10 @@
                                     <%= form_tag(folio_crypto_currency_path(folio_crypto_currency.id), method: 'delete') %>
                                         <button type="submit" class="button button--danger">Delete</a>
                                     </form>
+                                </div>
+                                <div class="coins__item-stats">
+                                    Low 24h: {{folioCurrency.symbol}}{{cryptoCurrency.price_low_24_hours | formatCurrency}}
+                                    High 24h {{folioCurrency.symbol}}{{cryptoCurrency.price_high_24_hours | formatCurrency}}
                                 </div>
                             </div>
                         </div>

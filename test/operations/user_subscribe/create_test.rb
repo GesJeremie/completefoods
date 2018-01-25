@@ -30,11 +30,13 @@ class UserSubscribeCreateTest < ActiveSupport::TestCase
     user1 = UserAnonymous::Create.()['model']
     user2 = UserAnonymous::Create.()['model']
 
+    byebug
     user1 = UserSubscribe::Create.({email: 'ges@gmail.com', password: 'fakePassword'}, 'current_user' => user1)
     user2 = UserSubscribe::Create.({email: 'ges@gmail.com', password: 'fakePassword'}, 'current_user' => user2)
 
     assert user1.success?
     assert !user2.success?
+
   end
 
 end

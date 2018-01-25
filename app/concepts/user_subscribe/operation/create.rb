@@ -13,6 +13,7 @@ class UserSubscribe::Create < Trailblazer::Operation
   step      Policy::Guard(:current_user?)
   step      :find_user!
   step      :anonymous?
+  step      :unique_email?
   success   :encrypt_password
   success   :assign_role
   step      Contract::Build(constant: UserSubscribe::Contract::Create)
@@ -24,7 +25,7 @@ class UserSubscribe::Create < Trailblazer::Operation
   end
 
   def find_user!(options, params:, **)
-    user = User.find_by(id: options['current_user'])
+    user = User.find_by(id: options['current_user'].id)
 
     if user.nil?
       options['errors'] = 'This user doesn\'t exist'
@@ -39,6 +40,15 @@ class UserSubscribe::Create < Trailblazer::Operation
 
     options['errors'] = 'The user is already registered'
     false
+  end
+
+  def unique_email?(options, params:, **)
+    if User.exists?(email: params[:email])
+      options['errors'] = 'Email already registered'
+      false
+    else
+      true
+    end
   end
 
   def encrypt_password(options, params:, **)

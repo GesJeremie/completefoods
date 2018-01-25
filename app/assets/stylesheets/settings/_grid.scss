@@ -28,6 +28,7 @@ $av-enable-grid-large:   true;
  * The following is required to ensure the grid's breakpoints stay up to date
  * when changed in the project.
  */
+
 $av-breakpoints: (
     'small':    "screen and (min-width: #{$small-breakpoint})",
     'medium':   "screen and (min-width: #{$medium-breakpoint})",
