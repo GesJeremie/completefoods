@@ -25,13 +25,22 @@
 
     .coins__item {
         position: relative;
-        min-height: 280px;
         padding: $spacing-unit;
         margin: $spacing-unit * 2;
         padding-top: $spacing-unit * 2;
         border-radius: 5px;
         background-color: $white;
         text-align: center;
+
+        button {
+            display: none;
+        }
+    }
+
+    .coins__item:hover {
+        button {
+            display: inline-block;
+        }
     }
 
         .coins__item-name {}
@@ -102,11 +111,7 @@
         }
 
         .coins__item-actions {
-            display: none;
-
-            .coins__item:hover & {
-                display: block;
-            }
+            min-height: 70px;
         }
 
         .coins__item-stats {
@@ -114,7 +119,7 @@
         }
 
             .coins__item-stats-stat {
-                font-size: $font-size - 1px;
+                font-size: $font-size;
                 text-align: center;
 
                 span {
@@ -124,7 +129,7 @@
             }
 
             .coins__item-stats-stat--high {
-                color: darken($green, 5%);
+                color: #2CC990;
             }
 
             .coins__item-stats-stat--low {
