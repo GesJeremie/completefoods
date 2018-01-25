@@ -23,7 +23,7 @@
             <div class="grid grid--left">
 
                 <% @folio.folio_crypto_currencies.each do |folio_crypto_currency| %>
-                    <component-currency v-cloak inline-template
+                    <component-crypto-currency v-cloak inline-template
                         prop-crypto-currency="<%= folio_crypto_currency.crypto_currency.to_json %>"
                         prop-folio-crypto-currency="<%= folio_crypto_currency.to_json %>"
                         prop-folio-currency="<%= folio_crypto_currency.folio.currency.to_json %>"
@@ -53,7 +53,7 @@
                                 </div>
                             </div>
                         </div>
-                    </component-currency>
+                    </component-crypto-currency>
                 <% end %>
             </div>
         </div>
@@ -65,19 +65,19 @@
         <div class="grid grid--center">
             <div class="grid__cell grid__cell--50">
                 <div class="coin-add">
-                    <component-currency-add v-cloak inline-template
+                    <component-crypto-currency-add v-cloak inline-template
                         prop-crypto-currencies="<%= @crypto_currencies.to_json %>"
                     >
                         <%= form_tag(controller:  'folio_crypto_currency', action: 'create') %>
 
                             <div class="coins-add__center">
-                                <v-select v-model="selected" :options="options" class="coins-add__select"></v-select>
+                                <component-select v-model="selected" :options="options" class="coins-add__select"></component-select>
 
                                 <input type="hidden" name="crypto_currency_id" :value="selected.value"/>
                                 <button type="submit" class="button button--primary">Add Asset</button>
                             </div>
                         </form>
-                    </component-currency-add>
+                    </component-crypto-currency-add>
                 </div>
             </div>
 

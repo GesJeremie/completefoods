@@ -1,7 +1,7 @@
 (function()  {
     'use strict';
 
-    Vue.component('component-currency', {
+    Vue.component('component-crypto-currency', {
         mixins: [
             window.mixins.notification
         ],

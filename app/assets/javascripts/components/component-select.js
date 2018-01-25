@@ -1,5 +1,5 @@
 (function() {
 
-    Vue.component('v-select', VueSelect.VueSelect);
+    Vue.component('component-select', VueSelect.VueSelect);
 
 }());
