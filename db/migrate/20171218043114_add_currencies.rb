@@ -3,7 +3,7 @@ class AddCurrencies < ActiveRecord::Migration[5.1]
     {code: 'USD',  symbol: '$',  name: 'United States Dollar'},
     {code: 'AUD',  symbol: 'A$', name: 'Australian Dollar'},
     {code: 'CAD',  symbol: 'C$', name: 'Canadian Dollar'},
-    {code: 'EUR',  symbol: '$',  name: 'Euro'},
+    {code: 'EUR',  symbol: '€',  name: 'Euro'},
     {code: 'GBP',  symbol: '£',  name: 'British Pound'}
   ].freeze
 

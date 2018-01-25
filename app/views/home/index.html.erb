@@ -1,10 +1,28 @@
 <div class="header">
-    <div class="header__connected-as">
-        <% if @user.role == 'anonymous' %>
-            Connected as anonymous
-        <% else %>
-            Connected as <%= @user.email %>
-        <% end %>
+    <div class="grid grid--center">
+        <div class="grid__cell grid__cell--50">
+            <div class="header__currency">
+                <div class="header__currency-label">
+                    Show prices in:
+                </div>
+
+                <div class="header__currency-pick">
+                    <% Currency.all.each do |currency| %>
+                        <a href="#" class="header__currency-pick-link"><%= currency.symbol %></a>
+                    <% end %>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid__cell grid__cell--50">
+            <div class="header__connected-as">
+                <% if @user.role == 'anonymous' %>
+                    Connected as anonymous
+                <% else %>
+                    Connected as <%= @user.email %>
+                <% end %>
+            </div>
+        </div>
     </div>
 </div>
 
