@@ -124,7 +124,8 @@
 
                 span {
                     display: block;
-                    margin-top: $spacing-unit;
+                    margin-top: $spacing-unit / 2;
+                    margin-bottom: $spacing-unit / 2;
                 }
             }
 
