@@ -2,48 +2,35 @@
     'use strict';
 
     Vue.component('component-flashes', {
-        props: ['error', 'notice', 'success'],
+        mixins: [
+            window.mixins.notification
+        ],
 
-        data: function() {
-            return {}
-        },
-
-        watch: {
-        },
+        props: [
+            'error',
+            'notice',
+            'success'
+        ],
 
         created: function() {
-            // Could be improved with _.each
+            // Could be improved
             if (!_.isEmpty(this.error)) {
-                this.showNotification('error', this.error);
+                this.$notification.show('error', this.error);
                 return;
             }
 
             if (!_.isEmpty(this.notice)) {
-                this.showNotification('notice', this.notice);
+                this.$notification.show('notice', this.notice);
                 return;
             }
 
             if (!_.isEmpty(this.success)) {
-                this.showNotification('success', this.success);
+                this.$notification.show('success', this.success);
             }
         },
 
         render: function(h) {
-            return h();
-        },
-
-        computed: {
-        },
-
-        methods: {
-            showNotification: function(type, message) {
-                new Noty({
-                    type: type,
-                    text: message,
-                    timeout: 5000,
-                    theme: 'custom'
-                }).show();
-            }
+            return h(); // No template
         }
     });
 

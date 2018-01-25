@@ -84,7 +84,7 @@
                     type = 'error';
                 }
 
-                this.notificationShow(type, message);
+                this.$notification.show(type, message);
             },
 
             updatePrice: function() {
@@ -94,10 +94,9 @@
             },
 
             notifyPrice: function() {
-                window.bus.$emit('currencyUpdated', {
+                window.bus.$emit('cryptoCurrencyUpdated', {
                     price: this.priceHolding,
                     symbol: this.cryptoCurrency.symbol,
-                    currency: this.folioCurrency.symbol
                 });
             },
 

@@ -4,20 +4,14 @@
     Vue.component('component-folio', {
         data: function() {
             return {
+                cryptos: [],
                 price: 0,
-                coins: [],
                 currency: '$'
             }
         },
 
-        watch: {
-        },
-
         created: function() {
             this.events();
-        },
-
-        render: function(h) {
         },
 
         computed: {
@@ -28,30 +22,27 @@
 
         methods: {
             events: function() {
-                window.bus.$on('currencyUpdated', function(coin) {
-                    this.onCoinUpdated(coin);
-                }.bind(this));
+                window.bus.$on('cryptoCurrencyUpdated', this.onCryptoCurrencyUpdated.bind(this));
             },
 
-            onCoinUpdated: function(coin) {
-                var coins = this.coins;
+            onCryptoCurrencyUpdated: function(crypto) {
+                // "_" used to avoid problems with numeric symbols
+                // such as the coin "42"
+                this.cryptos['_' + crypto.symbol] = crypto.price;
 
-                this.coins[coin.symbol] = coin.price;
-                this.currency = coin.currency;
-
-                this.timeElapsed = 0;
                 this.refreshPrice();
             },
 
-            refreshPrice: function() {
+            refreshPrice: _.debounce(function() {
+                // Could be improved with a reduce
                 var price = 0;
 
-                _.each(_.keys(this.coins), function(symbol) {
-                    price += this.coins[symbol];
+                _.each(_.keys(this.cryptos), function(symbol) {
+                    price += this.cryptos[symbol];
                 }.bind(this));
 
                 this.price = price;
-            }
+            }, 300)
         }
     });
 
