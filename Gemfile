@@ -38,6 +38,9 @@ gem 'dry-validation'
 # Encrypt password
 gem 'bcrypt'
 
+# Curl abstraction
+gem 'httparty'
+
 # Front-end
 gem 'avalanche-rails', '~> 1.2.0'
 gem 'lodash-rails'

@@ -3,7 +3,7 @@
         <% if @user.role == 'anonymous' %>
             Connected as anonymous
         <% else %>
-            Connect as <%= @user.email %>
+            Connected as <%= @user.email %>
         <% end %>
     </div>
 </div>
@@ -40,7 +40,7 @@
                                 </div>
                                 <div class="coins__item-unit">
                                     <br/>
-                                    1 {{crypto.symbol}} = {{unitCryptoPrice}}
+                                    1 {{crypto.symbol}} = {{currency.symbol}}{{unitCryptoPrice}}
                                 </div>
                                 <div class="coins__item-arrow">
                                 </div>

@@ -9,6 +9,6 @@ class UserSubscribeController < ApplicationController
       flash[:error] = 'Impossible to save your folio'
     end
 
-    redirect_back fallback_location: '/'
+    redirect_to root_path
   end
 end

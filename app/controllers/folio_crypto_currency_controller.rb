@@ -9,7 +9,7 @@ class FolioCryptoCurrencyController < ApplicationController
       flash[:error] = 'Impossible to add this asset'
     end
 
-    redirect_back fallback_location: '/'
+    redirect_to root_path
   end
 
   def destroy
@@ -21,7 +21,7 @@ class FolioCryptoCurrencyController < ApplicationController
       flash[:error] = 'Impossible to remove this asset'
     end
 
-    redirect_back fallback_location: '/'
+    redirect_to root_path
   end
 
   def update
@@ -42,7 +42,7 @@ class FolioCryptoCurrencyController < ApplicationController
       flash[:error] = 'Impossible to update the asset'
     end
 
-    redirect_back fallback_location: '/'
+    redirect_to root_path
 
   end
 

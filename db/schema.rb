@@ -54,7 +54,11 @@ ActiveRecord::Schema.define(version: 20180108082442) do
   create_table "market_exchanges", force: :cascade do |t|
     t.bigint "crypto_currency_id"
     t.bigint "currency_id"
-    t.decimal "price"
+    t.string "price"
+    t.string "price_open_24_hours"
+    t.string "price_high_24_hours"
+    t.string "price_low_24_hours"
+    t.string "change_percentage_24_hours"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["crypto_currency_id"], name: "index_market_exchanges_on_crypto_currency_id"

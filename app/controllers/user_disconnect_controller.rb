@@ -5,6 +5,6 @@ class UserDisconnectController < ApplicationController
 
     flash[:success] = 'Logged out'
 
-    redirect_back fallback_location: '/'
+    redirect_to root_path
   end
 end

@@ -10,6 +10,6 @@ class UserConnectController < ApplicationController
       flash[:error] = 'Impossible to connect with this email/password'
     end
 
-    redirect_back fallback_location: '/'
+    redirect_to root_path
   end
 end

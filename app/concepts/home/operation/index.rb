@@ -37,7 +37,8 @@ class Home::Index < Trailblazer::Operation
 
     def add_crypto_currencies(user)
       user.reload
-      %w(BTC BCH ETH LTC XRP ADA GNT GAME).each do |symbol|
+
+      %w(BTC BCH ETH LTC XRP XLM ADA XVG MANA).each do |symbol|
         add_crypto_currency(user, symbol)
       end
     end
@@ -46,8 +47,8 @@ class Home::Index < Trailblazer::Operation
       crypto_currency = CryptoCurrency.where(symbol: crypto_currency_symbol).first
 
       result = FolioCryptoCurrency::Create.({
-        crypto_currency_id: crypto_currency.id,
-      }, 'current_user' => user)
+                crypto_currency_id: crypto_currency.id,
+               }, 'current_user' => user)
     end
 
 end

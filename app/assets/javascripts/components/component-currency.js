@@ -9,7 +9,8 @@
             return {
                 currency: {
                     code: JSON.parse(this.folioCurrency).code,
-                    symbol: JSON.parse(this.folioCurrency).symbol
+                    symbol: JSON.parse(this.folioCurrency).symbol,
+                    id: JSON.parse(this.folioCurrency).id
                 },
 
                 folio: {
@@ -20,6 +21,7 @@
                 },
 
                 crypto: {
+                    id: JSON.parse(this.cryptoCurrency).id,
                     name: JSON.parse(this.cryptoCurrency).name,
                     symbol: JSON.parse(this.cryptoCurrency).symbol,
                     price: 0
@@ -33,6 +35,10 @@
             },
 
             'folio.holding': _.debounce(function(newHolding, oldHolding) {
+                if (_.isEmpty(newHolding)) {
+                    return;
+                }
+
                 var token = this.getCsrfToken(),
                     request = '/folio_crypto_currency/' + this.folio.cryptoCurrencyId + '.json';
 
@@ -59,11 +65,11 @@
         methods: {
 
             onUpdatedPrice: function(response) {
-                this.crypto.price = response.data[this.currency.code];
+                this.crypto.price = response.data.price;
 
                 setTimeout(function() {
                     this.updatePrice();
-                }.bind(this), 3000);
+                }.bind(this), 10000);
             },
 
             onHoldingPersisted: function(response) {
@@ -82,7 +88,7 @@
 
             updatePrice: function() {
                 axios
-                .get('https://min-api.cryptocompare.com/data/price?fsym=' + this.crypto.symbol + '&tsyms=' + this.currency.code)
+                .post('/market_exchange.json', {currency_id: this.currency.id, crypto_currency_id: this.crypto.id, authenticity_token: this.getCsrfToken()}, {responseType: 'json'})
                 .then(this.onUpdatedPrice.bind(this));
             },
 

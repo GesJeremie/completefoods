@@ -8,7 +8,7 @@ class FolioCryptoCurrency::Update < Trailblazer::Operation
   end)
 
   step      Contract::Validate(name: 'params'), before: 'operation.new'
-  step      Policy::Guard(:options?)
+  step      Policy::Guard(:current_user?)
   step      Policy::Guard(:own_folio?)
   step      Model(FolioCryptoCurrency, :find_by)
   step      Contract::Build(constant: FolioCryptoCurrency::Contract::Update)
@@ -16,7 +16,7 @@ class FolioCryptoCurrency::Update < Trailblazer::Operation
   step      Contract::Persist()
 
 
-  def options?(options, params:, **)
+  def current_user?(options, params:, **)
     options['current_user'].present? && options['current_user'].id.present?
   end
 

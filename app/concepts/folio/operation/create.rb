@@ -2,7 +2,7 @@ class Folio::Create < Trailblazer::Operation
 
   extend Contract::DSL
 
-  step      Policy::Guard(:options?)
+  step      Policy::Guard(:current_user?)
   step      :do_not_own_folio?
   step      Model(Folio, :new)
   success   :assign_folio_values
@@ -10,7 +10,7 @@ class Folio::Create < Trailblazer::Operation
   step      Contract::Validate()
   step      Contract::Persist()
 
-  def options?(options, params:, **)
+  def current_user?(options, params:, **)
     options['current_user'].present? && options['current_user'].id.present?
   end
 

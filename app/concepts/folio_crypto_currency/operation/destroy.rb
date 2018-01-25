@@ -7,12 +7,11 @@ class FolioCryptoCurrency::Destroy < Trailblazer::Operation
   end)
 
   step      Contract::Validate(name: 'params'), before: 'operation.new'
-  step      Policy::Guard(:options?)
+  step      Policy::Guard(:current_user?)
   step      Policy::Guard(:own_folio?)
   success   :delete
 
-
-  def options?(options, params:, **)
+  def current_user?(options, params:, **)
     options['current_user'].present? && options['current_user'].id.present?
   end
 

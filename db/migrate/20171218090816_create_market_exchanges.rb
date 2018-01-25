@@ -3,7 +3,11 @@ class CreateMarketExchanges < ActiveRecord::Migration[5.1]
     create_table :market_exchanges do |t|
       t.references :crypto_currency
       t.references :currency
-      t.decimal :price
+      t.string :price
+      t.string :price_open_24_hours
+      t.string :price_high_24_hours
+      t.string :price_low_24_hours
+      t.string :change_percentage_24_hours
 
       t.timestamps
     end

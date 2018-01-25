@@ -7,7 +7,7 @@ class FolioCryptoCurrency::Create < Trailblazer::Operation
   end)
 
   step    Contract::Validate(name: 'params'), before: 'operation.new'
-  step    Policy::Guard(:options?)
+  step    Policy::Guard(:current_user?)
   step    :crypto_currency_exists?
   step    :user_folio?
   step    :crypto_currency_already_added?
@@ -17,14 +17,14 @@ class FolioCryptoCurrency::Create < Trailblazer::Operation
   step    Contract::Validate()
   step    Contract::Persist()
 
-  def options?(options, params:, **)
+  def current_user?(options, params:, **)
     options['current_user'].present? && options['current_user'].id.present?
   end
 
   def crypto_currency_exists?(options, params:, **)
     crypto_currency = CryptoCurrency.find(params[:crypto_currency_id])
 
-    if !crypto_currency.nil?
+    if crypto_currency.present?
       options['data.crypto_currency'] = crypto_currency
     else
       options['errors'] = 'This crypto currency is not supported'
@@ -57,7 +57,11 @@ class FolioCryptoCurrency::Create < Trailblazer::Operation
   private
 
     def current_user_not_holding_crypto?(options, params)
-      !options['current_user'].folio_crypto_currencies.where(crypto_currency_id: params[:crypto_currency_id]).exists?
+      !current_user_holding_crypto?(options, params)
+    end
+
+    def current_user_holding_crypto?(options, params)
+      options['current_user'].folio_crypto_currencies.where(crypto_currency_id: params[:crypto_currency_id]).exists?
     end
 
 end
