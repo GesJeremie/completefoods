@@ -39,6 +39,7 @@
                 this.coins[coin.symbol] = coin.price;
                 this.currency = coin.currency;
 
+                this.timeElapsed = 0;
                 this.refreshPrice();
             },
 

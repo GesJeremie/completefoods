@@ -2,50 +2,55 @@
     'use strict';
 
     Vue.component('component-currency', {
-        mixins: [window.mixins.notification],
-        props: ['cryptoCurrency', 'folioCryptoCurrency', 'folioCurrency'],
+        mixins: [
+            window.mixins.notification
+        ],
+
+        props: [
+            'propCryptoCurrency',
+            'propFolioCryptoCurrency',
+            'propFolioCurrency'
+        ],
 
         data: function() {
             return {
-                currency: {
-                    code: JSON.parse(this.folioCurrency).code,
-                    symbol: JSON.parse(this.folioCurrency).symbol,
-                    id: JSON.parse(this.folioCurrency).id
+                folioCurrency: {
+                    code:      JSON.parse(this.propFolioCurrency).code,
+                    symbol:    JSON.parse(this.propFolioCurrency).symbol,
+                    id:        JSON.parse(this.propFolioCurrency).id
                 },
 
-                folio: {
-                    holding: JSON.parse(this.folioCryptoCurrency).holding,
-
-                    // TODO: Rename, this is ugly
-                    cryptoCurrencyId: JSON.parse(this.folioCryptoCurrency).id
+                folioCryptoCurrency: {
+                    id:        JSON.parse(this.propFolioCryptoCurrency).id,
+                    holding:   JSON.parse(this.propFolioCryptoCurrency).holding
                 },
 
-                crypto: {
-                    id: JSON.parse(this.cryptoCurrency).id,
-                    name: JSON.parse(this.cryptoCurrency).name,
-                    symbol: JSON.parse(this.cryptoCurrency).symbol,
-                    price: 0
+                cryptoCurrency: {
+                    id:        JSON.parse(this.propCryptoCurrency).id,
+                    name:      JSON.parse(this.propCryptoCurrency).name,
+                    symbol:    JSON.parse(this.propCryptoCurrency).symbol,
+                    price:     0
                 }
             }
         },
 
         watch: {
-            'priceHolding': function() {
-                this.notifyPrice();
-            },
-
-            'folio.holding': _.debounce(function(newHolding, oldHolding) {
+            'folioCryptoCurrency.holding': _.debounce(function(newHolding, oldHolding) {
                 if (_.isEmpty(newHolding)) {
                     return;
                 }
 
                 var token = this.getCsrfToken(),
-                    request = '/folio_crypto_currency/' + this.folio.cryptoCurrencyId + '.json';
+                    request = '/folio_crypto_currency/' + this.folioCryptoCurrency.id + '.json';
 
                 axios
                 .patch(request, {holding: newHolding, authenticity_token: token}, {responseType: 'json'})
                 .then(this.onHoldingPersisted.bind(this));
-            }, 500)
+            }, 500),
+
+            'priceHolding': function() {
+                this.notifyPrice();
+            }
         },
 
         created: function() {
@@ -53,19 +58,15 @@
         },
 
         computed: {
-            unitCryptoPrice: function() {
-                return this.crypto.price;
-            },
-
             priceHolding: function() {
-                return (this.crypto.price * this.folio.holding);
+                return (this.cryptoCurrency.price * this.folioCryptoCurrency.holding);
             }
         },
 
         methods: {
 
             onUpdatedPrice: function(response) {
-                this.crypto.price = response.data.price;
+                this.cryptoCurrency.price = response.data.price;
 
                 setTimeout(function() {
                     this.updatePrice();
@@ -76,10 +77,10 @@
                 var type, message;
 
                 if (response.status === 200) {
-                    message = this.crypto.name + ' udpated';
+                    message = this.cryptoCurrency.name + ' udpated';
                     type = 'success';
                 } else {
-                    message = 'Impossible to update ' + this.crypto.name;
+                    message = 'Impossible to update ' + this.cryptoCurrency.name;
                     type = 'error';
                 }
 
@@ -88,15 +89,15 @@
 
             updatePrice: function() {
                 axios
-                .post('/market_exchange.json', {currency_id: this.currency.id, crypto_currency_id: this.crypto.id, authenticity_token: this.getCsrfToken()}, {responseType: 'json'})
+                .post('/market_exchange.json', {currency_id: this.folioCurrency.id, crypto_currency_id: this.cryptoCurrency.id, authenticity_token: this.getCsrfToken()}, {responseType: 'json'})
                 .then(this.onUpdatedPrice.bind(this));
             },
 
             notifyPrice: function() {
                 window.bus.$emit('currencyUpdated', {
                     price: this.priceHolding,
-                    symbol: this.crypto.symbol,
-                    currency: this.currency.symbol
+                    symbol: this.cryptoCurrency.symbol,
+                    currency: this.folioCurrency.symbol
                 });
             },
 

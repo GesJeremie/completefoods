@@ -12,6 +12,8 @@
     <div class="folio">
         <div class="folio__total">{{currency}}{{humanizePrice | formatCurrency}}</div>
         <div class="folio__title">Total value of your folio</div>
+        <div class="folio__label folio__label--high"><span>High 24h:</span> $6,800.27</div>
+        <div class="folio__label folio__label--low"><span>Low 24h:</span> $3,000.27</div>
     </div>
 </component-folio>
 
@@ -22,25 +24,25 @@
 
                 <% @folio.folio_crypto_currencies.each do |folio_crypto_currency| %>
                     <component-currency v-cloak inline-template
-                        crypto-currency="<%= folio_crypto_currency.crypto_currency.to_json %>"
-                        folio-crypto-currency="<%= folio_crypto_currency.to_json %>"
-                        folio-currency="<%= folio_crypto_currency.folio.currency.to_json %>"
+                        prop-crypto-currency="<%= folio_crypto_currency.crypto_currency.to_json %>"
+                        prop-folio-crypto-currency="<%= folio_crypto_currency.to_json %>"
+                        prop-folio-currency="<%= folio_crypto_currency.folio.currency.to_json %>"
                     >
                         <div class="grid__cell grid__cell--25">
                             <div class="coins__item">
                                 <div class="coins__item-name">
-                                    <span class="coins__item-name-name">{{crypto.name}}</span>
-                                    <span class="coins__item-name-symbol">{{crypto.symbol}}</span>
+                                    <span class="coins__item-name-name">{{cryptoCurrency.name}}</span>
+                                    <span class="coins__item-name-symbol">{{cryptoCurrency.symbol}}</span>
                                 </div>
                                 <div class="coins__item-price">
-                                    {{currency.symbol}}{{priceHolding | formatCurrency}}
+                                    {{folioCurrency.symbol}}{{priceHolding | formatCurrency}}
                                 </div>
                                 <div class="coins__item-hold">
-                                    Holding: <input v-model="folio.holding" :value="folio.holding" type="number" class="coins__item-hold-input">
+                                    Holding: <input v-model="folioCryptoCurrency.holding" :value="folioCryptoCurrency.holding" type="number" class="coins__item-hold-input">
                                 </div>
                                 <div class="coins__item-unit">
                                     <br/>
-                                    1 {{crypto.symbol}} = {{currency.symbol}}{{unitCryptoPrice}}
+                                    1 {{cryptoCurrency.symbol}} = {{folioCurrency.symbol}}{{cryptoCurrency.price | formatCurrency}}
                                 </div>
                                 <div class="coins__item-arrow">
                                 </div>

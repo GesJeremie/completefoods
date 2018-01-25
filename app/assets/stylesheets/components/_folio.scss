@@ -46,3 +46,27 @@
         margin-top: $spacing-unit;
         font-style: italic;
     }
+
+    .folio__label {
+        display: inline-block;
+        margin: $spacing-unit ($spacing-unit / 2);
+        border-radius: 5px;
+        padding: $spacing-unit ($spacing-unit / 1.5);
+
+        span {
+            display: inline-block;
+            margin-right: $spacing-unit / 2;
+        }
+    }
+
+    .folio__label--high {
+        color: $green;
+        border-color: $green;
+    }
+
+    .folio__label--low {
+        color: $red;
+        border-color: $red;
+    }
+
+
