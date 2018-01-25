@@ -12,8 +12,6 @@
     <div class="folio">
         <div class="folio__total">{{currency}}{{humanizePrice | formatCurrency}}</div>
         <div class="folio__title">Total value of your folio</div>
-        <div class="folio__label folio__label--low"><span>Low 24h:</span> {{currency}}{{priceLow24Hours | formatCurrency}}</div>
-        <div class="folio__label folio__label--high"><span>High 24h:</span> {{currency}}{{priceHigh24Hours | formatCurrency}}</div>
     </div>
 </component-folio>
 
@@ -52,8 +50,22 @@
                                     </form>
                                 </div>
                                 <div class="coins__item-stats">
-                                    Low 24h: {{folioCurrency.symbol}}{{cryptoCurrency.price_low_24_hours | formatCurrency}}
-                                    High 24h {{folioCurrency.symbol}}{{cryptoCurrency.price_high_24_hours | formatCurrency}}
+
+                                    <div class="grid grid--center">
+                                        <div class="grid__cell grid__cell--50">
+                                            <div class="coins__item-stats-stat coins__item-stats-stat--low">
+                                                <span>Low 24h</span>
+                                                <span>{{folioCurrency.symbol}}{{priceHoldingLow24Hours | formatCurrency}}</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="grid__cell grid__cell--50">
+                                            <div class="coins__item-stats-stat coins__item-stats-stat--high">
+                                                <span>High 24h</span>
+                                                <span>{{folioCurrency.symbol}}{{priceHoldingHigh24Hours | formatCurrency}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

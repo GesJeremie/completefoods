@@ -32,8 +32,6 @@
                 // such as the coin "42"
                 this.cryptos['_' + crypto.symbol] = {
                     price: crypto.price,
-                    priceLow24Hours: crypto.priceLow24Hours,
-                    priceHigh24Hours: crypto.priceHigh24Hours
                 };
 
                 this.refreshPrices();

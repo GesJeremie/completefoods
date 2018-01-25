@@ -108,3 +108,26 @@
                 display: block;
             }
         }
+
+        .coins__item-stats {
+
+        }
+
+            .coins__item-stats-stat {
+                font-size: $font-size - 1px;
+                text-align: center;
+
+                span {
+                    display: block;
+                    margin-top: $spacing-unit;
+                }
+            }
+
+            .coins__item-stats-stat--high {
+                color: darken($green, 5%);
+            }
+
+            .coins__item-stats-stat--low {
+                color: darken($red, 5%);
+            }
+

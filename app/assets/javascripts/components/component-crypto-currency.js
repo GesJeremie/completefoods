@@ -26,12 +26,12 @@
                 },
 
                 cryptoCurrency: {
-                    id:                     JSON.parse(this.propCryptoCurrency).id,
-                    name:                   JSON.parse(this.propCryptoCurrency).name,
-                    symbol:                 JSON.parse(this.propCryptoCurrency).symbol,
-                    price:                  0,
-                    price_low_24_hours:     0,
-                    price_high_24_hours:    0
+                    id:                  JSON.parse(this.propCryptoCurrency).id,
+                    name:                JSON.parse(this.propCryptoCurrency).name,
+                    symbol:              JSON.parse(this.propCryptoCurrency).symbol,
+                    price:               0,
+                    priceLow24Hours:     0,
+                    priceHigh24Hours:    0
                 }
             }
         },
@@ -65,11 +65,11 @@
             },
 
             priceHoldingLow24Hours: function() {
-                return (this.cryptoCurrency.price_low_24_hours * this.folioCryptoCurrency.holding);
+                return (this.cryptoCurrency.priceLow24Hours * this.folioCryptoCurrency.holding);
             },
 
             priceHoldingHigh24Hours: function() {
-                return (this.cryptoCurrency.price_high_24_hours * this.folioCryptoCurrency.holding);
+                return (this.cryptoCurrency.priceHigh24Hours * this.folioCryptoCurrency.holding);
             }
         },
 
@@ -77,8 +77,8 @@
 
             onUpdatedPrice: function(response) {
                 this.cryptoCurrency.price = response.data.price;
-                this.cryptoCurrency.price_low_24_hours = response.data.price_low_24_hours
-                this.cryptoCurrency.price_high_24_hours = response.data.price_high_24_hours
+                this.cryptoCurrency.priceLow24Hours = response.data.price_low_24_hours;
+                this.cryptoCurrency.priceHigh24Hours = response.data.price_high_24_hours;
 
                 setTimeout(function() {
                     this.updatePrice();
@@ -109,8 +109,6 @@
                 window.bus.$emit('cryptoCurrencyUpdated', {
                     price: this.priceHolding,
                     symbol: this.cryptoCurrency.symbol,
-                    priceLow24Hours: this.priceHoldingLow24Hours,
-                    priceHigh24Hours: this.priceHoldingHigh24Hours
                 });
             },
 
