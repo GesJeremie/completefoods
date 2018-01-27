@@ -29,6 +29,7 @@
                     id:                  JSON.parse(this.propCryptoCurrency).id,
                     name:                JSON.parse(this.propCryptoCurrency).name,
                     symbol:              JSON.parse(this.propCryptoCurrency).symbol,
+                    oldPrice:            0,
                     price:               0,
                     priceLow24Hours:     0,
                     priceHigh24Hours:    0
@@ -70,12 +71,21 @@
 
             priceHoldingHigh24Hours: function() {
                 return (this.cryptoCurrency.priceHigh24Hours * this.folioCryptoCurrency.holding);
+            },
+
+            isPriceUp: function() {
+                return this.cryptoCurrency.price > this.cryptoCurrency.oldPrice;
+            },
+
+            isPriceDown: function() {
+                return this.cryptoCurrency.price < this.cryptoCurrency.oldPrice;
             }
         },
 
         methods: {
 
             onUpdatedPrice: function(response) {
+                this.cryptoCurrency.oldPrice = this.cryptoCurrency.price;
                 this.cryptoCurrency.price = response.data.price;
                 this.cryptoCurrency.priceLow24Hours = response.data.price_low_24_hours;
                 this.cryptoCurrency.priceHigh24Hours = response.data.price_high_24_hours;

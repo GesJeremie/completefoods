@@ -4,55 +4,17 @@
 
 .header {}
 
-
-    .header__currency {
-        display: inline-block;
+    .header__container {
         margin: $spacing-unit ($spacing-unit * 3);
         padding: $spacing-unit ($spacing-unit * 2);
-        background-color: $white;
-        border-radius: 5px;
-        text-align: left;
     }
 
-        .header__currency-label {
-            display: inline-block;
-            margin-right: $spacing-unit / 3;
-            font-weight: 700;
-        }
-
-        .header__currency-pick {
+        .header__connected-as {
             display: inline-block;
         }
 
-            .header__currency-pick-link {
-                display: inline-block;
-                color: $blue;
-                text-decoration: none;
+        .header__links {
+            display: inline-block;
+        }
 
-                &:hover,
-                &:active,
-                &:focus {
-                    font-weight: 700;
-                }
 
-                &:after {
-                    content: ' - ';
-                }
-            }
-
-            .header__currency-pick--selected {
-                font-weight: 700;
-            }
-
-            .header__currency-pick-link:last-of-type {
-                &:after {
-                    content: none;
-                }
-            }
-
-    .header__connected-as {
-        margin: $spacing-unit ($spacing-unit * 3);
-        padding: $spacing-unit ($spacing-unit * 2);
-        font-weight: 700;
-        text-align: right;
-    }

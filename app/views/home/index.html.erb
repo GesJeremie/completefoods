@@ -1,26 +1,18 @@
 <div class="header">
-    <div class="grid grid--center">
-        <div class="grid__cell grid__cell--50">
-            <div class="header__currency">
-                <div class="header__currency-label">
-                    Show prices in:
-                </div>
-
-                <div class="header__currency-pick">
-                    <% Currency.all.each do |currency| %>
-                        <a href="#" class="header__currency-pick-link"><%= currency.symbol %></a>
+    <div class="header__container">
+        <div class="grid">
+            <div class="grid__cell grid__cell--50">
+                <div class="header__connected-as">
+                    <% if @user.role == 'anonymous' %>
+                        Connected as anonymous
+                    <% else %>
+                        Connected as <%= @user.email %>
                     <% end %>
                 </div>
-            </div>
-        </div>
-
-        <div class="grid__cell grid__cell--50">
-            <div class="header__connected-as">
-                <% if @user.role == 'anonymous' %>
-                    Connected as anonymous
-                <% else %>
-                    Connected as <%= @user.email %>
-                <% end %>
+                <div class="header__links">
+                    <a class="button button--primary">Profile</a>
+                    <a class="button button--primary">Donations</a>
+                </div>
             </div>
         </div>
     </div>
@@ -50,7 +42,7 @@
                                     <span class="coins__item-name-name">{{cryptoCurrency.name}}</span>
                                     <span class="coins__item-name-symbol">{{cryptoCurrency.symbol}}</span>
                                 </div>
-                                <div class="coins__item-price">
+                                <div v-bind:class="{ 'coins__item-price': true, 'coins__item-price--up': isPriceUp, 'coins__item-price--down': isPriceDown }">
                                     {{folioCurrency.symbol}}{{priceHolding | formatCurrency}}
                                 </div>
                                 <div class="coins__item-hold">
