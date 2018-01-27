@@ -2,13 +2,17 @@
     'use strict';
 
     Vue.component('component-folio', {
+        props: [
+            'propCurrency'
+        ],
+
         data: function() {
             return {
                 cryptos: [],
                 price: 0,
                 priceHigh24Hours: 0,
                 priceLow24Hours: 0,
-                currency: '$'
+                currency: JSON.parse(this.propCurrency)
             }
         },
 
