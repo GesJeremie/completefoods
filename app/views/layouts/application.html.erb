@@ -7,8 +7,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all' %>
 
-    <link href="https://file.myfontastic.com/YFYw2AyECaqxQdAbuAFgBY/icons.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link href="https://file.myfontastic.com/78MZA2VP4fJGwTMrexfZSj/icons.css" rel="stylesheet">
 
   </head>
 
@@ -21,6 +20,31 @@
         notice="<%= flash[:notice] %>"
       >
       </component-flashes>
+
+      <!-- TODO: Partial -->
+      <div class="header">
+          <div class="header__container">
+              <div class="grid">
+                  <div class="grid__cell grid__cell--50">
+                      <div class="header__connected-as">
+                          <% if @user.role == 'anonymous' %>
+                              Connected as anonymous
+                          <% else %>
+                              Connected as <%= @user.email %>
+                          <% end %>
+                      </div>
+                      <div class="header__links">
+                          <% if !current_page?(root_path) %>
+                            <a href="<%= root_path %>" class="button button--navigation"><i class="icon icon-back"></i> Back to folio</a>
+                          <% end %>
+
+                          <a href="<%= settings_path %>" class="button button--navigation"><i class="icon icon-params"></i> Settings</a>
+                          <a class="button button--navigation"><i class="icon icon-diamond"></i> Support us</a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
 
       <%= yield %>
     </div>

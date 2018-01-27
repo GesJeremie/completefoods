@@ -1,0 +1,36 @@
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--50">
+    <div class="settings">
+      <h1 class="settings__title settings__title--main">Settings</h1>
+
+      <h3 class="settings__title">Folio</h3>
+
+      <p class="settings__label">Show the prices in the following currency:</p>
+
+      <%= form_tag(controller: 'settings_currency', action: 'create') %>
+
+        <div class="grid grid--left">
+
+            <% @currencies.each do |currency| %>
+              <component-settings-currency v-cloak inline-template
+                prop-currency="<%= currency.to_json %>"
+                prop-currency-id-selected="<%= @user.folio.currency_id %>"
+              >
+
+                  <div class="grid__cell grid__cell--33">
+                    <input v-if="isSelected" type="hidden" name="currency_id" value="<%= currency.id %>" />
+                    <div v-on:click="onClickCurrency" v-bind:class="{ 'settings__currency': true, 'settings__currency--selected': isSelected}">
+                      <div class="settings__currency-name"><%= currency.name %>  <span class="settings__currency-symbol"><%= currency.symbol %></span></div>
+                    </div>
+                  </div>
+              </component-settings-currency>
+            <% end %>
+
+        </div>
+
+        <button type="submit" class="button button--primary button--form">Save Currency</button>
+      </form>
+
+    </div>
+  </div>
+</div>

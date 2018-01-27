@@ -40,3 +40,21 @@
         font-size: $font-size + 2px;
     }
 
+    .button--navigation {
+        color: $blue;
+        padding: 0;
+        padding-bottom: 1px;
+        margin: $spacing-unit;
+        font-size: $font-size;
+        border-radius: 0;
+
+        &:hover {
+            color: darken($blue, 5%);
+        }
+    }
+
+    .button--form {
+        margin-left: 0;
+        font-size: $font-size;
+    }
+
