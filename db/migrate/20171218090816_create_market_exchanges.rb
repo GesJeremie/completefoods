@@ -7,7 +7,6 @@ class CreateMarketExchanges < ActiveRecord::Migration[5.1]
       t.string :price_open_24_hours
       t.string :price_high_24_hours
       t.string :price_low_24_hours
-      t.string :change_percentage_24_hours
 
       t.timestamps
     end
