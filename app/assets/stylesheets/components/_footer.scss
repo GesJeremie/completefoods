@@ -15,7 +15,6 @@
     font-size: $font-size + 3px;
     font-weight: 400;
     color: $gray;
-    text-transform: lowercase;
 }
 
 
@@ -29,3 +28,12 @@
             max-width: 100%;
             animation: beat 2s infinite;
         }
+
+    .footer__email {
+        margin-top: ($spacing-unit * 5);
+
+        a {
+            color: $blue;
+            text-decoration: none;
+        }
+    }
