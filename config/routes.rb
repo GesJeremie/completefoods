@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :market_exchange,         only: [:create]
   resources :settings,                only: [:index]
   resources :settings_currency,       only: [:create]
+  resources :support_us,              only: [:index]
 
 end
 

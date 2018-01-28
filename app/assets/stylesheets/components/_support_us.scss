@@ -1,0 +1,58 @@
+/*------------------------------------*\
+    #SUPPORT-US
+\*------------------------------------*/
+
+.support-us {
+    margin: ($spacing-unit * 2) 0;
+    background-color: $white;
+    padding: $spacing-unit * 3;
+}
+
+    .support-us__title {
+        margin-bottom: $spacing-unit * 4;
+        font-size: $font-size * 2.5;
+        font-weight: bold;
+    }
+
+    .support-us__coin {
+        margin: ($spacing-unit * 5) 0;
+    }
+
+        .support-us__coin-title {
+            font-weight: bold;
+            font-size: $font-size * 1.5;
+        }
+
+        .support-us__coin-input {
+            width: 100%;
+            margin: ($spacing-unit) 0;
+            padding: $spacing-unit;
+            border: 1px solid $blue;
+            color: $blue;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: $font-size - 2px;
+        }
+
+        .support-us__coin-chain {
+            font-weight: bold;
+            color: $blue;
+            font-size: $font-size;
+            text-decoration: none;
+
+            i {
+                vertical-align: middle;
+            }
+        }
+
+    .support-us__description {
+        line-height: 25px;
+    }
+
+    .support-us__description--bottom {
+        text-align: center;
+    }
+
+    .support-us__link {
+        color: $blue;
+    }
