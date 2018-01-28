@@ -1,3 +1,4 @@
+# TODO: Code is ugly, I should refactor.
 class MarketExchange::Create < Trailblazer::Operation
   extend Contract::DSL
 
