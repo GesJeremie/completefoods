@@ -65,6 +65,10 @@
                 return (this.cryptoCurrency.price * this.folioCryptoCurrency.holding);
             },
 
+            priceOldHolding: function() {
+                return (this.cryptoCurrency.oldPrice * this.folioCryptoCurrency.holding);
+            },
+
             priceHoldingLow24Hours: function() {
                 return (this.cryptoCurrency.priceLow24Hours * this.folioCryptoCurrency.holding);
             },
@@ -74,11 +78,11 @@
             },
 
             isPriceUp: function() {
-                return this.cryptoCurrency.price > this.cryptoCurrency.oldPrice;
+                return this.priceHolding > this.priceOldHolding;
             },
 
             isPriceDown: function() {
-                return this.cryptoCurrency.price < this.cryptoCurrency.oldPrice;
+                return this.priceHolding < this.priceOldHolding;
             }
         },
 
