@@ -11,5 +11,6 @@ class HomeController < ApplicationController
     @user = op['data.user']
     @folio = op['data.folio']
     @crypto_currencies = op['data.crypto_currencies']
+    @count_users = op['data.count_users']
   end
 end

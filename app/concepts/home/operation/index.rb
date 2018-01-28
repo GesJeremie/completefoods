@@ -3,6 +3,7 @@ class Home::Index < Trailblazer::Operation
 
   success :create_user_and_folio_needed?
   success :fetch_crypto_currencies_not_added_by_user
+  success :count_users
 
   def create_user_and_folio_needed?(options, params:, **)
     if options['current_user'].nil?
@@ -21,7 +22,11 @@ class Home::Index < Trailblazer::Operation
   end
 
   def fetch_crypto_currencies_not_added_by_user(options, params:, **)
-    options['data.crypto_currencies'] = CryptoCurrency.not_added_by_user(options['current_user'])
+    options['data.crypto_currencies'] = CryptoCurrency.not_added_by_user(options['data.user'])
+  end
+
+  def count_users(options, params:, **)
+    options['data.count_users'] = User.where(role: 'user').all.length
   end
 
 
