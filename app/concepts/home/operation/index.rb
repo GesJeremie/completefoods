@@ -2,7 +2,7 @@ class Home::Index < Trailblazer::Operation
   extend Contract::DSL
 
   success :create_user_and_folio_needed?
-  success :fetch_crypto_currencies
+  success :fetch_crypto_currencies_not_added_by_user
 
   def create_user_and_folio_needed?(options, params:, **)
     if options['current_user'].nil?
@@ -20,8 +20,8 @@ class Home::Index < Trailblazer::Operation
     options['data.folio'] = folio
   end
 
-  def fetch_crypto_currencies(options, params:, **)
-    options['data.crypto_currencies'] = CryptoCurrency.all
+  def fetch_crypto_currencies_not_added_by_user(options, params:, **)
+    options['data.crypto_currencies'] = CryptoCurrency.not_added_by_user(options['current_user'])
   end
 
 
