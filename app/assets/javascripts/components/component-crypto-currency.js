@@ -33,7 +33,10 @@
                     price:               0,
                     priceLow24Hours:     0,
                     priceHigh24Hours:    0
-                }
+                },
+
+                showClassPriceUp: false,
+                showClassPriceDown: false
             }
         },
 
@@ -86,7 +89,17 @@
                 this.cryptoCurrency.priceLow24Hours = response.data.price_low_24_hours;
                 this.cryptoCurrency.priceHigh24Hours = response.data.price_high_24_hours;
 
+                if (this.isPriceDown) {
+                    this.showClassPriceDown = true;
+                }
+
+                if (this.isPriceUp) {
+                    this.showClassPriceUp = true;
+                }
+
                 setTimeout(function() {
+                    this.showClassPriceDown = false;
+                    this.showClassPriceUp = false;
                     this.updatePrice();
                 }.bind(this), 10000);
             },

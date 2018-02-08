@@ -24,7 +24,7 @@
                                     <span class="coins__item-name-name">{{cryptoCurrency.name}}</span>
                                     <span class="coins__item-name-symbol">{{cryptoCurrency.symbol}}</span>
                                 </div>
-                                <div v-bind:class="{ 'coins__item-price': true, 'coins__item-price--up': isPriceUp, 'coins__item-price--down': isPriceDown }">
+                                <div v-bind:class="{ 'coins__item-price': true, 'coins__item-price--up': showClassPriceUp, 'coins__item-price--down': showClassPriceDown }">
                                     {{folioCurrency.symbol}}{{priceHolding | formatCurrency}}
                                 </div>
                                 <div class="coins__item-hold">
