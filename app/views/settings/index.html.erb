@@ -1,5 +1,5 @@
 <div class="grid grid--center">
-  <div class="grid__cell grid__cell--50">
+  <div class="grid__cell grid__cell--90 grid__cell--60-at-wide">
     <div class="settings">
       <h1 class="settings__title settings__title--main">Settings</h1>
 
@@ -17,9 +17,18 @@
                 prop-currency-id-selected="<%= @user.folio.currency_id %>"
               >
 
-                  <div class="grid__cell grid__cell--33">
+                  <div
+                    class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide"
+                    v-match-heights="{
+                      el: ['.settings__currency']
+                    }"
+                  >
                     <input v-if="isSelected" type="hidden" name="currency_id" value="<%= currency.id %>" />
-                    <div v-on:click="onClickCurrency" v-bind:class="{ 'settings__currency': true, 'settings__currency--selected': isSelected}">
+
+                    <div
+                      v-on:click="onClickCurrency"
+                      v-bind:class="{ 'settings__currency': true, 'settings__currency--selected': isSelected}"
+                    >
                       <div class="settings__currency-name"><%= currency.name %>  <span class="settings__currency-symbol"><%= currency.symbol %></span></div>
                     </div>
                   </div>
