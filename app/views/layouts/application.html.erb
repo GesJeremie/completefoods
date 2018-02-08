@@ -25,7 +25,7 @@
       <div class="header">
           <div class="header__container">
               <div class="grid grid--center">
-                  <div class="grid__cell grid__cell--50">
+                  <div class="grid__cell grid__cell--100 grid__cell--50-at-wide">
                     <div class="header__links header__links--left">
                       <% if !current_page?(root_path) %>
                         <a href="<%= root_path %>" class="button button--navigation"><i class="icon icon-back"></i> Back to folio</a>
@@ -33,7 +33,7 @@
                     </div>
                   </div>
 
-                  <div class="grid__cell grid__cell--50">
+                  <div class="grid__cell grid__cell--100 grid__cell--50-at-wide">
                       <div class="header__links header__links--right">
                           <span class="header__connected-as">
                             <% if @user.role == 'anonymous' %>

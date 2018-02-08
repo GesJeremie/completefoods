@@ -15,14 +15,30 @@
         }
 
         .header__links--left {
-            float: left;
+            width: 100%;
+            text-align: center;
+
+            @include respond-to(wide) {
+                width: auto;
+                float: left;
+            }
         }
 
         .header__links--right {
-            float: right;
+            width: 100%;
+            text-align: center;
+
+            @include respond-to(wide) {
+                width: auto;
+                float: right;
+            }
         }
 
             .header__connected-as {
-                display: inline-block;
+                display: block;
                 margin: $spacing-unit;
+
+                @include respond-to(wide) {
+                    display: inline-block;
+                }
             }

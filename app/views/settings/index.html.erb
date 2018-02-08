@@ -19,9 +19,7 @@
 
                   <div
                     class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide"
-                    v-match-heights="{
-                      el: ['.settings__currency']
-                    }"
+                    v-match-heights="{el: ['.settings__currency']}"
                   >
                     <input v-if="isSelected" type="hidden" name="currency_id" value="<%= currency.id %>" />
 

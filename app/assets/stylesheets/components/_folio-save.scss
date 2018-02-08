@@ -28,8 +28,12 @@
                 background: $white;
                 font-size: $font-size + 3px;
                 color: $blue;
-                max-width: 40%;
                 padding: 2px 5px;
+                margin-bottom: $spacing-unit;
+
+                @include respond-to(medium) {
+                    max-width: 40%;
+                }
 
                 &:active,
                 &:focus {

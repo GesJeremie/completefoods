@@ -18,7 +18,7 @@
                         prop-folio-crypto-currency="<%= folio_crypto_currency.to_json %>"
                         prop-folio-currency="<%= folio_crypto_currency.folio.currency.to_json %>"
                     >
-                        <div class="grid__cell grid__cell--25">
+                        <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide grid__cell--25-at-x-wide" v-match-heights="{el: ['.coins__item']}">
                             <div class="coins__item">
                                 <div class="coins__item-name">
                                     <span class="coins__item-name-name">{{cryptoCurrency.name}}</span>
@@ -73,7 +73,7 @@
 <div class="grid grid--center">
     <div class="grid__cell grid__cell--80">
         <div class="grid grid--center">
-            <div class="grid__cell grid__cell--50">
+            <div class="grid__cell grid__cell--100 grid__cell--50-at-wide">
                 <div class="coin-add">
                     <component-crypto-currency-add v-cloak inline-template
                         prop-crypto-currencies="<%= @crypto_currencies.to_json %>"
@@ -91,7 +91,7 @@
                 </div>
             </div>
 
-            <div class="grid__cell grid__cell--50">
+            <div class="grid__cell grid__cell--100 grid__cell--50-at-wide">
                 <div class="folio-save">
                     <component-folio-save v-cloak inline-template
                         current-user="<%= @user.to_json %>"
