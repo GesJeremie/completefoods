@@ -10,13 +10,19 @@
         text-align: right;
     }
 
-        .header__connected-as {
-            display: inline-block;
-            margin: $spacing-unit;
-        }
-
         .header__links {
             display: inline-block;
         }
 
+        .header__links--left {
+            float: left;
+        }
 
+        .header__links--right {
+            float: right;
+        }
+
+            .header__connected-as {
+                display: inline-block;
+                margin: $spacing-unit;
+            }

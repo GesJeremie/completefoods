@@ -28,7 +28,7 @@
                                     {{folioCurrency.symbol}}{{priceHolding | formatCurrency}}
                                 </div>
                                 <div class="coins__item-hold">
-                                    Holding: <input v-model="folioCryptoCurrency.holding" :value="folioCryptoCurrency.holding" type="number" class="coins__item-hold-input">
+                                    Holding: <input v-on:change="onChangeHolding" v-model="folioCryptoCurrency.holding" :value="folioCryptoCurrency.holding" type="number" class="coins__item-hold-input" min="0">
                                 </div>
                                 <div class="coins__item-unit">
                                     <br/>

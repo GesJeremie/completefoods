@@ -38,19 +38,6 @@
         },
 
         watch: {
-            'folioCryptoCurrency.holding': _.debounce(function(newHolding, oldHolding) {
-                if (_.isEmpty(newHolding)) {
-                    return;
-                }
-
-                var token = this.getCsrfToken(),
-                    request = '/folio_crypto_currency/' + this.folioCryptoCurrency.id + '.json';
-
-                axios
-                .patch(request, {holding: newHolding, authenticity_token: token}, {responseType: 'json'})
-                .then(this.onHoldingPersisted.bind(this));
-            }, 500),
-
             'priceHolding': function() {
                 this.notifyPrice();
             }
@@ -88,6 +75,11 @@
 
         methods: {
 
+            onChangeHolding: function(e) {
+                this.folioCryptoCurrency.holding = Math.abs(this.folioCryptoCurrency.holding);
+                this.persistHolding();
+            },
+
             onUpdatedPrice: function(response) {
                 this.cryptoCurrency.oldPrice = this.cryptoCurrency.price;
                 this.cryptoCurrency.price = response.data.price;
@@ -118,6 +110,15 @@
                 .post('/market_exchange.json', {currency_id: this.folioCurrency.id, crypto_currency_id: this.cryptoCurrency.id, authenticity_token: this.getCsrfToken()}, {responseType: 'json'})
                 .then(this.onUpdatedPrice.bind(this));
             },
+
+            persistHolding: _.debounce(function() {
+                var token = this.getCsrfToken(),
+                    request = '/folio_crypto_currency/' + this.folioCryptoCurrency.id + '.json';
+
+                axios
+                .patch(request, {holding: this.folioCryptoCurrency.holding, authenticity_token: token}, {responseType: 'json'})
+                .then(this.onHoldingPersisted.bind(this));
+            }, 500),
 
             notifyPrice: function() {
                 window.bus.$emit('cryptoCurrencyUpdated', {
