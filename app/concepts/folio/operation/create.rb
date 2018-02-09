@@ -19,8 +19,6 @@ class Folio::Create < Trailblazer::Operation
   end
 
   def assign_folio_values(options, params:, **)
-    puts Currency.all.length
-    puts "abobeufurgueruguerguerug"
     options['model'].user_id = options['current_user'].id
     options['model'].currency_id = Currency.where(code: 'USD').first.id
   end
