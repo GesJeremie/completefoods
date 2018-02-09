@@ -42,7 +42,15 @@
                                 <div class="coins__item-actions">
                                     <component-crypto-currency-actions inline-template>
                                         <%= form_tag(folio_crypto_currency_path(folio_crypto_currency.id), method: 'delete') %>
-                                            <button type="submit" v-on:click="onClickDelete($event)" class="button button--danger">{{textDelete}}</button>
+
+                                            <div v-if="!deleteClicked">
+                                                <button type="submit" v-on:click="onClickDelete($event)" class="button button--danger">Delete</button>
+                                            </div>
+
+                                            <div v-if="deleteClicked">
+                                                <button type="submit" class="button button--danger">Yes</button>
+                                                <button type="submit" v-on:click="onClickCancel($event)" class="button button--primary">No</button>
+                                            </div>
                                         </form>
                                     </button>
                                 </div>

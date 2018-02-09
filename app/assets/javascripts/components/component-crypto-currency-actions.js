@@ -10,9 +10,6 @@
         },
 
         computed: {
-            textDelete: function() {
-                return this.deleteClicked ? 'Are you sure?' : 'Delete'
-            }
         },
 
         methods: {
@@ -23,6 +20,11 @@
 
                 e.preventDefault();
                 this.deleteClicked = true;
+            },
+
+            onClickCancel: function(e) {
+                e.preventDefault();
+                this.deleteClicked = false;
             }
         }
     });
