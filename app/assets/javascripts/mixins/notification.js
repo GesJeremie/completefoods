@@ -8,12 +8,12 @@
             $notification: function() {
                 return {
                     show: function(type, message, duration) {
-                        duration = duration || 5000;
+                        duration = duration || 2000;
 
                         new Noty({
                             type: type,
                             text: message,
-                            timeout: 5000,
+                            timeout: duration,
                             theme: 'custom'
                         }).show();
                     }

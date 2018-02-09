@@ -13,6 +13,9 @@ class Home::Index < Trailblazer::Operation
       options['data.new_user'] = true
     else
       user = options['current_user']
+
+      #folio > folio_crypto_currencies > crypto_currency.name
+
       folio = Folio.where(user_id: user.id).first
       options['data.new_user'] = false
     end

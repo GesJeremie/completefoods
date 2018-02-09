@@ -15,7 +15,7 @@
         <div class="coins">
             <div class="grid grid--left">
 
-                <% @folio.folio_crypto_currencies.each do |folio_crypto_currency| %>
+                <% @folio.folio_crypto_currencies.ordered_by_crypto_currency_name.each do |folio_crypto_currency| %>
                     <component-crypto-currency v-cloak inline-template
                         prop-crypto-currency="<%= folio_crypto_currency.crypto_currency.to_json %>"
                         prop-folio-crypto-currency="<%= folio_crypto_currency.to_json %>"
