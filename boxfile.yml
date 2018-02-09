@@ -13,7 +13,7 @@ run.config:
 #
 deploy.config:
   extra_steps:
-    - rake assets:precompile
+    - rake assets:precompile RAILS_ENV=production
 
   before_live:
     web.main:
