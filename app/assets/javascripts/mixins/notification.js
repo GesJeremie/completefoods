@@ -1,4 +1,6 @@
 (function()  {
+    'use strict';
+
     window.mixins = window.mixins || {}
 
     window.mixins.notification = {
