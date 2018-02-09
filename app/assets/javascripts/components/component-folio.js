@@ -37,7 +37,6 @@
 
             onCryptoCurrencyUpdated: function(crypto) {
                 this.updatedSeconds = 0;
-                console.log(this.updatedSeconds);
 
                 // "_" used to avoid problems with numeric symbols
                 // such as the coin "42"
