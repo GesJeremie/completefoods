@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-  constraints(host: /www.moonbeat.io/) do
-    get '*', to: redirect('https://moonbeat.io')
-  end
-
   root 'home#index'
 
   resources :folio_crypto_currency,   only: [:create, :destroy, :update]
