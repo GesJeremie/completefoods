@@ -97,6 +97,8 @@
                     this.showClassPriceUp = true;
                 }
 
+                this.notifyPrice();
+
                 setTimeout(function() {
                     this.showClassPriceDown = false;
                     this.showClassPriceUp = false;

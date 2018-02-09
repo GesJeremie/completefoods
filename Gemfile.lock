@@ -45,6 +45,9 @@ GEM
     bcrypt (3.1.11)
     bindex (0.5.0)
     builder (3.2.3)
+    bullet (5.7.2)
+      activesupport (>= 3.0.0)
+      uniform_notifier (~> 1.11.0)
     byebug (9.1.0)
     coderay (1.1.2)
     concurrent-ruby (1.0.5)
@@ -212,15 +215,13 @@ GEM
       reform-rails (>= 0.1.4, < 0.2.0)
       trailblazer (>= 2.0.0, < 2.1.0)
       trailblazer-loader (>= 0.1.0)
-    turbolinks (5.0.1)
-      turbolinks-source (~> 5)
-    turbolinks-source (5.1.0)
     tzinfo (1.2.4)
       thread_safe (~> 0.1)
     uber (0.1.0)
     uglifier (4.0.2)
       execjs (>= 0.3.0, < 3)
     unicode-display_width (1.3.0)
+    uniform_notifier (1.11.0)
     vuejs-rails (2.4.2)
     web-console (3.5.1)
       actionview (>= 5.0)
@@ -238,6 +239,7 @@ DEPENDENCIES
   avalanche-rails (~> 1.2.0)
   awesome_print
   bcrypt
+  bullet
   byebug
   dry-validation
   httparty
@@ -253,7 +255,6 @@ DEPENDENCIES
   sqlite3
   trailblazer
   trailblazer-rails
-  turbolinks (~> 5.0.0)
   uglifier (>= 1.3.0)
   vuejs-rails
   web-console

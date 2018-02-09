@@ -12,12 +12,16 @@
                 price: 0,
                 priceHigh24Hours: 0,
                 priceLow24Hours: 0,
-                currency: JSON.parse(this.propCurrency)
+                currency: JSON.parse(this.propCurrency),
+                updatedSeconds: 0
             }
         },
 
         created: function() {
             this.events();
+            setInterval(function() {
+                this.updatedSeconds++;
+            }.bind(this), 1000);
         },
 
         computed: {
@@ -32,6 +36,9 @@
             },
 
             onCryptoCurrencyUpdated: function(crypto) {
+                this.updatedSeconds = 0;
+                console.log(this.updatedSeconds);
+
                 // "_" used to avoid problems with numeric symbols
                 // such as the coin "42"
                 this.cryptos['_' + crypto.symbol] = {

@@ -55,4 +55,5 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'pry'
   gem 'awesome_print'
+  gem 'bullet'
 end
