@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  constraints subdomain: 'www' do
-    get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
+  constraints(host: /www.moonbeat.io/) do
+    get '*', to: redirect('https://moonbeat.io')
   end
 
   root 'home#index'
