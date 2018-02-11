@@ -9,7 +9,7 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
     response = HTTParty.get('https://min-api.cryptocompare.com/data/all/coinlist')
 
     if !response.success?
-      puts "Impossible to connect to the api cryptocompare.com".red
+      puts "[ERROR] Impossible to connect to the api cryptocompare.com"
       false
     else
       options['data.coins'] = JSON.parse(response.body)['Data']
@@ -34,7 +34,7 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
       if crypto_currency.present?
 
         crypto_currency.update(media: media)
-        puts "Crypto currency #{symbol}, added media".green
+        puts "Crypto currency #{symbol}, added media"
 
       else
         CryptoCurrency.create(
@@ -43,7 +43,7 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
           media: media
         )
 
-        puts "Crypto currency #{symbol} added".green
+        puts "Crypto currency #{symbol} added"
 
       end
 
