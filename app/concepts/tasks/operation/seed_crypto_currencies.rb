@@ -8,9 +8,12 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
 
     response = HTTParty.get('https://min-api.cryptocompare.com/data/all/coinlist')
 
-    return false if !response.success?
-
-    options['data.coins'] = JSON.parse(response.body)['Data']
+    if !response.success?
+      puts "Impossible to connect to the api cryptocompare.com".red
+      false
+    else
+      options['data.coins'] = JSON.parse(response.body)['Data']
+    end
   end
 
   def seed(options, params:, **)
@@ -34,7 +37,7 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
         media: media
       )
 
-      puts "Crypto currency #{symbol} added"
+      puts "Crypto currency #{symbol} added".green
     end
 
 end

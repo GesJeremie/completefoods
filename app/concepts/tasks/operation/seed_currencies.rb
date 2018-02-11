@@ -28,7 +28,7 @@ class Tasks::SeedCurrencies < Trailblazer::Operation
         symbol: currency[:symbol]
       ).save
 
-      puts "Currency #{currency[:code]} added"
+      puts "Currency #{currency[:code]} added".green
     end
   end
 
