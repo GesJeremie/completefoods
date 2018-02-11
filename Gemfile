@@ -56,4 +56,5 @@ group :development do
   gem 'pry'
   gem 'awesome_print'
   gem 'bullet'
+  gem 'rails_real_favicon'
 end
