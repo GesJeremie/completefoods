@@ -43,14 +43,22 @@
 
         .coins__item-name {}
 
+            .coins__item-name-media {
+                width: 30px;
+                margin-right: $spacing-unit / 2;
+                vertical-align: middle;
+            }
+
             .coins__item-name-name {
                 font-weight: 800;
                 font-size: $font-size + 5px;
+                vertical-align: middle;
             }
 
             .coins__item-name-symbol {
                 font-size: $font-size + 2px;
                 color: $gray;
+                vertical-align: middle;
             }
 
         .coins__item-price {
@@ -103,6 +111,11 @@
                     border-color: $blue;
                 }
             }
+
+        .coins__item-media {
+            margin-bottom: $spacing-unit;
+
+        }
 
         .coins__item-unit {
             color: $gray;

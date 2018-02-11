@@ -24,6 +24,7 @@
                         <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide grid__cell--25-at-x-wide" v-match-heights="{el: ['.coins__item']}">
                             <div class="coins__item">
                                 <div class="coins__item-name">
+                                    <img v-bind:src="media" class="coins__item-name-media">
                                     <span class="coins__item-name-name">{{cryptoCurrency.name}}</span>
                                     <span class="coins__item-name-symbol">{{cryptoCurrency.symbol}}</span>
                                 </div>

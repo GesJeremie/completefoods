@@ -29,6 +29,7 @@
                     id:                  JSON.parse(this.propCryptoCurrency).id,
                     name:                JSON.parse(this.propCryptoCurrency).name,
                     symbol:              JSON.parse(this.propCryptoCurrency).symbol,
+                    media:               JSON.parse(this.propCryptoCurrency).media,
                     oldPrice:            0,
                     price:               0,
                     priceLow24Hours:     0,
@@ -73,8 +74,12 @@
 
             isPriceDown: function() {
                 return this.priceHolding < this.priceOldHolding;
+            },
+
+            media: function() {
+                return 'https://www.cryptocompare.com' + this.cryptoCurrency.media;
             }
-        },
+         },
 
         methods: {
 

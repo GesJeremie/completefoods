@@ -29,15 +29,24 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
       symbol = coin['Symbol']
       media = coin['ImageUrl']
 
-      return if CryptoCurrency.exists?(symbol: symbol)
+      crypto_currency = CryptoCurrency.find_by(symbol: symbol)
 
-      CryptoCurrency.create(
-        name: name,
-        symbol: symbol,
-        media: media
-      )
+      if crypto_currency.present?
 
-      puts "Crypto currency #{symbol} added".green
+        crypto_currency.update(media: media)
+        puts "Crypto currency #{symbol}, added media".green
+
+      else
+        CryptoCurrency.create(
+          name: name,
+          symbol: symbol,
+          media: media
+        )
+
+        puts "Crypto currency #{symbol} added".green
+
+      end
+
     end
 
 end
