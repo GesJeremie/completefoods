@@ -4,6 +4,8 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
   success  :seed
 
   def fetch_crypto_currencies!(options, params:, **)
+    puts "Seeding crypto currencies"
+
     response = HTTParty.get('https://min-api.cryptocompare.com/data/all/coinlist')
 
     return false if !response.success?
@@ -22,10 +24,17 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
     def add_crypto_currency(coin)
       name = coin['CoinName']
       symbol = coin['Symbol']
+      media = coin['ImageUrl']
 
       return if CryptoCurrency.exists?(symbol: symbol)
 
-      CryptoCurrency.create(name: name, symbol: symbol)
+      CryptoCurrency.create(
+        name: name,
+        symbol: symbol,
+        media: media
+      )
+
+      puts "Crypto currency #{symbol} added"
     end
 
 end
