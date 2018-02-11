@@ -1,8 +1,25 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Moonbeat - The minimalist portfolio to track your crypto currencies.</title>
-    <meta content="width=device-width" name="viewport">
+    <meta charset="utf-8" />
+    <title>Moonbeat - We hodl to the moon</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The minimalist and (awesome) portfolio to track your crypto currencies." />
+    <meta name="keywords" content="crypto crypto-currencies alt-coins portfolio tracking bitcoin ethereum ripple stellar lumens">
+
+    <!-- Social -->
+    <meta property="og:title" content="Moonbeat - We hold to the moon">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:description" content="The minimalist and (awesome) portfolio to track your crypto currencies.">
+    <meta property="og:site_name" content="Moonbeat">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<%= asset_path('social.jpg') %>" />
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@JeremieGes">
+    <meta name="twitter:title" content="Moonbeat - We hodl to the moon">
+    <meta name="twitter:description" content="The minimalist and (awesome) portfolio to track your crypto currencies.">
+    <meta name="twitter:image:src" content="<%= asset_url('social.jpg') %>">
 
     <%= csrf_meta_tags %>
 
