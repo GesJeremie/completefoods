@@ -29,8 +29,8 @@
             }
         },
 
-        render: function(h) {
-            return h(); // No template
+        render: function(noTemplate) {
+            return noTemplate();
         }
     });
 

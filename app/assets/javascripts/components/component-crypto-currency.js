@@ -93,9 +93,9 @@
                 this.showClassPriceUp = false;
 
                 this.cryptoCurrency.oldPrice = this.cryptoCurrency.price;
-                this.cryptoCurrency.price = response.data.price;
-                this.cryptoCurrency.priceLow24Hours = response.data.price_low_24_hours;
-                this.cryptoCurrency.priceHigh24Hours = response.data.price_high_24_hours;
+                this.cryptoCurrency.price = parseFloat(response.data.price);
+                this.cryptoCurrency.priceLow24Hours = parseFloat(response.data.price_low_24_hours);
+                this.cryptoCurrency.priceHigh24Hours = parseFloat(response.data.price_high_24_hours);
 
                 if (this.isPriceDown) {
                     this.showClassPriceDown = true;
@@ -124,11 +124,10 @@
             },
 
             persistHolding: _.debounce(function() {
-                var token = this.getCsrfToken(),
-                    request = '/folio_crypto_currency/' + this.folioCryptoCurrency.id + '.json';
+                var request = '/folio_crypto_currency/' + this.folioCryptoCurrency.id + '.json';
 
                 axios
-                .patch(request, {holding: this.folioCryptoCurrency.holding, authenticity_token: token}, {responseType: 'json'})
+                .patch(request, {holding: this.folioCryptoCurrency.holding})
                 .then(this.onHoldingPersisted.bind(this));
             }, 500),
 
@@ -137,11 +136,6 @@
                     price: this.priceHolding,
                     symbol: this.cryptoCurrency.symbol,
                 });
-            },
-
-            // TODO: Could be a mixin since we gonna use for different XHR requests
-            getCsrfToken: function() {
-                return document.querySelector('[name="csrf-token"]').getAttribute('content');
             }
         }
     });

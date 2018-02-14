@@ -10,18 +10,14 @@
             return {
                 cryptos: [],
                 price: 0,
-                priceHigh24Hours: 0,
-                priceLow24Hours: 0,
                 currency: JSON.parse(this.propCurrency),
                 updatedSeconds: 0
             }
         },
 
         created: function() {
+            this.setupTimer();
             this.events();
-            setInterval(function() {
-                this.updatedSeconds++;
-            }.bind(this), 1000);
         },
 
         computed: {
@@ -31,39 +27,47 @@
         },
 
         methods: {
+            setupTimer: function() {
+                setInterval(this.incrementTimer.bind(this), 1000);
+            },
+
             events: function() {
                 window.bus.$on('cryptoCurrencyUpdated', this.onCryptoCurrencyUpdated.bind(this));
             },
 
             onCryptoCurrencyUpdated: function(crypto) {
-                this.updatedSeconds = 0;
+                this.resetTimer();
 
+                this.addOrUpdateCryptoCurrency(crypto);
+                this.refreshPrices();
+            },
+
+            addOrUpdateCryptoCurrency: function(crypto) {
                 // "_" used to avoid problems with numeric symbols
                 // such as the coin "42"
                 this.cryptos['_' + crypto.symbol] = {
                     price: crypto.price,
                 };
-
-                this.refreshPrices();
             },
 
             refreshPrices: _.debounce(function() {
                 // Could be improved with a reduce
-                var price = 0,
-                    priceHigh24Hours = 0,
-                    priceLow24Hours = 0;
+                var price = 0;
 
                 _.each(_.keys(this.cryptos), function(symbol) {
                     price += this.cryptos[symbol].price;
-                    priceHigh24Hours += this.cryptos[symbol].priceHigh24Hours;
-                    priceLow24Hours += this.cryptos[symbol].priceLow24Hours;
                 }.bind(this));
 
                 this.price = price;
-                this.priceHigh24Hours = priceHigh24Hours;
-                this.priceLow24Hours = priceLow24Hours;
+            }, 300),
 
-            }, 300)
+            incrementTimer: function() {
+                this.updatedSeconds++;
+            },
+
+            resetTimer: function() {
+                this.updatedSeconds = 0;
+            }
         }
     });
 

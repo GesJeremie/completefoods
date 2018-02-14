@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   resources :user_subscribe,          only: [:create]
   resources :user_disconnect,         only: [:create]
   resources :user_connect,            only: [:create]
-  resources :market_exchange,         only: [:index, :create]
+  resources :market_exchange,         only: [:create]
   resources :settings,                only: [:index]
   resources :settings_currency,       only: [:create]
   resources :support_us,              only: [:index]

@@ -2,10 +2,12 @@
     'use strict';
 
     Vue.component('component-settings-currency', {
+
         props: [
             'propCurrency',
             'propCurrencyIdSelected'
         ],
+
         data: function() {
             return {
                 currency: {
@@ -20,9 +22,6 @@
             window.bus.$on('settingsCurrencySelected', this.onCurrencySelected.bind(this));
         },
 
-        computed: {
-        },
-
         methods: {
             onClickCurrency: function() {
                 window.bus.$emit('settingsCurrencySelected', {
@@ -31,11 +30,11 @@
             },
 
             onCurrencySelected: function(currency) {
-                if (currency.id == this.currency.id) {
-                    this.isSelected = true;
-                } else {
-                    this.isSelected = false;
-                }
+                this.isSelected = this.isSameCurrency(currency);
+            },
+
+            isSameCurrency: function(currency) {
+                return currency.id == this.currency.id;
             }
         }
     });
