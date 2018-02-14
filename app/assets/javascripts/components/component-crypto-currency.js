@@ -89,9 +89,6 @@
             },
 
             onCryptoSyncUpdated: function(response) {
-                this.showClassPriceDown = false;
-                this.showClassPriceUp = false;
-
                 this.cryptoCurrency.oldPrice = this.cryptoCurrency.price;
                 this.cryptoCurrency.price = parseFloat(response.data.price);
                 this.cryptoCurrency.priceLow24Hours = parseFloat(response.data.price_low_24_hours);
@@ -104,6 +101,12 @@
                 if (this.isPriceUp) {
                     this.showClassPriceUp = true;
                 }
+
+
+                setTimeout(function() {
+                    this.showClassPriceDown = false;
+                    this.showClassPriceUp = false;
+                }.bind(this), 4000);
 
                 this.notifyPrice();
 
