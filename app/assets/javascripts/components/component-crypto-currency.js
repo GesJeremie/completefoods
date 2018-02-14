@@ -48,7 +48,7 @@
         },
 
         created: function() {
-            this.updatePrice();
+            window.bus.$on('cryptoSync:updated:' + this.cryptoCurrency.id, this.onCryptoSyncUpdated.bind(this));
         },
 
         computed: {
@@ -88,7 +88,10 @@
                 this.persistHolding();
             },
 
-            onUpdatedPrice: function(response) {
+            onCryptoSyncUpdated: function(response) {
+                this.showClassPriceDown = false;
+                this.showClassPriceUp = false;
+
                 this.cryptoCurrency.oldPrice = this.cryptoCurrency.price;
                 this.cryptoCurrency.price = response.data.price;
                 this.cryptoCurrency.priceLow24Hours = response.data.price_low_24_hours;
@@ -104,11 +107,6 @@
 
                 this.notifyPrice();
 
-                setTimeout(function() {
-                    this.showClassPriceDown = false;
-                    this.showClassPriceUp = false;
-                    this.updatePrice();
-                }.bind(this), 10000);
             },
 
             onHoldingPersisted: function(response) {
@@ -123,12 +121,6 @@
                 }
 
                 this.$notification.show(type, message);
-            },
-
-            updatePrice: function() {
-                axios
-                .post('/market_exchange.json', {currency_id: this.folioCurrency.id, crypto_currency_id: this.cryptoCurrency.id, authenticity_token: this.getCsrfToken()}, {responseType: 'json'})
-                .then(this.onUpdatedPrice.bind(this));
             },
 
             persistHolding: _.debounce(function() {

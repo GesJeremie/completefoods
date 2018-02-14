@@ -9,9 +9,6 @@
             }
         },
 
-        computed: {
-        },
-
         methods: {
             onClickDelete: function(e) {
                 if (this.deleteClicked) {
