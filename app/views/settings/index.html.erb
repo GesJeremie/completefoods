@@ -7,36 +7,33 @@
 
       <p class="settings__label">Show the prices in the following currency:</p>
 
-      <%= form_tag(controller: 'settings_currency', action: 'create') %>
-
         <div class="grid grid--left">
 
-            <% @currencies.each do |currency| %>
-              <component-settings-currency v-cloak inline-template
-                prop-currency="<%= currency.to_json %>"
-                prop-currency-id-selected="<%= @user.folio.currency_id %>"
+          <% @currencies.each do |currency| %>
+            <component-settings-currency v-cloak inline-template
+              prop-currency="<%= currency.to_json %>"
+              prop-currency-id-selected="<%= @user.folio.currency_id %>"
+            >
+
+              <div
+                class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide"
+                v-match-heights="{el: ['.settings__currency']}"
               >
 
-                  <div
-                    class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide"
-                    v-match-heights="{el: ['.settings__currency']}"
-                  >
-                    <input v-if="isSelected" type="hidden" name="currency_id" value="<%= currency.id %>" />
+                <div
+                  v-on:click="onClickCurrency"
+                  v-bind:class="{ 'settings__currency': true, 'settings__currency--selected': isSelected}"
+                >
 
-                    <div
-                      v-on:click="onClickCurrency"
-                      v-bind:class="{ 'settings__currency': true, 'settings__currency--selected': isSelected}"
-                    >
-                      <div class="settings__currency-name"><%= currency.name %>  <span class="settings__currency-symbol"><%= currency.symbol %></span></div>
-                    </div>
+                  <div class="settings__currency-name">
+                    <%= currency.name %>  <span class="settings__currency-symbol"><%= currency.symbol %></span>
                   </div>
-              </component-settings-currency>
-            <% end %>
+                </div>
+              </div>
+            </component-settings-currency>
+          <% end %>
 
         </div>
-
-        <button type="submit" class="button button--primary button--form">Save Currency</button>
-      </form>
 
     </div>
   </div>

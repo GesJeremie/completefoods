@@ -2,6 +2,9 @@
     'use strict';
 
     Vue.component('component-settings-currency', {
+        mixins: [
+            window.mixins.notification
+        ],
 
         props: [
             'propCurrency',
@@ -27,6 +30,19 @@
                 window.bus.$emit('settingsCurrencySelected', {
                     id: this.currency.id
                 });
+
+                axios
+                .post('/settings_currency', {currency_id: this.currency.id})
+                .then(this.onCurrencyPersisted.bind(this))
+                .catch(this.onCurrencyErrorPersisted.bind(this));
+            },
+
+            onCurrencyPersisted: function(response) {
+                this.$notification.show('success', 'Currency updated');
+            },
+
+            onCurrencyErrorPersisted: function(error) {
+                this.$notification.show('error', 'Impossible to update the currency');
             },
 
             onCurrencySelected: function(currency) {

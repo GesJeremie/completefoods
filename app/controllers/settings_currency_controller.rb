@@ -4,11 +4,10 @@ class SettingsCurrencyController < ApplicationController
     op = SettingsCurrency::Create.(params, 'current_user' => current_user)
 
     if op.success?
-      flash[:success] = 'Currency updated'
+      render json: {}, status: :ok
     else
-      flash[:error] = 'Impossible to update the currency'
+      render json: {}, status: :unprocessable_entity
     end
 
-    redirect_to settings_path
   end
 end
