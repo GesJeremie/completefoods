@@ -31,19 +31,24 @@ class Tasks::SeedCryptoCurrencies < Trailblazer::Operation
 
       crypto_currency = CryptoCurrency.find_by(symbol: symbol)
 
-      if crypto_currency.present?
-
-        crypto_currency.update(media: media)
-        puts "Crypto currency #{symbol}, added media"
-
-      else
+      if !crypto_currency.present?
         CryptoCurrency.create(
           name: name,
           symbol: symbol,
           media: media
         )
 
-        puts "Crypto currency #{symbol} added"
+        puts "#{symbol} - NEW - Coin and media added."
+      end
+
+      if crypto_currency.present? and crypto_currency.media.nil?
+
+        if media.nil?
+          puts "#{symbol} - UPDATE - Media missing, crypto compare does not have it, pass!."
+        else
+          crypto_currency.update(media: media)
+          puts "#{symbol} - UPDATE - Media missing, media added."
+        end
 
       end
 
