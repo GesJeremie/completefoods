@@ -74,10 +74,6 @@
 
             isPriceDown: function() {
                 return this.priceHolding < this.priceOldHolding;
-            },
-
-            media: function() {
-                return 'https://www.cryptocompare.com' + this.cryptoCurrency.media;
             }
          },
 

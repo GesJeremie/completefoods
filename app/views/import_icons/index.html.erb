@@ -1,0 +1,5 @@
+<% @crypto_currencies.each do |crypto| %>
+    <% if crypto.media.present? %>
+        <img class="<%= crypto.media.gsub('/media/', '') %>" width="50" src="https://www.cryptocompare.com/<%= crypto.media %>" />
+    <% end %>
+<% end %>
