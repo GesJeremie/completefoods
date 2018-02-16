@@ -112,7 +112,7 @@
                 var type, message;
 
                 if (response.status === 200) {
-                    message = this.cryptoCurrency.name + ' udpated';
+                    message = this.cryptoCurrency.name + ' updated';
                     type = 'success';
                 } else {
                     message = 'Impossible to update ' + this.cryptoCurrency.name;
