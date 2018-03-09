@@ -63,20 +63,22 @@ class MarketExchange::Update < Trailblazer::Operation
     def get_prices_market_data(options, currency_code)
       market_data = options['data.market_data']
       crypto_currency = options['data.crypto_currency']
+      market_data_base = market_data['BTC'][currency_code]
+      market_data_target = market_data[crypto_currency.symbol]['BTC']
 
       if options['data.crypto_currency'].symbol == 'BTC'
         {
-          price: market_data['BTC'][currency_code]['PRICE'],
-          price_open_24_hours: market_data['BTC'][currency_code]['OPEN24HOUR'],
-          price_high_24_hours: market_data['BTC'][currency_code]['HIGH24HOUR'],
-          price_low_24_hours: market_data['BTC'][currency_code]['LOW24HOUR']
+          price: market_data_base['PRICE'],
+          price_open_24_hours: market_data_base['OPEN24HOUR'],
+          price_high_24_hours: market_data_base['HIGH24HOUR'],
+          price_low_24_hours: market_data_base['LOW24HOUR']
         }
       else
         {
-          price: market_data['BTC'][currency_code]['PRICE'] * market_data[crypto_currency.symbol]['BTC']['PRICE'],
-          price_open_24_hours: market_data['BTC'][currency_code]['OPEN24HOUR'] * market_data[crypto_currency.symbol]['BTC']['OPEN24HOUR'],
-          price_high_24_hours: market_data['BTC'][currency_code]['HIGH24HOUR'] * market_data[crypto_currency.symbol]['BTC']['HIGH24HOUR'],
-          price_low_24_hours: market_data['BTC'][currency_code]['LOW24HOUR'] * market_data[crypto_currency.symbol]['BTC']['LOW24HOUR']
+          price: market_data_base['PRICE'].to_f * market_data_target['PRICE'].to_f,
+          price_open_24_hours: market_data_base['OPEN24HOUR'].to_f * market_data_target['OPEN24HOUR'].to_f,
+          price_high_24_hours: market_data_base['HIGH24HOUR'].to_f * market_data_target['HIGH24HOUR'].to_f,
+          price_low_24_hours: market_data_base['LOW24HOUR'].to_f * market_data_target['LOW24HOUR'].to_f
         }
       end
     end
