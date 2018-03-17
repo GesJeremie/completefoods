@@ -17,6 +17,7 @@ deploy.config:
 
   before_live:
     web.main:
+      - rake db:setup_or_migrate
 
 # add a database
 data.db:
