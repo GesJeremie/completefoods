@@ -9,7 +9,7 @@
         data: function() {
             return {
                 role: JSON.parse(this.currentUser).role,
-                haveAFolioClicked: false
+                toggled: false
             }
         },
 
@@ -23,25 +23,25 @@
             },
 
             shouldRenderSubscribe: function() {
-                return this.isAnonymous && !this.haveAFolioClicked;
+                return this.isAnonymous && this.toggled;
             },
 
             shouldRenderConnect: function() {
-                return this.isAnonymous && this.haveAFolioClicked;
+                return this.isAnonymous && !this.toggled;
             },
 
-            textHaveAFolio: function() {
-                if (this.haveAFolioClicked) {
+            textToggle: function() {
+                if (this.toggled) {
                     return 'Cancel';
                 }
 
-                return 'Already have a folio?';
+                return 'You don\'t have a folio yet? Save this one!';
             }
         },
 
         methods: {
-            onClickHaveAFolio: function()  {
-                this.haveAFolioClicked = !this.haveAFolioClicked;
+            onClickToggle: function()  {
+                this.toggled = !this.toggled;
             }
         }
     });

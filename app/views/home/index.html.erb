@@ -119,7 +119,7 @@
 
                             <div v-if="shouldRenderSubscribe">
                                 <%= form_tag(controller: 'user_subscribe', action: 'create') %>
-                                    <p class="folio-save__description">Don't forget to save your folio!</p>
+                                    <p class="folio-save__description">You are about to save your folio!</p>
 
                                     <div class="folio-save__inputs">
                                         <input type="text" class="folio-save__input" name="email" placeholder="Email" />
@@ -149,7 +149,7 @@
                             </div>
 
                             <div v-if="isAnonymous">
-                                <a class="folio-save__link" v-on:click="onClickHaveAFolio">{{textHaveAFolio}}</a>
+                                <a class="folio-save__link" v-on:click="onClickToggle">{{textToggle}}</a>
                             </div>
 
                         </div>
@@ -170,6 +170,6 @@
     </div>
 
     <div class="footer__email">
-        For any suggestions, feel free to reach us at <a href="mailto:contact.moonbeat@gmail.com">contact.moonbeat@gmail.com</a>
+        For any suggestions, questions, support, feel free to reach us at <a target="_blank" href="mailto:contact.moonbeat@gmail.com">contact.moonbeat@gmail.com</a> or join us on <a target="_blank" href="https://www.reddit.com/r/Moonbeat/">reddit</a>.
     </div>
 </div>

@@ -16,6 +16,11 @@
         text-align: center;
     }
 
+        .folio-save__description {
+            font-size: $font-size + 2px;
+            font-weight: 800;
+        }
+
         .folio-save__inputs {
             margin: ($spacing-unit * 2) 0;
         }
