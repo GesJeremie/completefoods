@@ -52,6 +52,10 @@
                 setTimeout(this.updatePrices.bind(this), 10000);
             },
 
+            onFailedUpdatePrices: function(error) {
+                setTimeout(this.updatePrices.bind(this), 15000);
+            },
+
             /**
              * Methods
              */
@@ -64,7 +68,8 @@
 
                 axios
                 .post('/market_exchange.json', this.updatePricesData)
-                .then(this.onUpdatedPrices.bind(this));
+                .then(this.onUpdatedPrices.bind(this))
+                .catch(this.onFailedUpdatePrices.bind(this));
             }
 
         },
