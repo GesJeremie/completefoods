@@ -5,6 +5,8 @@ run.config:
   extra_packages:
     - nodejs
     - nginx
+    - ImageMagick
+
 
   build_triggers:
     - Gemfile

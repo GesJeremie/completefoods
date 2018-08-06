@@ -1,0 +1,31 @@
+/*------------------------------------*\
+    #HERO
+\*------------------------------------*/
+
+.hero {
+    margin: 0 auto;
+    margin-top: 50px;
+    width: 100%;
+    color: $black;
+    text-align: center;
+
+    @include respond-to(medium) {
+        width: 80%;
+    }
+}
+
+    .hero__title {
+        font-size: 60px;
+        font-weight: bold;
+        line-height: 70px;
+        text-transform: capitalize;
+    }
+
+    .hero__subtitle {
+        margin: 0 auto;
+        margin-top: 20px;
+        margin-bottom: 50px;
+        max-width: 550px;
+        font-size: $font-size + 3px;
+        line-height: 30px;
+    }

@@ -1,175 +1,82 @@
-<component-folio v-cloak inline-template
-    prop-currency="<%= @folio.currency.to_json %>"
->
-    <div class="folio">
-        <div class="folio__total">{{currency.symbol}}{{humanizePrice | formatCurrency}}</div>
-        <div class="folio__title">Total value of your folio</div>
+<div id="drawer-filters" class="drawer drawer--left">
 
-        <div class="folio__updated">Updated {{updatedSeconds}} seconds ago</div>
-    </div>
-</component-folio>
+  <nav class="drawer-nav" role="navigation">
+    <div class="filters" data-controller="filters">
 
-<component-crypto-sync
-    prop-crypto-currencies="<%= @folio.crypto_currencies.to_json %>"
-    prop-currency="<%= @folio.currency.to_json %>"
-></component-crypto-sync>
+      <div class="filters__group">
+        <div class="filters__group-label">Diet</div>
 
-<div class="grid grid--center">
-    <div class="grid__cell grid__cell--80">
-        <div class="coins">
-            <div class="grid grid--left">
-
-                <% @folio.folio_crypto_currencies.order_by_crypto_currency_name.each do |folio_crypto_currency| %>
-                    <component-crypto-currency v-cloak inline-template
-                        prop-crypto-currency="<%= folio_crypto_currency.crypto_currency.to_json %>"
-                        prop-folio-crypto-currency="<%= folio_crypto_currency.to_json %>"
-                        prop-folio-currency="<%= folio_crypto_currency.folio.currency.to_json %>"
-                    >
-                        <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide grid__cell--25-at-x-wide" v-match-heights="{el: ['.coins__item']}">
-                            <div class="coins__item">
-                                <div class="coins__item-name">
-
-                                    <% if folio_crypto_currency.crypto_currency.media.present? %>
-                                        <%= image_tag(folio_crypto_currency.crypto_currency.media.reverse.chop.reverse, class: 'coins__item-name-media') %>
-                                    <% end %>
-                                    <span class="coins__item-name-name">{{cryptoCurrency.name}}</span>
-                                    <span class="coins__item-name-symbol">{{cryptoCurrency.symbol}}</span>
-                                </div>
-                                <div v-bind:class="{ 'coins__item-price': true, 'coins__item-price--up': showClassPriceUp, 'coins__item-price--down': showClassPriceDown }">
-                                    {{folioCurrency.symbol}}{{priceHolding | formatCurrency}}
-                                </div>
-                                <div class="coins__item-hold">
-                                    Holding: <input v-on:change="onChangeHolding" v-model="folioCryptoCurrency.holding" :value="folioCryptoCurrency.holding" type="number" class="coins__item-hold-input" min="0">
-                                </div>
-                                <div class="coins__item-unit">
-                                    <br/>
-                                    1 {{cryptoCurrency.symbol}} = {{folioCurrency.symbol}}{{cryptoCurrency.price | formatCurrency}}
-                                </div>
-                                <div class="coins__item-arrow">
-                                </div>
-                                <div class="coins__item-actions">
-                                    <component-crypto-currency-actions inline-template>
-                                        <%= form_tag(folio_crypto_currency_path(folio_crypto_currency.id), method: 'delete') %>
-
-                                            <div v-if="!deleteClicked">
-                                                <button type="submit" v-on:click="onClickDelete($event)" class="button button--danger">Delete</button>
-                                            </div>
-
-                                            <div v-if="deleteClicked">
-                                                <button type="submit" class="button button--danger">Yes</button>
-                                                <button type="submit" v-on:click="onClickCancel($event)" class="button button--primary">No</button>
-                                            </div>
-                                        </form>
-                                    </button>
-                                </div>
-                                <div class="coins__item-stats">
-
-                                    <div class="grid grid--center">
-                                        <div class="grid__cell grid__cell--50">
-                                            <div class="coins__item-stats-stat coins__item-stats-stat--low">
-                                                <span>Low 24h</span>
-                                                <span>{{folioCurrency.symbol}}{{priceHoldingLow24Hours | formatCurrency}}</span>
-                                            </div>
-                                        </div>
-
-                                        <div class="grid__cell grid__cell--50">
-                                            <div class="coins__item-stats-stat coins__item-stats-stat--high">
-                                                <span>High 24h</span>
-                                                <span>{{folioCurrency.symbol}}{{priceHoldingHigh24Hours | formatCurrency}}</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </component-crypto-currency>
-                <% end %>
-            </div>
+        <div class="filters__items filters__items--two-per-row">
+          <%= render 'filter', property: 'vegetarian', property_checked: false, name: 'Vegetarian', emoji: 'watermelon' %>
+          <%= render 'filter', property: 'vegan', property_checked: false, name: 'Vegan', emoji: 'plant' %>
+          <%= render 'filter', property: 'gluten_free', property_checked: false, name: 'Gluten', emoji: 'corn' %>
+          <%= render 'filter', property: 'lactose_free', property_checked: false, name: 'Lactose', emoji: 'baby-bottle' %>
         </div>
-    </div>
-</div>
+      </div>
 
-<div class="grid grid--center">
-    <div class="grid__cell grid__cell--80">
+      <div class="filters__group">
+        <div class="filters__group-label">Shipping</div>
+
+        <div class="filters__items filters__items--two-per-row">
+          <%= render 'filter', property: 'united_states', property_checked: false, name: 'United States', emoji: 'usa' %>
+          <%= render 'filter', property: 'canada', property_checked: false, name: 'Canada', emoji: 'canada' %>
+          <%= render 'filter', property: 'europe', property_checked: false, name: 'Europe', emoji: 'europe' %>
+          <%= render 'filter', property: 'rest_of_world', property_checked: false, name: 'Rest of the world', emoji: 'world' %>
+        </div>
+      </div>
+
+      <div class="filters__group">
+        <div class="filters__group-label">Misc</div>
+
+        <div class="filters__items filters__items--one-per-row">
+          <%= render 'filter', property: 'subscription_available', property_checked: false, name: 'Subscription Available', emoji: 'box' %>
+          <%= render 'filter', property: 'discount_for_subscription', property_checked: false, name: 'Discount For Subscription', emoji: 'money' %>
+          <%= render 'filter', property: 'shaker_free_first_order', property_checked: false, name: 'Shaker Free First Order', emoji: 'gift' %>
+          <%= render 'filter', property: 'sample', property_checked: false, name: 'Sample pack available', emoji: 'sample' %>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+
+  <main id="page-layout">
+    <div class="hero">
+      <h1 class="hero__title">Find your next Soylent.</h1>
+      <h2 class="hero__subtitle">Discover the best Soylent alternatives based on the protein ratio, shipping, pricing per month and other metrics.</h2>
+    </div>
+
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--90">
         <div class="grid grid--center">
-            <div class="grid__cell grid__cell--100 grid__cell--50-at-wide">
-                <div class="coin-add">
-                    <component-crypto-currency-add v-cloak inline-template
-                        prop-crypto-currencies="<%= @crypto_currencies.to_json %>"
-                    >
-                        <%= form_tag(controller:  'folio_crypto_currency', action: 'create') %>
-
-                            <div class="coins-add__center">
-                                <component-select v-model="selected" :options="options" class="coins-add__select"></component-select>
-
-                                <input type="hidden" name="crypto_currency_id" :value="selected.value"/>
-                                <button type="submit" class="button button--primary">Add Asset</button>
-                            </div>
-                        </form>
-                    </component-crypto-currency-add>
-                </div>
+          <div class="grid__cell grid__cell--70">
+            <div data-controller="openDrawerFilters">
+              <a data-action="openDrawerFilters#onClickButton" class="button button--filters">Open Filters and Sort</a>
             </div>
 
-            <div class="grid__cell grid__cell--100 grid__cell--50-at-wide">
-                <div class="folio-save">
-                    <component-folio-save v-cloak inline-template
-                        current-user="<%= @user.to_json %>"
-                    >
-                        <div class="folio-save__center">
-
-                            <div v-if="shouldRenderSubscribe">
-                                <%= form_tag(controller: 'user_subscribe', action: 'create') %>
-                                    <p class="folio-save__description">You are about to save your folio!</p>
-
-                                    <div class="folio-save__inputs">
-                                        <input type="text" class="folio-save__input" name="email" placeholder="Email" />
-                                        <input type="password" class="folio-save__input" name="password" placeholder="Password"  />
-                                    </div>
-
-                                    <button type="submit" class="button button--primary">Save Folio</button>
-                                </form>
-                            </div>
-
-                            <div v-if="shouldRenderConnect">
-                                <%= form_tag(controller: 'user_connect', action: 'create') %>
-                                    <p class="folio-save__description">Log in to see your folio</p>
-                                    <div class="folio-save__inputs">
-                                        <input type="text" class="folio-save__input" name="email" placeholder="Email" />
-                                        <input type="password" class="folio-save__input" name="password" placeholder="Password"  />
-                                    </div>
-
-                                    <button type="submit" class="button button--primary">Log In</button>
-                                </form>
-                            </div>
-
-                            <div v-if="isUser">
-                                <%= form_tag(controller: 'user_disconnect', action: 'create') %>
-                                    <button type="submit" class="button button--large button--warning">Log out</button>
-                                </form>
-                            </div>
-
-                            <div v-if="isAnonymous">
-                                <a class="folio-save__link" v-on:click="onClickToggle">{{textToggle}}</a>
-                            </div>
-
-                        </div>
-                    </component-folio-save>
-                </div>
+            <div data-controller="productList" data-target="productList.container" class="product-list">
+              <%= render partial: 'products/item', collection: @products, as: :product %>
             </div>
+
+          </div>
+
         </div>
-    </div>
-</div>
-
-<div class="footer">
-    <div class="footer__moon">
-        <%= image_tag('moon.png', class: 'footer__moon-picture') %>
+      </div>
     </div>
 
-    <div class="footer__stats">
-        <%= pluralize(@count_users, 'astronaut') %> hodling to the moon
-    </div>
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--70">
+        <div class="footer">
+          <div class="footer__contact">
+            For any suggestions, feel free to reach us at <a class="link" href="mailto:soylent.alternatives@gmail.com">soylent.alternatives@gmail.com</a>
 
-    <div class="footer__email">
-        For any suggestions, questions, support, feel free to reach us at <a target="_blank" href="mailto:contact.moonbeat@gmail.com">contact.moonbeat@gmail.com</a> or join us on <a target="_blank" href="https://www.reddit.com/r/Moonbeat/">reddit</a>.
+          </div>
+
+          <div class="footer__copyright">
+            Soylent Alternatives is not affiliated with Rosa Foods Inc. Soylent and all other Rosa Foods product names or registered trademarks of Rosa Foods Inc. All other company and product names are trademarks or registered trademarks of their respective companies.
+          </div>
+        </div>
+      </div>
     </div>
+  </main>
+
 </div>

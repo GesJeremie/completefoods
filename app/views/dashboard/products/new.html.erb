@@ -1,0 +1,120 @@
+<h1>New Product</h1>
+
+<%= form_for [:dashboard, @product] do |form| %>
+
+  <% if @product.errors.any? %>
+    <% @product.errors.full_messages.each do |message| %>
+      <%= message %><br/>
+    <% end %>
+  <% end %>
+
+  <h3>Brand</h3>
+
+  <%= form.label :brand_id %>
+  <%= form.collection_select :brand_id, Brand.all, :id, :name %>
+
+  <h3>Details</h3>
+
+  <%= form.label :image %>
+  <%= form.file_field :image %>
+
+  <br/>
+
+  <%= form.label :name %>
+  <%= form.text_field :name %>
+
+  <br/>
+
+  <%= form.label :kcal_per_serving %>
+  <%= form.text_field :kcal_per_serving %>
+
+  <br/>
+
+  <%= form.label :protein_per_serving %>
+  <%= form.text_field :protein_per_serving %>
+
+  <br/>
+
+  <%= form.label :carbs_per_serving %>
+  <%= form.text_field :carbs_per_serving %>
+
+  <br/>
+
+  <%= form.label :fat_per_serving %>
+  <%= form.text_field :fat_per_serving %>
+
+  <br/>
+
+  <%= form.label :subscription_available %>
+  <%= form.check_box :subscription_available %>
+
+  <br/>
+
+  <%= form.label :discount_for_subscription %>
+  <%= form.check_box :discount_for_subscription %>
+
+  <br/>
+
+  <%= form.label :shaker_free_first_order %>
+  <%= form.check_box :shaker_free_first_order %>
+
+  <br/>
+
+  <%= form.label :sample_pack_available %>
+  <%= form.check_box :sample_pack_available %>
+
+  <br/>
+
+  <%= form.label :state %>
+  <%= form.select :state, options_for_select(Product.states.keys.to_a) %>
+
+
+  <h3>Prices</h3>
+
+  <%= form.fields_for :price do |price_form| %>
+
+    <%= price_form.label :currency_id %>
+    <%= price_form.collection_select :currency_id, Currency.all, :id, :name %>
+
+    <br/>
+
+    <%= price_form.label :per_serving_minimum_order %>
+    <%= price_form.text_field :per_serving_minimum_order %>
+
+    <br/>
+
+    <%= price_form.label :per_serving_bulk_order %>
+    <%= price_form.text_field :per_serving_bulk_order %>
+
+    <br/>
+  <% end %>
+
+  <h3>Allergens</h3>
+
+  <p>Check the allergens present in this product</p>
+
+  <%= form.fields_for :allergen do |allergen_form| %>
+    <%= allergen_form.label :gluten %> <%= allergen_form.check_box :gluten %> <br/>
+    <%= allergen_form.label :lactose %> <%= allergen_form.check_box :lactose %> <br/>
+    <%= allergen_form.label :nut %> <%= allergen_form.check_box :nut %> <br/>
+    <%= allergen_form.label :ogm %> <%= allergen_form.check_box :ogm %> <br/>
+    <%= allergen_form.label :soy %> <%= allergen_form.check_box :soy %> <br/>
+  <% end %>
+
+  <h3>Diet</h3>
+
+  <p>Is this product can be used for the following diet (if so check the box)</p>
+
+  <%= form.fields_for :diet do |diet_form| %>
+    <%= diet_form.label :vegetarian %> <%= diet_form.check_box :vegetarian %> <br/>
+    <%= diet_form.label :vegan %> <%= diet_form.check_box :vegan %> <br/>
+    <%= diet_form.label :ketogenic %> <%= diet_form.check_box :ketogenic %> <br/>
+  <% end %>
+
+  <h3>Active</h3>
+
+  <%= form.label :active %>
+  <%= form.check_box :active %>
+
+  <%= form.submit 'Create Product' %>
+<% end %>

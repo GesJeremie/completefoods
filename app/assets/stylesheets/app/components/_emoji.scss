@@ -1,0 +1,16 @@
+/*------------------------------------*\
+    #EMOJI
+\*------------------------------------*/
+
+.emoji {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    vertical-align: middle;
+
+    .filters__item & {
+        margin-right: 2px;
+        width: 15px;
+        height: 15px;
+    }
+}

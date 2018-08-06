@@ -1,0 +1,19 @@
+/*------------------------------------*\
+    #FOOTER
+\*------------------------------------*/
+
+.footer {
+    margin: ($spacing-unit * 5) 0;
+}
+
+    .footer__contact {
+        margin-bottom: $spacing-unit * 3;
+        font-size: $font-size;
+        text-align: center;
+    }
+
+    .footer__copyright {
+        font-size: $font-size;
+        line-height: ($spacing-unit * 2);
+        text-align: center;
+    }

@@ -2,6 +2,9 @@ ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
+# Add factories
+Dir[Rails.root.join('test/factories/**/*.rb')].each { |file| require file }
+
 # To add Capybara feature tests add `gem 'minitest-rails-capybara'`
 # to the test group in the Gemfile and uncomment the following:
 # require 'minitest/rails/capybara'
@@ -10,20 +13,13 @@ require 'rails/test_help'
 require 'minitest/pride'
 
 class ActiveSupport::TestCase
-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
-  fixtures :all
 
   def self.prepare
-    # Add code that needs to be executed before test suite start
+    Rails.application.load_seed
   end
   prepare
 
   def setup
-    CryptoCurrency.create(symbol: 'BTC', name: 'Bitcoin')
-    CryptoCurrency.create(symbol: 'STR', name: 'Stellar')
-    Currency.create(code: 'EUR', name: 'Euro', symbol: '€')
-    Currency.create(code: 'USD', name: 'United States Dollar', symbol: '$')
-
     # Add code that need to be executed before each test
   end
 

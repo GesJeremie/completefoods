@@ -10,18 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180210191831) do
+ActiveRecord::Schema.define(version: 2018_08_05_131114) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "crypto_currencies", force: :cascade do |t|
-    t.string "symbol"
+  create_table "active_storage_attachments", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "record_type", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
+    t.datetime "created_at", null: false
+    t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
+    t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
+  end
+
+  create_table "active_storage_blobs", force: :cascade do |t|
+    t.string "key", null: false
+    t.string "filename", null: false
+    t.string "content_type"
+    t.text "metadata"
+    t.bigint "byte_size", null: false
+    t.string "checksum", null: false
+    t.datetime "created_at", null: false
+    t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
+  end
+
+  create_table "brands", force: :cascade do |t|
+    t.bigint "country_id"
+    t.string "name"
+    t.string "website"
+    t.string "facebook"
+    t.index ["country_id"], name: "index_brands_on_country_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "code"
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "media"
-    t.index ["symbol"], name: "index_crypto_currencies_on_symbol", unique: true
+    t.index ["code"], name: "index_countries_on_code", unique: true
   end
 
   create_table "currencies", force: :cascade do |t|
@@ -33,45 +61,66 @@ ActiveRecord::Schema.define(version: 20180210191831) do
     t.index ["code"], name: "index_currencies_on_code", unique: true
   end
 
-  create_table "folio_crypto_currencies", force: :cascade do |t|
-    t.bigint "folio_id"
-    t.bigint "crypto_currency_id"
-    t.decimal "holding"
+  create_table "product_allergens", force: :cascade do |t|
+    t.bigint "product_id"
+    t.boolean "gluten"
+    t.boolean "lactose"
+    t.boolean "nut"
+    t.boolean "ogm"
+    t.boolean "soy"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["crypto_currency_id"], name: "index_folio_crypto_currencies_on_crypto_currency_id"
-    t.index ["folio_id"], name: "index_folio_crypto_currencies_on_folio_id"
+    t.index ["product_id"], name: "index_product_allergens_on_product_id"
   end
 
-  create_table "folios", force: :cascade do |t|
-    t.bigint "user_id"
+  create_table "product_diets", force: :cascade do |t|
+    t.bigint "product_id"
+    t.boolean "vegan"
+    t.boolean "vegetarian"
+    t.boolean "ketogenic"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_diets_on_product_id"
+  end
+
+  create_table "product_prices", force: :cascade do |t|
+    t.bigint "product_id"
     t.bigint "currency_id"
+    t.decimal "per_serving_minimum_order"
+    t.decimal "per_serving_bulk_order"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["currency_id"], name: "index_folios_on_currency_id"
-    t.index ["user_id"], name: "index_folios_on_user_id"
+    t.index ["currency_id"], name: "index_product_prices_on_currency_id"
+    t.index ["product_id"], name: "index_product_prices_on_product_id"
   end
 
-  create_table "market_exchanges", force: :cascade do |t|
-    t.bigint "crypto_currency_id"
-    t.bigint "currency_id"
-    t.string "price"
-    t.string "price_open_24_hours"
-    t.string "price_high_24_hours"
-    t.string "price_low_24_hours"
+  create_table "product_shipments", force: :cascade do |t|
+    t.bigint "product_id"
+    t.boolean "rest_of_world"
+    t.boolean "united_states"
+    t.boolean "canada"
+    t.boolean "europe"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["crypto_currency_id"], name: "index_market_exchanges_on_crypto_currency_id"
-    t.index ["currency_id"], name: "index_market_exchanges_on_currency_id"
+    t.index ["product_id"], name: "index_product_shipments_on_product_id"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "email"
-    t.string "password"
-    t.string "role"
-    t.string "token"
+  create_table "products", force: :cascade do |t|
+    t.bigint "brand_id"
+    t.string "name"
+    t.float "kcal_per_serving"
+    t.float "protein_per_serving"
+    t.float "carbs_per_serving"
+    t.float "fat_per_serving"
+    t.boolean "subscription_available"
+    t.boolean "discount_for_subscription"
+    t.boolean "shaker_free_first_order"
+    t.boolean "sample_pack_available"
+    t.integer "state", default: 0
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["brand_id"], name: "index_products_on_brand_id"
   end
 
 end

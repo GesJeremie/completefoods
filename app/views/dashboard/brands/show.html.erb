@@ -1,0 +1,16 @@
+<div class="container">
+
+  <h1>Brand <%= @brand.name %> (#<%= @brand.id %>)</h1>
+
+  <div class="mt-3 card">
+    <div class="card-body">
+      <strong>Name:</strong> <%= @brand.name %><br/>
+      <strong>Website:</strong> <%= @brand.website %><br/>
+      <strong>Facebook:</strong> <%= @brand.facebook %><br/>
+      <strong>Country:</strong> <%= @brand.flag %> <%= @brand.country.name %>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Edit', edit_dashboard_brand_path(@brand) %>
+    </div>
+  </div>
+</div>

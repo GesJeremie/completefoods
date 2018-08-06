@@ -1,0 +1,16 @@
+/*------------------------------------*\
+    #ALERT
+\*------------------------------------*/
+
+.alert {
+    display: inline-block;
+    padding: $spacing-unit * 2;
+    width: 100%;
+    color: $white;
+    background-color: $blue;
+    border-radius: 5px;
+
+    strong {
+        font-weight: 700;
+    }
+}

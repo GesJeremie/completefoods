@@ -1,0 +1,33 @@
+/*------------------------------------*\
+    #DRAWER
+\*------------------------------------*/
+
+$drawer-width-on-medium: 500px;
+$drawer-width-on-small: 70%;
+
+.drawer {}
+
+    .drawer-nav {
+        z-index: 3;
+        width: $drawer-width-on-small;
+
+        @include respond-to('medium') {
+            width: $drawer-width-on-medium;
+        }
+    }
+
+    .drawer--left .drawer-nav {
+        left: -($drawer-width-on-small);
+
+        @include respond-to('medium') {
+            width: $drawer-width-on-medium;
+        }
+    }
+
+    .drawer--left.drawer-open .drawer-hamburger {
+        left: $drawer-width-on-small;
+
+        @include respond-to('medium') {
+            left: $drawer-width-on-medium;
+        }
+    }

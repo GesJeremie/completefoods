@@ -1,5 +1,5 @@
 class CreateCurrencies < ActiveRecord::Migration[5.1]
-  def up
+  def change
     create_table :currencies do |t|
       t.string :code
       t.string :name
@@ -9,9 +9,5 @@ class CreateCurrencies < ActiveRecord::Migration[5.1]
     end
 
     add_index :currencies, [:code], unique: true
-  end
-
-  def down
-    drop_table :currencies
   end
 end

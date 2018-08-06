@@ -1,0 +1,80 @@
+/*------------------------------------*\
+    #FILTERS
+\*------------------------------------*/
+
+.filters {
+    display: block;
+    position: relative;
+    margin: 0 auto;
+    margin-top: ($spacing-unit);
+    width: 90%;
+}
+
+    .filters__group {
+        position: relative;
+        margin: ($spacing-unit * 7) 0;
+        border: 2px solid $gray--x-light;
+        border-radius: 5px;
+    }
+
+        .filters__group-label {
+            display: inline-block;
+            position: absolute;
+            top: -($spacing-unit);
+            left: -($spacing-unit / 2);
+            margin-bottom: ($spacing-unit * 2);
+            padding: 0 ($spacing-unit / 2);
+            color: $black;
+            font-size: $font-size + 3px;
+            font-weight: 700;
+            text-transform: capitalize;
+            background-color: $white;
+        }
+
+        .filters__items {
+            display: flex;
+            padding: ($spacing-unit * 2) ($spacing-unit * 1.5);
+            justify-content: space-between;
+            flex-flow: row wrap;
+        }
+
+
+        .filters__item {
+            margin: ($spacing-unit / 2) 0;
+            margin-right: $spacing-unit / 2;
+            padding: ($spacing-unit * 2) 0;
+            width: 48%;
+            height: auto;
+            text-align: center;
+            border: 1px solid #dde0e5;
+            border-radius: 5px;
+            vertical-align: middle;
+
+            &:hover {
+                background-color: $gray--x-light;
+                cursor: pointer;
+            }
+
+            .filters__items--two-per-row & {
+                width: 48%;
+            }
+
+            .filters__items--one-per-row & {
+                width: 100%;
+            }
+        }
+
+        .filters__item--selected {
+            color: $white;
+            background-color: $green;
+            border: 1px solid $green;
+
+            &:hover {
+                background-color: $green;
+            }
+        }
+
+            .filters__item-label {
+                vertical-align: middle;
+            }
+

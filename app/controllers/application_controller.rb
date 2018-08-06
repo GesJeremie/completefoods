@@ -8,4 +8,7 @@ class ApplicationController < ActionController::Base
         User.find_by(id: session[:current_user_id])
     end
 
+    def current_currency
+      Currency.find_by_code(params[:currency]) || Currency.find_by_code('USD')
+    end
 end

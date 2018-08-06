@@ -6,15 +6,19 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :folio_crypto_currency,   only: [:create, :destroy, :update]
-  resources :user_subscribe,          only: [:create]
-  resources :user_disconnect,         only: [:create]
-  resources :user_connect,            only: [:create]
-  resources :market_exchange,         only: [:create]
-  resources :settings,                only: [:index]
-  resources :settings_currency,       only: [:create]
-  resources :support_us,              only: [:index]
-  resources :import_icons,            only: [:index]
+  # SEO Routes
+  # get '/soylent-alternatives-made-in-:country', to: 'search#index'
+
+  resources :products, only: [:show]
+
+  namespace :dashboard do
+    resources :brands
+    resources :products
+  end
+
+  namespace :api, constraints: { format: 'json' } do
+    resources :products, only: [:index]
+  end
 
 end
 

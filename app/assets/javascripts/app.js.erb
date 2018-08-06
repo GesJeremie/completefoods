@@ -1,0 +1,18 @@
+<%
+   %w(
+      lodash
+      stimulus
+      classtrophobic
+      jquery
+      iscroll
+      drawer
+      app/boot
+      app/helpers/cast_bool
+      app/controllers/productList
+      app/controllers/openDrawerFilters
+      app/controllers/filters
+      app/controllers/filter
+    ).each do |asset|
+      require_asset asset
+   end
+%>
