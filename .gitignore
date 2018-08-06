@@ -20,6 +20,9 @@ bower.json
 # Ignore Byebug command history file.
 .byebug_history
 
+# Don't include storage
+storage
+
 #
 .DS_Store
 node_modules
