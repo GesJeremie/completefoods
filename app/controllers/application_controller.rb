@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
     end
 
     def current_currency
-      Currency.find_by_code(params[:currency]) || Currency.find_by_code('USD')
+      helpers.current_currency
     end
 end

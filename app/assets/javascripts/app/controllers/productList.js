@@ -13,17 +13,17 @@
             targets: ['container']
         },
 
-        subscribeFiltersRefreshProductsAttempted: function () {
-            $(document).on('filters:refreshProductsAttempted', this.onRefreshProductsAttempted.bind(this));
+        subscribeFinderRefreshProductsAttempted: function () {
+            $(document).on('finder:refreshProductsAttempted', this.onRefreshProductsAttempted.bind(this));
         },
 
-        subscribeFiltersRefreshProducts: function () {
-            $(document).on('filters:refreshProducts', this.onRefreshProducts.bind(this));
+        subscribeFinderRefreshProducts: function () {
+            $(document).on('finder:refreshProducts', this.onRefreshProducts.bind(this));
         },
 
         initialize: function () {
-            this.subscribeFiltersRefreshProductsAttempted();
-            this.subscribeFiltersRefreshProducts();
+            this.subscribeFinderRefreshProductsAttempted();
+            this.subscribeFinderRefreshProducts();
         },
 
         onRefreshProductsAttempted: function () {

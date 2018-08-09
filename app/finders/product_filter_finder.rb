@@ -1,5 +1,5 @@
 class ProductFilterFinder
-  attr_reader :params
+  attr_reader :products, :params
 
   ALLOWED_PARAMS = [
     :subscription_available,
@@ -24,65 +24,60 @@ class ProductFilterFinder
     :rest_of_world
   ].freeze
 
-  def initialize(params = {})
+  def initialize(products, params = {})
+    @products = products
     @params = params.permit(ALLOWED_PARAMS)
   end
 
   def execute
-    products = Product.active
+    by(:subscription_available)
+    by(:discount_for_subscription)
+    by(:shaker_free_first_order)
+    by(:sample_pack_available)
+    by(:state)
 
-    products = by(:subscription_available, products)
-    products = by(:discount_for_subscription, products)
-    products = by(:shaker_free_first_order, products)
-    products = by(:sample_pack_available, products)
-    products = by(:state, products)
+    by_diet(:vegetarian)
+    by_diet(:vegan)
+    by_diet(:ketogenic)
 
-    products = by_diet(:vegetarian, products)
-    products = by_diet(:vegan, products)
-    products = by_diet(:ketogenic, products)
+    by_shipment(:united_states)
+    by_shipment(:canada)
+    by_shipment(:europe)
+    by_shipment(:rest_of_world)
 
-    products = by_shipment(:united_states, products)
-    products = by_shipment(:canada, products)
-    products = by_shipment(:europe, products)
-    products = by_shipment(:rest_of_world, products)
+    by_allergen(:gluten)
+    by_allergen(:lactose)
 
-    products = by_allergen(:gluten, products)
-    products = by_allergen(:lactose, products)
-
-    # products = by_relation_not(:allergen, :product_allergens, :gluten_free, products)
-    # products = by_relation_not(:allergen, :product_allergens, :lactose_free, products)
-    # products = by_relation_not(:allergen, :product_allergens, :nut_free, products)
-    # products = by_relation_not(:allergen, :product_allergens, :ogm_free, products)
-    # products = by_relation_not(:allergen, :product_allergens, :soy_free, products)
+    @products
   end
 
   private
 
-    def by(column, items)
-      return items unless params[column].present?
+    def by(column)
+      return unless params[column].present?
 
-      items.where(column => true)
+      @products.where(column => true)
     end
 
-    def by_diet(column, items)
-      by_relation(:diet, :product_diets, column, items)
+    def by_diet(column)
+      by_relation(:diet, :product_diets, column)
     end
 
-    def by_shipment(column, items)
-      by_relation(:shipment, :product_shipments, column, items)
+    def by_shipment(column)
+      by_relation(:shipment, :product_shipments, column)
     end
 
-    def by_allergen(column, items)
+    def by_allergen(column)
       column_as_param = "#{column}_free".to_sym # :gluten becomes :gluten_free
 
-      return items unless params[column_as_param].present?
+      return unless params[column_as_param].present?
 
-      items.joins(:allergen).where(product_allergens: { column => false })
+      @products.joins(:allergen).where(product_allergens: { column => false })
     end
 
-    def by_relation(relation, relation_scope, column, items)
-      return items unless params[column].present?
+    def by_relation(relation, relation_scope, column)
+      return unless params[column].present?
 
-      items = items.joins(relation).where(relation_scope => { column => true })
+      @products.joins(relation).where(relation_scope => { column => true })
     end
 end

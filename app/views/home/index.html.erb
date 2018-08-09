@@ -1,7 +1,7 @@
-<div id="drawer-filters" class="drawer drawer--left">
+<div id="drawer-finder" class="drawer drawer--left">
 
   <nav class="drawer-nav" role="navigation">
-    <div class="filters" data-controller="filters">
+    <div class="filters" data-controller="finder">
 
       <div class="filters__group">
         <div class="filters__group-label">Diet</div>
@@ -35,6 +35,24 @@
           <%= render 'filter', property: 'sample', property_checked: false, name: 'Sample pack available', emoji: 'sample' %>
         </div>
       </div>
+
+      <div class="filters__group">
+        <div class="filters__group-label">Sort By</div>
+        <div class="filters__items">
+          <select data-controller="sort" data-action="change->sort#onChangeSort" name="sort_by">
+            <% @sorters.group_by { |sorter| sorter[:group] }.each do |group| %>
+              <optgroup label="<%= group.first.to_s.capitalize %>">
+
+                <% group.last.each do |sorter| %>
+                  <option value="<%= sorter[:value] %>"><%= sorter[:label] %></option>
+                <% end %>
+
+              </optgroup>
+
+            <% end %>
+          </select>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -49,8 +67,8 @@
       <div class="grid__cell grid__cell--90">
         <div class="grid grid--center">
           <div class="grid__cell grid__cell--70">
-            <div data-controller="openDrawerFilters">
-              <a data-action="openDrawerFilters#onClickButton" class="button button--filters">Open Filters and Sort</a>
+            <div data-controller="openDrawerFinder">
+              <a data-action="openDrawerFinder#onClickButton" class="button button--filters">Open Filters and Sort</a>
             </div>
 
             <div data-controller="productList" data-target="productList.container" class="product-list">

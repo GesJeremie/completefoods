@@ -1,5 +1,5 @@
 /**
- * OpenDrawerFilters
+ * OpenDrawerFinder
  */
 
 (function() {
@@ -16,7 +16,7 @@
         drawer: null,
 
         initialize: function () {
-            this.drawer = $('#drawer-filters').drawer();
+            this.drawer = $('#drawer-finder').drawer();
         },
 
         onClickButton: function () {
@@ -24,5 +24,5 @@
         }
     });
 
-    window.app.stimulus.register('openDrawerFilters', Controller);
+    window.app.stimulus.register('openDrawerFinder', Controller);
 }());

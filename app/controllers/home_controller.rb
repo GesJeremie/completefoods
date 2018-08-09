@@ -5,5 +5,6 @@ class HomeController < BaseController
       currency: current_currency
     })
 
+    @sorters = Rails.configuration.sorters
   end
 end

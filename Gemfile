@@ -58,6 +58,7 @@ gem 'lodash-rails'
 gem 'jquery-rails'
 gem 'flag-icons-rails'
 gem 'bootstrap', '~> 4.1.1'
+gem 'select2-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

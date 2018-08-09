@@ -1,7 +1,7 @@
 class ProductPrice < ApplicationRecord
-
   DAYS_PER_MONTH = 30.4167.freeze
   KCAL_PER_DAY = 2000.freeze
+  KCAL_PER_MONTH = (DAYS_PER_MONTH * KCAL_PER_DAY).freeze
 
   belongs_to :product
   belongs_to :currency
@@ -56,7 +56,7 @@ class ProductPrice < ApplicationRecord
   private
 
     def in_currency(number, currency_code)
-      number.to_money(self.currency.code).exchange_to(currency_code).to_s
+      number.to_money(self.currency.code).exchange_to(currency_code).to_f
     end
 
     def cost_per_day(price_per_serving)

@@ -45,7 +45,7 @@
 
     <div class="grid__cell grid__cell--20">
       <div class="product-item__cost">
-        <span class="product-item__cost-value"><%= product.estimated_cost_per_month_bulk_order_format %></span>
+        <span class="product-item__cost-value"><%= from_usd_to_current_currency(product.price.per_month_bulk_order) %></span>
         <span class="product-item__cost-description">per month</span>
       </div>
     </div>

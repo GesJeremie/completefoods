@@ -6,7 +6,10 @@ class ProductFinder
   end
 
   def execute
-    ProductFilterFinder.new(params).execute
+    products = Product.active
+    products = ProductFilterFinder.new(products, params).execute
+    products = ProductSortFinder.new(products, params).execute
+    products
   end
 
 end
