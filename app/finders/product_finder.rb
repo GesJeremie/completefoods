@@ -9,6 +9,7 @@ class ProductFinder
     products = Product.active
     products = ProductFilterFinder.new(products, params).execute
     products = ProductSortFinder.new(products, params).execute
+    products = ProductNarrowFinder.new(products, params).execute
     products
   end
 

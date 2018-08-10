@@ -10,7 +10,7 @@ class ProductSortFinder
   end
 
   def execute
-    return @products unless @params[:sort].present?
+    return @products unless @params[:sort_bt].present?
     return @products unless ALLOWED_VALUES.include?(@params[:sort].to_sym)
 
     send(@params[:sort])
@@ -80,7 +80,6 @@ class ProductSortFinder
 
       # PRICE (serving)
       def price_per_serving_minimum_order_cheapest
-        binding.pry
         @products.sort_by { |product| product.price.per_serving_minimum_order_in_currency('USD') }
       end
 

@@ -39,20 +39,17 @@
       <div class="filters__group">
         <div class="filters__group-label">Sort By</div>
         <div class="filters__items">
-          <select data-controller="sort" data-action="change->sort#onChangeSort" name="sort_by">
-            <% @sorters.group_by { |sorter| sorter[:group] }.each do |group| %>
-              <optgroup label="<%= group.first.to_s.capitalize %>">
-
-                <% group.last.each do |sorter| %>
-                  <option value="<%= sorter[:value] %>"><%= sorter[:label] %></option>
-                <% end %>
-
-              </optgroup>
-
-            <% end %>
-          </select>
+          <%= render 'select', type: 'sort' %>
         </div>
       </div>
+
+      <div class="filters__group">
+        <div class="filters__group-label">Narrow By</div>
+        <div class="filters__items">
+          <%= render 'select', type: 'narrow' %>
+        </div>
+      </div>
+
     </div>
   </nav>
 

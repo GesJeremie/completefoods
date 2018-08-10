@@ -35,6 +35,14 @@
             $(document).on('sort:updated', this.onSortUpdated.bind(this));
         },
 
+        subscribeNarrowCreated: function () {
+            $(document).on('narrow:created', this.onNarrowCreated.bind(this));
+        },
+
+        subscribeNarrowUpdated: function () {
+            $(document).on('narrow:updated', this.onNarrowUpdated.bind(this));
+        },
+
         emitRefreshProductsAttempted: function () {
             $(document).trigger('finder:refreshProductsAttempted');
         },
@@ -50,6 +58,8 @@
             this.subscribeFilterUpdated();
             this.subscribeSortCreated();
             this.subscribeSortUpdated();
+            this.subscribeNarrowCreated();
+            this.subscribeNarrowUpdated();
         },
 
         onRequestProductsDone: function (response) {
@@ -74,9 +84,17 @@
             this.refreshProducts();
         },
 
+        onNarrowCreated: function (event, narrow) {
+            this.narrow = narrow.property;
+        },
+
+        onNarrowUpdated: function (event, narrow) {
+            this.narrow = narrow.property;
+            this.refreshProducts();
+        },
 
         refreshProducts: function () {
-            var filters, sort, params;
+            var filters, params;
 
             this.emitRefreshProductsAttempted();
 
@@ -85,9 +103,11 @@
             }
 
             filters = _.pickBy(this.filters, function (filter) { return filter === true });
-            sort = {sort: this.sort};
 
-            params = _.merge(filters, sort);
+            params = _.merge(filters, {
+                sort: this.sort,
+                narrow: this.narrow
+            });
 
             this.requestProducts = $.get('/api/products.json', params).done(this.onRequestProductsDone.bind(this));
         }

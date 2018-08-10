@@ -1,5 +1,5 @@
 /**
- * Sort
+ * Narrow
  */
 
 (function() {
@@ -14,13 +14,13 @@
         },
 
         emitCreated: function () {
-            $(document).trigger('sort:created', {
+            $(document).trigger('narrow:created', {
                 property: $(this.element).val()
             });
         },
 
         emitUpdated: function () {
-            $(document).trigger('sort:updated', {
+            $(document).trigger('narrow:updated', {
                 property: $(this.element).val()
             });
         },
@@ -32,13 +32,13 @@
         },
 
         events: function () {
-            $(this.element).on('change', this.onChangeSort.bind(this));
+            $(this.element).on('change', this.onChangeNarrow.bind(this));
         },
 
-        onChangeSort: function () {
+        onChangeNarrow: function () {
             this.emitUpdated();
         }
     });
 
-    window.app.stimulus.register('sort', Controller);
+    window.app.stimulus.register('narrow', Controller);
 }());
