@@ -18,6 +18,11 @@
     }
 
     tr > td:first-of-type {
+        font-family: $font-primary;
         font-weight: bold;
+    }
+
+    tr > td {
+        font-family: $font-numeric;
     }
 }

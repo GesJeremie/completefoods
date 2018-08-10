@@ -10,13 +10,18 @@ class ProductSortFinder
   end
 
   def execute
-    return @products unless @params[:sort_bt].present?
+    return @products unless @params[:sort].present?
     return @products unless ALLOWED_VALUES.include?(@params[:sort].to_sym)
 
     send(@params[:sort])
   end
 
     private
+
+      # DEFAULT
+      def nothing
+        @products
+      end
 
       # KCAL
       def kcal_per_serving_lowest

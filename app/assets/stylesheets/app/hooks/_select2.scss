@@ -24,3 +24,7 @@ $select2-height: 68px !default;
     margin-top: 15px;
     font-weight: 700;
 }
+
+.select2-container--default .select2-selection--single {
+    border: 1px solid $gray--medium;
+}

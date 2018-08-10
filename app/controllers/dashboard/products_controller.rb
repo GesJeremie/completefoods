@@ -12,6 +12,7 @@ class Dashboard::ProductsController < Dashboard::BaseController
     @product.build_diet
     @product.build_allergen
     @product.build_price
+    @product.build_shipment
   end
 
   def create
@@ -52,7 +53,8 @@ class Dashboard::ProductsController < Dashboard::BaseController
         allowed_product_params,
         allergen_attributes: allowed_allergens_params,
         diet_attributes: allowed_diets_params,
-        price_attributes: allowed_prices_params
+        price_attributes: allowed_prices_params,
+        shipment_attributes: allowed_shipments_params
       )
     end
 
@@ -97,6 +99,15 @@ class Dashboard::ProductsController < Dashboard::BaseController
         currency_id
         per_serving_minimum_order
         per_serving_bulk_order
+      ]
+    end
+
+    def allowed_shipments_params
+      %i[
+        united_states
+        canada
+        europe
+        rest_of_world
       ]
     end
 

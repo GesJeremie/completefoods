@@ -5,6 +5,7 @@
 .product-show {}
 
     .product-show__heading {
+        margin-top: $spacing-unit * 4;
         text-align: center;
     }
 
@@ -24,7 +25,9 @@
         display: block;
         position: relative;
         margin-top: ($spacing-unit * 2);
+        margin-bottom: $spacing-unit * 5;
         padding: $spacing-unit ($spacing-unit * 5);
+        padding-bottom: $spacing-unit * 4;
         text-align: left;
         text-decoration: none;
         background-color: $white;
@@ -57,3 +60,24 @@
                 margin: ($spacing-unit * 2) 0;
             }
         }
+
+        .product-show__item {
+            padding: $spacing-unit;
+            text-align: center;
+            border-radius: 5px;
+            color: $white;
+        }
+
+        .product-show__item--green {
+            background-color: $green--light;
+        }
+
+        .product-show__item--red {
+            background-color: $red;
+        }
+
+            .product-show__item-label {
+                display: inline-block;
+                padding-top: $spacing-unit;
+                font-size: 13px;
+            }

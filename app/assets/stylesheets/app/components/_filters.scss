@@ -22,7 +22,7 @@
             display: inline-block;
             position: absolute;
             top: -($spacing-unit);
-            left: -($spacing-unit / 2);
+            left: ($spacing-unit / 2);
             margin-bottom: ($spacing-unit * 2);
             padding: 0 ($spacing-unit / 2);
             color: $black;
@@ -47,7 +47,7 @@
             width: 48%;
             height: auto;
             text-align: center;
-            border: 1px solid #dde0e5;
+            border: 1px solid $gray--medium;
             border-radius: 5px;
             vertical-align: middle;
 

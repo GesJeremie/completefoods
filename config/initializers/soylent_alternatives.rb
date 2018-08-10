@@ -3,7 +3,7 @@ Rails.application.configure do
   config.number_of_products_needed_to_activate_narrow = 15
 
   config.sorters = [
-    { label: 'Nothing', value: :nothing, group: :default },
+    { label: 'Nothing', value: :nothing, group: nil },
 
     { label: 'Per serving (lowest)', value: :kcal_per_serving_lowest, group: :calories },
     { label: 'Per serving (most)', value: :kcal_per_serving_most, group: :calories },

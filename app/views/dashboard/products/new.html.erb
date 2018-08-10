@@ -111,6 +111,17 @@
     <%= diet_form.label :ketogenic %> <%= diet_form.check_box :ketogenic %> <br/>
   <% end %>
 
+  <h3>Shipment</h3>
+
+  <p>Where this product can be shiped?</p>
+
+  <%= form.fields_for :shipment do |shipment_form| %>
+    <%= shipment_form.label :united_states %> <%= shipment_form.check_box :united_states %> <br/>
+    <%= shipment_form.label :canada %> <%= shipment_form.check_box :canada %> <br/>
+    <%= shipment_form.label :europe %> <%= shipment_form.check_box :europe %> <br/>
+    <%= shipment_form.label :rest_of_world %> <%= shipment_form.check_box :rest_of_world %> <br/>
+  <% end %>
+
   <h3>Active</h3>
 
   <%= form.label :active %>

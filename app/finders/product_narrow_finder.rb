@@ -9,21 +9,22 @@ class ProductNarrowFinder
   end
 
   def execute
-    binding.pry
     return @products unless @params[:narrow].present?
-    return @products if @products.count < minimum_records
+    return @products if @products.count < number_of_products_needed_to_activate_narrow
 
-    products = @products.take(minimum_records)
+    products = @products.take(number_of_products_needed_to_activate_narrow)
 
-    ProductSortFinder.new.execute(products, {
-      sort_by: @params[:narrow]
-    })
+    ProductSortFinder.new(products, params_for_sort).execute
   end
 
   private
 
-    def minimum_records
+    def number_of_products_needed_to_activate_narrow
       Rails.configuration.number_of_products_needed_to_activate_narrow
+    end
+
+    def params_for_sort
+      ActionController::Parameters.new(sort: @params[:narrow])
     end
 
 end

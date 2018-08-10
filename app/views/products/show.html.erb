@@ -1,87 +1,218 @@
-<div class="grid grid--center">
-  <div class="grid__cell grid__cell--60">
+<div class="product-show">
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--60">
 
-    <div class="product-show__heading">
-      <div class="product-show__thumbnail" style="background-image: url('<%= @product.image_url %>')"></div>
-      <h1 class="product-show__title"><%= @product.name %></h1>
-      <h3 class="product-show__from">Produced in <a href="#" class="link"><%= @brand.country.name %></a> by <a href="#" class="link"><%= @brand.name %></a></h3>
-    </div>
-
-    <div class="product-show__card">
-
-      <!--
-      <h3 class="product-show__subtitle">What is Huel Original?</h3>
-
-      <div class="product-show__about">
-        <p>Huel is a nutritionally complete powdered food that contains all the proteins, carbs, and fats you need, plus at least 100% of the European Union’s “Daily Recommended Amounts” of all 26 essential vitamins and minerals. So you know you won’t be deficient in any essential nutrients.</p>
-
-        <p>It’s been formulated by the renowned nutrition expert James Collier BSc (Hons), RNutr. James has over 25 years of experience working in nutrition and dietetics, including 7 years as a Clinical Dietician in the NHS. He also has an Honours Degree in Nutrition with Dietetics.</p>
-
-        <p>Huel is 100% vegan (better for the environment and animals), super convenient, high in protein (148g per 2000 calories) and fibre (35g), contains just 4.6 grams of sugar per 2000 calories (no added sugar), requires minimal packaging and has a shelf-life of 12 months (so zero food waste).</p>
+      <div class="product-show__heading">
+        <div class="product-show__thumbnail" style="background-image: url('<%= @product.image_url %>')"></div>
+        <h1 class="product-show__title"><%= @product.name %></h1>
+        <h3 class="product-show__from">Produced in <a href="#" class="link"><%= @brand.country.name %></a> by <a href="#" class="link"><%= @brand.name %></a></h3>
       </div>
-      -->
 
-      <h3 class="product-show__subtitle">Prices</h3>
+      <div class="product-show__card">
 
-      <table class="table">
-        <tr>
-          <th></th>
-          <th>Bulk Order</th>
-          <th>Minimum Order</th>
-        </tr>
-        <tr>
-          <td>Per Meal</td>
-          <td>$2.09</td>
-          <td>$2.29</td>
-        </tr>
-        <tr>
-          <td>Per Day</td>
-          <td>$8.35</td>
-          <td>$9.15</td>
-        </tr>
-        <tr>
-          <td>Per Month</td>
-          <td>$254.07</td>
-          <td>$278.27</td>
-        </tr>
-      </table>
+        <h3 class="product-show__subtitle">Prices</h3>
 
-      <div class="alert"><strong>Note:</strong> The prices shown above don't include any shipping cost nor discount.</div>
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>Bulk Order</th>
+            <th>Minimum Order</th>
+          </tr>
+          <tr>
+            <td>Per Serving</td>
+            <td>$2.09</td>
+            <td>$2.29</td>
+          </tr>
+          <tr>
+            <td>Per Day</td>
+            <td>$8.35</td>
+            <td>$9.15</td>
+          </tr>
+          <tr>
+            <td>Per Month</td>
+            <td>$254.07</td>
+            <td>$278.27</td>
+          </tr>
+        </table>
 
-      <h3 class="product-show__subtitle">Nutrition Facts per serving</h3>
+        <div class="alert alert--small"><strong>Note:</strong> The prices shown above don't include any shipping cost nor discount.</div>
 
-      <table class="table">
-        <tr>
-          <th></th>
-          <th>Number</th>
-          <th>Ratio</th>
-        </tr>
-        <tr>
-          <td>Kcal</td>
-          <td><%= @product.kcal_per_serving %></td>
-          <td></td>
-        </tr>
-        <tr>
-          <td>Protein</td>
-          <td><%= @product.protein_per_serving %></td>
-          <td><%= @product.protein_per_serving_ratio %>%</td>
-        </tr>
-        <tr>
-          <td>Carbs</td>
-          <td><%= @product.carbs_per_serving %></td>
-          <td><%= @product.carbs_per_serving_ratio %>%</td>
-        </tr>
-        <tr>
-          <td>Fat</td>
-          <td><%= @product.fat_per_serving %></td>
-          <td><%= @product.fat_per_serving_ratio %>%</td>
-        </tr>
-      </table>
+        <h3 class="product-show__subtitle">Nutrition Facts per serving</h3>
 
-      <h3 class="product-show__subtitle">Allergens</h3>
-      <h3 class="product-show__subtitle">Diets</h3>
-      <h3 class="product-show__subtitle">Shipping</h3>
+        <table class="table">
+          <tr>
+            <th></th>
+            <th>Number</th>
+            <th>Ratio</th>
+          </tr>
+          <tr>
+            <td>Kcal</td>
+            <td><%= @product.kcal_per_serving %></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Protein</td>
+            <td><%= @product.protein_per_serving %></td>
+            <td><%= @product.protein_per_serving_ratio %>%</td>
+          </tr>
+          <tr>
+            <td>Carbs</td>
+            <td><%= @product.carbs_per_serving %></td>
+            <td><%= @product.carbs_per_serving_ratio %>%</td>
+          </tr>
+          <tr>
+            <td>Fat</td>
+            <td><%= @product.fat_per_serving %></td>
+            <td><%= @product.fat_per_serving_ratio %>%</td>
+          </tr>
+        </table>
+
+        <h3 class="product-show__subtitle">Allergens</h3>
+
+        <div class="grid">
+          <div class="grid__cell grid__cell--25">
+
+            <% if @product.allergen.gluten? %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'corn' %>
+                <div class="product-show__item-label">Not Gluten Free</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'corn' %>
+                <div class="product-show__item-label">Gluten Free</div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <div class="grid__cell grid__cell--25">
+
+            <% if @product.allergen.lactose? %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'baby-bottle' %>
+                <div class="product-show__item-label">Not Lactose Free</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'baby-bottle' %>
+                <div class="product-show__item-label">Lactose Free</div>
+              </div>
+            <% end %>
+
+          </div>
+        </div>
+
+        <h3 class="product-show__subtitle">Diets</h3>
+
+        <div class="grid">
+
+          <div class="grid__cell grid__cell--25">
+
+            <% if @product.diet.vegan? %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'plant' %>
+                <div class="product-show__item-label">Suitable for Vegans</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'plant' %>
+                <div class="product-show__item-label">Not suitable for Vegans</div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <div class="grid__cell grid__cell--25">
+
+            <% if @product.diet.vegetarian? %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'watermelon' %>
+                <div class="product-show__item-label">Suitable for Vegetarians</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'watermelon' %>
+                <div class="product-show__item-label">Not suitable for Vegetarians</div>
+              </div>
+            <% end %>
+
+          </div>
+
+        </div>
+
+
+        <h3 class="product-show__subtitle">Shipping</h3>
+
+        <div class="grid">
+
+          <div class="grid__cell grid__cell--25">
+
+            <% if @product.shipment.united_states? %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'usa' %>
+                <div class="product-show__item-label">United States</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'usa' %>
+                <div class="product-show__item-label">United States</div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <div class="grid__cell grid__cell--25">
+
+            <% if @product.shipment.canada? %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'canada' %>
+                <div class="product-show__item-label">Canada</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'canada' %>
+                <div class="product-show__item-label">Canada</div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <div class="grid__cell grid__cell--25">
+
+            <% if @product.shipment.europe? %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'europe' %>
+                <div class="product-show__item-label">Europe</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'europe' %>
+                <div class="product-show__item-label">Europe</div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <div class="grid__cell grid__cell--25">
+
+            <% if @product.shipment.rest_of_world? %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'world' %>
+                <div class="product-show__item-label">Rest of World</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'world' %>
+                <div class="product-show__item-label">Rest of World</div>
+              </div>
+            <% end %>
+
+          </div>
+
+        </div>
+
+      </div>
     </div>
-    <br/><br/><br/><br/><br/>
   </div>
 </div>
