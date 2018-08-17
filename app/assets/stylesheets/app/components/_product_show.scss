@@ -21,6 +21,11 @@
             vertical-align: middle;
         }
 
+    .product-show__call-to {
+        margin: $spacing-unit;
+        text-align: center;
+    }
+
     .product-show__card {
         display: block;
         position: relative;
@@ -69,9 +74,9 @@
 
         .product-show__item {
             padding: $spacing-unit;
+            color: $white;
             text-align: center;
             border-radius: 5px;
-            color: $white;
         }
 
         .product-show__item--green {
@@ -85,5 +90,5 @@
             .product-show__item-label {
                 display: inline-block;
                 padding-top: $spacing-unit;
-                font-size: 13px;
+                font-size: 12px;
             }

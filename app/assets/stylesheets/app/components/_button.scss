@@ -2,8 +2,6 @@
     #BUTTON
 \*------------------------------------*/
 
-$button-filters-action-bg-color: darken($green, 5%);
-
 .button {
     display: inline-block;
     margin: $spacing-unit;
@@ -27,24 +25,26 @@ $button-filters-action-bg-color: darken($green, 5%);
         &:hover,
         &:active,
         &:focus {
-            background-color: $button-filters-action-bg-color;
+            background-color: darken($green, 5%);
         }
     }
 
     .button--call-to {
         margin: 0;
-        padding: ($spacing-unit * 2);
+        padding: $spacing-unit 0;
+        width: 120px;
         color: $white;
         font-size: $font-size;
         font-weight: 700;
         text-align: center;
-        background-color: $green;
+        background-color: $black;
         border-radius: 5px;
         box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+
 
         &:hover,
         &:active,
         &:focus {
-            background-color: $button-filters-action-bg-color;
+            background-color: $black;
         }
     }
