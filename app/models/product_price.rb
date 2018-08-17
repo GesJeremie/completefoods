@@ -61,6 +61,7 @@ class ProductPrice < ApplicationRecord
 
     def cost_per_day(price_per_serving)
       meals_per_day = KCAL_PER_DAY / self.product.kcal_per_serving
-      meals_per_day * price_per_serving
+      cost = meals_per_day * price_per_serving
+      in_currency(cost, 'USD')
     end
 end

@@ -52,6 +52,12 @@
             text-transform: capitalize;
         }
 
+        .product-show__from {
+            strong {
+                font-weight: bold;
+            }
+        }
+
         .product-show__about {
             line-height: $spacing-unit * 2.2;
             text-align: justify;

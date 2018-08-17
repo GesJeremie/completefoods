@@ -5,7 +5,12 @@
       <div class="product-show__heading">
         <div class="product-show__thumbnail" style="background-image: url('<%= @product.image_url %>')"></div>
         <h1 class="product-show__title"><%= @product.name %></h1>
-        <h3 class="product-show__from">Produced in <a href="#" class="link"><%= @brand.country.name %></a> by <a href="#" class="link"><%= @brand.name %></a></h3>
+        <h3 class="product-show__from">Produced in <strong><%= @brand.country.name %></strong> by <strong><%= @brand.name %></strong></h3>
+      </div>
+
+      <div class="product-show__call-to">
+        <a class="button button--call-to" href="#">Website</a>
+        <a class="button button--call-to" href="#">Facebook</a>
       </div>
 
       <div class="product-show__card">
@@ -20,18 +25,18 @@
           </tr>
           <tr>
             <td>Per Serving</td>
-            <td>$2.09</td>
-            <td>$2.29</td>
+            <td><%= from_usd_to_current_currency(@product.price.per_serving_bulk_order) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_serving_minimum_order) %></td>
           </tr>
           <tr>
             <td>Per Day</td>
-            <td>$8.35</td>
-            <td>$9.15</td>
+            <td><%= from_usd_to_current_currency(@product.price.per_day_bulk_order) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_day_minimum_order) %></td>
           </tr>
           <tr>
             <td>Per Month</td>
-            <td>$254.07</td>
-            <td>$278.27</td>
+            <td><%= from_usd_to_current_currency(@product.price.per_month_bulk_order) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_month_minimum_order) %></td>
           </tr>
         </table>
 

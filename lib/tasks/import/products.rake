@@ -16,7 +16,7 @@ namespace :import do
       private
 
         def set_products
-          path = Rails.root.join('lib/tasks/import/products.json')
+          path = Rails.root.join('lib/tasks/import/data/products.json')
           file = File.read(path)
 
           @products = JSON.parse(file)
@@ -95,11 +95,11 @@ namespace :import do
         end
 
         def image_product_path(slug)
-          Rails.root.join("lib/tasks/import/product_images/#{slug}.png")
+          Rails.root.join("lib/tasks/import/data/product_images/#{slug}.png")
         end
 
         def image_placeholder_path
-          Rails.root.join('lib/tasks/import/placeholder.png')
+          Rails.root.join('lib/tasks/import/data/placeholder.png')
         end
     end
 

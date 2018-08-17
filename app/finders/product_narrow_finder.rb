@@ -10,6 +10,7 @@ class ProductNarrowFinder
 
   def execute
     return @products unless @params[:narrow].present?
+    return @products if @params[:narrow] == 'nothing'
     return @products if @products.count < number_of_products_needed_to_activate_narrow
 
     products = @products.take(number_of_products_needed_to_activate_narrow)

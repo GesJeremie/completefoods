@@ -16,7 +16,7 @@ namespace :import do
       private
 
         def set_brands
-          path = Rails.root.join('lib/tasks/import/brands.json')
+          path = Rails.root.join('lib/tasks/import/data/brands.json')
           file = File.read(path)
 
           @brands = JSON.parse(file)

@@ -16,6 +16,7 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :allergen
   accepts_nested_attributes_for :diet
   accepts_nested_attributes_for :price
+  accepts_nested_attributes_for :shipment
 
   validates :brand_id, presence: true
   validates :name, presence: true

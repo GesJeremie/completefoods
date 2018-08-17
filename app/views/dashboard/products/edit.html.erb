@@ -111,7 +111,7 @@
       <div class="card">
         <div class="card-header">Prices</div>
         <div class="card-body">
-          <%= form.fields_for @product.price do |price_form| %>
+          <%= form.fields_for :price do |price_form| %>
 
             <div class="form-group">
               <%= price_form.label :currency_id %>
@@ -138,7 +138,7 @@
         <div class="card-body">
           <p>Check the allergens present in this product</p>
 
-          <%= form.fields_for @product.allergen do |allergen_form| %>
+          <%= form.fields_for :allergen do |allergen_form| %>
             <%= allergen_form.label :gluten %> <%= allergen_form.check_box :gluten %> <br/>
             <%= allergen_form.label :lactose %> <%= allergen_form.check_box :lactose %> <br/>
             <%= allergen_form.label :nut %> <%= allergen_form.check_box :nut %> <br/>
@@ -148,31 +148,28 @@
         </div>
       </div>
 
-
-
-      <div class="card">
-        <div class="card-header">Shipment</div>
-        <div class="card-body">
-          <%= form.fields_for @product.shipment do |shipment_form| %>
-            <%- binding.pry %>
-            <%= shipment_form.label :united_states %> <%= shipment_form.check_box :united_states %> <br/>
-            <%= shipment_form.label :canada %> <%= shipment_form.check_box :canada %> <br/>
-            <%= shipment_form.label :europe %> <%= shipment_form.check_box :europe %> <br/>
-            <%= shipment_form.label :rest_of_world %> <%= shipment_form.check_box :rest_of_world %> <br/>
-          <% end %>
-        </div>
-      </div>
-
       <div class="card">
         <div class="card-header">Diet</div>
         <div class="card-body">
           <p>Can this product be used for the following diet (if so check the box)</p>
 
-          <%= form.fields_for @product.diet do |diet_form| %>
-            <%- binding.pry %>
+          <%= form.fields_for :diet do |diet_form| %>
             <%= diet_form.label :vegetarian %> <%= diet_form.check_box :vegetarian %> <br/>
             <%= diet_form.label :vegan %> <%= diet_form.check_box :vegan %> <br/>
             <%= diet_form.label :ketogenic %> <%= diet_form.check_box :ketogenic %> <br/>
+          <% end %>
+        </div>
+      </div>
+
+
+      <div class="card">
+        <div class="card-header">Shipment</div>
+        <div class="card-body">
+          <%= form.fields_for :shipment do |shipment_form| %>
+            <%= shipment_form.label :united_states %> <%= shipment_form.check_box :united_states %> <br/>
+            <%= shipment_form.label :canada %> <%= shipment_form.check_box :canada %> <br/>
+            <%= shipment_form.label :europe %> <%= shipment_form.check_box :europe %> <br/>
+            <%= shipment_form.label :rest_of_world %> <%= shipment_form.check_box :rest_of_world %> <br/>
           <% end %>
         </div>
       </div>

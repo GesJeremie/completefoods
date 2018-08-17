@@ -10,6 +10,7 @@ $drawer-width-on-small: 70%;
     .drawer-nav {
         z-index: 3;
         width: $drawer-width-on-small;
+        overflow: auto;
 
         @include respond-to('medium') {
             width: $drawer-width-on-medium;

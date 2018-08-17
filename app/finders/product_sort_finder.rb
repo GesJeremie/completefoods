@@ -11,6 +11,7 @@ class ProductSortFinder
 
   def execute
     return @products unless @params[:sort].present?
+    return @products if @params[:sort] == 'nothing'
     return @products unless ALLOWED_VALUES.include?(@params[:sort].to_sym)
 
     send(@params[:sort])
@@ -18,27 +19,22 @@ class ProductSortFinder
 
     private
 
-      # DEFAULT
-      def nothing
-        @products
-      end
-
       # KCAL
       def kcal_per_serving_lowest
-        @products.order(kcal_per_serving: :asc)
+        @products.sort_by(&:kcal_per_serving)
       end
 
       def kcal_per_serving_most
-        @products.order(kcal_per_serving: :desc)
+        @products.sort_by(&:kcal_per_serving).reverse
       end
 
       # FAT
       def fat_per_serving_lowest
-        @products.order(fat_per_serving: :asc)
+        @products.sort_by(&:fat_per_serving)
       end
 
       def fat_per_serving_most
-        @products.order(fat_per_serving: :desc)
+        @products.sort_by(&:fat_per_serving).reverse
       end
 
       def fat_per_serving_ratio_lowest
@@ -51,11 +47,11 @@ class ProductSortFinder
 
       # CARBS
       def carbs_per_serving_lowest
-        @products.order(carbs_per_serving: :asc)
+        @products.sort_by(&:carbs_per_serving)
       end
 
       def carbs_per_serving_most
-        @products.order(carbs_per_serving: :desc)
+        @products.sort_by(&:carbs_per_serving).reverse
       end
 
       def carbs_per_serving_ratio_lowest
@@ -68,11 +64,11 @@ class ProductSortFinder
 
       # PROTEIN
       def protein_per_serving_lowest
-        @products.order(protein_per_serving: :asc)
+        @products.sort_by(&:protein_per_serving)
       end
 
       def protein_per_serving_most
-        @products.order(protein_per_serving: :desc)
+        @products.sort_by(&:protein_per_serving).reverse
       end
 
       def protein_per_serving_ratio_lowest
