@@ -19,6 +19,7 @@ class Product < ApplicationRecord
   accepts_nested_attributes_for :shipment
 
   validates :brand_id, presence: true
+  validates :slug, presence: true
   validates :name, presence: true
   validates :kcal_per_serving, presence: true, numericality: true
   validates :protein_per_serving, presence: true, numericality: true
@@ -33,7 +34,13 @@ class Product < ApplicationRecord
 
   validates_with ImageUploadValidator, attributes: [:image]
 
+  before_validation :create_slug
+
   scope :active, -> { where(active: true) }
+
+  def to_param
+    self.slug
+  end
 
   def protein_per_serving_ratio
     ratios[:protein_ratio]
@@ -48,6 +55,10 @@ class Product < ApplicationRecord
   end
 
   private
+
+    def create_slug
+      self.slug = to_slug(self.name)
+    end
 
     def ratios
       @ratios ||= ProductNutritionRatiosService.new({ product: self }).execute

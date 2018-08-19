@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(version: 2018_08_05_131114) do
   create_table "products", force: :cascade do |t|
     t.bigint "brand_id"
     t.string "name"
+    t.string "slug"
     t.float "kcal_per_serving"
     t.float "protein_per_serving"
     t.float "carbs_per_serving"

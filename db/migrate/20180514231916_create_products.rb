@@ -3,6 +3,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
     create_table :products do |t|
       t.references :brand
       t.string :name
+      t.string :slug
       t.float :kcal_per_serving
       t.float :protein_per_serving
       t.float :carbs_per_serving
@@ -16,5 +17,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.boolean :active
       t.timestamps
     end
+
+    add_index :products, [:slug], unique: true
   end
 end

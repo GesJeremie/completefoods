@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # SEO Routes
   # get '/soylent-alternatives-made-in-:country', to: 'search#index'
 
-  resources :products, only: [:show]
+  resources :products, only: [:show], param: :slug
 
   namespace :dashboard do
     resources :brands
