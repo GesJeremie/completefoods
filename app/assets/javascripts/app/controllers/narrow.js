@@ -26,7 +26,10 @@
         },
 
         initialize: function () {
-            $(this.element).select2();
+            $(this.element).select2({
+                minimumResultsForSearch: -1
+            });
+
             this.emitCreated();
             this.events();
         },
