@@ -1,6 +1,6 @@
 <select data-controller="<%= type %>" name="<%= type %>_by">
   <% @sorters.group_by { |sorter| sorter[:group] }.each do |group| %>
-    <optgroup label="<%= group.first.to_s.capitalize %>">
+    <optgroup label="<%= group.first.to_s.gsub('_', ' ').capitalize %>">
 
       <% group.last.each do |sorter| %>
         <option value="<%= sorter[:value] %>"><%= sorter[:label] %></option>
