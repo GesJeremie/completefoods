@@ -1,6 +1,7 @@
 <div id="drawer-finder" class="drawer drawer--left">
 
   <nav class="drawer-nav" role="navigation">
+
     <div class="filters" data-controller="finder">
 
       <div class="filters__group">
@@ -50,20 +51,19 @@
         </div>
       </div>
 
+      <div data-controller="toggleDrawerFinder">
+        <a data-action="toggleDrawerFinder#onClickButton" href="#" class="button button--show-results-filters">
+          Show Results
+        </a>
+      </div>
+
     </div>
   </nav>
 
 
   <main id="page-layout">
-    <a href="<%= root_path %>" class="logo">
-      <%= image_tag 'kiwi.png', class: 'logo__image' %>
-      <span class="logo__soylent">
-        Soylent
-      </span>
-      <span class="logo__alternatives">
-        Alternatives
-      </span>
-    </a>
+
+    <%= render 'shared/header' %>
 
     <div class="hero">
       <h1 class="hero__title">Find your next Soylent.</h1>
@@ -74,8 +74,8 @@
       <div class="grid__cell grid__cell--90">
         <div class="grid grid--center">
           <div class="grid__cell grid__cell--70">
-            <div data-controller="openDrawerFinder">
-              <a data-action="openDrawerFinder#onClickButton" class="button button--filters">Open Filters and Sort</a>
+            <div data-controller="toggleDrawerFinder">
+              <a data-action="toggleDrawerFinder#onClickButton" class="button button--filters">Open Filters and Sort</a>
             </div>
 
             <div data-controller="productList" data-target="productList.container" class="product-list">

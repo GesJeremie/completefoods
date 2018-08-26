@@ -1,7 +1,7 @@
 /*------------------------------------*\
-    #LINK
+    #TRIPLE
 \*------------------------------------*/
 
-.link {
-    color: $green;
+@function triple($number) {
+    @return $number * 3;
 }

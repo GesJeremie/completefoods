@@ -1,0 +1,41 @@
+/*------------------------------------*\
+    #CURRENCIES
+\*------------------------------------*/
+
+.currencies {
+    display: none;
+    padding: double($spacing-unit);
+    background-color: $white;
+}
+
+    .currencies__title {
+        margin-bottom: double($spacing-unit);
+        font-weight: 700;
+    }
+
+    .currencies__list {
+        display: flex;
+        height: 150px;
+        flex-direction: column;
+        flex-wrap: wrap;
+    }
+
+        .currencies__item {
+            padding: ($spacing-unit / 1.5) 0;
+        }
+
+            .currencies__item-link {
+                color: $black;
+                text-decoration: none;
+            }
+
+            .currencies__item-name {
+            }
+
+            .currencies__item-name--selected {
+                font-weight: 700;
+            }
+
+            .currencies__item-code {
+                color: $gray;
+            }

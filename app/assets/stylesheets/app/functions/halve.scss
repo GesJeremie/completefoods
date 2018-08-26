@@ -1,7 +1,7 @@
 /*------------------------------------*\
-    #LINK
+    #HALVE
 \*------------------------------------*/
 
-.link {
-    color: $green;
+@function halve($number) {
+    @return $number / 2;
 }

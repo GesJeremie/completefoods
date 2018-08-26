@@ -1,7 +1,7 @@
 /*------------------------------------*\
-    #LINK
+    #QUADRUPLE
 \*------------------------------------*/
 
-.link {
-    color: $green;
+@function quadruple($number) {
+    @return $number * 4;
 }

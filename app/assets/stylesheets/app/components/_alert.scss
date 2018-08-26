@@ -4,7 +4,7 @@
 
 .alert {
     display: inline-block;
-    padding: $spacing-unit * 2;
+    padding: double($spacing-unit);
     width: 100%;
     color: $white;
     background-color: $blue;

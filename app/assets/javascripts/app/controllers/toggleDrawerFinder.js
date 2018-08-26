@@ -1,5 +1,5 @@
 /**
- * OpenDrawerFinder
+ * ToggleDrawerFinder
  */
 
 (function() {
@@ -24,5 +24,5 @@
         }
     });
 
-    window.app.stimulus.register('openDrawerFinder', Controller);
+    window.app.stimulus.register('toggleDrawerFinder', Controller);
 }());

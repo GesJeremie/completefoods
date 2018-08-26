@@ -1,7 +1,7 @@
 /*------------------------------------*\
-    #LINK
+    #NEGATIVE
 \*------------------------------------*/
 
-.link {
-    color: $green;
+@function negative($number) {
+    @return $number * -1;
 }
