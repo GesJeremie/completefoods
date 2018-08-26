@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :currencies, only: [:update], param: :code
 
   namespace :dashboard do
+    root 'brands#index'
     resources :brands
     resources :products
   end
