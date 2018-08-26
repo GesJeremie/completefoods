@@ -5,7 +5,7 @@
       <ul class="currencies__list">
         <% Currency.popular.each do |currency| %>
           <li class="currencies__item">
-            <%= link_to currency_path(currency.code), { method: :put, class: 'currencies__item-link' } do %>
+            <%= link_to currency_path(currency.code), { method: :put, class: currency_selected_class(currency, current_currency) } do %>
               <span class="currencies__item-name"><%= currency.name %></span>
               <span class="currencies__item-code"><%= currency.code %></span>
             <% end %>
