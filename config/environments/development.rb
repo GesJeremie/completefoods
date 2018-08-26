@@ -62,4 +62,21 @@ Rails.application.configure do
   #config.reload_classes_only_on_change = false
 
   config.action_mailer.default_url_options = { host: '172.21.0.3', port: 3000 }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.sentry = false
+    Bullet.alert = false
+    Bullet.bullet_logger = true
+    Bullet.console = false
+    Bullet.growl = false
+    Bullet.rails_logger = false
+    Bullet.honeybadger = false
+    Bullet.bugsnag = false
+    Bullet.airbrake = false
+    Bullet.rollbar = false
+    Bullet.add_footer = true
+    Bullet.stacktrace_includes = []
+    Bullet.stacktrace_excludes = []
+  end
 end
