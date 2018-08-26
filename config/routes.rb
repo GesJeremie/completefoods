@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   namespace :dashboard do
     root 'brands#index'
     resources :brands
-    resources :products
+    resources :products, param: :slug
   end
 
   namespace :api, constraints: { format: 'json' } do

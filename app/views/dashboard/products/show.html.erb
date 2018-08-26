@@ -103,5 +103,19 @@
                 </ul>
             </div>
         </div>
+
+        <div class="card">
+            <div class="card-header">
+                Shipment
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><strong>United States</strong> <%= humanize_boolean(@product.shipment.united_states?) %></li>
+                    <li class="list-group-item"><strong>Canada:</strong> <%= humanize_boolean(@product.shipment.canada?) %></li>
+                    <li class="list-group-item"><strong>Europe:</strong> <%= humanize_boolean(@product.shipment.europe?) %></li>
+                    <li class="list-group-item"><strong>Rest of World:</strong> <%= humanize_boolean(@product.shipment.rest_of_world?) %></li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>

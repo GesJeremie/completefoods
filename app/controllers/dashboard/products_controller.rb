@@ -1,10 +1,10 @@
 class Dashboard::ProductsController < Dashboard::BaseController
   def index
-    @products = Product.all
+    @products = Product.includes(:brand).all
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.find_by_slug(params[:slug])
   end
 
   def new
@@ -26,11 +26,11 @@ class Dashboard::ProductsController < Dashboard::BaseController
   end
 
   def edit
-    @product = Product.find(params[:id])
+    @product = Product.find_by_slug(params[:slug])
   end
 
   def update
-    @product = Product.find(params[:id])
+    @product = Product.find_by_slug(params[:slug])
 
     if @product.update(product_params)
       redirect_to edit_dashboard_product_path(@product), notice: 'Product was successfully updated.'
@@ -40,7 +40,7 @@ class Dashboard::ProductsController < Dashboard::BaseController
   end
 
   def destroy
-    @product = Product.find(params[:id])
+    @product = Product.find_by_slug(params[:slug])
     @product.destroy
 
     redirect_to dashboard_products_path, notice: 'Product was successfully destroyed.'

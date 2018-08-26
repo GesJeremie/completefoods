@@ -1,6 +1,6 @@
 class Dashboard::BrandsController < Dashboard::BaseController
   def index
-    @brands = Brand.all
+    @brands = Brand.includes(:country).all
     @brands = BrandDecorator.decorate_collection(@brands)
   end
 
