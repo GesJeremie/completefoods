@@ -12,21 +12,25 @@
     border-radius: 100px;
 }
 
-.logo__image {
-    height: 35px;
-    vertical-align: middle;
-}
+    .logo__image {
+        height: 35px;
+        vertical-align: middle;
+    }
 
-.logo__soylent {
-    font-size: $font-size + 3px;
-    font-family: $font-logo;
-    font-weight: 600;
-    vertical-align: middle;
-}
+    .logo__soylent,
+    .logo__alternatives {
+        font-size: $font-size - 1px;
+        font-family: $font-logo;
+        font-weight: 600;
+        vertical-align: middle;
 
-.logo__alternatives {
-    font-size: $font-size + 3px;
-    font-family: $font-logo;
-    font-weight: 400;
-    vertical-align: middle;
-}
+        @include respond-to('medium') {
+            font-size: $font-size + 3px;
+        }
+    }
+
+    .logo__soylent {}
+
+    .logo__alternatives {
+        font-weight: 400;
+    }

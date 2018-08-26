@@ -1,6 +1,6 @@
 <div id="dropdown-currencies" class="currencies">
   <div class="grid grid--center">
-    <div class="grid__cell grid__cell--70">
+    <div class="grid__cell grid__cell--70-at-medium">
       <div class="currencies__title">Select your currency</div>
       <ul class="currencies__list">
         <% Currency.popular.each do |currency| %>
@@ -18,7 +18,7 @@
 
 <div class="header">
   <div class="grid grid--center grid--middle">
-    <div class="grid__cell grid__cell--30">
+    <div class="grid__cell grid__cell--80 grid__cell--30-at-wide">
       <a href="<%= root_path %>" class="logo">
         <%= image_tag 'kiwi.png', class: 'logo__image' %>
         <span class="logo__soylent">
@@ -29,14 +29,14 @@
         </span>
       </a>
     </div>
-    <div class="grid__cell grid__cell--70">
+    <div class="grid__cell grid__cell--20 grid__cell--70-at-wide">
       <div class="navigation">
         <div class="navigation__header">
           <ul class="navigation__list">
             <li class="navigation__list-item navigation__list-item--currency">
               <a data-controller="dropdownCurrencies" data-action="click->dropdownCurrencies#onClickPickCurrency" href="#" class="navigation__list-item-link">
                 <%= image_tag 'coin.png', class: 'navigation__currency-icon' %>
-                <span class="navigation__currency-label">Currency: <%= current_currency.code %></span>
+                <span class="navigation__currency-label"><span class="navigation__currency-label-text">Currency:</span> <%= current_currency.code %></span>
               </a>
             </li>
           </ul>

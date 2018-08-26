@@ -5,20 +5,25 @@
 .hero {
     margin: 0 auto;
     margin-top: 50px;
-    width: 100%;
+    width: 95%;
     color: $black;
     text-align: center;
 
-    @include respond-to(medium) {
+    @include respond-to('medium') {
         width: 80%;
     }
 }
 
     .hero__title {
-        font-size: 60px;
+        font-size: $font-size + 24px;
         font-weight: bold;
-        line-height: 70px;
+        line-height: 40px;
         text-transform: capitalize;
+
+        @include respond-to('medium') {
+            font-size: $font-size + 44px;
+            line-height: 58px;
+        }
     }
 
     .hero__subtitle {
@@ -26,6 +31,11 @@
         margin-top: 20px;
         margin-bottom: 50px;
         max-width: 550px;
-        font-size: $font-size + 3px;
-        line-height: 30px;
+        font-size: $font-size - 1px;
+        line-height: 22px;
+
+        @include respond-to('medium') {
+            font-size: $font-size + 3px;
+            line-height: 30px;
+        }
     }

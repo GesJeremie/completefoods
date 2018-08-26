@@ -1,7 +1,7 @@
 class CurrenciesController < BaseController
 
   def update
-    if Currency::POPULAR_CURRENCIES.include?(currency_params[:code])
+    if allowed_code?
       session[:current_currency] = currency_params[:code]
     else
       flash[:error] = 'This currency doesn\'t exist'
@@ -18,5 +18,9 @@ class CurrenciesController < BaseController
 
     def allowed_params
       %i[code]
+    end
+
+    def allowed_code?
+      Currency::POPULAR_CURRENCIES.include?(currency_params[:code])
     end
 end

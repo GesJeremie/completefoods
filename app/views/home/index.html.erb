@@ -65,42 +65,31 @@
 
     <%= render 'shared/header' %>
 
-    <div class="hero">
-      <h1 class="hero__title">Find your next Soylent.</h1>
-      <h2 class="hero__subtitle">Discover the best Soylent alternatives based on the protein ratio, shipping, pricing per month and other metrics.</h2>
-    </div>
-
-    <div class="grid grid--center">
-      <div class="grid__cell grid__cell--90">
-        <div class="grid grid--center">
-          <div class="grid__cell grid__cell--70">
-            <div data-controller="toggleDrawerFinder">
-              <a data-action="toggleDrawerFinder#onClickButton" class="button button--filters">Open Filters and Sort</a>
-            </div>
-
-            <div data-controller="productList" data-target="productList.container" class="product-list">
-              <%= render partial: 'products/item', collection: @products, as: :product %>
-            </div>
-
-          </div>
-
-        </div>
+    <div class="layout">
+      <div class="hero">
+        <h1 class="hero__title">Find your next Soylent.</h1>
+        <h2 class="hero__subtitle">Discover the best Soylent alternatives based on the protein ratio, shipping, pricing per month and other metrics.</h2>
       </div>
-    </div>
 
-    <div class="grid grid--center">
-      <div class="grid__cell grid__cell--70">
-        <div class="footer">
-          <div class="footer__contact">
-            For any suggestions, feel free to reach us at <a class="link" href="mailto:soylent.alternatives@gmail.com">soylent.alternatives@gmail.com</a>
+      <div class="grid grid--center">
+        <div class="grid__cell grid__cell--90 grid__cell--100-at-medium">
+          <div class="grid grid--center">
+            <div class="grid__cell grid__cell--90-at-medium grid__cell--70-at-wide">
+              <div data-controller="toggleDrawerFinder">
+                <a data-action="toggleDrawerFinder#onClickButton" class="button button--filters">Open Filters and Sort</a>
+              </div>
 
-          </div>
+              <div data-controller="productList" data-target="productList.container" class="product-list">
+                <%= render partial: 'products/item', collection: @products, as: :product %>
+              </div>
 
-          <div class="footer__copyright">
-            Soylent Alternatives is not affiliated with Rosa Foods Inc. Soylent and all other Rosa Foods product names or registered trademarks of Rosa Foods Inc. All other company and product names are trademarks or registered trademarks of their respective companies.
+            </div>
+
           </div>
         </div>
       </div>
+
+      <%= render 'shared/footer' %>
     </div>
   </main>
 

@@ -26,12 +26,17 @@
         },
 
         initialize: function () {
+            this.setupSelect();
+            this.emitCreated();
+            this.events();
+        },
+
+        setupSelect: function () {
+            if ($(window).width() < 760) { return; }
+
             $(this.element).select2({
                 minimumResultsForSearch: -1
             });
-
-            this.emitCreated();
-            this.events();
         },
 
         events: function () {

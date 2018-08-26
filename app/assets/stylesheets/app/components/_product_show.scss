@@ -5,20 +5,24 @@
 .product-show {}
 
     .product-show__heading {
-        margin-top: quadruple($spacing-unit);
         text-align: center;
     }
 
         .product-show__thumbnail {
             display: inline-block;
             margin-left: $spacing-unit;
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             text-align: center;
             background-size: cover;
             border-radius: 50%;
             box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
             vertical-align: middle;
+
+            @include respond-to('medium') {
+                width: 100px;
+                height: 100px;
+            }
         }
 
     .product-show__call-to {
@@ -30,13 +34,17 @@
         display: block;
         position: relative;
         margin-top: double($spacing-unit);
-        margin-bottom: $spacing-unit * 5;
-        padding: $spacing-unit ($spacing-unit * 5);
-        padding-bottom: quadruple($spacing-unit);
+        padding: double($spacing-unit);
         text-align: left;
         text-decoration: none;
         background-color: $white;
         border-radius: 8px;
+
+        @include respond-to('medium') {
+            margin-top: triple($spacing-unit);
+            padding: $spacing-unit ($spacing-unit * 5);
+            padding-bottom: quadruple($spacing-unit);
+        }
     }
 
     .product-show__card--alt {
@@ -45,16 +53,32 @@
 
         .product-show__title {
             margin: ($spacing-unit) 0;
-            font-size: $font-size + 15px;
+            font-size: $font-size + 4px;
             font-weight: bold;
+
+            @include respond-to('medium') {
+                font-size: $font-size + 15px;
+            }
         }
 
         .product-show__subtitle {
             margin-top: ($spacing-unit * 5);
             margin-bottom: double($spacing-unit);
-            font-size: $font-size + 10px;
+            font-size: $font-size + 3px;
             font-weight: bold;
             text-transform: capitalize;
+
+            @include respond-to('medium') {
+                font-size: $font-size + 10px;
+            }
+        }
+
+        .product-show__subtitle:first-of-type {
+            margin-top: 0;
+
+            @include respond-to('medium') {
+                margin-top: triple($spacing-unit);
+            }
         }
 
         .product-show__from {
@@ -73,6 +97,7 @@
         }
 
         .product-show__item {
+            margin-bottom: $spacing-unit;
             padding: $spacing-unit;
             color: $white;
             text-align: center;

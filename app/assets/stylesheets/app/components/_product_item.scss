@@ -6,12 +6,17 @@
     display: block;
     position: relative;
     margin-top: double($spacing-unit);
-    padding: $spacing-unit;
-    height: 100px;
+    padding: ($spacing-unit * 1.5) halve($spacing-unit);
+    height: auto;
     background-color: $white;
     border-radius: 8px;
     text-decoration: none;
     color: $black;
+
+    @include respond-to('medium') {
+        padding: $spacing-unit;
+        height: 100px;
+    }
 
     &:hover {
         box-shadow: 0 15px 25px rgba(50, 50, 93, 0.1), 0 1px 15px rgba(0, 0, 0, 0.07);
@@ -27,8 +32,8 @@
 
 
     .product-item__heading {
-        @include center('vertical');
         display: inline-block;
+        width: 100%;
     }
 
 
@@ -73,7 +78,11 @@
             }
 
     .product-item__list {
-        margin-top: ($spacing-unit * 2.5);
+        margin-top: triple($spacing-unit);
+
+        @include respond-to('medium') {
+            margin-top: double($spacing-unit);
+        }
     }
 
         .product-item__list-item {
@@ -92,9 +101,15 @@
 
 
     .product-item__cost {
-        @include center('vertical');
-        right: double($spacing-unit);
+        margin-top: triple($spacing-unit);
         color: $green;
+        text-align: right;
+
+        @include respond-to('medium') {
+            @include center('vertical');
+            right: double($spacing-unit);
+            margin-top: 0;
+        }
     }
 
         .product-item__cost-value {
@@ -109,5 +124,8 @@
             color: $green;
             font-size: $font-size - 2px;
             font-weight: 300;
-            text-align: right;
+
+            @include respond-to('medium') {
+                text-align: right;
+            }
         }

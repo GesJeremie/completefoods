@@ -1,17 +1,23 @@
-<a href="<%= product_path(product) %>" class="product-item">
+<a href="<%= product_path(product) %>" target="_blank" class="product-item">
   <div class="grid">
-    <div class="grid__cell grid__cell--40">
+    <div class="grid__cell grid__cell--40-at-medium">
       <div class="product-item__heading">
-        <div class="product-item__heading-thumbnail" style="background-image: url('<%= product.image_url %>')"></div>
-        <div class="product-item__heading-name">
-          <div class="product-item__heading-name-product"><%= product.name %></div>
-          <div class="product-item__flag"><%= product.flag %></div>
-          <div class="product-item__heading-name-brand"><%= product.brand.name %></div>
+        <div class="grid grid--center grid--middle">
+          <div class="grid__cell grid__cell--30">
+            <div class="product-item__heading-thumbnail" style="background-image: url('<%= product.image_url %>')"></div>
+          </div>
+          <div class="grid__cell grid__cell--70">
+            <div class="product-item__heading-name">
+              <div class="product-item__heading-name-product"><%= product.name %></div>
+              <div class="product-item__flag"><%= product.flag %></div>
+              <div class="product-item__heading-name-brand"><%= product.brand.name %></div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="grid__cell grid__cell--40">
+    <div class="grid__cell grid__cell--40-at-medium">
       <div class="grid grid--center">
         <div class="product-item__list">
 
@@ -43,7 +49,7 @@
       </div>
     </div>
 
-    <div class="grid__cell grid__cell--20">
+    <div class="grid__cell grid__cell--20-at-medium">
       <div class="product-item__cost">
         <span class="product-item__cost-value"><%= from_usd_to_current_currency(product.price.per_month_bulk_order) %></span>
         <span class="product-item__cost-description">per month</span>

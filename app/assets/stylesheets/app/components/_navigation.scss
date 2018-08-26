@@ -14,15 +14,23 @@
 
         .navigation__list-item {
             display: inline-block;
-            margin: 0 $spacing-unit;
+            margin: 0;
+
+            @include respond-to('medium') {
+                margin: 0 $spacing-unit;
+            }
         }
 
             .navigation__list-item-link {
                 color: $black;
-                font-size: $font-size + 2px;
+                font-size: $font-size - 4px;
                 font-weight: 500;
                 text-transform: capitalize;
                 text-decoration: none;
+
+                @include respond-to('medium') {
+                    font-size: $font-size + 2px;
+                }
 
                 &:hover,
                 &:active,
@@ -33,10 +41,22 @@
 
                 .navigation__currency-icon {
                     display: inline-block;
-                    width: 40px;
+                    width: 25px;
                     vertical-align: middle;
+
+                    @include respond-to('medium') {
+                        width: 40px;
+                    }
                 }
 
                 .navigation__currency-label {
                     vertical-align: middle;
                 }
+
+                    .navigation__currency-label-text {
+                        display: none;
+
+                        @include respond-to('medium') {
+                            display: inline-block;
+                        }
+                    }

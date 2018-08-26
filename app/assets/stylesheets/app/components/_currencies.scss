@@ -15,13 +15,25 @@
 
     .currencies__list {
         display: flex;
-        height: 150px;
         flex-direction: column;
         flex-wrap: wrap;
+
+        @include respond-to('medium') {
+            height: 250px;
+        }
+
+        @include respond-to('wide') {
+            height: 150px;
+        }
     }
 
         .currencies__item {
             padding: ($spacing-unit / 1.5) 0;
+            text-align: center;
+
+            @include respond-to('medium') {
+                text-align: left;
+            }
         }
 
             .currencies__item-link {

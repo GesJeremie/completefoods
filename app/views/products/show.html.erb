@@ -1,225 +1,229 @@
 <%= render 'shared/header' %>
 
-<div class="product-show">
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--60">
+<div class="layout">
+  <div class="product-show">
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--90 grid__cell--70-at-medium">
 
-      <div class="product-show__heading">
-        <div class="product-show__thumbnail" style="background-image: url('<%= @product.image_url %>')"></div>
-        <h1 class="product-show__title"><%= @product.name %></h1>
-        <h3 class="product-show__from">Produced in <strong><%= @brand.country.name %></strong> by <strong><%= @brand.name %></strong></h3>
-      </div>
-
-      <div class="product-show__call-to">
-        <a class="button button--call-to" href="<%= @product.brand.website %>">Website</a>
-        <a class="button button--call-to" href="<%= @product.brand.facebook %>">Facebook</a>
-      </div>
-
-      <div class="product-show__card">
-
-        <h3 class="product-show__subtitle">Prices</h3>
-
-        <table class="table">
-          <tr>
-            <th></th>
-            <th>Bulk Order</th>
-            <th>Minimum Order</th>
-          </tr>
-          <tr>
-            <td>Per Serving</td>
-            <td><%= from_usd_to_current_currency(@product.price.per_serving_bulk_order) %></td>
-            <td><%= from_usd_to_current_currency(@product.price.per_serving_minimum_order) %></td>
-          </tr>
-          <tr>
-            <td>Per Day</td>
-            <td><%= from_usd_to_current_currency(@product.price.per_day_bulk_order) %></td>
-            <td><%= from_usd_to_current_currency(@product.price.per_day_minimum_order) %></td>
-          </tr>
-          <tr>
-            <td>Per Month</td>
-            <td><%= from_usd_to_current_currency(@product.price.per_month_bulk_order) %></td>
-            <td><%= from_usd_to_current_currency(@product.price.per_month_minimum_order) %></td>
-          </tr>
-        </table>
-
-        <div class="alert alert--small"><strong>Note:</strong> The prices shown above don't include any shipping cost nor discount.</div>
-
-        <h3 class="product-show__subtitle">Nutrition Facts per serving</h3>
-
-        <table class="table">
-          <tr>
-            <th></th>
-            <th>Number</th>
-            <th>Ratio</th>
-          </tr>
-          <tr>
-            <td>Kcal</td>
-            <td><%= @product.kcal_per_serving %></td>
-            <td></td>
-          </tr>
-          <tr>
-            <td>Protein</td>
-            <td><%= @product.protein_per_serving %></td>
-            <td><%= @product.protein_per_serving_ratio %>%</td>
-          </tr>
-          <tr>
-            <td>Carbs</td>
-            <td><%= @product.carbs_per_serving %></td>
-            <td><%= @product.carbs_per_serving_ratio %>%</td>
-          </tr>
-          <tr>
-            <td>Fat</td>
-            <td><%= @product.fat_per_serving %></td>
-            <td><%= @product.fat_per_serving_ratio %>%</td>
-          </tr>
-        </table>
-
-        <h3 class="product-show__subtitle">Allergens</h3>
-
-        <div class="grid">
-          <div class="grid__cell grid__cell--25">
-
-            <% if @product.allergen.gluten? %>
-              <div class="product-show__item product-show__item--red">
-                <%= emoji 'corn' %>
-                <div class="product-show__item-label">Not Gluten Free</div>
-              </div>
-            <% else %>
-              <div class="product-show__item product-show__item--green">
-                <%= emoji 'corn' %>
-                <div class="product-show__item-label">Gluten Free</div>
-              </div>
-            <% end %>
-
-          </div>
-
-          <div class="grid__cell grid__cell--25">
-
-            <% if @product.allergen.lactose? %>
-              <div class="product-show__item product-show__item--red">
-                <%= emoji 'baby-bottle' %>
-                <div class="product-show__item-label">Not Lactose Free</div>
-              </div>
-            <% else %>
-              <div class="product-show__item product-show__item--green">
-                <%= emoji 'baby-bottle' %>
-                <div class="product-show__item-label">Lactose Free</div>
-              </div>
-            <% end %>
-
-          </div>
+        <div class="product-show__heading">
+          <div class="product-show__thumbnail" style="background-image: url('<%= @product.image_url %>')"></div>
+          <h1 class="product-show__title"><%= @product.name %></h1>
+          <h3 class="product-show__from">Produced in <strong><%= @brand.country.name %></strong> by <strong><%= @brand.name %></strong></h3>
         </div>
 
-        <h3 class="product-show__subtitle">Diets</h3>
+        <div class="product-show__call-to">
+          <a class="button button--call-to" href="<%= @product.brand.website %>">Website</a>
+          <a class="button button--call-to" href="<%= @product.brand.facebook %>">Facebook</a>
+        </div>
 
-        <div class="grid">
+        <div class="product-show__card">
 
-          <div class="grid__cell grid__cell--25">
+          <h3 class="product-show__subtitle">Prices</h3>
 
-            <% if @product.diet.vegan? %>
-              <div class="product-show__item product-show__item--green">
-                <%= emoji 'plant' %>
-                <div class="product-show__item-label">Suitable for Vegans</div>
-              </div>
-            <% else %>
-              <div class="product-show__item product-show__item--red">
-                <%= emoji 'plant' %>
-                <div class="product-show__item-label">Not suitable for Vegans</div>
-              </div>
-            <% end %>
+          <table class="table">
+            <tr>
+              <th></th>
+              <th>Bulk Order</th>
+              <th>Minimum Order</th>
+            </tr>
+            <tr>
+              <td>Per Serving</td>
+              <td><%= from_usd_to_current_currency(@product.price.per_serving_bulk_order) %></td>
+              <td><%= from_usd_to_current_currency(@product.price.per_serving_minimum_order) %></td>
+            </tr>
+            <tr>
+              <td>Per Day</td>
+              <td><%= from_usd_to_current_currency(@product.price.per_day_bulk_order) %></td>
+              <td><%= from_usd_to_current_currency(@product.price.per_day_minimum_order) %></td>
+            </tr>
+            <tr>
+              <td>Per Month</td>
+              <td><%= from_usd_to_current_currency(@product.price.per_month_bulk_order) %></td>
+              <td><%= from_usd_to_current_currency(@product.price.per_month_minimum_order) %></td>
+            </tr>
+          </table>
+
+          <div class="alert alert--small"><strong>Note:</strong> The prices shown above don't include any shipping cost nor discount.</div>
+
+          <h3 class="product-show__subtitle">Nutrition Facts per serving</h3>
+
+          <table class="table">
+            <tr>
+              <th></th>
+              <th>Number</th>
+              <th>Ratio</th>
+            </tr>
+            <tr>
+              <td>Kcal</td>
+              <td><%= @product.kcal_per_serving %></td>
+              <td></td>
+            </tr>
+            <tr>
+              <td>Protein</td>
+              <td><%= @product.protein_per_serving %></td>
+              <td><%= @product.protein_per_serving_ratio %>%</td>
+            </tr>
+            <tr>
+              <td>Carbs</td>
+              <td><%= @product.carbs_per_serving %></td>
+              <td><%= @product.carbs_per_serving_ratio %>%</td>
+            </tr>
+            <tr>
+              <td>Fat</td>
+              <td><%= @product.fat_per_serving %></td>
+              <td><%= @product.fat_per_serving_ratio %>%</td>
+            </tr>
+          </table>
+
+          <h3 class="product-show__subtitle">Allergens</h3>
+
+          <div class="grid">
+            <div class="grid__cell grid__cell--100 grid__cell--25-at-medium">
+
+              <% if @product.allergen.gluten? %>
+                <div class="product-show__item product-show__item--red">
+                  <%= emoji 'corn' %>
+                  <div class="product-show__item-label">Not Gluten Free</div>
+                </div>
+              <% else %>
+                <div class="product-show__item product-show__item--green">
+                  <%= emoji 'corn' %>
+                  <div class="product-show__item-label">Gluten Free</div>
+                </div>
+              <% end %>
+
+            </div>
+
+            <div class="grid__cell grid__cell--100 grid__cell--25-at-medium">
+
+              <% if @product.allergen.lactose? %>
+                <div class="product-show__item product-show__item--red">
+                  <%= emoji 'baby-bottle' %>
+                  <div class="product-show__item-label">Not Lactose Free</div>
+                </div>
+              <% else %>
+                <div class="product-show__item product-show__item--green">
+                  <%= emoji 'baby-bottle' %>
+                  <div class="product-show__item-label">Lactose Free</div>
+                </div>
+              <% end %>
+
+            </div>
+          </div>
+
+          <h3 class="product-show__subtitle">Diets</h3>
+
+          <div class="grid">
+
+            <div class="grid__cell grid__cell--100 grid__cell--25-at-medium">
+
+              <% if @product.diet.vegan? %>
+                <div class="product-show__item product-show__item--green">
+                  <%= emoji 'plant' %>
+                  <div class="product-show__item-label">Suitable for Vegans</div>
+                </div>
+              <% else %>
+                <div class="product-show__item product-show__item--red">
+                  <%= emoji 'plant' %>
+                  <div class="product-show__item-label">Not suitable for Vegans</div>
+                </div>
+              <% end %>
+
+            </div>
+
+            <div class="grid__cell grid__cell--100 grid__cell--25-at-medium">
+
+              <% if @product.diet.vegetarian? %>
+                <div class="product-show__item product-show__item--green">
+                  <%= emoji 'watermelon' %>
+                  <div class="product-show__item-label">Suitable for Vegetarians</div>
+                </div>
+              <% else %>
+                <div class="product-show__item product-show__item--red">
+                  <%= emoji 'watermelon' %>
+                  <div class="product-show__item-label">Not suitable for Vegetarians</div>
+                </div>
+              <% end %>
+
+            </div>
 
           </div>
 
-          <div class="grid__cell grid__cell--25">
 
-            <% if @product.diet.vegetarian? %>
-              <div class="product-show__item product-show__item--green">
-                <%= emoji 'watermelon' %>
-                <div class="product-show__item-label">Suitable for Vegetarians</div>
-              </div>
-            <% else %>
-              <div class="product-show__item product-show__item--red">
-                <%= emoji 'watermelon' %>
-                <div class="product-show__item-label">Not suitable for Vegetarians</div>
-              </div>
-            <% end %>
+          <h3 class="product-show__subtitle">Shipping</h3>
+
+          <div class="grid">
+
+            <div class="grid__cell grid__cell--25-at-medium">
+
+              <% if @product.shipment.united_states? %>
+                <div class="product-show__item product-show__item--green">
+                  <%= emoji 'usa' %>
+                  <div class="product-show__item-label">United States</div>
+                </div>
+              <% else %>
+                <div class="product-show__item product-show__item--red">
+                  <%= emoji 'usa' %>
+                  <div class="product-show__item-label">United States</div>
+                </div>
+              <% end %>
+
+            </div>
+
+            <div class="grid__cell grid__cell--25-at-medium">
+
+              <% if @product.shipment.canada? %>
+                <div class="product-show__item product-show__item--green">
+                  <%= emoji 'canada' %>
+                  <div class="product-show__item-label">Canada</div>
+                </div>
+              <% else %>
+                <div class="product-show__item product-show__item--red">
+                  <%= emoji 'canada' %>
+                  <div class="product-show__item-label">Canada</div>
+                </div>
+              <% end %>
+
+            </div>
+
+            <div class="grid__cell grid__cell--25-at-medium">
+
+              <% if @product.shipment.europe? %>
+                <div class="product-show__item product-show__item--green">
+                  <%= emoji 'europe' %>
+                  <div class="product-show__item-label">Europe</div>
+                </div>
+              <% else %>
+                <div class="product-show__item product-show__item--red">
+                  <%= emoji 'europe' %>
+                  <div class="product-show__item-label">Europe</div>
+                </div>
+              <% end %>
+
+            </div>
+
+            <div class="grid__cell grid__cell--25-at-medium">
+
+              <% if @product.shipment.rest_of_world? %>
+                <div class="product-show__item product-show__item--green">
+                  <%= emoji 'world' %>
+                  <div class="product-show__item-label">Rest of World</div>
+                </div>
+              <% else %>
+                <div class="product-show__item product-show__item--red">
+                  <%= emoji 'world' %>
+                  <div class="product-show__item-label">Rest of World</div>
+                </div>
+              <% end %>
+
+            </div>
 
           </div>
 
         </div>
-
-
-        <h3 class="product-show__subtitle">Shipping</h3>
-
-        <div class="grid">
-
-          <div class="grid__cell grid__cell--25">
-
-            <% if @product.shipment.united_states? %>
-              <div class="product-show__item product-show__item--green">
-                <%= emoji 'usa' %>
-                <div class="product-show__item-label">United States</div>
-              </div>
-            <% else %>
-              <div class="product-show__item product-show__item--red">
-                <%= emoji 'usa' %>
-                <div class="product-show__item-label">United States</div>
-              </div>
-            <% end %>
-
-          </div>
-
-          <div class="grid__cell grid__cell--25">
-
-            <% if @product.shipment.canada? %>
-              <div class="product-show__item product-show__item--green">
-                <%= emoji 'canada' %>
-                <div class="product-show__item-label">Canada</div>
-              </div>
-            <% else %>
-              <div class="product-show__item product-show__item--red">
-                <%= emoji 'canada' %>
-                <div class="product-show__item-label">Canada</div>
-              </div>
-            <% end %>
-
-          </div>
-
-          <div class="grid__cell grid__cell--25">
-
-            <% if @product.shipment.europe? %>
-              <div class="product-show__item product-show__item--green">
-                <%= emoji 'europe' %>
-                <div class="product-show__item-label">Europe</div>
-              </div>
-            <% else %>
-              <div class="product-show__item product-show__item--red">
-                <%= emoji 'europe' %>
-                <div class="product-show__item-label">Europe</div>
-              </div>
-            <% end %>
-
-          </div>
-
-          <div class="grid__cell grid__cell--25">
-
-            <% if @product.shipment.rest_of_world? %>
-              <div class="product-show__item product-show__item--green">
-                <%= emoji 'world' %>
-                <div class="product-show__item-label">Rest of World</div>
-              </div>
-            <% else %>
-              <div class="product-show__item product-show__item--red">
-                <%= emoji 'world' %>
-                <div class="product-show__item-label">Rest of World</div>
-              </div>
-            <% end %>
-
-          </div>
-
-        </div>
-
       </div>
     </div>
   </div>
+
+  <%= render 'shared/footer' %>
 </div>

@@ -36,13 +36,13 @@
             margin-bottom: double($spacing-unit);
             padding: 0 halve($spacing-unit);
             color: $black;
-            font-size: $font-size + 3px;
+            font-size: $font-size - 2px;
             font-weight: 700;
             text-transform: capitalize;
             background-color: $white;
 
             @include respond-to('medium') {
-                font-size: $font-size - 2px;
+                font-size: $font-size + 3px;
             }
         }
 
