@@ -2647,7 +2647,7 @@
           "maximumOrderPerMeal": 2
         }
       },
-      "notes": "You have to add 480ml of milk per meal. The price raw for 200kcal (meal) is $1.50 USD, we added $0.50 USD for the milk per meal."
+      "notes": "You need to add 480ml of milk per serving. Without milk this product has 200kcal / serving, we roughly added $0.50 USD to the price per serving."
     },
 
     {
@@ -2681,7 +2681,7 @@
           "maximumOrderPerMeal": 2.70
         }
       },
-      "notes": "You have to add 2 table spoon of oil per meal. The price raw for 260kcal (meal) is $2.50 USD, we added $0.20 USD for the oil per meal."
+      "notes": "You have to add 2 tablespoons of oil per serving. Without oil this product has 260kcal / serving, we roughly added $0.20 USD to the price per serving."
     },
 
     {
@@ -2715,7 +2715,7 @@
           "maximumOrderPerMeal": 2.70
         }
       },
-      "notes": "You have to add 2 table spoon of oil per meal. The price raw for 210kcal (meal) is $2.50 USD, we added $0.20 USD for the oil per meal."
+      "notes": "You have to add 2 tablespoons of oil per serving. Without oil this product has 210kcal / serving, we roughly added $0.20 USD to the price per serving."
     },
 
     {
@@ -2749,7 +2749,7 @@
           "maximumOrderPerMeal": 3
         }
       },
-      "notes": "You have to add 480ml of milk per meal. The price raw for 330kcal (meal) is $2.50 USD, we added $0.50 USD for the milk per meal."
+      "notes": "You need to add 480ml of milk per serving. Without milk this product has 330kcal / serving, we roughly added $0.50 USD to the price per serving."
     },
 
     {
