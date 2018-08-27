@@ -72,6 +72,9 @@ namespace :import do
             record = attach_image(record, product['slug'])
 
             puts "Saving ... #{record.save}"
+
+            # To keep order of old version (created_at)
+            sleep(0.1)
           end
         end
 
