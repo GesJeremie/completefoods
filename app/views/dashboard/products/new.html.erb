@@ -65,6 +65,11 @@
 
   <br/>
 
+  <%= form.label :notes %>
+  <%= form.text_area :notes %>
+
+  <br/>
+
   <%= form.label :state %>
   <%= form.select :state, options_for_select(Product.states.keys.to_a) %>
 

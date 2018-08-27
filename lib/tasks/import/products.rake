@@ -38,6 +38,7 @@ namespace :import do
               shaker_free_first_order: product['filters']['hasFreeShakerFirstOrder'],
               sample_pack_available: product['filters']['hasSamplePack'],
               state: 'powder',
+              notes: product['notes'],
               active: true
             )
 

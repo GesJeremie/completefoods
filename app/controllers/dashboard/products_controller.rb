@@ -73,6 +73,7 @@ class Dashboard::ProductsController < Dashboard::BaseController
         state
         active
         image
+        notes
       ]
     end
 

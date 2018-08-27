@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  STATES = %w[powder liquid solid].freeze
+  STATES = %w[powder bottle snack].freeze
   BOOLEANS = [true, false].freeze
 
   belongs_to :brand

@@ -118,10 +118,12 @@ ActiveRecord::Schema.define(version: 2018_08_05_131114) do
     t.boolean "shaker_free_first_order"
     t.boolean "sample_pack_available"
     t.integer "state", default: 0
+    t.string "notes"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand_id"], name: "index_products_on_brand_id"
+    t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
 end

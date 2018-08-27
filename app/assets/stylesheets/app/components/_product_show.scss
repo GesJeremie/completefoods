@@ -96,6 +96,11 @@
             }
         }
 
+        .product-show__notes {
+            font-size: $font-size;
+            line-height: 20px;
+        }
+
         .product-show__item {
             margin-bottom: $spacing-unit;
             padding: $spacing-unit;

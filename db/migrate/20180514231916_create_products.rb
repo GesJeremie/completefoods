@@ -13,6 +13,7 @@ class CreateProducts < ActiveRecord::Migration[5.1]
       t.boolean :shaker_free_first_order
       t.boolean :sample_pack_available
       t.integer :state, default: 0
+      t.string :notes
 
       t.boolean :active
       t.timestamps

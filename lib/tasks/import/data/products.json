@@ -3855,39 +3855,6 @@
     },
 
     {
-      "brandSlug": "purition",
-      "slug": "purition",
-      "name": "500g Dairy Free Hemp Vanilla",
-      "filters": {
-        "isVegetarian": true,
-        "isVegan": true,
-        "isGlutenFree": true,
-        "isLactoseFree": true,
-        "hasSubscription": false,
-        "hasDiscountForSubscription": false,
-        "hasSamplePack": true,
-        "hasFreeShakerFirstOrder": false,
-        "canShipInternational": false,
-        "canShipUS": false,
-        "canShipCA": false,
-        "canShipEU": true
-      },
-      "nutritionFacts": {
-        "kcal": 199,
-        "fat": 13,
-        "carbs": 4.4,
-        "protein": 14.5
-      },
-      "prices": {
-        "base": {
-          "currency": "GBP",
-          "minimumOrderPerMeal": 1.91,
-          "maximumOrderPerMeal": 1.39
-        }
-      }
-    },
-
-    {
       "brandSlug": "runtime",
       "slug": "next-level-meal-chocolate",
       "name": "Next level Meal Chocolate",

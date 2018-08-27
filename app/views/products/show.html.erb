@@ -220,6 +220,12 @@
 
           </div>
 
+          <% if @product.notes.present? %>
+            <h3 class="product-show__subtitle">Team's Notes</h3>
+            <div class="product-show__notes"><%= @product.notes %></div>
+          <% end %>
+
+
         </div>
       </div>
     </div>
