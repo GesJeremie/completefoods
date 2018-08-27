@@ -1,0 +1,28 @@
+/*------------------------------------*\
+    #SPONSOR
+\*------------------------------------*/
+
+.sponsor {
+    padding: double($spacing-unit);
+}
+
+    .sponsor__container {
+        line-height: 30px;
+        text-align: center;
+    }
+
+        .sponsor__logo {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .sponsor__text {
+            display: inline-block;
+            vertical-align: middle;
+
+            span {
+                padding-bottom: 1px;
+                font-weight: 700;
+                border-bottom: 2px solid $black;
+            }
+        }

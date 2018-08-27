@@ -5,6 +5,8 @@
 $button-filters-hover-bg-color: darken($green, 5%) !default;
 $button-show-results-filters-hover-bg-color: darken($green, 5%) !default;
 
+$button-sponsor-brand-queal-color: #00b5b5 !default;
+
 .button {
     display: inline-block;
     margin: $spacing-unit;
@@ -81,5 +83,15 @@ $button-show-results-filters-hover-bg-color: darken($green, 5%) !default;
         &:active,
         &:focus {
             background-color: $button-show-results-filters-hover-bg-color;
+        }
+    }
+
+    .button--sponsor {
+        padding: $spacing-unit ($spacing-unit * 1.5);
+        border-radius: 5px;
+
+        .sponsor--queal & {
+            color: $white;
+            background-color: $button-sponsor-brand-queal-color;
         }
     }

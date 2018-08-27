@@ -5,7 +5,7 @@
 .product-item {
     display: block;
     position: relative;
-    margin-top: double($spacing-unit);
+    margin: double($spacing-unit) 0;
     padding: ($spacing-unit * 1.5) halve($spacing-unit);
     height: auto;
     background-color: $white;
@@ -102,6 +102,7 @@
 
     .product-item__cost {
         margin-top: triple($spacing-unit);
+        margin-right: $spacing-unit;
         color: $green;
         text-align: right;
 
@@ -109,14 +110,19 @@
             @include center('vertical');
             right: double($spacing-unit);
             margin-top: 0;
+            margin-right: 0;
         }
     }
 
         .product-item__cost-value {
             display: block;
-            font-size: $font-size + 15px;
+            font-size: $font-size + 8px;
             font-family: $font-numeric;
             font-weight: 300;
+
+            @include respond-to('medium') {
+                font-size: $font-size + 15px;
+            }
         }
 
         .product-item__cost-description {
