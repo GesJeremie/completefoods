@@ -2,18 +2,50 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Soylent Alternatives</title>
-
-    <%= csrf_meta_tags %>
-    <%= stylesheet_link_tag 'app', media: 'all' %>
+    <title><%= meta_title %></title>
 
     <%= render 'application/favicon' %>
 
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="<%= meta_description %>">
+
+    <meta property="og:title" content="<%= meta_title %>">
+    <meta property="og:url" content="<%= request.original_url %>">
+    <meta property="og:description" content="<%= meta_description %>">
+    <meta property="og:site_name" content="<%= meta_title %>">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="<%= meta_image %>" />
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:creator" content="@JeremieGes">
+    <meta name="twitter:title" content="<%= meta_title %>">
+    <meta name="twitter:description" content="<%= meta_description %>">
+    <meta name="twitter:image:src" content="<%= meta_image %>">
+
+    <%= csrf_meta_tags %>
+    <%= stylesheet_link_tag 'app', media: 'all' %>
+
   </head>
 
   <body>
-    <%= yield %>
+
+    <% if current_page?(root_url) %>
+
+      <%= yield %>
+
+    <% else %>
+
+      <%= render 'shared/header' %>
+
+      <div class="layout">
+        <%= yield %>
+      </div>
+
+      <%= render 'shared/footer' %>
+
+    <% end %>
+
   </body>
 
   <%= javascript_include_tag 'app' %>
