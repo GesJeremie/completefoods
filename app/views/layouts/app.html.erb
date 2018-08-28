@@ -46,6 +46,8 @@
 
     <% end %>
 
+    <% render 'shared/google_analytics' if Rails.env.production? %>
+
   </body>
 
   <%= javascript_include_tag 'app' %>
