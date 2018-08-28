@@ -78,7 +78,7 @@
           <h3 class="product-show__subtitle">Allergens</h3>
 
           <div class="grid">
-            <div class="grid__cell grid__cell--100 grid__cell--25-at-medium">
+            <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--25-at-wide">
 
               <% if @product.allergen.gluten? %>
                 <div class="product-show__item product-show__item--red">
@@ -94,7 +94,7 @@
 
             </div>
 
-            <div class="grid__cell grid__cell--100 grid__cell--25-at-medium">
+            <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--25-at-wide">
 
               <% if @product.allergen.lactose? %>
                 <div class="product-show__item product-show__item--red">
@@ -115,7 +115,7 @@
 
           <div class="grid">
 
-            <div class="grid__cell grid__cell--100 grid__cell--25-at-medium">
+            <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--25-at-wide">
 
               <% if @product.diet.vegan? %>
                 <div class="product-show__item product-show__item--green">
@@ -131,7 +131,7 @@
 
             </div>
 
-            <div class="grid__cell grid__cell--100 grid__cell--25-at-medium">
+            <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--25-at-wide">
 
               <% if @product.diet.vegetarian? %>
                 <div class="product-show__item product-show__item--green">
@@ -154,7 +154,7 @@
 
           <div class="grid">
 
-            <div class="grid__cell grid__cell--25-at-medium">
+            <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
 
               <% if @product.shipment.united_states? %>
                 <div class="product-show__item product-show__item--green">
@@ -170,7 +170,7 @@
 
             </div>
 
-            <div class="grid__cell grid__cell--25-at-medium">
+            <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
 
               <% if @product.shipment.canada? %>
                 <div class="product-show__item product-show__item--green">
@@ -186,7 +186,7 @@
 
             </div>
 
-            <div class="grid__cell grid__cell--25-at-medium">
+            <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
 
               <% if @product.shipment.europe? %>
                 <div class="product-show__item product-show__item--green">
@@ -202,7 +202,7 @@
 
             </div>
 
-            <div class="grid__cell grid__cell--25-at-medium">
+            <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
 
               <% if @product.shipment.rest_of_world? %>
                 <div class="product-show__item product-show__item--green">
