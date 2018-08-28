@@ -74,6 +74,7 @@ class Dashboard::ProductsController < Dashboard::BaseController
         active
         image
         notes
+        slug
       ]
     end
 

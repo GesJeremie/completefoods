@@ -6,6 +6,10 @@ module ApplicationHelper
     I18n.t((!!boolean).to_s)
   end
 
+  def to_slug(string)
+    string.parameterize.truncate(80, omission: '')
+  end
+
   def dashboard_flash_class(type)
     case type.to_sym
       when :notice  then 'alert alert-info'

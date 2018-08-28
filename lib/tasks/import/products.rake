@@ -39,6 +39,7 @@ namespace :import do
               sample_pack_available: product['filters']['hasSamplePack'],
               state: 'powder',
               notes: product['notes'],
+              slug: create_slug(product['name']),
               active: true
             )
 
@@ -104,6 +105,10 @@ namespace :import do
 
         def image_placeholder_path
           Rails.root.join('lib/tasks/import/data/placeholder.png')
+        end
+
+        def create_slug(string)
+          string.parameterize.truncate(80, omission: '')
         end
     end
 
