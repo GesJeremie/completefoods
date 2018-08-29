@@ -39,6 +39,7 @@ web.main:
   writable_dirs:
     - tmp
     - log
+    - app/db
 
   network_dirs:
     data.storage:
