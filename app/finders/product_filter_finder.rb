@@ -1,6 +1,4 @@
 class ProductFilterFinder
-  attr_reader :products, :params
-
   ALLOWED_PARAMS = [
     :subscription_available,
     :discount_for_subscription,
@@ -54,9 +52,9 @@ class ProductFilterFinder
   private
 
     def by(column)
-      return unless params[column].present?
+      return unless @params[column].present?
 
-      @products.where(column => true)
+      @products = @products.where(column => true)
     end
 
     def by_diet(column)
@@ -70,14 +68,16 @@ class ProductFilterFinder
     def by_allergen(column)
       column_as_param = "#{column}_free".to_sym # :gluten becomes :gluten_free
 
-      return unless params[column_as_param].present?
+      return unless @params[column_as_param].present?
 
-      @products.joins(:allergen).where(product_allergens: { column => false })
+      @products = @products.joins(:allergen).where(product_allergens: { column => false })
     end
 
-    def by_relation(relation, relation_scope, column)
-      return unless params[column].present?
+    private
 
-      @products.joins(relation).where(relation_scope => { column => true })
-    end
+      def by_relation(relation, relation_scope, column)
+        return unless @params[column].present?
+
+        @products = @products.joins(relation).where(relation_scope => { column => true })
+      end
 end
