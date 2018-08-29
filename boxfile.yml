@@ -25,6 +25,10 @@ deploy.config:
 data.db:
   image: nanobox/postgresql
 
+# add a shared storage for uploads
+data.storage:
+  image: nanobox/unfs:0.9
+
 # add a web component and give it a "start" command
 web.main:
   start:
@@ -35,6 +39,10 @@ web.main:
   writable_dirs:
     - tmp
     - log
+
+  network_dirs:
+    data.storage:
+      - storage
 
   # the path to a logfile you want streamed to the nanobox dashboard
   log_watch:
