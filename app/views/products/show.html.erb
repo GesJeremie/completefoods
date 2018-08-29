@@ -29,18 +29,18 @@
           </tr>
           <tr>
             <td>Per Serving</td>
-            <td><%= from_usd_to_current_currency(@product.price.per_serving_bulk_order) %></td>
-            <td><%= from_usd_to_current_currency(@product.price.per_serving_minimum_order) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_serving_bulk_order_in_currency('USD')) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_serving_minimum_order_in_currency('USD')) %></td>
           </tr>
           <tr>
             <td>Per Day</td>
-            <td><%= from_usd_to_current_currency(@product.price.per_day_bulk_order) %></td>
-            <td><%= from_usd_to_current_currency(@product.price.per_day_minimum_order) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_day_bulk_order_in_currency('USD')) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_day_minimum_order_in_currency('USD')) %></td>
           </tr>
           <tr>
             <td>Per Month</td>
-            <td><%= from_usd_to_current_currency(@product.price.per_month_bulk_order) %></td>
-            <td><%= from_usd_to_current_currency(@product.price.per_month_minimum_order) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_month_bulk_order_in_currency('USD')) %></td>
+            <td><%= from_usd_to_current_currency(@product.price.per_month_minimum_order_in_currency('USD')) %></td>
           </tr>
         </table>
 
