@@ -110,6 +110,14 @@
             });
 
             this.requestProducts = $.get('/api/products.json', params).done(this.onRequestProductsDone.bind(this));
+            this.refreshUrl(params);
+        },
+
+        refreshUrl: function (params) {
+            var url = '?' + _.map(params, function (value, filter) { return filter + '=' + value }).join('&');
+
+            window.history.replaceState(null, null, url);
+
         }
     });
 

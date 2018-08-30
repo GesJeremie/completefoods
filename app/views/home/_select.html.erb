@@ -3,7 +3,7 @@
     <optgroup label="<%= group.first.to_s.gsub('_', ' ').capitalize %>">
 
       <% group.last.each do |sorter| %>
-        <option value="<%= sorter[:value] %>"><%= sorter[:label] %></option>
+        <option <%= 'selected=selected' if params[type].to_sym == sorter[:value] %> value="<%= sorter[:value] %>"><%= sorter[:label] %></option>
       <% end %>
 
     </optgroup>

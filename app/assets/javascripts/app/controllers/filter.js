@@ -16,19 +16,27 @@
         emitCreated: function () {
             $(document).trigger('filter:created', {
                 property: this.data.get('property'),
-                propertyChecked: _.castBool(this.data.get('propertyChecked'))
+                propertyChecked: this.isPropertyChecked()
             });
         },
 
         emitUpdated: function () {
             $(document).trigger('filter:updated', {
                 property: this.data.get('property'),
-                propertyChecked: _.castBool(this.data.get('propertyChecked'))
+                propertyChecked: this.isPropertyChecked()
             });
         },
 
         initialize: function () {
             this.emitCreated();
+
+            if (this.isPropertyChecked()) {
+                this.toggleSelected($(this.element));
+            }
+        },
+
+        isPropertyChecked: function () {
+            return _.castBool(this.data.get('propertyChecked'));
         },
 
         toggleSelected: function ($filter) {
@@ -36,8 +44,7 @@
         },
 
         togglePropertyChecked: function () {
-            var propertyChecked = _.castBool(this.data.get('propertyChecked')),
-                newPropertyChecked = !propertyChecked;
+            var newPropertyChecked = !this.isPropertyChecked();
 
             this.data.set('propertyChecked', newPropertyChecked);
         },
