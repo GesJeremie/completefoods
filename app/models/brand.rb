@@ -6,4 +6,6 @@ class Brand < ApplicationRecord
   validates :website, presence: true
   validates :facebook, presence: true
   validates :country_id, presence: true
+
+  default_scope { order(id: :asc) }
 end
