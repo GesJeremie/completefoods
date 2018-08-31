@@ -1,1 +1,1 @@
-json.content render(partial: 'products/item.html.erb', collection: @products, as: :product)
+json.content render('products/items.html.erb', products: @products)

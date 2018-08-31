@@ -1,0 +1,8 @@
+<% if products.empty? %>
+    <div class="product-items__no-results">
+        <%= image_tag 'ghost.png', class: 'product-items__no-results-icon' %>
+        <p class="product-items__no-results-description"><strong>Ohhhh Snap!</strong> There is no soylent alternatives based on your metrics.</p>
+    </div>
+<% else %>
+    <%= render partial: 'products/item.html.erb', collection: products, as: :product %>
+<% end %>

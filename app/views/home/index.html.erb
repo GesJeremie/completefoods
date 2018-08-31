@@ -80,7 +80,7 @@
               </div>
 
               <div data-controller="productList" data-target="productList.container" class="product-list">
-                <%= render partial: 'products/item', collection: @products, as: :product %>
+                <%= render 'products/items', products: @products %>
               </div>
 
             </div>

@@ -4,16 +4,19 @@
 
 .footer {
     margin: ($spacing-unit * 5) 0;
+    line-height: double($spacing-unit);
+    text-align: center;
 }
 
     .footer__contact {
         margin-bottom: triple($spacing-unit);
         font-size: $font-size;
-        text-align: center;
     }
 
     .footer__copyright {
-        font-size: $font-size;
-        line-height: double($spacing-unit);
-        text-align: center;
+        font-size: $font-size - 2px;
+
+        @include respond-to('medium') {
+            font-size: $font-size;
+        }
     }
