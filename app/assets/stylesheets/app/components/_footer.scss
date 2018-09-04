@@ -20,3 +20,28 @@
             font-size: $font-size;
         }
     }
+
+    .footer__links {
+        list-style: none;
+    }
+
+        .footer__links-item {
+            display: inline-block;
+        }
+
+            .footer__links-item-link {
+                display: inline-block;
+                margin: $spacing-unit;
+                margin-bottom: triple($spacing-unit);
+                padding: $spacing-unit double($spacing-unit);
+                min-width: 260px;
+                color: $black;
+                text-decoration: none;
+                background: $white;
+                border-radius: 20px;
+            }
+
+                .footer__links-item-link-icon {
+                    width: 35px;
+                    vertical-align: middle;
+                }
