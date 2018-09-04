@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
+  # Update of states has consequences, don't touch.
   STATES = %w[powder bottle snack].freeze
   BOOLEANS = [true, false].freeze
 

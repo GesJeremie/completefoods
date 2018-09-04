@@ -5,6 +5,16 @@
     <div class="filters" data-controller="finder">
 
       <div class="filters__group">
+        <div class="filters__group-label">Type</div>
+
+        <div class="filters__items filters__items--two-per-row">
+          <%= render 'filter', property: 'powder', name: 'Powder', emoji: 'flour' %>
+          <%= render 'filter', property: 'bottle', name: 'Bottle', emoji: 'bottle' %>
+          <%= render 'filter', property: 'snack', name: 'Snack', emoji: 'energy-bar' %>
+        </div>
+      </div>
+
+      <div class="filters__group">
         <div class="filters__group-label">Diet</div>
 
         <div class="filters__items filters__items--two-per-row">

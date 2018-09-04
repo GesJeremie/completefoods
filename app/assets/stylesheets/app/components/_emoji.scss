@@ -12,6 +12,11 @@
         margin-right: 2px;
         width: 15px;
         height: 15px;
+
+        @include respond-to('wide') {
+            width: 18px;
+            height: 18px;
+        }
     }
 
     .product-show__item & {

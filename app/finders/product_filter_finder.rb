@@ -2,18 +2,25 @@ class ProductFilterFinder
   ALLOWED_PARAMS = [
     :subscription_available,
     :discount_for_subscription,
-    :state,
 
+    # States
+    :powder,
+    :bottle,
+    :snack,
+
+    # Diet
     :vegetarian,
     :vegan,
     :ketogenic,
 
+    # Allergens
     :gluten_free,
     :lactose_free,
     :nut_free,
     :ogm_free,
     :soy_free,
 
+    # Shipment
     :united_states,
     :canada,
     :europe,
@@ -26,9 +33,10 @@ class ProductFilterFinder
   end
 
   def execute
+    by_state
+
     by(:subscription_available)
     by(:discount_for_subscription)
-    by(:state)
 
     by_diet(:vegetarian)
     by_diet(:vegan)
@@ -46,6 +54,28 @@ class ProductFilterFinder
   end
 
   private
+    def by_state
+      query = []
+
+      # Can be more DRY via Product.states.keys.each
+      # but we are losing in readability, let's keep it
+      # as-is right now.
+      if @params[:powder].present?
+        query.push("state = #{Product.states[:powder]}")
+      end
+
+      if @params[:bottle].present?
+        query.push("state = #{Product.states[:bottle]}")
+      end
+
+      if @params[:snack].present?
+        query.push("state = #{Product.states[:snack]}")
+      end
+
+      unless query.empty?
+        @products = @products.where(query.join(' or '))
+      end
+    end
 
     def by(column)
       return unless @params[column].present?
