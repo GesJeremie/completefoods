@@ -79,7 +79,7 @@
         <h3 class="product-show__subtitle">Allergens</h3>
 
         <div class="grid">
-          <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--25-at-wide">
+          <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
 
             <% if @product.allergen.gluten? %>
               <div class="product-show__item product-show__item--red">
@@ -95,7 +95,7 @@
 
           </div>
 
-          <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--25-at-wide">
+          <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
 
             <% if @product.allergen.lactose? %>
               <div class="product-show__item product-show__item--red">
@@ -116,7 +116,7 @@
 
         <div class="grid">
 
-          <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--25-at-wide">
+          <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
 
             <% if @product.diet.vegan? %>
               <div class="product-show__item product-show__item--green">
@@ -132,7 +132,7 @@
 
           </div>
 
-          <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--25-at-wide">
+          <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
 
             <% if @product.diet.vegetarian? %>
               <div class="product-show__item product-show__item--green">
@@ -219,6 +219,43 @@
 
           </div>
 
+        </div>
+
+        <h3 class="product-show__subtitle">Misc</h3>
+
+        <div class="grid">
+
+          <div class="grid__cell grid__cell--50-at-medium grid__cell--33-at-wide">
+
+            <% if @product.subscription_available? %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'box' %>
+                <div class="product-show__item-label">Subscription Available</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'box' %>
+                <div class="product-show__item-label">Subscription not Available</div>
+              </div>
+            <% end %>
+
+          </div>
+
+          <div class="grid__cell grid__cell--50-at-medium grid__cell--33-at-wide">
+
+            <% if @product.discount_for_subscription? %>
+              <div class="product-show__item product-show__item--green">
+                <%= emoji 'money' %>
+                <div class="product-show__item-label">Discount for Subscription</div>
+              </div>
+            <% else %>
+              <div class="product-show__item product-show__item--red">
+                <%= emoji 'money' %>
+                <div class="product-show__item-label">No Discount for Subscription</div>
+              </div>
+            <% end %>
+
+          </div>
         </div>
 
         <% if @product.notes.present? %>
