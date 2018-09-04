@@ -2,7 +2,7 @@
 /.bundle
 /vendor/bundle
 
-# if using bower-rails ignore default bower_components path bower.json files
+# If using bower-rails ignore default bower_components path bower.json files
 /vendor/assets/bower_components
 *.bowerrc
 bower.json
@@ -29,3 +29,6 @@ node_modules
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# Ignore db related stuff.
+db/schema.rb
