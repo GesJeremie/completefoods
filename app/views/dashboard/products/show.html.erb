@@ -44,12 +44,6 @@
                         <strong>Discount for subscription:</strong> <%= humanize_boolean(@product.discount_for_subscription?) %>
                     </li>
                     <li class="list-group-item">
-                        <strong>Shaker free first order:</strong> <%= humanize_boolean(@product.shaker_free_first_order?) %>
-                    </li>
-                    <li class="list-group-item">
-                        <strong>Sample Pack Available:</strong> <%= humanize_boolean(@product.sample_pack_available?) %>
-                    </li>
-                    <li class="list-group-item">
                         <strong>State:</strong> <%= @product.state.capitalize %>
                     </li>
                 </ul>
