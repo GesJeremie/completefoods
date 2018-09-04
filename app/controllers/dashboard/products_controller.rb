@@ -68,8 +68,6 @@ class Dashboard::ProductsController < Dashboard::BaseController
         fat_per_serving
         subscription_available
         discount_for_subscription
-        shaker_free_first_order
-        sample_pack_available
         state
         active
         image

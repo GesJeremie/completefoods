@@ -27,8 +27,6 @@ class Product < ApplicationRecord
   validates :fat_per_serving, presence: true, numericality: true
   validates :subscription_available, inclusion: { in: BOOLEANS }
   validates :discount_for_subscription, inclusion: { in: BOOLEANS }
-  validates :shaker_free_first_order, inclusion: { in: BOOLEANS }
-  validates :sample_pack_available, inclusion: { in: BOOLEANS }
   validates :state, inclusion: { in: STATES }
   validates :active, inclusion: { in: BOOLEANS }
 

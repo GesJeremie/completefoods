@@ -2,8 +2,6 @@ class ProductFilterFinder
   ALLOWED_PARAMS = [
     :subscription_available,
     :discount_for_subscription,
-    :shaker_free_first_order,
-    :sample_pack_available,
     :state,
 
     :vegetarian,
@@ -30,8 +28,6 @@ class ProductFilterFinder
   def execute
     by(:subscription_available)
     by(:discount_for_subscription)
-    by(:shaker_free_first_order)
-    by(:sample_pack_available)
     by(:state)
 
     by_diet(:vegetarian)
