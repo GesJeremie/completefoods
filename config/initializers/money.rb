@@ -8,3 +8,4 @@ open_exchange.update_rates
 open_exchange.ttl_in_seconds = 7.day.to_i
 
 Money.default_bank = open_exchange
+Money.infinite_precision = true

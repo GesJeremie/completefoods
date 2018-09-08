@@ -56,7 +56,7 @@ class ProductPrice < ApplicationRecord
   private
 
     def in_currency(number, currency_code)
-      number.to_money(self.currency.code).exchange_to(currency_code).to_f
+      number.to_money(self.currency.code).exchange_to(currency_code).to_d
     end
 
     def cost_per_day(price_per_serving)
