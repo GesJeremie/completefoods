@@ -81,7 +81,7 @@
 
       <% unless cookies[:signed_up_newsletter].present? %>
         <div class="grid grid--center">
-          <div class="grid__cell grid__cell--90-at-medium grid__cell--70-at-wide">
+          <div class="grid__cell grid__cell--90 grid__cell--70-at-wide">
             <div data-controller="newsletter" data-target="newsletter.newsletter" class="newsletter">
               <form data-action="submit->newsletter#onSubmit">
                 <p class="newsletter__description">Send me a message when a new product is added</p>

@@ -5,12 +5,17 @@
 $newsletter-bg-color: #54a0ff !default;
 
 .newsletter {
+    display: none;
     margin-bottom: double($spacing-unit);
     padding: $spacing-unit double($spacing-unit);
     color: $white;
     text-align: center;
     background-color: $newsletter-bg-color;
     border-radius: 5px;
+
+    @include respond-to('wide') {
+        display: block;
+    }
 }
 
     .newsletter__description {
