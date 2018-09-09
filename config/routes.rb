@@ -17,10 +17,12 @@ Rails.application.routes.draw do
     root 'brands#index'
     resources :brands
     resources :products, param: :slug
+    resources :newsletters, only: [:index]
   end
 
   namespace :api, constraints: { format: 'json' } do
     resources :products, only: [:index]
+    resources :newsletters, only: [:create]
   end
 
 end

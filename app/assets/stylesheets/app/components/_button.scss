@@ -3,9 +3,8 @@
 \*------------------------------------*/
 
 $button-filters-hover-bg-color: darken($green, 5%) !default;
-$button-show-results-filters-hover-bg-color: darken($green, 5%) !default;
 
-$button-sponsor-brand-queal-color: #00b5b5 !default;
+$button-show-results-filters-hover-bg-color: darken($green, 5%) !default;
 
 .button {
     display: inline-block;
@@ -86,12 +85,29 @@ $button-sponsor-brand-queal-color: #00b5b5 !default;
         }
     }
 
+    .button--newsletter {
+        padding: ($spacing-unit - 1px) double($spacing-unit);
+        color: $white;
+        font-size: $font-size + 1px;
+        font-weight: 600;
+        background: transparent;
+        border: 2px solid $white;
+        border-radius: 5px;
+
+        &:hover,
+        &:active,
+        &:focus {
+            color: $black;
+            background: $white;
+        }
+    }
+
     .button--sponsor {
         padding: $spacing-unit ($spacing-unit * 1.5);
         border-radius: 5px;
 
         .sponsor--queal & {
             color: $white;
-            background-color: $button-sponsor-brand-queal-color;
+            background-color: $sponsor-queal;
         }
     }

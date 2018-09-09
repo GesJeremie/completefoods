@@ -1,0 +1,29 @@
+/*------------------------------------*\
+    #NEWSLETTER
+\*------------------------------------*/
+
+$newsletter-bg-color: #54a0ff !default;
+
+.newsletter {
+    margin-bottom: double($spacing-unit);
+    padding: $spacing-unit double($spacing-unit);
+    color: $white;
+    text-align: center;
+    background-color: $newsletter-bg-color;
+    border-radius: 5px;
+}
+
+    .newsletter__description {
+        display: inline-block;
+    }
+
+    .newsletter__input {
+        display: inline-block;
+        margin: 0 $spacing-unit;
+        margin-right: halve($spacing-unit);
+        padding: $spacing-unit;
+        font-size: $font-size + 1px;
+        font-weight: 600;
+        border: 0;
+        border-radius: 5px;
+    }
