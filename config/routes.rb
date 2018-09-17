@@ -7,9 +7,6 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  # SEO Routes
-  # get '/soylent-alternatives-made-in-:country', to: 'search#index'
-
   resources :products, only: [:show], param: :slug
   resources :currencies, only: [:update], param: :code
 
