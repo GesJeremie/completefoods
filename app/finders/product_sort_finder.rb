@@ -1,23 +1,29 @@
 class ProductSortFinder
-  attr_reader :products, :params
 
-  ALLOWED_PARAMS = [:sort].freeze
-  ALLOWED_VALUES = Rails.configuration.sorters.map { |sorter| sorter[:value] }.freeze
+  # Examples:
+  # ProductSortFinder.new(Product.active, { sort: 'kcal_per_serving_most' })
+  # ProductSortFinder.new(Product.all, { sort: 'carbs_per_serving_lowest' })
 
   def initialize(products, params = {})
     @products = products
-    @params = params.permit(ALLOWED_PARAMS)
+    @params = params
   end
 
   def execute
-    return @products unless @params[:sort].present?
-    return @products if @params[:sort] == 'nothing'
-    return @products unless ALLOWED_VALUES.include?(@params[:sort].to_sym)
+    return @products unless @params[:sort]&.present?
 
-    send(@params[:sort])
+    if self.respond_to?(@params[:sort], true)
+      send(@params[:sort])
+    else
+      @products
+    end
   end
 
     private
+
+      def nothing
+        @products
+      end
 
       # KCAL
       def kcal_per_serving_lowest

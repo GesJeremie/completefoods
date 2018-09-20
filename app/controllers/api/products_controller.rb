@@ -1,6 +1,28 @@
 class Api::ProductsController < Api::BaseController
   def index
-    @products = ProductFinder.new(params).execute
+    @products = ProductResultsFinder.new(filter_params.to_h).execute
     @products = ProductDecorator.decorate_collection(@products)
   end
+
+  private
+
+    def filter_params
+      params.permit(%i[
+          powder
+          bottle
+          snack
+          vegetarian
+          vegan
+          gluten_free
+          lactose_free
+          united_states
+          canada
+          europe
+          rest_of_world
+          subscription_available
+          discount_for_subscription
+          sort
+          narrow
+        ])
+    end
 end
