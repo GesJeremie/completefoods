@@ -21,6 +21,7 @@ class Api::ProductsController < Api::BaseController
           rest_of_world
           subscription_available
           discount_for_subscription
+          made_in
           sort
           narrow
         ])

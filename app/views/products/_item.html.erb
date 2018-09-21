@@ -58,14 +58,16 @@
   </div>
 </a>
 
-<% if product_counter == 2 %>
-  <div class="sponsor sponsor--queal">
-    <div class="sponsor__container">
-      <%= image_tag 'sponsors/queal.png', class: 'sponsor__logo' %>
-      <p class="sponsor__text">
-        <span>Queal</span> is giving away a <span>15% discount</span> on your first order - <span>Interested?</span>
-        <%= link_to 'Redeem Discount', 'https://goo.gl/BvtZPo', target: '_blank', class: 'button button--sponsor' %>
-      </p>
+<% if local_assigns.fetch(:with_sponsors, true) %>
+  <% if product_counter == 2 %>
+    <div class="sponsor sponsor--queal">
+      <div class="sponsor__container">
+        <%= image_tag 'sponsors/queal.png', class: 'sponsor__logo' %>
+        <p class="sponsor__text">
+          <span>Queal</span> is giving away a <span>15% discount</span> on your first order - <span>Interested?</span>
+          <%= link_to 'Redeem Discount', 'https://goo.gl/BvtZPo', target: '_blank', class: 'button button--sponsor' %>
+        </p>
+      </div>
     </div>
-  </div>
+  <% end %>
 <% end %>

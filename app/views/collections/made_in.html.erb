@@ -1,0 +1,35 @@
+<% @layout_with_filters = true %>
+<% content_for :meta_title, "#{DEFAULT_META['title']} - Made in #{@country.name}" %>
+<% content_for :meta_description, collection_made_in_description(@products, @country) %>
+
+<div id="drawer-finder" class="drawer drawer--left">
+
+  <%= render 'drawer_finder/main' %>
+
+  <main id="page-layout">
+
+    <%= render 'shared/header' %>
+
+    <div class="layout">
+      <div class="hero">
+        <h1 class="hero__title">
+          Made In <%= @country.name %>
+          <span class="hero__icon"><%= flag_icon(@country.code.downcase.to_sym) %></span>
+        </h1>
+
+        <h2 class="hero__subtitle hero__subtitle--with-action">
+          <%= collection_made_in_description(@products, @country) %> <br/>
+        </h2>
+
+        <div class="hero__action">
+          ... want to <a href="<%= root_path %>" class="link">explore more?</a>
+        </div>
+      </div>
+
+      <%= render 'products/results', products: @products %>
+
+      <%= render 'shared/footer' %>
+    </div>
+  </main>
+
+</div>

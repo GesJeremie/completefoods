@@ -28,8 +28,8 @@
 
     .hero__subtitle {
         margin: 0 auto;
-        margin-top: 20px;
-        margin-bottom: 50px;
+        margin-top: double($spacing-unit);
+        margin-bottom: $spacing-unit * 5;
         max-width: 550px;
         font-size: $font-size - 1px;
         line-height: 22px;
@@ -38,4 +38,23 @@
             font-size: $font-size + 3px;
             line-height: 30px;
         }
+    }
+
+    .hero__subtitle--with-action {
+        margin-bottom: 30px;
+    }
+
+    .hero__action {
+        margin-bottom: double($spacing-unit);
+        font-size: $font-size - 1px;
+        font-style: italic;
+
+        @include respond-to('medium') {
+            font-size: $font-size + 3px;
+        }
+    }
+
+    .hero__icon {
+        font-size: $font-size + 26px;
+        vertical-align: middle;
     }

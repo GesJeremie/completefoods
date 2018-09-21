@@ -1,75 +1,9 @@
+<% @layout_with_filters = true %>
 <% content_for :meta_title, "#{DEFAULT_META['title']} - We help you find your next soylent" %>
 
 <div id="drawer-finder" class="drawer drawer--left">
 
-  <nav class="drawer-nav" role="navigation">
-
-    <div class="filters" data-controller="finder">
-
-      <div class="filters__group">
-        <div class="filters__group-label">Type</div>
-
-        <div class="filters__items filters__items--two-per-row">
-          <%= render 'filter', property: 'powder', name: 'Powder', emoji: 'flour' %>
-          <%= render 'filter', property: 'bottle', name: 'Bottle', emoji: 'bottle' %>
-          <%= render 'filter', property: 'snack', name: 'Snack', emoji: 'energy-bar' %>
-        </div>
-      </div>
-
-      <div class="filters__group">
-        <div class="filters__group-label">Diet</div>
-
-        <div class="filters__items filters__items--two-per-row">
-          <%= render 'filter', property: 'vegetarian', name: 'Vegetarian', emoji: 'watermelon' %>
-          <%= render 'filter', property: 'vegan', name: 'Vegan', emoji: 'plant' %>
-          <%= render 'filter', property: 'gluten_free', name: 'Gluten Free', emoji: 'corn' %>
-          <%= render 'filter', property: 'lactose_free', name: 'Lactose Free', emoji: 'baby-bottle' %>
-        </div>
-      </div>
-
-      <div class="filters__group">
-        <div class="filters__group-label">Shipping</div>
-
-        <div class="filters__items filters__items--two-per-row">
-          <%= render 'filter', property: 'united_states', name: 'United States', emoji: 'usa' %>
-          <%= render 'filter', property: 'canada', name: 'Canada', emoji: 'canada' %>
-          <%= render 'filter', property: 'europe', name: 'Europe', emoji: 'europe' %>
-          <%= render 'filter', property: 'rest_of_world', name: 'Rest of the world', emoji: 'world' %>
-        </div>
-      </div>
-
-      <div class="filters__group">
-        <div class="filters__group-label">Misc</div>
-
-        <div class="filters__items filters__items--one-per-row">
-          <%= render 'filter', property: 'subscription_available', name: 'Subscription Available', emoji: 'box' %>
-          <%= render 'filter', property: 'discount_for_subscription', name: 'Discount For Subscription', emoji: 'money' %>
-        </div>
-      </div>
-
-      <div class="filters__group">
-        <div class="filters__group-label">Sort By</div>
-        <div class="filters__items">
-          <%= render 'select', type: 'sort' %>
-        </div>
-      </div>
-
-      <div class="filters__group">
-        <div class="filters__group-label">Narrow By</div>
-        <div class="filters__items">
-          <%= render 'select', type: 'narrow' %>
-        </div>
-      </div>
-
-      <div data-controller="toggleDrawerFinder">
-        <a data-action="toggleDrawerFinder#onClickButton" href="#" class="button button--show-results-filters">
-          Show Results
-        </a>
-      </div>
-
-    </div>
-  </nav>
-
+  <%= render 'drawer_finder/main' %>
 
   <main id="page-layout">
 
@@ -95,23 +29,7 @@
         </div>
       <% end %>
 
-      <div class="grid grid--center">
-        <div class="grid__cell grid__cell--90 grid__cell--100-at-medium">
-          <div class="grid grid--center">
-            <div class="grid__cell grid__cell--90-at-medium grid__cell--70-at-wide">
-              <div data-controller="toggleDrawerFinder">
-                <a data-action="toggleDrawerFinder#onClickButton" class="button button--filters">Open Filters and Sort</a>
-              </div>
-
-              <div data-controller="productList" data-target="productList.container" class="product-list">
-                <%= render 'products/items', products: @products %>
-              </div>
-
-            </div>
-
-          </div>
-        </div>
-      </div>
+      <%= render 'products/results', products: @products %>
 
       <%= render 'shared/footer' %>
     </div>

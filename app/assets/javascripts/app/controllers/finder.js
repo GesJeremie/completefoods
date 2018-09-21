@@ -14,8 +14,9 @@
         },
 
         filters: {},
-
+        madeIn: null,
         sort: null,
+        narrow: null,
 
         requestProducts: null,
 
@@ -43,6 +44,14 @@
             $(document).on('narrow:updated', this.onNarrowUpdated.bind(this));
         },
 
+        subscribeMadeInCreated: function () {
+            $(document).on('madeIn:created', this.onMadeInCreated.bind(this));
+        },
+
+        subscribeMadeInUpdated: function () {
+            $(document).on('madeIn:updated', this.onMadeInUpdated.bind(this));
+        },
+
         emitRefreshProductsAttempted: function () {
             $(document).trigger('finder:refreshProductsAttempted');
         },
@@ -60,6 +69,8 @@
             this.subscribeSortUpdated();
             this.subscribeNarrowCreated();
             this.subscribeNarrowUpdated();
+            this.subscribeMadeInCreated();
+            this.subscribeMadeInUpdated();
         },
 
         onRequestProductsDone: function (response) {
@@ -72,6 +83,15 @@
 
         onFilterUpdated: function (event, filter) {
             this.filters[filter.property] = filter.propertyChecked;
+            this.refreshProducts();
+        },
+
+        onMadeInCreated: function (event, madeIn) {
+            this.madeIn = madeIn.value;
+        },
+
+        onMadeInUpdated: function (event, madeIn) {
+            this.madeIn = madeIn.value;
             this.refreshProducts();
         },
 
@@ -106,7 +126,8 @@
 
             params = _.merge(filters, {
                 sort: this.sort,
-                narrow: this.narrow
+                narrow: this.narrow,
+                made_in: this.madeIn
             });
 
             this.requestProducts = $.get('/api/products.json', params).done(this.onRequestProductsDone.bind(this));

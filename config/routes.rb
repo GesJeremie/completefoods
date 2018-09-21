@@ -7,6 +7,10 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
+  # Collections
+  get 'made-in-:country', to: 'collections#made_in'
+  get 'produced-in-:country', to: 'collections#made_in'
+
   resources :products, only: [:show], param: :slug
   resources :currencies, only: [:update], param: :code
 

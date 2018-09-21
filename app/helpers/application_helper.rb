@@ -41,4 +41,32 @@ module ApplicationHelper
       'currencies__item-link'
     end
   end
+
+  def collection_made_in_description(products, country)
+    description = []
+    brands_count = products.group_by(&:brand_id).count
+
+
+    if products.count > 1
+        description << "There are over #{products.count} soylent alternatives"
+    else
+        description << 'There is currently only one soylent alternative'
+    end
+
+    description << "made in #{country.name}"
+
+    if products.count > 2
+      description << 'ranging from'
+      description << "#{from_usd_to_current_currency(products.first.price.per_month_bulk_order_in_currency('USD'))}"
+      description << 'to'
+      description << "#{from_usd_to_current_currency(@products.last.price.per_month_bulk_order_in_currency('USD'))}"
+      description << 'per month'
+    end
+
+    if brands_count > 2
+       description << "and are produced by #{brands_count} brands"
+    end
+
+    description.join(' ') << '.'
+  end
 end
