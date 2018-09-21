@@ -17,6 +17,6 @@ module App
     # the framework and any gems in your application.
     config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
 
-    config.middleware.insert_after ActionDispatch::Static, Rack::Deflater
+    config.middleware.use Rack::Deflater
   end
 end
