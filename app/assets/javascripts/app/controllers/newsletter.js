@@ -13,8 +13,9 @@
             targets: ['newsletter','email']
         },
 
-        initialize: function () {
-        },
+        /**
+         * Methods
+         */
 
         showSuccess: function () {
             swal({
@@ -23,9 +24,8 @@
                 icon: 'success'
             });
 
-            $(this.newsletterTarget).remove();
-
-            document.cookie = "signed_up_newsletter=true"
+            this.removeNewsletter();
+            this.addCookie();
         },
 
         showError: function (response) {
@@ -36,18 +36,36 @@
             });
         },
 
+        removeNewsletter: function () {
+            $(this.newsletterTarget).remove();
+        },
+
+        addCookie: function () {
+            document.cookie = "signed_up_newsletter=true"
+        },
+
+        getEmail: function () {
+            return $(this.emailTarget).val();
+        },
+
+        hasEmail: function () {
+            return _.isEmpty(email);
+        },
+
+        /**
+         * Callbacks
+         */
+
         onRequestNewslettersDone: function (response) {
             response.success ? this.showSuccess() : this.showError(response);
         },
 
         onSubmit: function (e) {
-            var email = $(this.emailTarget).val();
-
             e.preventDefault();
 
-            if (_.isEmpty(email)) { return; }
+            if (!this.hasEmail()) { return; }
 
-            $.post('/api/newsletters', {email: email}).done(this.onRequestNewslettersDone.bind(this));
+            $.post('/api/newsletters', {email: this.getEmail()}).done(this.onRequestNewslettersDone.bind(this));
         }
 
     });

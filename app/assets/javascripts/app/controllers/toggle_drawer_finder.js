@@ -9,15 +9,19 @@
 
         extends: Stimulus.Controller,
 
-        static: {
-            targets: []
-        },
-
         drawer: null,
+
+        /**
+         * Boot
+         */
 
         initialize: function () {
             this.drawer = $('#drawer-finder').drawer();
         },
+
+        /**
+         * Callbacks
+         */
 
         onClickButton: function () {
             this.drawer.drawer('toggle');

@@ -9,9 +9,21 @@
 
         extends: Stimulus.Controller,
 
-        static: {
-            targets: []
+        /**
+         * Boot
+         */
+
+        initialize: function () {
+            this.emitCreated();
+
+            if (!this.isPropertyChecked()) { return; }
+
+            this.toggleSelected($(this.element));
         },
+
+        /**
+         * Emitters
+         */
 
         emitCreated: function () {
             $(document).trigger('filter:created', {
@@ -27,13 +39,9 @@
             });
         },
 
-        initialize: function () {
-            this.emitCreated();
-
-            if (this.isPropertyChecked()) {
-                this.toggleSelected($(this.element));
-            }
-        },
+        /**
+         * Methods
+         */
 
         isPropertyChecked: function () {
             return _.castBool(this.data.get('propertyChecked'));
@@ -48,6 +56,10 @@
 
             this.data.set('propertyChecked', newPropertyChecked);
         },
+
+        /**
+         * Callbacks
+         */
 
         onClickFilter: function (event) {
             var $filter = $(event.currentTarget);

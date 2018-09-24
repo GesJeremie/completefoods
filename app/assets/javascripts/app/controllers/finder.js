@@ -5,13 +5,15 @@
 (function() {
     'use strict';
 
+    /**
+     * @description
+     * This controller is in charge to request the list of products needed
+     * based on the search params (filters, narrow ...) of the drawer finder.
+     */
+
     var Controller = new Class({
 
         extends: Stimulus.Controller,
-
-        static: {
-            targets: []
-        },
 
         filters: {},
         madeIn: null,
@@ -20,37 +22,42 @@
 
         requestProducts: null,
 
-        subscribeFilterCreated: function () {
-            $(document).on('filter:created', this.onFilterCreated.bind(this));
+        /**
+         * Boot
+         */
+
+        initialize: function () {
+            this.subscribeListeners();
         },
 
-        subscribeFilterUpdated: function () {
-            $(document).on('filter:updated', this.onFilterUpdated.bind(this));
+        /**
+         * Listeners
+         */
+
+        listeners: [
+            'filter:created',
+            'filter:updated',
+            'sort:created',
+            'sort:updated',
+            'narrow:created',
+            'narrow:updated',
+            'madeIn:created',
+            'madeIn:updated'
+        ],
+
+        subscribeListeners: function () {
+            _.each(this.listeners, this.subscribeListener.bind(this));
         },
 
-        subscribeSortCreated: function () {
-            $(document).on('sort:created', this.onSortCreated.bind(this));
+        subscribeListener: function (listener) {
+            var method = _.inflectorListenerMethod(listener);
+
+            $(document).on(listener, this[method].bind(this));
         },
 
-        subscribeSortUpdated: function () {
-            $(document).on('sort:updated', this.onSortUpdated.bind(this));
-        },
-
-        subscribeNarrowCreated: function () {
-            $(document).on('narrow:created', this.onNarrowCreated.bind(this));
-        },
-
-        subscribeNarrowUpdated: function () {
-            $(document).on('narrow:updated', this.onNarrowUpdated.bind(this));
-        },
-
-        subscribeMadeInCreated: function () {
-            $(document).on('madeIn:created', this.onMadeInCreated.bind(this));
-        },
-
-        subscribeMadeInUpdated: function () {
-            $(document).on('madeIn:updated', this.onMadeInUpdated.bind(this));
-        },
+        /**
+         * Emitters
+         */
 
         emitRefreshProductsAttempted: function () {
             $(document).trigger('finder:refreshProductsAttempted');
@@ -62,16 +69,57 @@
             });
         },
 
-        initialize: function () {
-            this.subscribeFilterCreated();
-            this.subscribeFilterUpdated();
-            this.subscribeSortCreated();
-            this.subscribeSortUpdated();
-            this.subscribeNarrowCreated();
-            this.subscribeNarrowUpdated();
-            this.subscribeMadeInCreated();
-            this.subscribeMadeInUpdated();
+        /**
+         * Methods
+         */
+
+        refreshProducts: function () {
+            if (this.requestProducts) {
+                this.requestProducts.abort();
+            }
+
+            this.requestProducts = this.getRequestProducts();
+
+            this.emitRefreshProductsAttempted();
+            this.refreshUrl();
         },
+
+        refreshUrl: function () {
+            var url = this.buildUrlFromParamsFinder();
+
+            window.history.replaceState(null, null, url);
+
+        },
+
+        getRequestProducts: function () {
+            $.get('/api/products.json', this.getParamsFinder()).done(this.onRequestProductsDone.bind(this));
+        },
+
+        getParamsFinder: function () {
+            return _.merge(this.availableFilters(), {
+                sort: this.sort,
+                narrow: this.narrow,
+                made_in: this.madeIn
+            });
+        },
+
+        buildUrlFromParamsFinder: function () {
+            var params = this.getParamsFinder();
+
+            return _.map(params, function (value, filter) {
+                return filter + '=' + value;
+            }).join('&');
+        },
+
+        availableFilters: function () {
+            return _.pickBy(this.filters, function (filter) {
+                return filter === true;
+            });
+        },
+
+        /**
+         * Callbacks
+         */
 
         onRequestProductsDone: function (response) {
             this.emitRefreshProducts(response.content);
@@ -111,34 +159,6 @@
         onNarrowUpdated: function (event, narrow) {
             this.narrow = narrow.property;
             this.refreshProducts();
-        },
-
-        refreshProducts: function () {
-            var filters, params;
-
-            this.emitRefreshProductsAttempted();
-
-            if (this.requestProducts) {
-                this.requestProducts.abort();
-            }
-
-            filters = _.pickBy(this.filters, function (filter) { return filter === true });
-
-            params = _.merge(filters, {
-                sort: this.sort,
-                narrow: this.narrow,
-                made_in: this.madeIn
-            });
-
-            this.requestProducts = $.get('/api/products.json', params).done(this.onRequestProductsDone.bind(this));
-            this.refreshUrl(params);
-        },
-
-        refreshUrl: function (params) {
-            var url = '?' + _.map(params, function (value, filter) { return filter + '=' + value }).join('&');
-
-            window.history.replaceState(null, null, url);
-
         }
     });
 

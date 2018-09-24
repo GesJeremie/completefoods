@@ -1,10 +1,25 @@
 (function() {
     'use strict';
 
-    function castBool(value) {
-        return (value.toLowerCase() == 'true');
-    }
+    /**
+     * @description
+     * Cast true / false strings to booleans
+     *
+     * @example
+     * _.castBool('true') // true
+     *
+     * @example
+     * _.castBool('false') // false
+     */
 
-    _.mixin({'castBool': castBool});
+    var mixin = {
+        init: function (value) {
+            return (value.toLowerCase() == 'true');
+        }
+    };
+
+    _.mixin({'castBool': function (value) {
+        mixin.init(value);
+    }});
 
 }());

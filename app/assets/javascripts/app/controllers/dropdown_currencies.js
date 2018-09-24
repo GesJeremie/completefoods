@@ -5,16 +5,14 @@
 (function() {
     'use strict';
 
+    /**
+     * This controller is in charge to toggle the panel
+     * currencies when clicking on the coin header
+     */
+
     var Controller = new Class({
 
         extends: Stimulus.Controller,
-
-        static: {
-            targets: []
-        },
-
-        initialize: function () {
-        },
 
         onClickPickCurrency: function (e) {
             e.preventDefault();

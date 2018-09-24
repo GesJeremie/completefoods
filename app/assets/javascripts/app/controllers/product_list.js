@@ -13,25 +13,31 @@
             targets: ['container']
         },
 
-        subscribeFinderRefreshProductsAttempted: function () {
-            $(document).on('finder:refreshProductsAttempted', this.onRefreshProductsAttempted.bind(this));
+        /**
+         * Boot
+         */
+
+        initialize: function () {
+            this.subscribeListeners();
         },
 
-        subscribeFinderRefreshProducts: function () {
+        subscribeListeners: function () {
+            $(document).on('finder:refreshProductsAttempted', this.onRefreshProductsAttempted.bind(this));
             $(document).on('finder:refreshProducts', this.onRefreshProducts.bind(this));
         },
 
-        initialize: function () {
-            this.subscribeFinderRefreshProductsAttempted();
-            this.subscribeFinderRefreshProducts();
-        },
+        /**
+         * Callbacks
+         */
 
         onRefreshProductsAttempted: function () {
             $(this.containerTarget).addClass('product-list--refreshing');
         },
 
         onRefreshProducts: function (event, response) {
-            $(this.containerTarget).html(response.products).removeClass('product-list--refreshing');
+            $(this.containerTarget)
+                .html(response.products)
+                .removeClass('product-list--refreshing');
         }
     });
 
