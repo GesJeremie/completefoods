@@ -85,7 +85,7 @@
         },
 
         refreshUrl: function () {
-            var url = this.buildUrlFromParamsFinder();
+            var url = '?' + this.buildUrlFromParamsFinder();
 
             window.history.replaceState(null, null, url);
 

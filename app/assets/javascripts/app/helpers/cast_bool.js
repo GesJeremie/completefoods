@@ -19,7 +19,7 @@
     };
 
     _.mixin({'castBool': function (value) {
-        mixin.init(value);
+        return mixin.init(value);
     }});
 
 }());
