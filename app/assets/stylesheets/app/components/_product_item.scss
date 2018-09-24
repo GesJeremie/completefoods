@@ -8,10 +8,10 @@
     margin: double($spacing-unit) 0;
     padding: ($spacing-unit * 1.5) halve($spacing-unit);
     height: auto;
+    color: $black;
+    text-decoration: none;
     background-color: $white;
     border-radius: 8px;
-    text-decoration: none;
-    color: $black;
 
     @include respond-to('medium') {
         padding: $spacing-unit;

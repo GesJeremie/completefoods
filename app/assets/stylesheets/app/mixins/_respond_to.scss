@@ -18,12 +18,12 @@ $breakpoints: (
 
     @if map-has-key($breakpoints, $breakpoint) {
 
-      @media screen and (min-width: map-get($breakpoints, $breakpoint)), print {
-          @content;
-      }
+        @media screen and (min-width: map-get($breakpoints, $breakpoint)), print {
+            @content;
+        }
 
     } @else {
-      @warn 'The breakpoint #{$breakpoint} is not registered in mixins/_respond_to.scss';
+        @warn 'The breakpoint #{$breakpoint} is not registered in mixins/_respond_to.scss';
     }
 
 }

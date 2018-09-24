@@ -2,8 +2,8 @@
     #DRAWER
 \*------------------------------------*/
 
-$drawer-width-on-medium: 500px;
-$drawer-width-on-small: 100%;
+$drawer-width-on-medium:    500px !default;
+$drawer-width-on-small:     100% !default;
 
 .drawer {}
 
