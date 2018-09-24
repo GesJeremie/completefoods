@@ -92,7 +92,7 @@
         },
 
         getRequestProducts: function () {
-            $.get('/api/products.json', this.getParamsFinder()).done(this.onRequestProductsDone.bind(this));
+            return $.get('/api/products.json', this.getParamsFinder()).done(this.onRequestProductsDone.bind(this));
         },
 
         getParamsFinder: function () {
