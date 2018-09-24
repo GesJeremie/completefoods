@@ -5,7 +5,6 @@ class Api::NewslettersController < Api::BaseController
     session[:newsletter_try] = true
   end
 
-
   private
 
     def newsletter_params
