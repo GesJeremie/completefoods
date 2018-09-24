@@ -13,6 +13,7 @@ Rails.application.routes.draw do
 
   resources :products, only: [:show], param: :slug
   resources :currencies, only: [:update], param: :code
+  resources :sitemap, only: [:index], constraints: { format: 'xml' }
 
   namespace :dashboard do
     root 'brands#index'
