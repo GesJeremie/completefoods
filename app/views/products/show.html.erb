@@ -1,8 +1,8 @@
-<% cache [current_currency.id, @brand, @product] do %>
-  <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name}" %>
-  <% content_for :meta_description, "#{@product.name} costs #{from_usd_to_current_currency(@product.price.per_month_bulk_order)} per month and is manufactured by #{@brand.name} in #{@brand.country.name}." %>
-  <% content_for :meta_image, @product.image_url %>
+<% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name}" %>
+<% content_for :meta_description, "#{@product.name} costs #{from_usd_to_current_currency(@product.price.per_month_bulk_order)} per month and is manufactured by #{@brand.name} in #{@brand.country.name}." %>
+<% content_for :meta_image, @product.image_url %>
 
+<% cache [current_currency.id, @brand, @product] do %>
   <div class="product-show">
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--90 grid__cell--70-at-medium">
