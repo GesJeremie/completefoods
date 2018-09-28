@@ -1,5 +1,5 @@
 <% @layout_with_filters = true %>
-<% content_for :meta_title, "#{DEFAULT_META['title']} - Made in #{@country.name}" %>
+<% content_for :meta_title, "#{DEFAULT_META['title']} - Suitable for Vegans" %>
 <% content_for :meta_description, @view_model.description %>
 
 <div id="drawer-finder" class="drawer drawer--left">
@@ -13,12 +13,12 @@
     <div class="layout">
       <div data-controller="toggleCollectionHero" class="hero">
         <h1 class="hero__title">
-          Made In <%= @country.name %>
-          <span class="hero__icon"><%= flag_icon(@country.code.downcase.to_sym) %></span>
+          For Vegans
+          <span class="hero__icon"><%= emoji(:plant) %></span>
         </h1>
 
         <h2 class="hero__subtitle hero__subtitle--with-action">
-          <%= @view_model.description %> <br/>
+          <%= @view_model.description %>
         </h2>
 
         <div class="hero__action">

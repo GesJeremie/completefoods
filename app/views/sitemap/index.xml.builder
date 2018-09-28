@@ -29,4 +29,12 @@ xml.urlset(xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9') do
       xml.priority '0.8'
     end
   end
+
+  xml.url do
+    xml.loc "#{root_url}for-vegans"
+    xml.changefreq('daily')
+    xml.priority '0.8'
+  end
+
+
 end
