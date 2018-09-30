@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get 'made-in-:country', to: 'collections#made_in'
   get 'produced-in-:country', to: 'collections#made_in'
   get 'for-vegans', to: 'collections#vegan'
+  get 'produced-by-:brand', to: 'collections#made_by'
+  get 'made-by-:brand', to: 'collections#made_by'
 
   resources :products, only: [:show], param: :slug
   resources :currencies, only: [:update], param: :code
