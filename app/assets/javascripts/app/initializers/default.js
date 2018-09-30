@@ -2,5 +2,12 @@
     'use strict';
 
     // Great place to boot jQuery plugins and stuff like that
-    $('[data-lazy]').lazy();
+
+    function lazyLoadImages() {
+        $('[data-lazy]').lazy();
+    }
+
+    $(document).on('productList:refreshed', lazyLoadImages);
+
+    lazyLoadImages();
 }());

@@ -26,6 +26,10 @@
             $(document).on('finder:refreshProducts', this.onRefreshProducts.bind(this));
         },
 
+        emitRefreshed: function () {
+            $(document).trigger('productList:refreshed');
+        },
+
         /**
          * Callbacks
          */
@@ -38,6 +42,8 @@
             $(this.containerTarget)
                 .html(response.products)
                 .removeClass('product-list--refreshing');
+
+            this.emitRefreshed();
         }
     });
 
