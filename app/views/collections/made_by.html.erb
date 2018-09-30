@@ -1,5 +1,5 @@
 <% content_for :meta_title, "#{DEFAULT_META['title']} - Made by #{@brand.name}" %>
-<% content_for :meta_description, @view_model.description %>
+<% content_for :meta_description, @view_model.meta_description %>
 
 <div class="hero">
   <h1 class="hero__title">
@@ -7,7 +7,7 @@
   </h1>
 
   <h2 class="hero__subtitle hero__subtitle--with-action">
-    <%= @view_model.description %> <br/>
+    <%= @view_model.description.html_safe %> <br/>
   </h2>
 
   <div class="hero__action">

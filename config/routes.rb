@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   # Collections
   get 'made-in-:country', to: 'collections#made_in'
   get 'produced-in-:country', to: 'collections#made_in'
+  get 'suitable-for-vegans', to: 'collections#vegan'
   get 'for-vegans', to: 'collections#vegan'
   get 'produced-by-:brand', to: 'collections#made_by'
   get 'made-by-:brand', to: 'collections#made_by'

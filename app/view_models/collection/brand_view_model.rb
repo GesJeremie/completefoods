@@ -14,10 +14,15 @@ class Collection::BrandViewModel < CollectionViewModel
     ].compact.join(' ') << '.'
   end
 
+  def meta_description
+    # Remove HTML
+    ActionView::Base.full_sanitizer.sanitize(description)
+  end
+
   private
 
     def description_brand
-      "#{@brand.name} based in #{@brand.country.name}"
+      "<a target='_blank' href='#{@brand.website}' class='link link--alt'>#{@brand.name}</a> based in <a class='link link--alt' href='/made-in-#{@brand.country.name}'>#{@brand.country.name}</a>"
     end
 
     def description_products_count
