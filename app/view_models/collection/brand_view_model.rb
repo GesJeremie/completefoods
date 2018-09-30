@@ -22,7 +22,7 @@ class Collection::BrandViewModel < CollectionViewModel
   private
 
     def description_brand
-      "<a target='_blank' href='#{@brand.website}' class='link link--alt'>#{@brand.name}</a> based in <a class='link link--alt' href='/made-in-#{@brand.country.name}'>#{@brand.country.name}</a>"
+      "<a target='_blank' href='#{@brand.website}' class='link link--alt'>#{@brand.name}</a> based in <a class='link link--alt' href='/made-in-#{@brand.country.name.parameterize}'>#{@brand.country.name}</a>"
     end
 
     def description_products_count
