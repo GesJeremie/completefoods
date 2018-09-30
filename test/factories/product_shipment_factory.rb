@@ -1,5 +1,4 @@
 class ProductShipmentFactory
-  attr_accessor :overrides
 
   def initialize(overrides = {})
     @overrides = overrides

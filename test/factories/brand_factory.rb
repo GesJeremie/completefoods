@@ -1,5 +1,4 @@
 class BrandFactory
-  attr_accessor :overrides
 
   def initialize(overrides = {})
     @overrides = overrides

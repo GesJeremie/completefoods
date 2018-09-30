@@ -1,6 +1,6 @@
 Rails.application.configure do
 
-  config.number_of_products_needed_to_activate_narrow = 15
+  config.narrow_max_results = 15
 
   config.sorters = [
     { label: 'Nothing', value: :nothing, group: nil },

@@ -12,17 +12,16 @@ class ProductNarrowFinder
   def execute
     return @products unless @params[:narrow]&.present?
     return @products if @params[:narrow] == 'nothing'
-    return @products if @products.count < number_of_products_needed_to_activate_narrow
 
-    products = @products.take(number_of_products_needed_to_activate_narrow)
+    products = @products.take(max_results)
 
     ProductSortFinder.new(products, { sort: @params[:narrow] }).execute
   end
 
   private
 
-    def number_of_products_needed_to_activate_narrow
-      Rails.configuration.number_of_products_needed_to_activate_narrow
+    def max_results
+      Rails.configuration.narrow_max_results
     end
 
 end

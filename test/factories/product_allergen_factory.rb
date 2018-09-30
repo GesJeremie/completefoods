@@ -1,5 +1,4 @@
 class ProductAllergenFactory
-  attr_accessor :overrides
 
   def initialize(overrides = {})
     @overrides = overrides
@@ -20,5 +19,4 @@ class ProductAllergenFactory
         soy: Faker::Boolean.boolean
       }.merge(@overrides)
     end
-
 end
