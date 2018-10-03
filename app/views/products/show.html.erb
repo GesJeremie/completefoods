@@ -1,5 +1,5 @@
 <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name}" %>
-<% content_for :meta_description, "#{@product.name} costs #{from_usd_to_current_currency(@product.price.per_month_bulk_order)} per month and is manufactured by #{@brand.name} in #{@brand.country.name}." %>
+<% content_for :meta_description, "#{@product.name} costs #{from_usd_to_current_currency(@product.price.per_month_bulk_order_in_currency('USD'))} per month and is manufactured by #{@brand.name} in #{@brand.country.name}." %>
 <% content_for :meta_image, @product.image_url %>
 
 <% cache [current_currency.id, @brand, @product] do %>
