@@ -15,6 +15,19 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     cursor: pointer;
 }
 
+.button--primary {
+    margin: 0;
+    padding: $spacing-unit;
+    width: 80;
+    color: $white;
+    font-size: $font-size;
+    font-weight: 700;
+    margin-top: double($spacing-unit);
+    text-align: center;
+    background-color: $black;
+    border-radius: 5px;
+}
+
 .button--filters {
     margin: 0;
     padding: double($spacing-unit);
@@ -38,26 +51,13 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     }
 }
 
-.button--call-to {
-    margin: 0;
-    padding: $spacing-unit 0;
+.button--call-to-action {
+    margin-top: 0;
     width: 120px;
-    color: $white;
     font-size: $font-size - 2px;
-    font-weight: 700;
-    text-align: center;
-    background-color: $black;
-    border-radius: 5px;
-    box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 
     @include respond-to('medium') {
         font-size: $font-size;
-    }
-
-    &:hover,
-    &:active,
-    &:focus {
-        background-color: $black;
     }
 }
 
@@ -109,5 +109,28 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     .sponsor--queal & {
         color: $white;
         background-color: $sponsor-queal;
+    }
+}
+
+.button--product-reviews-choice {
+    display: block;
+    width: 80%;
+    margin-left: 0;
+    padding: $spacing-unit * 1.5;
+    border: 1px solid $gray--medium;
+    text-align: center;
+    font-size: $font-size;
+    border-radius: 5px;
+    color: $black;
+
+    &:hover,
+    &:active,
+    &:focus {
+        background: $gray--x-light;
+    }
+
+    &.active {
+        background: $black;
+        color: $white;
     }
 }

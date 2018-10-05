@@ -1,0 +1,32 @@
+/*------------------------------------*\
+    #PRODUCT-REVIEWS
+\*------------------------------------*/
+
+.product-reviews {}
+
+    .product-reviews__choices {}
+
+    .product-reviews__meaning {
+        margin-top: $spacing-unit;
+        font-size: $font-size;
+        text-align: left;
+
+        strong {
+            font-weight: bold;
+        }
+    }
+
+    .product-reviews__content {
+
+    }
+
+        .product-reviews__content-textarea {
+            border-radius: 5px;
+            border: 1px solid $gray--light;
+            width: 80%;
+            display: block;
+            min-height: 100px;
+            margin-top: quadruple($spacing-unit);
+            padding: $spacing-unit * 1.5;
+            font-size: $font-size;
+        }

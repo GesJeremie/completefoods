@@ -14,8 +14,8 @@
         </div>
 
         <div class="product-show__call-to">
-          <a class="button button--call-to" target="_blank" href="<%= @product.brand.website %>">Website</a>
-          <a class="button button--call-to" target="_blank" href="<%= @product.brand.facebook %>">Facebook</a>
+          <a class="button button--primary button--call-to-action" target="_blank" href="<%= @product.brand.website %>">Website</a>
+          <a class="button button--primary button--call-to-action" target="_blank" href="<%= @product.brand.facebook %>">Facebook</a>
         </div>
 
         <div class="product-show__card">
@@ -264,9 +264,50 @@
             <div class="product-show__notes"><%= @product.notes %></div>
           <% end %>
 
+          <h3 class="product-show__subtitle">Reviews</h3>
+
+          <div class="product-reviews">
+
+            <div data-controller="product-reviews-choices" data-product-reviews-choices-starts-score="0">
+              <div class="product-reviews__choices">
+                <div class="grid">
+                  <div class="grid__cell grid__cell--20-at-medium">
+                    <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="0" class="button button--product-reviews-choice active" href="#">Hell No!</a>
+                  </div>
+
+                  <div class="grid__cell grid__cell--20-at-medium">
+                    <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="1" class="button button--product-reviews-choice" href="#">Meh</a>
+                  </div>
+
+                  <div class="grid__cell grid__cell--20-at-medium">
+                    <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="2" class="button button--product-reviews-choice" href="#">Okay</a>
+                  </div>
+
+                  <div class="grid__cell grid__cell--20-at-medium">
+                    <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="3" class="button button--product-reviews-choice" href="#">Great</a>
+                  </div>
+
+                  <div class="grid__cell grid__cell--20-at-medium">
+                    <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="4" class="button button--product-reviews-choice" href="#">Excellent</a>
+                  </div>
+                </div>
+              </div>
+
+              <div data-target="product-reviews-choices.meaning" class="product-reviews__meaning">
+              </div>
+            </div>
+
+            <div class="product-reviews__content">
+              <textarea class="product-reviews__content-textarea" placeholder="Optional - Feel free to justify your choice"></textarea>
+            </div>
+
+            <button class="button button--primary">Submit Review</button>
+          </div>
+
 
         </div>
       </div>
     </div>
   </div>
 <% end %>
+
