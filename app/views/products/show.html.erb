@@ -268,8 +268,10 @@
 
           <div class="product-reviews">
 
-            <div data-controller="product-reviews-choices" data-product-reviews-choices-starts-score="0">
-              <div class="product-reviews__choices">
+            <form data-controller="product-reviews-write" data-action="submit->product-reviews-write#onSubmit">
+              <div data-controller="product-reviews-choices" data-product-reviews-choices-starts-score="0" class="product-reviews__choices">
+                <input data-target="product-reviews-choices.score" type="hidden" name="score" value="0" />
+
                 <div class="grid">
                   <div class="grid__cell grid__cell--20-at-medium">
                     <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="0" class="button button--product-reviews-choice active" href="#">Hell No!</a>
@@ -291,17 +293,22 @@
                     <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="4" class="button button--product-reviews-choice" href="#">Excellent</a>
                   </div>
                 </div>
+
+                <div data-target="product-reviews-choices.meaning" class="product-reviews__meaning">
+                </div>
               </div>
 
-              <div data-target="product-reviews-choices.meaning" class="product-reviews__meaning">
+              <div class="product-reviews__content">
+                <textarea name="description" class="product-reviews__content-textarea" placeholder="Optional - Feel free to justify your choice"></textarea>
               </div>
-            </div>
 
-            <div class="product-reviews__content">
-              <textarea class="product-reviews__content-textarea" placeholder="Optional - Feel free to justify your choice"></textarea>
-            </div>
+              <input type="hidden" name="product_id" value="<%= @product.id %>" />
 
-            <button class="button button--primary">Submit Review</button>
+              <div data-target="product-reviews-write.errors" class="product-reviews__errors"></div>
+              <button type="submit" class="button button--primary">Submit Review</button>
+            </form>
+
+
           </div>
 
 

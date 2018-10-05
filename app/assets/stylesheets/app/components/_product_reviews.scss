@@ -16,9 +16,7 @@
         }
     }
 
-    .product-reviews__content {
-
-    }
+    .product-reviews__content {}
 
         .product-reviews__content-textarea {
             border-radius: 5px;
@@ -30,3 +28,9 @@
             padding: $spacing-unit * 1.5;
             font-size: $font-size;
         }
+
+    .product-reviews__errors {
+        color: $red;
+        padding: $spacing-unit 0;
+        font-size: $font-size;
+    }

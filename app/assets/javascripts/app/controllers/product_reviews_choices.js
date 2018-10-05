@@ -1,7 +1,3 @@
-/**
- * ProductReviewsChoices
- */
-
 (function() {
     'use strict';
 
@@ -10,7 +6,7 @@
         extends: Stimulus.Controller,
 
         static: {
-            targets: ['choice', 'meaning'],
+            targets: ['choice', 'score', 'meaning'],
         },
 
         meanings: {
@@ -21,16 +17,22 @@
             4: 'You found THE one - and will eat only that for the rest of your life.'
         },
 
+        /**
+         * Boot
+         */
+
         initialize: function () {
             var score = this.data.get('startsScore');
 
             this.updateMeaning(score);
         },
 
-        removeClassActiveChoices: function () {
-            var $choices = $(this.targets.findAll('choice'));
+        /**
+         * Methods
+         */
 
-            $choices.removeClass('active');
+        updateScore: function (score) {
+            $(this.scoreTarget).val(score);
         },
 
         updateMeaning: function (score) {
@@ -39,12 +41,23 @@
             $(this.meaningTarget).html(meaning);
         },
 
+        removeClassActiveChoices: function () {
+            var $choices = $(this.targets.findAll('choice'));
+
+            $choices.removeClass('active');
+        },
+
+        /**
+         * Callbacks
+         */
+
         onClickChoice: function (event) {
             event.preventDefault();
 
             var $this = $(event.currentTarget),
                 score = $this.data('score');
 
+            this.updateScore(score);
             this.updateMeaning(score);
             this.removeClassActiveChoices();
             $this.addClass('active');

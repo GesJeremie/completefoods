@@ -28,6 +28,7 @@ Rails.application.routes.draw do
 
   namespace :api, constraints: { format: 'json' } do
     resources :products, only: [:index]
+    resources :product_reviews, only: [:create]
     resources :newsletters, only: [:create]
   end
 

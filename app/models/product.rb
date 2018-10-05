@@ -11,6 +11,7 @@ class Product < ApplicationRecord
   has_one :diet, class_name: 'ProductDiet', dependent: :destroy
   has_one :price, class_name: 'ProductPrice', dependent: :destroy
   has_one :shipment, class_name: 'ProductShipment', dependent: :destroy
+  has_many :reviews, class_name: 'ProductReview', dependent: :destroy
 
   has_one_attached :image
 
