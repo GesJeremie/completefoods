@@ -1,7 +1,3 @@
-/**
- * Finder
- */
-
 (function() {
     'use strict';
 

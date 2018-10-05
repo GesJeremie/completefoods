@@ -1,7 +1,3 @@
-/**
- * Filters
- */
-
 (function() {
     'use strict';
 

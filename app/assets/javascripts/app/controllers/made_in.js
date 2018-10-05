@@ -1,7 +1,3 @@
-/**
- * MadeIn
- */
-
 (function() {
     'use strict';
 
@@ -14,18 +10,8 @@
          */
 
         initialize: function () {
-            this.setupSelect();
             this.emitCreated();
             this.events();
-        },
-
-        // TODO: This method is duplicated in different controllers.
-        setupSelect: function () {
-            if ($(window).width() < 760) { return; }
-
-            $(this.element).select2({
-                minimumResultsForSearch: -1
-            });
         },
 
         events: function () {
@@ -57,5 +43,5 @@
         }
     });
 
-    window.app.stimulus.register('madeIn', Controller);
+    window.app.stimulus.register('made-in', Controller);
 }());

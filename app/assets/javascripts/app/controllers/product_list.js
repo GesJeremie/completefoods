@@ -1,7 +1,3 @@
-/**
- * ProductList
- */
-
 (function() {
     'use strict';
 
@@ -47,5 +43,5 @@
         }
     });
 
-    window.app.stimulus.register('productList', Controller);
+    window.app.stimulus.register('product-list', Controller);
 }());

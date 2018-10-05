@@ -2,11 +2,11 @@
   <div class="grid__cell grid__cell--90 grid__cell--100-at-medium">
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--90-at-medium grid__cell--70-at-wide">
-        <div data-controller="toggleDrawerFinder">
-          <a data-action="toggleDrawerFinder#onClickButton" class="button button--filters">Open Filters and Sort</a>
+        <div data-controller="toggle-drawer-finder">
+          <a data-action="toggle-drawer-finder#onClickButton" class="button button--filters">Open Filters and Sort</a>
         </div>
 
-        <div data-controller="productList" data-target="productList.container" class="product-list">
+        <div data-controller="product-list" data-target="product-list.container" class="product-list">
           <%= render 'products/items', products: products %>
         </div>
 

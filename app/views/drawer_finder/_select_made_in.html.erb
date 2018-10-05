@@ -1,4 +1,4 @@
-<select data-controller="madeIn" name="made-in">
+<select data-controller="made-in" name="made-in">
   <option value="everywhere">Everywhere</option>
   <% Country.order(name: :asc).currently_active_in_brands.each do |country| %>
     <option <%= 'selected=selected' if params[:made_in] == country.name.parameterize %> value="<%= country.name.parameterize %>"><%= country.name %></option>

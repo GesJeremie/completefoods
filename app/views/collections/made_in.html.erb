@@ -11,7 +11,7 @@
     <%= render 'shared/header' %>
 
     <div class="layout">
-      <div data-controller="toggleCollectionHero" class="hero">
+      <div data-controller="toggle-collection-hero" class="hero">
         <h1 class="hero__title">
           Made In <%= @country.name %>
           <span class="hero__icon"><%= flag_icon(@country.code.downcase.to_sym) %></span>

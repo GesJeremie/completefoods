@@ -1,7 +1,3 @@
-/**
- * ToggleDrawerFinder
- */
-
 (function() {
     'use strict';
 
@@ -28,5 +24,5 @@
         }
     });
 
-    window.app.stimulus.register('toggleDrawerFinder', Controller);
+    window.app.stimulus.register('toggle-drawer-finder', Controller);
 }());

@@ -1,11 +1,8 @@
-/**
- * DropdownCurrencies
- */
-
 (function() {
     'use strict';
 
     /**
+     * @description
      * This controller is in charge to toggle the panel
      * currencies when clicking on the coin header
      */
@@ -14,11 +11,11 @@
 
         extends: Stimulus.Controller,
 
-        onClickPickCurrency: function (e) {
+        onClickCurrency: function (e) {
             e.preventDefault();
             $('#dropdown-currencies').slideToggle('fast');
         }
     });
 
-    window.app.stimulus.register('dropdownCurrencies', Controller);
+    window.app.stimulus.register('dropdown-currencies', Controller);
 }());

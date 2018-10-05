@@ -52,5 +52,5 @@
         }
     });
 
-    window.app.stimulus.register('toggleCollectionHero', Controller);
+    window.app.stimulus.register('toggle-collection-hero', Controller);
 }());
