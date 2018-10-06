@@ -11,3 +11,7 @@
     .dashboard__content {
         margin: 50px 0;
     }
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: lighten(#f1f2f6, 1%);
+}

@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="mb-3 mt-3">Product Reviews (<%= @product_reviews.size %>)</h1>
+  <h1 class="mb-3 mt-3">Product Reviews <span class="text-muted">(<%= @product_reviews.size %>)</span></h1>
 
   <div class="table-responsive">
     <table class="table table-striped table-bordered">
@@ -22,7 +22,7 @@
           <td><%= link_to product_review.product.name, dashboard_product_path(product_review.product) %></td>
           <td><%= product_review.score_humanized %></td>
           <td><%= simple_format(product_review.description) %></td>
-          <td><%= product_review.created_at.strftime("%B %d, %Y - %H:%M:%S") %></td>
+          <td><%= time_ago_in_words(product_review.created_at) %> ago</td>
           <td><%= link_to 'Delete', dashboard_product_review_path(product_review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>

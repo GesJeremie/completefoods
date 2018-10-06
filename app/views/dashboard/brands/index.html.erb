@@ -1,6 +1,7 @@
-
 <div class="container">
-  <h1 class="mb-3 mt-3">Listing Brands</h1>
+  <h1 class="mb-3 mt-3">Brands <span class="text-muted">(<%= @brands.size %>)</span></h1>
+
+  <%= link_to 'New Brand', new_dashboard_brand_path, class: 'btn btn-primary mb-3' %>
 
   <div class="table-responsive">
     <table class="table table-striped table-bordered">
@@ -41,6 +42,4 @@
       </tbody>
     </table>
   </div>
-
-  <%= link_to 'New Brand', new_dashboard_brand_path, class: 'btn btn-primary' %>
 </div>

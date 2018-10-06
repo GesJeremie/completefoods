@@ -5,9 +5,10 @@ class Dashboard::ProductReviewsController < Dashboard::BaseController
   end
 
   def destroy
-    @product_review = ProductReview.find(params[:id])
-    @product_review.destroy
-
-    redirect_to dashboard_product_reviews_path, notice: 'Product Review was successfully destroyed.'
+    if ProductReview.find(params[:id]).destroy
+      redirect_to dashboard_product_reviews_path, notice: 'Product Review was successfully destroyed.'
+    else
+      redirect_to dashboard_product_reviews_path, error: 'Product Review was not successfully destroyed.'
+    end
   end
 end

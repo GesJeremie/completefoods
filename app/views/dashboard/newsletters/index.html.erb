@@ -1,5 +1,5 @@
 <div class="container">
-  <h1 class="mb-3 mt-3">Newsletters (<%= @newsletters.size %>)</h1>
+  <h1 class="mb-3 mt-3">Newsletters <span class="text-muted">(<%= @newsletters.size %>)</span></h1>
 
   <div class="table-responsive">
     <table class="table table-striped table-bordered">
@@ -8,6 +8,7 @@
           <th scope="col">#</th>
           <th scope="col">Email</th>
           <th scope="col">Date</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
 
@@ -17,7 +18,8 @@
         <tr>
           <td><%= newsletter.id %></th>
           <td><%= newsletter.email %></td>
-          <td><%= newsletter.created_at.strftime("%B %d, %Y - %H:%M:%S") %></td>
+          <td><%= time_ago_in_words(newsletter.created_at) %> ago</td>
+          <td><%= link_to 'Delete', dashboard_newsletter_path(newsletter), method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
 

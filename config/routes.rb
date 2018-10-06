@@ -23,7 +23,7 @@ Rails.application.routes.draw do
     root 'brands#index'
     resources :brands
     resources :products, param: :slug
-    resources :newsletters, only: [:index]
+    resources :newsletters, only: [:index, :destroy]
     resources :product_reviews, only: [:index, :destroy]
   end
 
