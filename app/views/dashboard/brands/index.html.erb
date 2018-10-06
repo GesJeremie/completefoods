@@ -11,7 +11,7 @@
           <th scope="col">Name</th>
           <th scope="col">Made In</th>
           <th scope="col">Products</th>
-          <th scope="col" colspan="3">Actions</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
 
@@ -27,12 +27,8 @@
             <%= brand.products.count %>
           </td>
           <td>
-            <%= link_to 'Show', dashboard_brand_path(brand) %>
-          </td>
-          <td>
-            <%= link_to 'Edit', edit_dashboard_brand_path(brand) %>
-          </td>
-          <td>
+            <%= link_to 'Show', dashboard_brand_path(brand) %> /
+            <%= link_to 'Edit', edit_dashboard_brand_path(brand) %> /
             <%= link_to 'Delete', dashboard_brand_path(brand), method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
