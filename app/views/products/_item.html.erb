@@ -1,75 +1,71 @@
-<% cache ["with-sponsors-#{local_assigns.fetch(:with_sponsors, true)}", current_currency.id, product] do %>
-  <a href="<%= product_path(product) %>" target="_blank" class="product-item">
-    <div class="grid">
-      <div class="grid__cell grid__cell--40-at-medium">
-        <div class="product-item__heading">
-          <div class="grid grid--center grid--middle">
-            <div class="grid__cell grid__cell--30">
-                <div class="product-item__heading-thumbnail" data-lazy data-src="<%= product.image_url %>"></div>
-            </div>
-            <div class="grid__cell grid__cell--70">
-              <div class="product-item__heading-name">
-                <div class="product-item__heading-name-product"><%= product.name %></div>
-                <div class="product-item__flag"><%= product.flag %></div>
-                <div class="product-item__heading-name-brand"><%= product.brand.name %></div>
-              </div>
+<a href="<%= product_path(product) %>" target="_blank" class="product-item">
+  <div class="grid">
+    <div class="grid__cell grid__cell--40-at-medium">
+      <div class="product-item__heading">
+        <div class="grid grid--center grid--middle">
+          <div class="grid__cell grid__cell--30">
+              <div class="product-item__heading-thumbnail" data-lazy data-src="<%= product.image_url %>"></div>
+          </div>
+          <div class="grid__cell grid__cell--70">
+            <div class="product-item__heading-name">
+              <div class="product-item__heading-name-product"><%= product.name %></div>
+              <div class="product-item__flag"><%= product.flag %></div>
+              <div class="product-item__heading-name-brand"><%= product.brand.name %></div>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div class="grid__cell grid__cell--40-at-medium">
-        <div class="grid grid--center">
-          <div class="product-item__list">
-
-            <div class="grid__cell grid__cell--20">
-              <div class="cart-product__list-item">
-                <span class="product-item__list-label">Kcal</span> <span class="product-item__list-value"><%= product.kcal_per_serving %></span>
-              </div>
-            </div>
-
-            <div class="grid__cell grid__cell--20">
-              <div class="cart-product__list-item">
-                <span class="product-item__list-label">Protein</span> <span class="product-item__list-value"><%= product.protein_per_serving %></span>
-              </div>
-            </div>
-
-            <div class="grid__cell grid__cell--20">
-              <div class="cart-product__list-item">
-                <span class="product-item__list-label">Carbs</span> <span class="product-item__list-value"><%= product.carbs_per_serving %></span>
-              </div>
-            </div>
-
-            <div class="grid__cell grid__cell--20">
-              <div class="cart-product__list-item">
-                <span class="product-item__list-label">Fat</span> <span class="product-item__list-value"><%= product.fat_per_serving %></span>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </div>
-
-      <div class="grid__cell grid__cell--20-at-medium">
-        <div class="product-item__cost">
-          <span class="product-item__cost-value"><%= from_usd_to_current_currency(product.price.per_month_bulk_order_in_currency('USD')) %></span>
-          <span class="product-item__cost-description">per month - bulk order</span>
         </div>
       </div>
     </div>
-  </a>
 
-  <% if local_assigns.fetch(:with_sponsors, true) %>
-    <% if product_counter == 2 %>
-      <div class="sponsor sponsor--queal">
-        <div class="sponsor__container">
-          <%= image_tag 'sponsors/queal.png', class: 'sponsor__logo' %>
-          <p class="sponsor__text">
-            <span>Queal</span> is giving away a <span>15% discount</span> on your first order - <span>Interested?</span>
-            <%= link_to 'Redeem Discount', 'https://goo.gl/BvtZPo', target: '_blank', class: 'button button--sponsor' %>
-          </p>
+    <div class="grid__cell grid__cell--40-at-medium">
+      <div class="grid grid--center">
+        <div class="product-item__list">
+
+          <div class="grid__cell grid__cell--20">
+            <div class="cart-product__list-item">
+              <span class="product-item__list-label">Kcal</span> <span class="product-item__list-value"><%= product.kcal_per_serving %></span>
+            </div>
+          </div>
+
+          <div class="grid__cell grid__cell--20">
+            <div class="cart-product__list-item">
+              <span class="product-item__list-label">Protein</span> <span class="product-item__list-value"><%= product.protein_per_serving %></span>
+            </div>
+          </div>
+
+          <div class="grid__cell grid__cell--20">
+            <div class="cart-product__list-item">
+              <span class="product-item__list-label">Carbs</span> <span class="product-item__list-value"><%= product.carbs_per_serving %></span>
+            </div>
+          </div>
+
+          <div class="grid__cell grid__cell--20">
+            <div class="cart-product__list-item">
+              <span class="product-item__list-label">Fat</span> <span class="product-item__list-value"><%= product.fat_per_serving %></span>
+            </div>
+          </div>
+
         </div>
       </div>
-    <% end %>
-  <% end %>
+    </div>
+
+    <div class="grid__cell grid__cell--20-at-medium">
+      <div class="product-item__cost">
+        <span class="product-item__cost-value"><%= from_usd_to_current_currency(product.price.per_month_bulk_order_in_currency('USD')) %></span>
+        <span class="product-item__cost-description">per month - bulk order</span>
+      </div>
+    </div>
+  </div>
+</a>
+
+<% if local_assigns.fetch(:with_sponsors, true) && product_counter == 2 %>
+  <div class="sponsor sponsor--queal">
+    <div class="sponsor__container">
+      <%= image_tag 'sponsors/queal.png', class: 'sponsor__logo' %>
+      <p class="sponsor__text">
+        <span>Queal</span> is giving away a <span>15% discount</span> on your first order - <span>Interested?</span>
+        <%= link_to 'Redeem Discount', 'https://goo.gl/BvtZPo', target: '_blank', class: 'button button--sponsor' %>
+      </p>
+    </div>
+  </div>
 <% end %>
