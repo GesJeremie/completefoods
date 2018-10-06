@@ -1,6 +1,7 @@
 class ProductDecorator < Draper::Decorator
   delegate_all
   decorates_association :brand
+  decorates_association :review
 
   def flag
     country = product.brand.country.code.downcase.to_sym

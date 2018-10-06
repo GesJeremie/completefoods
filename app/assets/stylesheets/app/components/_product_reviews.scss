@@ -19,18 +19,49 @@
     .product-reviews__content {}
 
         .product-reviews__content-textarea {
-            border-radius: 5px;
-            border: 1px solid $gray--light;
-            width: 80%;
             display: block;
-            min-height: 100px;
             margin-top: quadruple($spacing-unit);
             padding: $spacing-unit * 1.5;
+            width: 80%;
+            min-height: 100px;
             font-size: $font-size;
+            border: 1px solid $gray--light;
+            border-radius: 5px;
         }
 
     .product-reviews__errors {
-        color: $red;
         padding: $spacing-unit 0;
+        color: $red;
         font-size: $font-size;
     }
+
+    .product-reviews__list {
+        margin-top: double($spacing-unit);
+        border-top: 1px solid $gray--x-light;
+    }
+
+        .product-reviews__list-item {
+            padding: triple($spacing-unit) 0;
+            border-bottom: 1px solid $gray--x-light;
+        }
+
+            .product-reviews__list-score {
+                font-weight: bold;
+            }
+
+                .product-reviews__list-score-time {
+                    margin-left: $spacing-unit;
+                    color: $gray;
+                    font-size: $font-size;
+                    font-weight: normal;
+                }
+
+            .product-reviews__list-description {
+                margin-top: double($spacing-unit);
+                font-size: $font-size;
+                line-height: triple($spacing-unit);
+            }
+
+            .product-reviews__list-description--none {
+                font-style: italic;
+            }

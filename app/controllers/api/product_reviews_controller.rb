@@ -1,5 +1,9 @@
 class Api::ProductReviewsController < Api::BaseController
 
+  def show
+    @product = Product.find(params[:id])
+  end
+
   def create
     return if voted_for_product?
 
