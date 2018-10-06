@@ -120,12 +120,16 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     display: block;
     margin-left: 0;
     padding: $spacing-unit * 1.5;
-    width: 80%;
+    width: 100%;
     color: $black;
     font-size: $font-size;
     text-align: center;
     border: 1px solid $gray--medium;
     border-radius: 5px;
+
+    @include respond-to('wide') {
+        width: 80%;
+    }
 
     &:hover,
     &:active,
