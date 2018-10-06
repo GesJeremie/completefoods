@@ -1,0 +1,34 @@
+<div class="container">
+  <h1 class="mb-3 mt-3">Product Reviews (<%= @product_reviews.size %>)</h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Product</th>
+          <th scope="col">Score</th>
+          <th scope="col">Description</th>
+          <th scope="col">Date</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+      <% @product_reviews.each do |product_review| %>
+        <tr>
+          <td><%= product_review.id %></th>
+          <td><%= link_to product_review.product.name, dashboard_product_path(product_review.product) %></td>
+          <td><%= product_review.score_humanized %></td>
+          <td><%= simple_format(product_review.description) %></td>
+          <td><%= product_review.created_at.strftime("%B %d, %Y - %H:%M:%S") %></td>
+          <td><%= link_to 'Delete', dashboard_product_review_path(product_review), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+
+</div>
