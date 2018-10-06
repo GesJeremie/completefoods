@@ -21,10 +21,10 @@ class ProductResultsFinderTest < ActiveSupport::TestCase
     assert products.length == 5
 
     products.each do |product|
-      assert product.diet.vegan == true
-      assert product.shipment.united_states == true
-      assert product.allergen.gluten == false
-      assert product.subscription_available == true
+      assert product.diet.vegan
+      assert product.shipment.united_states
+      assert product.subscription_available
+      assert_not product.allergen.gluten
     end
   end
 
@@ -114,8 +114,6 @@ class ProductResultsFinderTest < ActiveSupport::TestCase
 
   test 'narrows correctly' do
     products = ProductResultsFinder.new({ sort: :price_per_day_minimum_order_cheapest, narrow: :kcal_per_serving_lowest }).execute
-
-    puts products.map { |product| product.kcal_per_serving }.join(' - ')
 
     assert products.first.kcal_per_serving <= products.second.kcal_per_serving
     assert products.first.kcal_per_serving <= products.last.kcal_per_serving
