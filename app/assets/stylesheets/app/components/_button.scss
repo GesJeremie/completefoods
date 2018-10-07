@@ -114,6 +114,11 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
         color: $white;
         background-color: $sponsor-queal;
     }
+
+    .sponsor--powdermatter & {
+        color: $white;
+        background-color: $sponsor-powdermatter;
+    }
 }
 
 .button--product-reviews-choice {
