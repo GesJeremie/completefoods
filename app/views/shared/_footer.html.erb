@@ -1,33 +1,35 @@
-<div class="grid grid--center">
-  <div class="grid__cell grid__cell--90 grid__cell--70-at-medium">
-    <div class="footer">
-      <ul class="footer__links">
-        <li class="footer__links-item">
-          <a target="_blank" href="https://www.notion.so/Changelog-076d8a040dec4607ae67798490dfa862" class="footer__links-item-link">
-            <%= image_tag 'ghost-alt.png', class: 'footer__links-item-link-icon' %> Changelog
-          </a>
-        </li>
-        <li class="footer__links-item">
-          <a target="_blank" href="https://www.notion.so/Products-queued-5b26be1dbbe24d62b0c232a87608e00d" class="footer__links-item-link">
-            <%= image_tag 'pancake.png', class: 'footer__links-item-link-icon' %> Products Queued
-          </a>
-        </li>
-        <li class="footer__links-item">
-          <a target="_blank" href="https://www.notion.so/Community-e31ffa6b1e1e47f8b35ef2d682e9f4e0" class="footer__links-item-link">
-            <%= image_tag 'love.png', class: 'footer__links-item-link-icon footer__links-item-link-icon--community' %> Community
-          </a>
-        </li>
-      </ul>
+<% cache do %>
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--90 grid__cell--70-at-medium">
+      <div class="footer">
+        <ul class="footer__links">
+          <li class="footer__links-item">
+            <a target="_blank" href="https://www.notion.so/Changelog-076d8a040dec4607ae67798490dfa862" class="footer__links-item-link">
+              <%= image_tag 'ghost-alt.png', class: 'footer__links-item-link-icon' %> Changelog
+            </a>
+          </li>
+          <li class="footer__links-item">
+            <a target="_blank" href="https://www.notion.so/Products-queued-5b26be1dbbe24d62b0c232a87608e00d" class="footer__links-item-link">
+              <%= image_tag 'pancake.png', class: 'footer__links-item-link-icon' %> Products Queued
+            </a>
+          </li>
+          <li class="footer__links-item">
+            <a target="_blank" href="https://www.notion.so/Community-e31ffa6b1e1e47f8b35ef2d682e9f4e0" class="footer__links-item-link">
+              <%= image_tag 'love.png', class: 'footer__links-item-link-icon footer__links-item-link-icon--community' %> Community
+            </a>
+          </li>
+        </ul>
 
-      <div class="footer__contact">
-        For any suggestions, feel free to reach us at <a class="link" href="mailto:soylent.alternatives@gmail.com">soylent.alternatives@gmail.com</a> <br/>
-        PS: Check the <a class="link" target="_blank" href="https://www.notion.so/Community-e31ffa6b1e1e47f8b35ef2d682e9f4e0">community section</a>.
+        <div class="footer__contact">
+          For any suggestions, feel free to reach us at <a class="link" href="mailto:soylent.alternatives@gmail.com">soylent.alternatives@gmail.com</a> <br/>
+          PS: Check the <a class="link" target="_blank" href="https://www.notion.so/Community-e31ffa6b1e1e47f8b35ef2d682e9f4e0">community section</a>.
 
-      </div>
+        </div>
 
-      <div class="footer__copyright">
-        Soylent Alternatives is not affiliated with Rosa Foods Inc. Soylent and all other Rosa Foods product names or registered trademarks of Rosa Foods Inc. All other company and product names are trademarks or registered trademarks of their respective companies.
+        <div class="footer__copyright">
+          Soylent Alternatives is not affiliated with Rosa Foods Inc. Soylent and all other Rosa Foods product names or registered trademarks of Rosa Foods Inc. All other company and product names are trademarks or registered trademarks of their respective companies.
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
