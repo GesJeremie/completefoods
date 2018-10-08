@@ -49,6 +49,9 @@ gem 'mini_magick'
 # Let's scrap the web
 gem 'nokogiri'
 
+# Find optimizations
+gem 'scout_apm'
+
 # Icons
 gem 'fontcustom'
 
