@@ -49,9 +49,6 @@ gem 'mini_magick'
 # Let's scrap the web
 gem 'nokogiri'
 
-# Find optimizations
-gem 'scout_apm'
-
 # Icons
 gem 'fontcustom'
 
@@ -76,4 +73,6 @@ group :development do
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'rails_real_favicon'
+  gem 'bullet'
+  gem 'scout_apm'
 end

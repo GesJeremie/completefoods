@@ -5,11 +5,18 @@ class ProductResultsFinder
   end
 
   def execute
-    products = Product.active
+    products = active_products
     products = ProductMadeInFinder.new(products, @params).execute
     products = ProductFilterFinder.new(products, @params).execute
     products = ProductSortFinder.new(products, @params).execute
     products = ProductNarrowFinder.new(products, @params).execute
     products
   end
+
+
+  private
+
+    def active_products
+      Product.includes( { brand: [:country] }, { price: [:currency] }, { image_attachment: [:blob] } ).active
+    end
 end

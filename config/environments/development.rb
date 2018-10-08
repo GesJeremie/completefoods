@@ -62,4 +62,9 @@ Rails.application.configure do
   #config.reload_classes_only_on_change = false
 
   config.action_mailer.default_url_options = { host: '172.21.0.3', port: 3000 }
+
+  config.after_initialize do
+    Bullet.enable = true
+    Bullet.bullet_logger = true
+  end
 end

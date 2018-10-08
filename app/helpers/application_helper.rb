@@ -31,7 +31,10 @@ module ApplicationHelper
   end
 
   def current_currency
-    Currency.find_by_code(session[:current_currency]) || Currency.find_by_code('USD')
+    @current_currency ||=
+      begin
+        Currency.find_by_code(session[:current_currency]) || Currency.find_by_code('USD')
+      end
   end
 
   def currency_selected_class(currency, current_currency)
