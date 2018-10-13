@@ -3,14 +3,16 @@ class HomeController < BaseController
     @products = ProductResultsFinder.new(filter_params.to_h).execute
 
     unless sorting?
-      @products = @products.reorder(:brand_id)
+      # TODO: hotfix, needs to be PURE sql
+      numeric = @products.select { |product| [*'0'..'9'].include? product.name.downcase.first }.sort_by(&:name)
+      alpha = @products.select { |product| [*'a'..'z'].include? product.name.downcase.first }.sort_by(&:name)
+      @products = alpha + numeric
     end
 
     @products = ProductDecorator.decorate_collection(@products)
 
     @sorters = Rails.configuration.sorters
   end
-
 
   private
 

@@ -1,8 +1,8 @@
 class ProductSortFinder
 
   # Examples:
-  # ProductSortFinder.new(Product.active, { sort: 'kcal_per_serving_most' })
-  # ProductSortFinder.new(Product.all, { sort: 'carbs_per_serving_lowest' })
+  # ProductSortFinder.new(Product.active, { sort: 'kcal_per_serving_most' }).execute
+  # ProductSortFinder.new(Product.all, { sort: 'carbs_per_serving_lowest' }).execute
 
   def initialize(products, params = {})
     @products = products

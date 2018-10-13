@@ -3,7 +3,7 @@
     <li class="product-reviews__list-item">
       <div class="product-reviews__list-score">
         <%= review.score_humanized %>
-        <span class="product-reviews__list-score-time">- reviewed <%= time_ago_in_words(review.updated_at) %> ago</span>
+        <span class="product-reviews__list-score-time">- <%= review.updated_at.strftime("%B %d, %Y") %></span>
       </div>
 
       <% if review.description.present? %>
