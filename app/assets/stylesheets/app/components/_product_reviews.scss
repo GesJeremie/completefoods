@@ -4,6 +4,30 @@
 
 .product-reviews {}
 
+    .product-reviews__no-results {
+        margin-top: double($spacing-unit);
+        padding: double($spacing-unit);
+        text-align: center;
+        border: 1px solid $gray--medium;
+        border-radius: $border-radius;
+    }
+
+        .product-reviews__no-results-icon-container {
+            margin-bottom: $spacing-unit;
+        }
+
+            .product-reviews__no-results-icon {
+                width: 40px;
+
+                @include respond-to('medium') {
+                    width: 64px;
+                }
+            }
+
+        .product-reviews__no-results-description {
+            font-size: $font-size;
+        }
+
     .product-reviews__choices {}
 
     .product-reviews__meaning {
@@ -22,11 +46,16 @@
             display: block;
             margin-top: quadruple($spacing-unit);
             padding: $spacing-unit * 1.5;
-            width: 80%;
+            width: 100%;
+            max-width: 100%;
             min-height: 100px;
             font-size: $font-size;
             border: 1px solid $gray--light;
             border-radius: 5px;
+
+            @include respond-to('medium') {
+                width: 80%;
+            }
         }
 
     .product-reviews__errors {

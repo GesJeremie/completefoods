@@ -34,9 +34,7 @@
         },
 
         onFetchProductReviewsDone: function (response) {
-            var content = $(response.content).html();
-
-            $(this.element).html(content);
+            $(this.element).html(response.content);
             this.emitRefreshed();
         }
     });
