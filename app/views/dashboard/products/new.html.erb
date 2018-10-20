@@ -68,6 +68,11 @@
   <%= form.label :state %>
   <%= form.select :state, options_for_select(Product.states.keys.to_a) %>
 
+  <br/>
+
+  <%= form.label :flavor %>
+  <%= form.select :flavor, options_for_select(Product.flavors.keys.to_a) %>
+
 
   <h3>Prices</h3>
 

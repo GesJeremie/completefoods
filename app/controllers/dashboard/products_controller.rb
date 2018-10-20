@@ -73,6 +73,7 @@ class Dashboard::ProductsController < Dashboard::BaseController
         image
         notes
         slug
+        flavor
       ]
     end
 

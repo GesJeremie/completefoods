@@ -1,11 +1,13 @@
 class Product < ApplicationRecord
-  # Update of states has consequences, don't touch.
   STATES = %w[powder bottle snack].freeze
+  FLAVORS = %w[sweet savoury neutral].freeze
+
   BOOLEANS = [true, false].freeze
 
   belongs_to :brand
 
   enum state: STATES.map(&:to_sym)
+  enum flavor: FLAVORS.map(&:to_sym)
 
   has_one :allergen, class_name: 'ProductAllergen', dependent: :destroy
   has_one :diet, class_name: 'ProductDiet', dependent: :destroy
@@ -30,6 +32,7 @@ class Product < ApplicationRecord
   validates :subscription_available, inclusion: { in: BOOLEANS }
   validates :discount_for_subscription, inclusion: { in: BOOLEANS }
   validates :state, inclusion: { in: STATES }
+  validates :flavor, inclusion: { in: FLAVORS }
   validates :active, inclusion: { in: BOOLEANS }
 
   validates_with ImageUploadValidator, attributes: [:image]

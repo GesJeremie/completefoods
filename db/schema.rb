@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_05_131114) do
+ActiveRecord::Schema.define(version: 2018_10_20_193316) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,12 @@ ActiveRecord::Schema.define(version: 2018_08_05_131114) do
     t.index ["code"], name: "index_currencies_on_code", unique: true
   end
 
+  create_table "newsletters", force: :cascade do |t|
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "product_allergens", force: :cascade do |t|
     t.bigint "product_id"
     t.boolean "gluten"
@@ -94,6 +100,16 @@ ActiveRecord::Schema.define(version: 2018_08_05_131114) do
     t.index ["product_id"], name: "index_product_prices_on_product_id"
   end
 
+  create_table "product_reviews", force: :cascade do |t|
+    t.bigint "product_id"
+    t.integer "score"
+    t.string "description"
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_reviews_on_product_id"
+  end
+
   create_table "product_shipments", force: :cascade do |t|
     t.bigint "product_id"
     t.boolean "rest_of_world"
@@ -115,13 +131,12 @@ ActiveRecord::Schema.define(version: 2018_08_05_131114) do
     t.float "fat_per_serving"
     t.boolean "subscription_available"
     t.boolean "discount_for_subscription"
-    t.boolean "shaker_free_first_order"
-    t.boolean "sample_pack_available"
     t.integer "state", default: 0
     t.string "notes"
     t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "flavor", default: 0
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
