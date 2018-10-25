@@ -1,4 +1,4 @@
-<% cache [params_for_cache, Product.maximum(:updated_at), current_currency.id] do %>
+<% cache [digest_for_cache(params_for_cache), digest_for_cache(Product.maximum(:updated_at)), current_currency.id] do %>
     <% if products.empty? %>
         <div class="product-items__no-results">
             <%= image_tag 'ghost.png', class: 'product-items__no-results-icon' %>
