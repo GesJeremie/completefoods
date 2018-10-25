@@ -2,6 +2,10 @@ module ApplicationHelper
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::AssetTagHelper
 
+  def params_for_cache
+    params.permit!.to_h.except!(:controller, :action)
+  end
+
   def humanize_boolean(boolean)
     I18n.t((!!boolean).to_s)
   end

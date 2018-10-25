@@ -3,7 +3,7 @@ class ProductPrice < ApplicationRecord
   KCAL_PER_DAY = 2000.freeze
   KCAL_PER_MONTH = (DAYS_PER_MONTH * KCAL_PER_DAY).freeze
 
-  belongs_to :product
+  belongs_to :product, touch: true
   belongs_to :currency
 
   validates :product, presence: true

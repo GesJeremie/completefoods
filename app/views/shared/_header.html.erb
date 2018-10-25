@@ -1,49 +1,47 @@
-<% cache [current_currency, Currency.popular.count] do %>
-  <div id="dropdown-currencies" class="currencies">
-    <div class="grid grid--center">
-      <div class="grid__cell grid__cell--70-at-medium">
-        <div class="currencies__title">Select your currency</div>
-        <ul class="currencies__list">
-          <% Currency.popular.each do |currency| %>
-            <li class="currencies__item">
-              <%= link_to currency_path(currency.code), { method: :put, class: currency_selected_class(currency, current_currency) } do %>
-                <span class="currencies__item-name"><%= currency.name %></span>
-                <span class="currencies__item-code"><%= currency.code %></span>
-              <% end %>
-            </li>
-          <% end %>
-        </ul>
-      </div>
+<div id="dropdown-currencies" class="currencies">
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--70-at-medium">
+      <div class="currencies__title">Select your currency</div>
+      <ul class="currencies__list">
+        <% Currency.popular.each do |currency| %>
+          <li class="currencies__item">
+            <%= link_to currency_path(currency.code), { method: :put, class: currency_selected_class(currency, current_currency) } do %>
+              <span class="currencies__item-name"><%= currency.name %></span>
+              <span class="currencies__item-code"><%= currency.code %></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
     </div>
   </div>
+</div>
 
-  <div class="header">
-    <div class="grid grid--center grid--middle">
-      <div class="grid__cell grid__cell--80 grid__cell--50-at-medium grid__cell--30-at-wide">
-        <a href="<%= root_path %>" class="logo">
-          <%= image_tag 'kiwi.png', class: 'logo__image' %>
-          <span class="logo__soylent">
-            Soylent
-          </span>
-          <span class="logo__alternatives">
-            Alternatives
-          </span>
-        </a>
-      </div>
-      <div class="grid__cell grid__cell--20 grid__cell--50-at-medium grid__cell--70-at-wide">
-        <div class="navigation">
-          <div class="navigation__header">
-            <ul class="navigation__list">
-              <li class="navigation__list-item navigation__list-item--currency">
-                <a data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency" href="#" class="navigation__list-item-link">
-                  <%= image_tag 'coin.png', class: 'navigation__currency-icon' %>
-                  <span class="navigation__currency-label"><span class="navigation__currency-label-text">Currency:</span> <%= current_currency.code %></span>
-                </a>
-              </li>
-            </ul>
-          </div>
+<div class="header">
+  <div class="grid grid--center grid--middle">
+    <div class="grid__cell grid__cell--80 grid__cell--50-at-medium grid__cell--30-at-wide">
+      <a href="<%= root_path %>" class="logo">
+        <%= image_tag 'kiwi.png', class: 'logo__image' %>
+        <span class="logo__soylent">
+          Soylent
+        </span>
+        <span class="logo__alternatives">
+          Alternatives
+        </span>
+      </a>
+    </div>
+    <div class="grid__cell grid__cell--20 grid__cell--50-at-medium grid__cell--70-at-wide">
+      <div class="navigation">
+        <div class="navigation__header">
+          <ul class="navigation__list">
+            <li class="navigation__list-item navigation__list-item--currency">
+              <a data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency" href="#" class="navigation__list-item-link">
+                <%= image_tag 'coin.png', class: 'navigation__currency-icon' %>
+                <span class="navigation__currency-label"><span class="navigation__currency-label-text">Currency:</span> <%= current_currency.code %></span>
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
   </div>
-<% end %>
+</div>

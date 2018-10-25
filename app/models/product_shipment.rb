@@ -1,7 +1,7 @@
 class ProductShipment < ApplicationRecord
   BOOLEANS = [true, false].freeze
 
-  belongs_to :product
+  belongs_to :product, touch: true
 
   validates :product, presence: true
   validates :united_states, inclusion: { in: BOOLEANS }
