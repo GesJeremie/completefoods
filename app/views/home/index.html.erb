@@ -11,8 +11,31 @@
 
     <div class="layout">
       <div class="hero">
-        <h1 class="hero__title">Find your next Soylent.</h1>
-        <h2 class="hero__subtitle">Discover the best Soylent alternatives based on the protein ratio, shipping, pricing per month and other metrics.</h2>
+        <h1 class="hero__title">Find your <span class="hero__highlight"><b>Complete Food<b/></span>.</h1>
+        <h2 class="hero__subtitle">Discover the best Complete Foods based on price, protein ratio, country of production and ... much more!</h2>
+      </div>
+
+      <div class="collections">
+        <div class="collections__item">
+          <div class="collections__title">Cheapest</div>
+        </div>
+
+        <div class="collections__item">
+          <div class="collections__title">Made in Canada</div>
+        </div>
+
+        <div class="collections__item">
+          <div class="collections__title">Gluten Free</div>
+        </div>
+
+        <div class="collections__item">
+          <div class="collections__title">For Athletes</div>
+        </div>
+      </div>
+
+      <div>
+        <a class="button">See more collections</a>
+        <a class="button">Or explore all the products</a>
       </div>
 
       <% unless cookies[:signed_up_newsletter].present? %>
