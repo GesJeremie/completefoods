@@ -14,20 +14,23 @@ class Collection::BrandViewModel < CollectionViewModel
     ].compact.join(' ') << '.'
   end
 
-  def meta_description
-    # Remove HTML
-    ActionView::Base.full_sanitizer.sanitize(description)
-  end
-
   private
 
     def description_brand
-      "<a target='_blank' href='#{@brand.website}' class='link link--alt'>#{@brand.name}</a> based in <a class='link link--alt' href='/made-in-#{@brand.country.name.parameterize}'>#{@brand.country.name}</a>"
+      "#{brand_link} based in #{brand_country_link}"
+    end
+
+    def brand_link
+      "<a target='_blank' href='#{@brand.website}' class='link link--alt'>#{@brand.name}</a> "
+    end
+
+    def brand_country_link
+      "<a class='link link--alt' href='/made-in-#{@brand.country.name.parameterize}'>#{@brand.country.name}</a>"
     end
 
     def description_products_count
       if @products.count == 1
-        "produces 1 soylent alternative"
+        'produces 1 soylent alternative'
       else
         "produces #{@products.count} soylent alternatives"
       end

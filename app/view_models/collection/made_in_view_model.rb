@@ -1,6 +1,6 @@
 class Collection::MadeInViewModel < CollectionViewModel
 
-  def initialize(products:, country:, current_currency:)
+  def initialize(products:, current_currency:, country:)
     super(products: products, current_currency: current_currency)
     @country = country
   end

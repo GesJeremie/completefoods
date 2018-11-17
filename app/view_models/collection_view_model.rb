@@ -14,19 +14,23 @@ class CollectionViewModel < ApplicationViewModel
     ].compact.join(' ') << '.'
   end
 
+  def meta_description
+    description_without_html_entities
+  end
+
   protected
 
     def description_products_count
-      return "There are over #{@products.count} soylent alternatives" if @products.count > 1
-      return 'Sadly ... there is currently only one soylent alternative' if @products.count == 1
+      return "There are over #{@products.count} products" if @products.count > 1
+      return 'Sadly ... there is currently only one product' if @products.count == 1
 
-      'Ooops ... there is currently no soylent alternatives'
+      'Ooops ... there is currently no products'
     end
 
     def description_products_names
       return if @products.count < 5
 
-      "like #{@products.first.name}, #{@products.second.name} and #{@products.third.name}"
+      "like #{@products.first.name.titleize}, #{@products.second.name.titleize} and #{@products.third.name.titleize}"
     end
 
     def description_average_price
@@ -38,7 +42,19 @@ class CollectionViewModel < ApplicationViewModel
     def description_produced_by_brands_count
       return if @products.count < 2
 
-      "and are produced by a total of #{brands_count} brands"
+      "and produced by a total of #{brands_count} brands"
+    end
+
+    def description_top_fifteen(type)
+      "This is the <strong>Top 15</strong> of the <strong>#{type} soylent alternatives</strong> available on the market"
+    end
+
+    def description_count_products_and_brands_referenced
+      "We currently reference <strong>#{Product.active.count} products</strong> from <strong>#{Brand.count} brands</strong>."
+    end
+
+    def description_without_html_entities
+      ActionView::Base.full_sanitizer.sanitize(description)
     end
 
     def brands_count

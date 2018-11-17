@@ -1,0 +1,17 @@
+<% @layout_with_filters = true %>
+<% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Soylent" %>
+
+<div class="hero hero--home">
+  <h1 class="hero__title">
+    Soylent Alternatives <br/>currently available <br/>worldwide
+    <span class="hero__icon"><%= emoji(:world) %></span>
+  </h1>
+  <h2 class="hero__subtitle">
+    We reference <%= Product.active.count %> products from <%= Brand.count %> brands.<br/>
+    Yes, that's a sh** load of products.
+  </h2>
+</div>
+
+<%= render 'products/results', products: @products %>
+
+<%= render 'shared/newsletter' %>

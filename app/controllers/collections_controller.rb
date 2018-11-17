@@ -3,29 +3,34 @@ class CollectionsController < BaseController
   before_action :valid_country?, only: [:made_in]
   before_action :valid_brand?, only: [:made_by]
 
-  def made_in
-    find_products({ made_in: params[:country], sort: :price_per_day_bulk_order_cheapest })
+  def cheapest
+    @products = find_products({ sort: :price_per_day_bulk_order_cheapest }).take(15)
+    @view_model = Collection::CheapestViewModel.new(view_model_options)
+  end
 
-    @view_model = Collection::MadeInViewModel.new(
-      products: @products,
-      country: @country,
-      current_currency: current_currency
-    )
-
-    # Populate drawer finder with default values
-    params[:made_in] = params[:country]
+  def athletes
+    @products = find_products({ sort: :protein_per_serving_most }).take(15)
+    @view_model = Collection::AthletesViewModel.new(view_model_options)
   end
 
   def vegan
-    find_products({ vegan: true, sort: :price_per_day_bulk_order_cheapest })
+    @products = find_products({ vegan: true })
+    @view_model = CollectionViewModel.new(view_model_options)
+  end
 
-    @view_model = Collection::VeganViewModel.new(
-      products: @products,
-      current_currency: current_currency
-    )
+  def vegetarian
+    @products = find_products({ vegetarian: true })
+    @view_model = CollectionViewModel.new(view_model_options)
+  end
 
-    # Populate drawer finder with default values
-    params[:vegan] = true
+  def gluten_free
+    @products = find_products({ gluten_free: true })
+    @view_model = CollectionViewModel.new(view_model_options)
+  end
+
+  def lactose_free
+    @products = find_products({ lactose_free: true })
+    @view_model = CollectionViewModel.new(view_model_options)
   end
 
   def made_by
@@ -34,17 +39,58 @@ class CollectionsController < BaseController
     @products = ProductDecorator.decorate_collection(@products)
 
     @view_model = Collection::BrandViewModel.new(
-      brand: @brand,
+      view_model_options.merge(brand: @brand)
+    )
+  end
+
+  def made_in
+    @products = find_products({ made_in: params[:country] })
+
+    @view_model = Collection::MadeInViewModel.new(
+      view_model_options.merge(country: @country)
+    )
+  end
+
+  def most_expensive
+    @products = find_products({ sort: :price_per_day_bulk_order_most_expensive })
+
+    @view_model = Collection::MostExpensiveViewModel.new(
       products: @products,
       current_currency: current_currency
     )
   end
 
+  def powders
+    @products = find_products({ powder: true })
+    @view_model = CollectionViewModel.new(view_model_options)
+  end
+
+  def ready_to_drink
+    @products = find_products({ bottle: true })
+    @view_model = CollectionViewModel.new(view_model_options)
+  end
+
+  def snacks
+    @products = find_products({ snack: true })
+    @view_model = CollectionViewModel.new(view_model_options)
+  end
+
   private
 
+    def view_model_options
+      {
+        products: @products,
+        current_currency: current_currency
+      }
+    end
+
     def find_products(filters)
-      @products = ProductResultsFinder.new(filters).execute
-      @products = ProductDecorator.decorate_collection(@products)
+      products = ProductResultsFinder.new(filters).execute
+      ProductDecorator.decorate_collection(products)
+    end
+
+    def valid_brand?
+      return redirect_to root_path unless brand.present?
     end
 
     def valid_country?
@@ -54,10 +100,6 @@ class CollectionsController < BaseController
 
     def country
       @country ||= Country.where('lower(name) = ?', params[:country].titleize.downcase).first
-    end
-
-    def valid_brand?
-      return redirect_to root_path unless brand.present?
     end
 
     def brand

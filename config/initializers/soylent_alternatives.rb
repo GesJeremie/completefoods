@@ -36,4 +36,26 @@ Rails.application.configure do
     { label: 'Bulk Order (cheapest)', value: :price_per_day_bulk_order_cheapest, group: :price_per_day },
     { label: 'Bulk Order (most expensive)', value: :price_per_day_bulk_order_most_expensive, group: :price_per_day }
   ]
+
+  config.collections = [
+    { name: 'Cheapest', cover: 'collections/cheapest.jpg', route: 'cheapest' },
+    { name: 'Most Expensive', cover: 'collections/most_expensive.jpg', route: 'most-expensive'},
+    { name: 'For Vegans', cover: 'collections/vegan.jpg', route: 'for-vegans' },
+    { name: 'For Vegetarians', cover: 'collections/vegetarian.jpg', route: 'for-vegetarians' },
+
+    { name: 'Snacks', cover: 'collections/snacks.jpg', route: 'snacks' },
+    { name: 'Ready To Drink', cover: 'collections/ready_to_drink.jpg', route: 'ready-to-drink' },
+    { name: 'Powders', cover: 'collections/powder.jpg', route: 'powders' },
+    { name: 'For Athletes', cover: 'collections/athletes.jpg', route: 'for-athletes' },
+
+    { name: 'Gluten Free', cover: 'collections/gluten_free.jpg', route: 'gluten-free' },
+    { name: 'Lactose Free', cover: 'collections/milk.jpg', route: 'lactose-free' },
+
+    { name: 'Made in Canada', cover: 'collections/canada.jpg', route: 'made-in-canada' },
+    { name: 'Made in USA', cover: 'collections/us.jpg', route: 'made-in-united-states' },
+    { name: 'Made in India', cover: 'collections/india.jpg', route: 'made-in-india' },
+    { name: 'Made in France', cover: 'collections/france.jpg', route: 'made-in-france' },
+    { name: 'Made in Germany', cover: 'collections/germany.png', route: 'made-in-germany' },
+    { name: 'Made in Netherlands', cover: 'collections/netherlands.jpg', route: 'made-in-netherlands' }
+  ]
 end

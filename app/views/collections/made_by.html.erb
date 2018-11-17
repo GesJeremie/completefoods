@@ -1,26 +1,16 @@
 <% content_for :meta_title, "#{DEFAULT_META['title']} - Made by #{@brand.name}" %>
 <% content_for :meta_description, @view_model.meta_description %>
 
-<div class="hero">
+<div class="hero hero--collection">
   <h1 class="hero__title">
-    Made By <%= @brand.name %>
+    Made By <br/><%= @brand.name %>
   </h1>
 
   <h2 class="hero__subtitle hero__subtitle--with-action">
     <%= @view_model.description.html_safe %> <br/>
   </h2>
 
-  <div class="hero__action">
-    ... want to <a href="<%= root_path %>" class="link">explore more?</a>
-  </div>
+  <%= render 'explore_more' %>
 </div>
 
-<div class="grid grid--center">
-  <div class="grid__cell grid__cell--90 grid__cell--100-at-medium">
-    <div class="grid grid--center">
-      <div class="grid__cell grid__cell--90-at-medium grid__cell--70-at-wide">
-        <%= render 'products/items', products: @products %>
-      </div>
-    </div>
-  </div>
-</div>
+<%= render 'products', products: @products %>

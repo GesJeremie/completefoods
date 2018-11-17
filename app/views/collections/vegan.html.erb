@@ -1,35 +1,17 @@
-<% @layout_with_filters = true %>
 <% content_for :meta_title, "#{DEFAULT_META['title']} - Suitable for Vegans" %>
-<% content_for :meta_description, @view_model.description %>
+<% content_for :meta_description, @view_model.meta_description %>
 
-<div id="drawer-finder" class="drawer drawer--left">
+<div class="hero hero--collection">
+  <h1 class="hero__title">
+    Soylent Alternatives <br/>For Vegans
+  </h1>
 
-  <%= render 'drawer_finder/main' %>
+  <h2 class="hero__subtitle hero__subtitle--with-action">
+    <%= @view_model.description.html_safe %>
+  </h2>
 
-  <main id="page-layout">
-
-    <%= render 'shared/header' %>
-
-    <div class="layout">
-      <div data-controller="toggle-collection-hero" class="hero">
-        <h1 class="hero__title">
-          Suitable For Vegans
-          <span class="hero__icon"><%= emoji(:plant) %></span>
-        </h1>
-
-        <h2 class="hero__subtitle hero__subtitle--with-action">
-          <%= @view_model.description %>
-        </h2>
-
-        <div class="hero__action">
-          ... want to <a href="<%= root_path %>" class="link">explore more?</a>
-        </div>
-      </div>
-
-      <%= render 'products/results', products: @products %>
-
-      <%= render 'shared/footer' %>
-    </div>
-  </main>
+  <%= render 'explore_more' %>
 
 </div>
+
+<%= render 'products', products: @products %>

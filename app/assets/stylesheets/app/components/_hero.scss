@@ -5,7 +5,6 @@
 .hero {
     margin: 0 auto;
     margin-top: 50px;
-    width: 95%;
     color: $black;
     text-align: center;
 
@@ -13,6 +12,9 @@
         width: 80%;
     }
 }
+
+.hero--home {}
+.hero--collection {}
 
     .hero__title {
         font-size: $font-size + 24px;
@@ -37,6 +39,14 @@
         @include respond-to('medium') {
             font-size: $font-size + 3px;
             line-height: 30px;
+        }
+
+        .hero--home & {
+            margin-bottom: double($spacing-unit);
+        }
+
+        .hero--collection & {
+            max-width: 700px;
         }
     }
 

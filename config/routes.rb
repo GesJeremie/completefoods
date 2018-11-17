@@ -8,14 +8,25 @@ Rails.application.routes.draw do
   root 'home#index'
 
   # Collections
+  get 'cheapest', to: 'collections#cheapest'
+  get 'for-athletes', to: 'collections#athletes'
+  get 'for-vegans', to: 'collections#vegan'
+  get 'for-vegetarians', to: 'collections#vegetarian'
+  get 'gluten-free', to: 'collections#gluten_free'
+  get 'lactose-free', to: 'collections#lactose_free'
+  get 'made-by-:brand', to: 'collections#made_by'
   get 'made-in-:country', to: 'collections#made_in'
+  get 'most-expensive', to: 'collections#most_expensive'
+  get 'powders', to: 'collections#powders'
+  get 'ready-to-drink', to: 'collections#ready_to_drink'
+  get 'snacks', to: 'collections#snacks'
+
+  # Collections aliases for sitemap (TODO: Remove from there + sitemap)
   get 'produced-in-:country', to: 'collections#made_in'
   get 'suitable-for-vegans', to: 'collections#vegan'
-  get 'for-vegans', to: 'collections#vegan'
   get 'produced-by-:brand', to: 'collections#made_by'
-  get 'made-by-:brand', to: 'collections#made_by'
 
-  resources :products, only: [:show], param: :slug
+  resources :products, only: [:index, :show], param: :slug
   resources :currencies, only: [:update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
 

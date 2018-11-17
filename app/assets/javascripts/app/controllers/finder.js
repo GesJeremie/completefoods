@@ -81,7 +81,7 @@
         },
 
         refreshUrl: function () {
-            var url = '/?' + this.buildUrlFromParamsFinder();
+            var url = '/products?' + this.buildUrlFromParamsFinder();
 
             window.history.replaceState(null, null, url);
 

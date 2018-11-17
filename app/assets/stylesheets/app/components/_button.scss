@@ -32,6 +32,11 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     border-radius: 5px;
 }
 
+.button--large {
+    padding: double($spacing-unit) quadruple($spacing-unit);
+    font-size: $font-size + 2px;
+}
+
 .button--filters {
     margin: 0;
     padding: double($spacing-unit);

@@ -4,5 +4,10 @@
 
 .layout {
     margin: 0 auto;
+    width: 95%;
     max-width: 1420px;
+
+    @include respond-to('medium') {
+        width: 100%;
+    }
 }

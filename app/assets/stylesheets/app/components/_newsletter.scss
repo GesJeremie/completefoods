@@ -6,6 +6,7 @@ $newsletter-bg-color: #54a0ff !default;
 
 .newsletter {
     display: none;
+    margin-top: quadruple($spacing-unit);
     margin-bottom: double($spacing-unit);
     padding: $spacing-unit double($spacing-unit);
     color: $white;

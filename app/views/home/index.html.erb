@@ -1,61 +1,32 @@
-<% @layout_with_filters = true %>
 <% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Soylent" %>
 
-<div id="drawer-finder" class="drawer drawer--left">
+<div class="hero hero--home">
+  <h1 class="hero__title">Find your Soylent Alternative.</h1>
+  <h2 class="hero__subtitle">Discover the best Soylent Alternatives based on price, diet, protein ratio, fat ratio, country of production and much more!</h2>
+</div>
 
-  <%= render 'drawer_finder/main' %>
+<div data-controller="browse-collections" class="collections">
+  <div class="grid grid--center">
+    <% Rails.configuration.collections.each_slice(4).with_index do |collections, index| %>
 
-  <main id="page-layout">
-
-    <%= render 'shared/header' %>
-
-    <div class="layout">
-      <div class="hero">
-        <h1 class="hero__title">Find your <span class="hero__highlight"><b>Complete Food<b/></span>.</h1>
-        <h2 class="hero__subtitle">Discover the best Complete Foods based on price, protein ratio, country of production and ... much more!</h2>
-      </div>
-
-      <div class="collections">
-        <div class="collections__item">
-          <div class="collections__title">Cheapest</div>
-        </div>
-
-        <div class="collections__item">
-          <div class="collections__title">Made in Canada</div>
-        </div>
-
-        <div class="collections__item">
-          <div class="collections__title">Gluten Free</div>
-        </div>
-
-        <div class="collections__item">
-          <div class="collections__title">For Athletes</div>
-        </div>
-      </div>
-
-      <div>
-        <a class="button">See more collections</a>
-        <a class="button">Or explore all the products</a>
-      </div>
-
-      <% unless cookies[:signed_up_newsletter].present? %>
-        <div class="grid grid--center">
-          <div class="grid__cell grid__cell--90 grid__cell--70-at-wide">
-            <div data-controller="newsletter" data-target="newsletter.newsletter" class="newsletter">
-              <form data-action="submit->newsletter#onSubmit">
-                <p class="newsletter__description">Send me a message when a new product is added</p>
-                <%= email_field_tag 'email', nil, placeholder: 'Email', class: 'newsletter__input', data: { target: 'newsletter.email' } %>
-                <%= button_tag 'Notify me!', type: 'submit', class: 'button button--newsletter' %>
-              </form>
+      <% collections.each do |collection| %>
+        <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collections__item collections__item--row-<%= index %>"">
+          <a href="<%= collection[:route] %>">
+            <div class="collections__cover" style="background-image: url('<%= asset_path(collection[:cover]) %>')">
+              <div class="collections__title"><%= collection[:name] %></div>
             </div>
-          </div>
+          </a>
         </div>
       <% end %>
 
-      <%= render 'products/results', products: @products %>
+    <% end %>
+  </div>
 
-      <%= render 'shared/footer' %>
-    </div>
-  </main>
+  <div class="collections__actions">
+    <a data-target="browse-collections.browseMore" data-action="click->browse-collections#onClickBrowseMore" class="button button--primary button--large collections__action">Browse more collections ↓</a>
+    <span data-target="browse-collections.divider" class="collections__action-divider">OR</span>
+    <%= link_to 'Explore all products →', products_path, class: 'button button--primary button--large collections__action' %>
+  </div>
 
+  <%= render 'shared/newsletter', content: 'Send me a message when a new collection is added' %>
 </div>

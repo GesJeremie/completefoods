@@ -32,7 +32,18 @@
 
     <% if @layout_with_filters %>
 
-      <%= yield %>
+      <div id="drawer-finder" class="drawer drawer--left">
+        <%= render 'drawer_finder/main' %>
+        <main id="page-layout">
+          <%= render 'shared/header' %>
+
+          <div class="layout">
+            <%= yield %>
+          </div>
+
+          <%= render 'shared/footer' %>
+        </main>
+      </div>
 
     <% else %>
 
@@ -52,9 +63,7 @@
       <%= render 'shared/hotjar' %>
     <% end %>
 
-
   </body>
 
   <%= javascript_include_tag 'app' %>
-
 </html>
