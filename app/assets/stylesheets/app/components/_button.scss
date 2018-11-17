@@ -45,6 +45,7 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     font-size: $font-size;
     font-weight: 700;
     text-align: center;
+    text-transform: capitalize;
     background-color: $green;
     border-radius: 5px;
     box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
