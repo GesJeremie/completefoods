@@ -18,7 +18,6 @@ class ProductResultsFinder
     products
   end
 
-
   private
 
     def active_products
