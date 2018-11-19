@@ -7,7 +7,7 @@ module ApplicationHelper
   end
 
   def params_for_cache
-    params.permit!.to_h.except!(:controller, :action)
+    params.permit!.to_h
   end
 
   def humanize_boolean(boolean)
