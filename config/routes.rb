@@ -26,6 +26,8 @@ Rails.application.routes.draw do
   get 'suitable-for-vegans', to: 'collections#vegan'
   get 'produced-by-:brand', to: 'collections#made_by'
 
+  resources :collections, only: [:index]
+  resources :brands, only: [:index]
   resources :products, only: [:index, :show], param: :slug
   resources :currencies, only: [:update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
@@ -43,6 +45,5 @@ Rails.application.routes.draw do
     resources :product_reviews, only: [:create, :show]
     resources :newsletters, only: [:create]
   end
-
 end
 

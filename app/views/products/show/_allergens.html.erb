@@ -1,0 +1,33 @@
+<div class="grid">
+  <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
+
+    <% if product.allergen.gluten? %>
+      <div class="product-show__item product-show__item--red">
+        <%= emoji 'corn' %>
+        <div class="product-show__item-label">Not Gluten Free</div>
+      </div>
+    <% else %>
+      <div class="product-show__item product-show__item--green">
+        <%= emoji 'corn' %>
+        <div class="product-show__item-label">Gluten Free</div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
+
+    <% if product.allergen.lactose? %>
+      <div class="product-show__item product-show__item--red">
+        <%= emoji 'baby-bottle' %>
+        <div class="product-show__item-label">Not Lactose Free</div>
+      </div>
+    <% else %>
+      <div class="product-show__item product-show__item--green">
+        <%= emoji 'baby-bottle' %>
+        <div class="product-show__item-label">Lactose Free</div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

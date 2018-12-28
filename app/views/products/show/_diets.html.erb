@@ -1,0 +1,35 @@
+<div class="grid">
+
+  <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
+
+    <% if product.diet.vegan? %>
+      <div class="product-show__item product-show__item--green">
+        <%= emoji 'plant' %>
+        <div class="product-show__item-label">Suitable for Vegans</div>
+      </div>
+    <% else %>
+      <div class="product-show__item product-show__item--red">
+        <%= emoji 'plant' %>
+        <div class="product-show__item-label">Not suitable for Vegans</div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
+
+    <% if product.diet.vegetarian? %>
+      <div class="product-show__item product-show__item--green">
+        <%= emoji 'watermelon' %>
+        <div class="product-show__item-label">Suitable for Vegetarians</div>
+      </div>
+    <% else %>
+      <div class="product-show__item product-show__item--red">
+        <%= emoji 'watermelon' %>
+        <div class="product-show__item-label">Not suitable for Vegetarians</div>
+      </div>
+    <% end %>
+
+  </div>
+
+</div>

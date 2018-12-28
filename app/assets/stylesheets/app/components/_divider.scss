@@ -1,0 +1,15 @@
+.divider {
+    width: 100%;
+    margin-bottom: triple($spacing-unit);
+    border: 0;
+    border-bottom: 3px solid black;
+}
+
+.divider--secondary {
+    border-bottom: 3px solid #f1f2f6
+}
+
+.divider--small {
+    width: 5%;
+}
+

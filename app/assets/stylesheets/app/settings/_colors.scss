@@ -4,10 +4,6 @@
 
 /**
  * Color Variables
- *
- * These variables should always be aliased as Functional Variables, either at
- * the bottom of this file, or at the top of the Component SCSS that they
- * belong to. This method helps aid the quick reskinning of Components.
  */
 
 $black:         #000000 !default;
@@ -22,7 +18,7 @@ $gray--x-light: #f7f8fa !default;
 $green:         #71ba51 !default;
 $green--light:  #2cc990 !default;
 $red:           #e74c3c !default;
-
+$purple:        #69297c !default;
 
 /**
  * Sponsor variables

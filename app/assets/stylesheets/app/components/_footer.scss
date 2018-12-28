@@ -13,14 +13,6 @@
         font-size: $font-size;
     }
 
-    .footer__copyright {
-        font-size: $font-size - 2px;
-
-        @include respond-to('medium') {
-            font-size: $font-size;
-        }
-    }
-
     .footer__links {
         list-style: none;
     }

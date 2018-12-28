@@ -3,13 +3,20 @@
 \*------------------------------------*/
 
 .link {
-    color: $green;
+    color: $purple;
+    text-decoration-style: dotted;
 
     .hero__action & {
         color: $black;
         font-weight: bold;
         text-decoration: none;
         border-bottom: 1px solid $black;
+    }
+
+    .header__text & {
+        border: 0;
+        text-decoration: none;
+        color: $black;
     }
 }
 

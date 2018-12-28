@@ -13,13 +13,16 @@
     }
 }
 
-.hero--home {}
+.hero--home {
+    padding-bottom: $spacing-unit * 12;
+}
+
 .hero--collection {}
 
     .hero__title {
         font-size: $font-size + 24px;
         font-weight: bold;
-        line-height: 40px;
+        line-height: quadruple($spacing-unit);
         text-transform: capitalize;
 
         @include respond-to('medium') {
@@ -32,13 +35,13 @@
         margin: 0 auto;
         margin-top: double($spacing-unit);
         margin-bottom: $spacing-unit * 5;
-        max-width: 550px;
-        font-size: $font-size - 1px;
-        line-height: 22px;
+        max-width: 580px;
+        font-size: $font-size + 3px;
+        line-height: double($spacing-unit);
 
         @include respond-to('medium') {
-            font-size: $font-size + 3px;
-            line-height: 30px;
+            font-size: $font-size + 6px;
+            line-height: $spacing-unit * 3.5;
         }
 
         .hero--home & {

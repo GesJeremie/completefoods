@@ -6,6 +6,8 @@
     display: none;
     padding: double($spacing-unit);
     background-color: $white;
+    border-bottom: 1px solid #f1f2f6;
+    background-color: $gray--x-light;
 }
 
     .currencies__title {

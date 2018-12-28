@@ -1,3 +1,45 @@
+<!-- <div id="dropdown-currencies" class="currencies">
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--70-at-medium">
+      <div class="currencies__title">Show me the prices in:</div>
+      <ul class="currencies__list">
+        <% Currency.popular.each do |currency| %>
+          <li class="currencies__item">
+            <%= link_to currency_path(currency.code), { method: :put, class: currency_selected_class(currency, current_currency) } do %>
+              <span class="currencies__item-name"><%= currency.name %></span>
+              <span class="currencies__item-code"><%= currency.code %></span>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div> -->
+
+<div class="header">
+  <div class="header__text">
+    <%= link_to root_path, class: 'link' do %>
+      CompleteFoods<span class="header__text-guru">.guru</span>
+    <% end %>
+  </div>
+
+  <div class="header__links">
+    <a class="header__link" href="#">Collections</a>
+    <a class="header__link" href="#">Brands</a>
+    <a class="header__link header__link--highlight" href="#">Explore all Products</a>
+  </div>
+
+  <div class="header__currency">
+    <span class="header__currency-label">Currency: <a href="#" class="link" data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency"><%= current_currency.code %></a></span>
+  </div>
+
+    <!-- <a data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency" href="#" class="navigation__list-item-link">
+      <%= image_tag 'coin.png', class: 'navigation__currency-icon' %>
+      <span class="navigation__currency-label"><span class="navigation__currency-label-text">Currency:</span> <%= current_currency.code %></span>
+    </a> -->
+</div>
+
+<!--
 <div id="dropdown-currencies" class="currencies">
   <div class="grid grid--center">
     <div class="grid__cell grid__cell--70-at-medium">
@@ -45,3 +87,4 @@
     </div>
   </div>
 </div>
+-->

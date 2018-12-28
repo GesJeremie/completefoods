@@ -1,32 +1,66 @@
 <% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Soylent" %>
 
 <div class="hero hero--home">
-  <h1 class="hero__title">Find your Soylent Alternative.</h1>
-  <h2 class="hero__subtitle">Discover the best Soylent Alternatives based on price, diet, protein ratio, fat ratio, country of production and much more!</h2>
+  <%= image_tag 'guru.svg', width: 250 %>
+  <h1 class="hero__title">Find your Complete Food.</h1>
+  <h2 class="hero__subtitle">There are currently <%= Product.count %> Complete Foods available Worldwide. Choosing the best one can be overwhelming, let the Guru help you find the best <a href="#" class="link link--alt">Complete Food</a> based on your preferences.</h2>
+  <a href="" class="button button--large button--secondary button--capitalized button--with-arrow">Ask the Guru</a>
 </div>
 
-<div data-controller="browse-collections" class="collections">
-  <div class="grid grid--center">
-    <% Rails.configuration.collections.each_slice(4).with_index do |collections, index| %>
+<div class="divider divider--secondary"></div>
 
-      <% collections.each do |collection| %>
-        <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collections__item collections__item--row-<%= index %>"">
-          <a href="<%= collection[:route] %>">
-            <div class="collections__cover" style="background-image: url('<%= asset_path(collection[:cover]) %>')">
-              <div class="collections__title"><%= collection[:name] %></div>
+<div class="collections">
+
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--80-at-wide">
+      <h3 class="heading heading--1 heading--center">Browse Collections</h3>
+      <hr class="divider divider--small" />
+
+      <% Rails.configuration.collections.slice(0, 8).each_slice(4).with_index do |collections, index| %>
+        <div class="grid grid--center">
+          <% collections.each do |collection| %>
+            <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collections__item collections__item--row-<%= index %>"">
+              <a href="<%= collection[:route] %>">
+                <div class="collections__cover" style="background-image: url('<%= asset_path(collection[:cover]) %>')">
+                  <div class="collections__title"><%= collection[:name] %></div>
+                </div>
+              </a>
             </div>
-          </a>
+          <% end %>
         </div>
       <% end %>
 
-    <% end %>
+      <div class="grid grid--center">
+        <%= link_to 'Browse more collections', collections_path, class: 'button button--large' %>
+      </div>
+    </div>
   </div>
+</div>
 
-  <div class="collections__actions">
-    <a data-target="browse-collections.browseMore" data-action="click->browse-collections#onClickBrowseMore" class="button button--primary button--large collections__action">Browse more collections ↓</a>
-    <span data-target="browse-collections.divider" class="collections__action-divider">OR</span>
-    <%= link_to 'Explore all products →', products_path, class: 'button button--primary button--large collections__action' %>
-  </div>
+<div class="divider divider--secondary"></div>
 
-  <%= render 'shared/newsletter', content: 'Send me a message when a new collection is added' %>
+
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--80">
+      <h3 class="heading heading--1 heading--center">Browse Brands</h3>
+      <hr class="divider divider--small" />
+
+      <div class="grid grid--center">
+        <% Brand.reorder(name: :asc).slice(0, 16).each do |brand| %>
+          <div class="grid__cell grid__cell--25">
+            <div class="brand-summary">
+              <div class="brand-summary__item">
+                <% brand =  brand.decorate %>
+                <%= brand.flag %>
+                <%= brand.name %><br/>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <%= link_to 'Browse more brands', brands_path, class: 'button button--large' %>
+
+      </div>
+
+   </div>
 </div>

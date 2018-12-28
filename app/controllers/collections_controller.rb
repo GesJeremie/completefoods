@@ -3,6 +3,9 @@ class CollectionsController < BaseController
   before_action :valid_country?, only: [:made_in]
   before_action :valid_brand?, only: [:made_by]
 
+  def index
+  end
+
   def cheapest
     @products = find_products({ sort: :price_per_day_bulk_order_cheapest }).take(15)
     @view_model = Collection::CheapestViewModel.new(view_model_options)

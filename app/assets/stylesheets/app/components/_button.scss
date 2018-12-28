@@ -8,19 +8,7 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
 
 .button {
     display: inline-block;
-    margin: $spacing-unit;
     text-decoration: none;
-    border: 0;
-    outline: 0;
-    cursor: pointer;
-}
-
-.button:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
-}
-
-.button--primary {
     margin: 0;
     margin-top: double($spacing-unit);
     padding: $spacing-unit;
@@ -32,9 +20,36 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     border-radius: 5px;
 }
 
+.button:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+.button--secondary {
+    background-color: $purple;
+}
+
 .button--large {
     padding: double($spacing-unit) quadruple($spacing-unit);
     font-size: $font-size + 2px;
+}
+
+.button--capitalized {
+    text-transform: capitalize;
+}
+
+.button--uppercase {
+    text-transform: uppercase;
+}
+
+.button--with-arrow {
+    &:after {
+        content: '\2192';
+        display: inline-block;
+        vertical-align: middle;
+        font-size: $font-size + 2px;
+        padding-left: $spacing-unit;
+    }
 }
 
 .button--filters {
@@ -152,4 +167,15 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
         color: $white;
         background: $black;
     }
+}
+
+.brand-summary {
+    margin: $spacing-unit halve($spacing-unit);
+}
+
+.brand-summary__item {
+    border-radius: 5px;
+    background-color: $white;
+    padding: double($spacing-unit);
+    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);
 }

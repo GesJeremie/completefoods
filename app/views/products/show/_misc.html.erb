@@ -1,0 +1,34 @@
+<div class="grid">
+
+  <div class="grid__cell grid__cell--50-at-medium grid__cell--33-at-wide">
+
+    <% if product.subscription_available? %>
+      <div class="product-show__item product-show__item--green">
+        <%= emoji 'box' %>
+        <div class="product-show__item-label">Subscription Available</div>
+      </div>
+    <% else %>
+      <div class="product-show__item product-show__item--red">
+        <%= emoji 'box' %>
+        <div class="product-show__item-label">Subscription not Available</div>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div class="grid__cell grid__cell--50-at-medium grid__cell--33-at-wide">
+
+    <% if product.discount_for_subscription? %>
+      <div class="product-show__item product-show__item--green">
+        <%= emoji 'money' %>
+        <div class="product-show__item-label">Discount for Subscription</div>
+      </div>
+    <% else %>
+      <div class="product-show__item product-show__item--red">
+        <%= emoji 'money' %>
+        <div class="product-show__item-label">No Discount for Subscription</div>
+      </div>
+    <% end %>
+
+  </div>
+</div>

@@ -2,6 +2,82 @@
     #HEADER
 \*------------------------------------*/
 
+/*.header {
+    //margin: double($spacing-unit);
+    padding: triple($spacing-unit) triple($spacing-unit);
+    background: #2f3542;
+    border-radius: 10px;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 20px;
+}*/
+
 .header {
-    margin: double($spacing-unit);
+    padding: 30px 30px;
+    background: white;
+    border-radius: 10px;
+    width: 70%;
+    /* background: #f1f2f6; */
+    color: black;
+    margin: 0 auto;
+    border: 2px solid #f1f2f6;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+    border-top: 0;
+    margin-top: 0;
 }
+
+    .header__logo {
+        display: inline-block;
+    }
+
+    .header__text {
+        padding-right: double($spacing-unit);
+        font-size: 18px;
+        display: inline-block;
+        color: $black;
+        font-weight: 700;
+        border-right: 1px solid $white;
+    }
+
+        .header__text-guru {
+            font-weight: 900;
+        }
+
+    .header__links {
+        display: inline-block;
+        margin-left: double($spacing-unit);
+    }
+
+        .header__link:first-of-type {
+            margin-left: 0;
+        }
+
+        .header__link {
+            color: $black;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            margin: 0 $spacing-unit;
+        }
+
+        .header__link--highlight {
+            padding: halve($spacing-unit) $spacing-unit;
+            color: $white;
+            background: $purple;
+            border-radius: 5px;
+        }
+
+    .header__currency {
+        display: inline-block;
+        float: right;
+        color: $black;
+    }
+
+        .header__currency-label {}
+
+            .header__currency-code {
+                color: $purple;
+                text-decoration: underline;
+                text-decoration-style: dotted;
+            }

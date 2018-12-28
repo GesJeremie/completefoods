@@ -35,8 +35,6 @@ namespace :import do
               fat_per_serving: product['nutritionFacts']['fat'],
               subscription_available: product['filters']['hasSubscription'],
               discount_for_subscription: product['filters']['hasDiscountForSubscription'],
-              shaker_free_first_order: product['filters']['hasFreeShakerFirstOrder'],
-              sample_pack_available: product['filters']['hasSamplePack'],
               state: 'powder',
               notes: product['notes'],
               slug: create_slug(product['name']),
