@@ -1,28 +1,28 @@
-<% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Soylent" %>
+<% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Complete Food" %>
 
 <div class="hero hero--home">
   <%= image_tag 'guru.svg', width: 250 %>
   <h1 class="hero__title">Find your Complete Food.</h1>
-  <h2 class="hero__subtitle">There are currently <%= Product.count %> Complete Foods available Worldwide. Choosing the best one can be overwhelming, let the Guru help you find the best <a href="#" class="link link--alt">Complete Food</a> based on your preferences.</h2>
+  <h2 class="hero__subtitle">There are currently <%= Product.count %> Complete Foods available Worldwide. Choosing the best one can be overwhelming, let the Guru help you find the best <%= link_to 'Complete Food', what_is_a_complete_food_pages_path, class: 'link link--alt' %> based on your preferences.</h2>
   <a href="" class="button button--large button--secondary button--capitalized button--with-arrow">Ask the Guru</a>
 </div>
 
 <div class="divider divider--secondary"></div>
 
-<div class="collections">
+<div class="collection-summary__parent">
 
   <div class="grid grid--center">
     <div class="grid__cell grid__cell--80-at-wide">
       <h3 class="heading heading--1 heading--center">Browse Collections</h3>
       <hr class="divider divider--small" />
 
-      <% Rails.configuration.collections.slice(0, 8).each_slice(4).with_index do |collections, index| %>
+      <% preview_collections.each_slice(4) do |collections| %>
         <div class="grid grid--center">
           <% collections.each do |collection| %>
-            <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collections__item collections__item--row-<%= index %>"">
+            <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
               <a href="<%= collection[:route] %>">
-                <div class="collections__cover" style="background-image: url('<%= asset_path(collection[:cover]) %>')">
-                  <div class="collections__title"><%= collection[:name] %></div>
+                <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection[:cover]) %>')">
+                  <div class="collection-summary__item-title"><%= collection[:name] %></div>
                 </div>
               </a>
             </div>
@@ -39,28 +39,27 @@
 
 <div class="divider divider--secondary"></div>
 
+<div class="brand-summary__parent">
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--80">
+        <h3 class="heading heading--1 heading--center">Browse Brands</h3>
+        <hr class="divider divider--small" />
 
-<div class="grid grid--center">
-  <div class="grid__cell grid__cell--80">
-      <h3 class="heading heading--1 heading--center">Browse Brands</h3>
-      <hr class="divider divider--small" />
-
-      <div class="grid grid--center">
-        <% Brand.reorder(name: :asc).slice(0, 16).each do |brand| %>
-          <div class="grid__cell grid__cell--25">
-            <div class="brand-summary">
-              <div class="brand-summary__item">
-                <% brand =  brand.decorate %>
-                <%= brand.flag %>
-                <%= brand.name %><br/>
-              </div>
+        <div class="grid grid--center">
+          <% preview_brands.each do |brand| %>
+            <div class="grid__cell grid__cell--25">
+              <%= link_to brands_path, class: 'brand-summary' do %>
+                <div class="brand-summary__item">
+                  <span class="brand-summary__item-flag"><%= brand.flag %></span>
+                  <span class="brand-summary__item-name"><%= brand.name %></span>
+                </div>
+              <% end %>
             </div>
-          </div>
-        <% end %>
+          <% end %>
 
-        <%= link_to 'Browse more brands', brands_path, class: 'button button--large' %>
+          <%= link_to 'Browse more brands', brands_path, class: 'button button--large' %>
+        </div>
 
-      </div>
-
-   </div>
+     </div>
+  </div>
 </div>

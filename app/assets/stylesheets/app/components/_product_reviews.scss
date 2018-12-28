@@ -25,14 +25,14 @@
             }
 
         .product-reviews__no-results-description {
-            font-size: $font-size;
+            font-size: 14px;
         }
 
     .product-reviews__choices {}
 
     .product-reviews__meaning {
         margin-top: $spacing-unit;
-        font-size: $font-size;
+        font-size: 14px;
         text-align: left;
 
         strong {
@@ -49,7 +49,7 @@
             width: 100%;
             max-width: 100%;
             min-height: 100px;
-            font-size: $font-size;
+            font-size: 14px;
             border: 1px solid $gray--light;
             border-radius: 5px;
 
@@ -61,7 +61,7 @@
     .product-reviews__errors {
         padding: $spacing-unit 0;
         color: $red;
-        font-size: $font-size;
+        font-size: 14px;
     }
 
     .product-reviews__list {
@@ -80,13 +80,13 @@
                 .product-reviews__list-score-time {
                     margin-left: halve($spacing-unit);
                     color: $gray;
-                    font-size: $font-size;
+                    font-size: 14px;
                     font-weight: normal;
                 }
 
             .product-reviews__list-description {
                 margin-top: double($spacing-unit);
-                font-size: $font-size;
+                font-size: 14px;
                 line-height: triple($spacing-unit);
             }
 

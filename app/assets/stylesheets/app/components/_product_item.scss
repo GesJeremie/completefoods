@@ -57,7 +57,7 @@
 
             .product-item__heading-name-product {
                 margin-bottom: halve($spacing-unit);
-                font-size: $font-size + 4px;
+                font-size: 18px;
                 font-weight: 700;
             }
 
@@ -116,19 +116,19 @@
 
         .product-item__cost-value {
             display: block;
-            font-size: $font-size + 8px;
+            font-size: 22;
             font-family: $font-numeric;
             font-weight: 300;
 
             @include respond-to('medium') {
-                font-size: $font-size + 15px;
+                font-size: 29px;
             }
         }
 
         .product-item__cost-description {
             display: block;
             color: $green;
-            font-size: $font-size - 2px;
+            font-size: 12px;
             font-weight: 300;
 
             @include respond-to('medium') {

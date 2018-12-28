@@ -2,29 +2,18 @@
     #HEADER
 \*------------------------------------*/
 
-/*.header {
-    //margin: double($spacing-unit);
-    padding: triple($spacing-unit) triple($spacing-unit);
-    background: #2f3542;
-    border-radius: 10px;
-    width: 70%;
-    margin: 0 auto;
-    margin-top: 20px;
-}*/
-
 .header {
-    padding: 30px 30px;
-    background: white;
-    border-radius: 10px;
-    width: 70%;
-    /* background: #f1f2f6; */
-    color: black;
     margin: 0 auto;
-    border: 2px solid #f1f2f6;
+    margin-top: 0;
+    padding: triple($spacing-unit);
+    width: 70%;
+    color: $black;
+    background: $white;
+    border: 2px solid $gray--medium-light;
+    border-top: 0;
+    border-radius: 10px;
     border-top-right-radius: 0;
     border-top-left-radius: 0;
-    border-top: 0;
-    margin-top: 0;
 }
 
     .header__logo {
@@ -32,16 +21,16 @@
     }
 
     .header__text {
-        padding-right: double($spacing-unit);
-        font-size: 18px;
         display: inline-block;
+        padding-right: double($spacing-unit);
         color: $black;
-        font-weight: 700;
+        font-size: 18px;
+        font-weight: 400;
         border-right: 1px solid $white;
     }
 
         .header__text-guru {
-            font-weight: 900;
+            font-weight: 600;
         }
 
     .header__links {
@@ -54,11 +43,11 @@
         }
 
         .header__link {
-            color: $black;
-            text-decoration: none;
-            text-transform: uppercase;
-            font-weight: 700;
             margin: 0 $spacing-unit;
+            color: $black;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
         }
 
         .header__link--highlight {

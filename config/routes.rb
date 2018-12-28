@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   root 'home#index'
 
   # Collections
+  # TODO: Put in a collection scope.
   get 'cheapest', to: 'collections#cheapest'
   get 'for-athletes', to: 'collections#athletes'
   get 'for-vegans', to: 'collections#vegan'
@@ -31,6 +32,12 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show], param: :slug
   resources :currencies, only: [:update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
+
+  resources :pages, only: [] do
+    collection do
+      get 'what-is-a-complete-food'
+    end
+  end
 
   namespace :dashboard do
     root 'brands#index'
