@@ -1,0 +1,11 @@
+<% @brands.each do |brand| %>
+  <%= brand.flag %> <%= brand.name %> (<%= brand.products.count %>)<br/>
+
+  <% brand.products.each do |product| %>
+    <% if product.active %>
+      - <%= product.name %><br/>
+    <% end %>
+  <% end %>
+
+  <br/>
+<% end %>

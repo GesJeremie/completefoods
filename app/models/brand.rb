@@ -6,5 +6,9 @@ class Brand < ApplicationRecord
   validates :website, presence: true
   validates :country_id, presence: true
 
-  default_scope { order(id: :asc) }
+  default_scope { order(name: :asc) }
+
+  def self.with_active_products
+    Brand.joins(:products).where('products.active', true).group('brands.id')
+  end
 end

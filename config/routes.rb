@@ -28,7 +28,7 @@ Rails.application.routes.draw do
   get 'produced-by-:brand', to: 'collections#made_by'
 
   resources :collections, only: [:index]
-  resources :brands, only: [:index]
+  resources :brands, only: [:index, :show]
   resources :products, only: [:index, :show], param: :slug
   resources :currencies, only: [:update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
