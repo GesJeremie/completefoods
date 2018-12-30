@@ -1,20 +1,17 @@
 class BrandsController < BaseController
-
   def index
-    @brands = brands_with_active_products
-    @view_model = BrandViewModel.new(brands: @brands)
+    @view_model = Brands::IndexViewModel.new(brands: Brand.with_active_products)
   end
 
   def show
+    brand = brand_from_slug
+    @view_model = Brands::ShowViewModel.new(brand: brand)
   end
 
   private
 
-    def brands_with_active_products
-      @brands_with_active_products ||=
-        begin
-          BrandDecorator.decorate_collection(Brand.with_active_products)
-        end
+    def brand_from_slug
+      @brand_from_slug ||= Brand.find(id_from_slug).decorate
     end
 
     def id_from_slug

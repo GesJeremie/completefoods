@@ -1,10 +1,10 @@
-class BrandViewModel < ApplicationViewModel
+class Brands::IndexViewModel < BrandsViewModel
   attr_reader :brands
 
   ALPHABET = ('a'..'z').freeze
 
   def initialize(brands:)
-    @brands = brands
+    @brands = BrandDecorator.decorate_collection(brands)
     @used_anchors = []
   end
 

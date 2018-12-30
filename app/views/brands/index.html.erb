@@ -1,6 +1,6 @@
 <div class="hero">
   <h1 class="hero__title">Brands</h1>
-  <h2 class="hero__subtitle">There are currently <%= @brands.count %> brands producing over <%= @view_model.count_active_products %> Complete Foods worlwide.</h2>
+  <h2 class="hero__subtitle">There are currently <%= @view_model.brands.count %> brands producing over <%= @view_model.count_active_products %> Complete Foods worlwide.</h2>
 </div>
 
 <div class="grid grid--center">
@@ -12,7 +12,7 @@
       <% end %>
     </div>
 
-    <% @brands.each do |brand| %>
+    <% @view_model.brands.each do |brand| %>
         <div id="<%= @view_model.navigation_anchor(brand) %>" class="brand-summary-extended clearfix">
           <div class="brand-summary-extended__card">
             <div class="brand-summary-extended__details">
@@ -24,13 +24,8 @@
                 <%= pluralize(brand.products.count, 'product') %>
               </div>
               <div class="brand-summary-extended__details-actions">
-                <% if brand.website.present? %>
-                  <%= link_to 'Website', brand.website, class: 'button button--no-margin button--fixed-width' %>
-                <% end %>
-
-                <% if brand.facebook.present? %>
-                  <%= link_to 'Facebook', brand.facebook, class: 'button button--no-margin button--fixed-width' %>
-                <% end %>
+                <%= link_to 'Website', brand.website, class: 'button button--no-margin button--fixed-width' if brand.website.present? %>
+                <%= link_to 'Facebook', brand.facebook, class: 'button button--no-margin button--fixed-width' if brand.facebook.present? %>
               </div>
             </div>
 

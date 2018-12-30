@@ -1,0 +1,2 @@
+class BrandsViewModel < ApplicationViewModel
+end
