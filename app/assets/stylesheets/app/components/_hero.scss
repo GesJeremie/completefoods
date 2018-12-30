@@ -37,7 +37,7 @@
         margin-bottom: $spacing-unit * 5;
         max-width: 580px;
         font-size: 17px;
-        line-height: double($spacing-unit);
+        line-height: triple($spacing-unit);
 
         @include respond-to('medium') {
             font-size: 20px;
@@ -46,6 +46,7 @@
 
         .hero--home & {
             margin-bottom: double($spacing-unit);
+
         }
 
         .hero--collection & {
