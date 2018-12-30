@@ -16,20 +16,24 @@
   </div>
 </div> -->
 
-<div class="header">
-  <div class="header__text">
+<div data-controller="header-menu" class="header clearfix">
+  <div class="header__logo">
     <%= link_to root_path, class: 'link' do %>
-      CompleteFoods<span class="header__text-guru">.guru</span>
+      CompleteFoods<span class="header__logo-guru">.guru</span>
     <% end %>
   </div>
 
-  <div class="header__links">
+  <div data-action="click->header-menu#onClickMenu" class="header__menu">
+    <%= inline_svg('menu.svg', class: 'icon') %>
+  </div>
+
+  <div data-target="header-menu.links" class="header__links">
     <a class="header__link" href="#">Collections</a>
     <%= link_to 'Brands', brands_path, class: 'header__link' %>
     <%= link_to 'Explore all Products', products_path, class: 'header__link header__link--highlight' %>
   </div>
 
-  <div class="header__currency">
+  <div data-target="header-menu.currency" class="header__currency">
     <span class="header__currency-label">Currency: <a href="#" class="link" data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency"><%= current_currency.code %></a></span>
   </div>
 

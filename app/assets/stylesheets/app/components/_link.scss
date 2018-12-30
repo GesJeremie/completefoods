@@ -13,10 +13,10 @@
         border-bottom: 1px solid $black;
     }
 
-    .header__text & {
-        border: 0;
-        text-decoration: none;
+    .header__logo & {
         color: $black;
+        text-decoration: none;
+        border: 0;
     }
 }
 

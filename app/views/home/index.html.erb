@@ -47,7 +47,7 @@
 
         <div class="grid grid--center">
           <% @view_model.preview_brands.each do |brand| %>
-            <div class="grid__cell grid__cell--25">
+            <div class="grid__cell grid__cell--25-at-wide">
               <%= link_to brands_path, class: 'brand-summary' do %>
                 <div class="brand-summary__item">
                   <span class="brand-summary__item-flag"><%= brand.flag %></span>

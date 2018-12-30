@@ -50,7 +50,7 @@ gem 'mini_magick'
 gem 'nokogiri'
 
 # Icons
-gem 'fontcustom'
+gem 'inline_svg'
 
 # Front-end
 gem 'avalanche-rails', '~> 1.2.0'
