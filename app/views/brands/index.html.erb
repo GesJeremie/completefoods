@@ -17,7 +17,8 @@
           <div class="brand-summary-extended__card">
             <div class="brand-summary-extended__details">
               <div class="brand-summary-extended__details-name">
-                <span class="brand-summary-extended__details-name-flag"><%= brand.flag %></span> <%= brand.name %>
+                <span class="brand-summary-extended__details-name-flag"><%= brand.flag %></span>
+                <%= link_to brand.name, brand_path(brand), class: 'link link--alt link--with-spacer' %>
               </div>
               <div class="brand-summary-extended__details-number-products">
                 <%= pluralize(brand.products.count, 'product') %>
@@ -49,6 +50,7 @@
                 <% end %>
               </div>
             </div>
+
           </div>
         </div>
     <% end %>

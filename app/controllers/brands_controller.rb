@@ -16,4 +16,8 @@ class BrandsController < BaseController
           BrandDecorator.decorate_collection(Brand.with_active_products)
         end
     end
+
+    def id_from_slug
+      @id_from_slug ||= params[:slug].split('-').first rescue nil
+    end
 end
