@@ -1,5 +1,4 @@
 class Collection::BrandViewModel < CollectionViewModel
-
   def initialize(products:, brand:, current_currency:)
     super(products: products, current_currency: current_currency)
     @brand = brand

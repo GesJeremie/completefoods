@@ -1,7 +1,6 @@
 (function() {
     'use strict';
 
-
     /**
      * @description
      * Given a listener name return the method associated

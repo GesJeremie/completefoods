@@ -41,6 +41,14 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     text-transform: uppercase;
 }
 
+.button--no-margin {
+    margin: 0;
+}
+
+.button--fixed-width {
+    width: 100px;
+}
+
 .button--with-arrow {
     &:after {
         display: inline-block;

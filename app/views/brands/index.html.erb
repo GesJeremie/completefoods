@@ -1,11 +1,57 @@
-<% @brands.each do |brand| %>
-  <%= brand.flag %> <%= brand.name %> (<%= brand.products.count %>)<br/>
+<div class="hero">
+  <h1 class="hero__title">Brands</h1>
+  <h2 class="hero__subtitle">There are currently <%= @brands.count %> brands producing over <%= @view_model.count_active_products %> Complete Foods worlwide.</h2>
+</div>
 
-  <% brand.products.each do |product| %>
-    <% if product.active %>
-      - <%= product.name %><br/>
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--70-at-wide">
+
+    <div class="navigation-alphabet">
+      <% @view_model.navigation.map do |link| %>
+        <%= link %>
+      <% end %>
+    </div>
+
+    <% @brands.each do |brand| %>
+        <div id="<%= @view_model.navigation_anchor(brand) %>" class="brand-summary-extended clearfix">
+          <div class="brand-summary-extended__card">
+            <div class="brand-summary-extended__details">
+              <div class="brand-summary-extended__details-name">
+                <span class="brand-summary-extended__details-name-flag"><%= brand.flag %></span> <%= brand.name %>
+              </div>
+              <div class="brand-summary-extended__details-number-products">
+                <%= pluralize(brand.products.count, 'product') %>
+              </div>
+              <div class="brand-summary-extended__details-actions">
+                <% if brand.website.present? %>
+                  <%= link_to 'Website', brand.website, class: 'button button--no-margin button--fixed-width' %>
+                <% end %>
+
+                <% if brand.facebook.present? %>
+                  <%= link_to 'Facebook', brand.facebook, class: 'button button--no-margin button--fixed-width' %>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="brand-summary-extended__products">
+              <div class="grid">
+                <% brand.products.each do |product| %>
+                  <% if product.active? %>
+                    <div class="grid__cell grid__cell--20-at-wide">
+                      <%= link_to product_path(product), class: 'brand-summary-extended__product link link--alt' do %>
+                        <div class="brand-summary-extended__product-body">
+                          <div class="brand-summary-extended__product-cover" style="background-image: url('<%= product.image_url %>')"></div>
+                          <div class="brand-summary-extended__product-name"><%= product.name %></div>
+                        </div>
+                      <% end %>
+                    </div>
+                  <% end %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
     <% end %>
-  <% end %>
 
-  <br/>
-<% end %>
+  </div>
+</div>

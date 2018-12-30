@@ -3,7 +3,7 @@
 <div class="hero hero--home">
   <%= image_tag 'guru.svg', width: 250 %>
   <h1 class="hero__title">Find your Complete Food.</h1>
-  <h2 class="hero__subtitle">There are currently <%= Product.count %> Complete Foods available Worldwide. Choosing the best one can be overwhelming, let the Guru help you find the best <%= link_to 'Complete Food', what_is_a_complete_food_pages_path, class: 'link link--alt' %> based on your preferences.</h2>
+  <h2 class="hero__subtitle">There are currently <%= @view_model.count_active_products %> Complete Foods available Worldwide. Choosing the best one can be overwhelming, let the Guru help you find the best <%= link_to 'Complete Food', what_is_a_complete_food_pages_path, class: 'link link--alt' %> based on your preferences.</h2>
   <a href="" class="button button--large button--secondary button--capitalized button--with-arrow">Ask the Guru</a>
 </div>
 
@@ -16,7 +16,7 @@
       <h3 class="heading heading--1 heading--center">Browse Collections</h3>
       <hr class="divider divider--small" />
 
-      <% preview_collections.each_slice(4) do |collections| %>
+      <% @view_model.preview_collections.each_slice(4) do |collections| %>
         <div class="grid grid--center">
           <% collections.each do |collection| %>
             <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
@@ -46,7 +46,7 @@
         <hr class="divider divider--small" />
 
         <div class="grid grid--center">
-          <% preview_brands.each do |brand| %>
+          <% @view_model.preview_brands.each do |brand| %>
             <div class="grid__cell grid__cell--25">
               <%= link_to brands_path, class: 'brand-summary' do %>
                 <div class="brand-summary__item">

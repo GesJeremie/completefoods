@@ -1,5 +1,8 @@
 Rails.application.configure do
 
+  config.number_items_preview_collections = 8
+  config.number_items_preview_brands = 16
+
   config.narrow_max_results = 15
 
   config.sorters = [

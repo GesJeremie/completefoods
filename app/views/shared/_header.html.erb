@@ -25,8 +25,8 @@
 
   <div class="header__links">
     <a class="header__link" href="#">Collections</a>
-    <a class="header__link" href="#">Brands</a>
-    <a class="header__link header__link--highlight" href="#">Explore all Products</a>
+    <%= link_to 'Brands', brands_path, class: 'header__link' %>
+    <%= link_to 'Explore all Products', products_path, class: 'header__link header__link--highlight' %>
   </div>
 
   <div class="header__currency">
@@ -54,36 +54,6 @@
           </li>
         <% end %>
       </ul>
-    </div>
-  </div>
-</div>
-
-<div class="header">
-  <div class="grid grid--center grid--middle">
-    <div class="grid__cell grid__cell--80 grid__cell--50-at-medium grid__cell--30-at-wide">
-      <a href="<%= root_path %>" class="logo">
-        <%= image_tag 'kiwi.png', class: 'logo__image' %>
-        <span class="logo__soylent">
-          Soylent
-        </span>
-        <span class="logo__alternatives">
-          Alternatives
-        </span>
-      </a>
-    </div>
-    <div class="grid__cell grid__cell--20 grid__cell--50-at-medium grid__cell--70-at-wide">
-      <div class="navigation">
-        <div class="navigation__header">
-          <ul class="navigation__list">
-            <li class="navigation__list-item navigation__list-item--currency">
-              <a data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency" href="#" class="navigation__list-item-link">
-                <%= image_tag 'coin.png', class: 'navigation__currency-icon' %>
-                <span class="navigation__currency-label"><span class="navigation__currency-label-text">Currency:</span> <%= current_currency.code %></span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </div>
   </div>
 </div>

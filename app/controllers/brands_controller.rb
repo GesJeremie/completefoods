@@ -2,6 +2,7 @@ class BrandsController < BaseController
 
   def index
     @brands = brands_with_active_products
+    @view_model = BrandViewModel.new(brands: @brands)
   end
 
   def show

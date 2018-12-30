@@ -1,6 +1,8 @@
 class BrandDecorator < Draper::Decorator
   delegate_all
 
+  decorates_association :products
+
   def name
     object.name.capitalize
   end

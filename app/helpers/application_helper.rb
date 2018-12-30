@@ -29,13 +29,4 @@ module ApplicationHelper
   def emoji(name)
     image_tag "emojis/#{name}.png", class: "emoji emoji--#{name}"
   end
-
-  def preview_collections
-    Rails.configuration.collections.slice(0, 8)
-  end
-
-  def preview_brands
-    brands = Brand.reorder(name: :asc).slice(0, 16)
-    BrandDecorator.decorate_collection(brands)
-  end
 end

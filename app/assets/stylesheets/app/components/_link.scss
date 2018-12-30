@@ -23,3 +23,12 @@
 .link--alt {
     color: $black;
 }
+
+.link--disabled {
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+        cursor: not-allowed;
+    }
+}
