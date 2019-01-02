@@ -52,14 +52,15 @@
 
       <div class="grid__cell grid__cell--20-at-medium">
         <div class="product-item__cost">
-          <span class="product-item__cost-value"><%= from_usd_to_current_currency(product.price.per_month_bulk_order_in_currency('USD')) %></span>
-          <span class="product-item__cost-description">per month - bulk order</span>
+          <span class="product-item__cost-value"><%= from_usd_to(current_currency, product.price.per_kcal(100, type: :bulk_order)) %></span>
+          <span class="product-item__cost-description">per 100kcal - bulk order</span>
         </div>
       </div>
     </div>
   </a>
 <% end %>
 
+<!---
 <% if local_assigns.fetch(:with_sponsors, true) %>
 
   <% if product_counter == 2 %>
@@ -75,7 +76,7 @@
   <% end %>
 
   <% if product_counter == 6 %>
-    <!-- <div class="sponsor sponsor--powdermatter">
+    <div class="sponsor sponsor--powdermatter">
       <div class="sponsor__container">
         <%= image_tag 'sponsors/powdermatter.jpg', class: 'sponsor__logo' %>
         <p class="sponsor__text">
@@ -83,6 +84,7 @@
           <%= link_to 'See more', 'https://goo.gl/gregreg', target: '_blank', class: 'button button--sponsor' %>
         </p>
       </div>
-    </div> -->
+    </div>
   <% end %>
 <% end %>
+--->

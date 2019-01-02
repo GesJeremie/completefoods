@@ -1,7 +1,6 @@
 class ProductPrice < ApplicationRecord
   DAYS_PER_MONTH = 30.4167.freeze
   KCAL_PER_DAY = 2000.freeze
-  KCAL_PER_MONTH = (DAYS_PER_MONTH * KCAL_PER_DAY).freeze
 
   belongs_to :product, touch: true
   belongs_to :currency
@@ -11,46 +10,33 @@ class ProductPrice < ApplicationRecord
   validates :per_serving_minimum_order, presence: true
   validates :per_serving_bulk_order, presence: true
 
-  def per_day_minimum_order
-    cost_per_day(self.per_serving_minimum_order)
+  def per_kcal(kcal, type:)
+    if type == :minimum_order
+      kcal * cost_per_kcal(self.per_serving_minimum_order)
+    else
+      kcal * cost_per_kcal(self.per_serving_bulk_order)
+    end
   end
 
-  def per_day_bulk_order
-    cost_per_day(self.per_serving_bulk_order)
+  def per_day(type:)
+    per_kcal(KCAL_PER_DAY, type: type)
   end
 
-  def per_month_minimum_order
-    per_day_minimum_order * DAYS_PER_MONTH
+  def per_month(type:)
+    per_day(type: type) * DAYS_PER_MONTH
   end
 
-  def per_month_bulk_order
-    per_day_bulk_order * DAYS_PER_MONTH
+  def per_kcal_in_currency(kcal, type:, currency:)
+    cost = per_kcal(kcal, type: type)
+    in_currency(cost, currency)
   end
 
-  #
-
-  def per_serving_minimum_order_in_currency(currency_code)
-    in_currency(self.per_serving_minimum_order, currency_code)
+  def per_day_in_currency(type:, currency:)
+    in_currency(per_day(type: type), currency)
   end
 
-  def per_serving_bulk_order_in_currency(currency_code)
-    in_currency(self.per_serving_bulk_order, currency_code)
-  end
-
-  def per_day_minimum_order_in_currency(currency_code)
-    in_currency(per_day_minimum_order, currency_code)
-  end
-
-  def per_day_bulk_order_in_currency(currency_code)
-    in_currency(per_day_bulk_order, currency_code)
-  end
-
-  def per_month_minimum_order_in_currency(currency_code)
-    in_currency(per_month_minimum_order, currency_code)
-  end
-
-  def per_month_bulk_order_in_currency(currency_code)
-    in_currency(per_month_bulk_order, currency_code)
+  def per_month_in_currency(type:, currency:)
+    in_currency(per_month(type: type), currency: currency)
   end
 
   private
@@ -59,8 +45,7 @@ class ProductPrice < ApplicationRecord
       number.to_money(self.currency.code).exchange_to(currency_code).to_d
     end
 
-    def cost_per_day(price_per_serving)
-      meals_per_day = KCAL_PER_DAY / self.product.kcal_per_serving
-      meals_per_day * price_per_serving
+    def cost_per_kcal(price_per_serving)
+      price_per_serving / self.product.kcal_per_serving
     end
 end

@@ -1,16 +1,16 @@
 module ApplicationHelper
   include ActionView::Helpers::AssetTagHelper
 
-  def digest_for_cache(value)
-    Digest::MD5.hexdigest(value.to_s)
-  end
-
-  def params_for_cache
-    params.permit!.to_h
-  end
-
   def humanize_boolean(boolean)
     I18n.t((!!boolean).to_s)
+  end
+
+  def icon_boolean(boolean)
+    boolean ? inline_svg('check.svg', class: 'icon') : inline_svg('cross.svg', class: 'icon')
+  end
+
+  def strikethrough_if_false(text, boolean)
+    boolean ? text : content_tag(:strike, text)
   end
 
   def to_slug(string)

@@ -1,35 +1,24 @@
-<div class="grid">
-
-  <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
-
-    <% if product.diet.vegan? %>
-      <div class="product-show__item product-show__item--green">
-        <%= emoji 'plant' %>
-        <div class="product-show__item-label">Suitable for Vegans</div>
-      </div>
-    <% else %>
-      <div class="product-show__item product-show__item--red">
-        <%= emoji 'plant' %>
-        <div class="product-show__item-label">Not suitable for Vegans</div>
-      </div>
-    <% end %>
-
-  </div>
-
-  <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
-
-    <% if product.diet.vegetarian? %>
-      <div class="product-show__item product-show__item--green">
-        <%= emoji 'watermelon' %>
-        <div class="product-show__item-label">Suitable for Vegetarians</div>
-      </div>
-    <% else %>
-      <div class="product-show__item product-show__item--red">
-        <%= emoji 'watermelon' %>
-        <div class="product-show__item-label">Not suitable for Vegetarians</div>
-      </div>
-    <% end %>
-
-  </div>
-
-</div>
+<ul class="product-show__attributes">
+  <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.diet.vegetarian? %>">
+    <div class="product-show__attribute-icon">
+      <%= emoji 'watermelon' %>
+    </div>
+    <div class="product-show__attribute-label">
+      Vegetarian
+    </div>
+    <div class="product-show__attribute-value">
+      <%= humanize_boolean(product.diet.vegetarian?) %>
+    </div>
+  </li>
+  <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.diet.vegan? %>">
+    <div class="product-show__attribute-icon">
+      <%= emoji 'plant' %>
+    </div>
+    <div class="product-show__attribute-label">
+      Vegan
+    </div>
+    <div class="product-show__attribute-value">
+      <%= humanize_boolean(product.diet.vegan?) %>
+    </div>
+  </li>
+</ul>

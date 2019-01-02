@@ -2,21 +2,25 @@
     #PRODUCT-SHOW
 \*------------------------------------*/
 
+$product-show-thumbnail-size: 80px !default;
+$product-show-attribute-bg-color: darken($gray--x-light, 1%) !default;
+
 .product-show {}
 
     .product-show__heading {
+        margin-top: double($spacing-unit);
         text-align: center;
     }
 
         .product-show__thumbnail {
             display: inline-block;
             margin-left: $spacing-unit;
-            width: 80px;
-            height: 80px;
+            width: $product-show-thumbnail-size;
+            height: $product-show-thumbnail-size;
             text-align: center;
             background-size: cover;
             border-radius: 50%;
-            box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12);
+            box-shadow: $box-shadow--thumbnail;
             vertical-align: middle;
 
             @include respond-to('medium') {
@@ -39,6 +43,7 @@
         text-decoration: none;
         background-color: $white;
         border-radius: 8px;
+        border: 2px solid $gray--medium-light;
 
         @include respond-to('medium') {
             margin-top: triple($spacing-unit);
@@ -100,6 +105,34 @@
             font-size: 14px;
             line-height: 20px;
         }
+
+        .product-show__attributes {}
+
+            .product-show__attribute {
+                @extend %clearfix;
+                margin: $spacing-unit 0;
+                padding: $spacing-unit double($spacing-unit);
+                border-radius: 5px;
+                max-width: 340px;
+                background-color: $product-show-attribute-bg-color;
+            }
+
+            .product-show__attribute--unavailable {
+                background-color: $red--x-light;
+            }
+
+                .product-show__attribute-icon {
+                    display: inline-block;
+                }
+
+                .product-show__attribute-label {
+                    display: inline-block;
+                    width: 230px;
+                }
+
+                .product-show__attribute-value {
+                    display: inline-block;
+                }
 
         .product-show__item {
             margin-bottom: $spacing-unit;

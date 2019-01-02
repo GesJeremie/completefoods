@@ -5,19 +5,29 @@
     <th>Minimum Order</th>
   </tr>
   <tr>
-    <td>Per Serving</td>
-    <td><%= from_usd_to_current_currency(product.price.per_serving_bulk_order_in_currency('USD')) %></td>
-    <td><%= from_usd_to_current_currency(product.price.per_serving_minimum_order_in_currency('USD')) %></td>
+    <td>Per 100kcal</td>
+    <td><%= from_usd_to current_currency, product.price.per_kcal(100, type: :bulk_order) %></td>
+    <td><%= from_usd_to current_currency, product.price.per_kcal(100, type: :minimum_order) %></td>
   </tr>
   <tr>
-    <td>Per Day</td>
-    <td><%= from_usd_to_current_currency(product.price.per_day_bulk_order_in_currency('USD')) %></td>
-    <td><%= from_usd_to_current_currency(product.price.per_day_minimum_order_in_currency('USD')) %></td>
+    <td>Per 500kcal</td>
+    <td><%= from_usd_to current_currency, product.price.per_kcal(500, type: :bulk_order) %></td>
+    <td><%= from_usd_to current_currency, product.price.per_kcal(500, type: :minimum_order) %></td>
+  </tr>
+  <tr>
+    <td>Per Serving (<%= product.kcal_per_serving %>kcal)</td>
+    <td><%= from_usd_to current_currency, product.price.per_kcal(product.model.kcal_per_serving, type: :bulk_order) %></td>
+    <td><%= from_usd_to current_currency, product.price.per_kcal(product.model.kcal_per_serving, type: :minimum_order) %></td>
+  </tr>
+  <tr>
+    <td>Per Day (2000kcal)</td>
+    <td><%= from_usd_to current_currency, product.price.per_day(type: :bulk_order) %></td>
+    <td><%= from_usd_to current_currency, product.price.per_day(type: :minimum_order) %></td>
   </tr>
   <tr>
     <td>Per Month</td>
-    <td><%= from_usd_to_current_currency(product.price.per_month_bulk_order_in_currency('USD')) %></td>
-    <td><%= from_usd_to_current_currency(product.price.per_month_minimum_order_in_currency('USD')) %></td>
+    <td><%= from_usd_to current_currency, product.price.per_month(type: :bulk_order) %></td>
+    <td><%= from_usd_to current_currency, product.price.per_month(type: :minimum_order) %></td>
   </tr>
 </table>
 

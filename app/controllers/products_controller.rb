@@ -5,9 +5,7 @@ class ProductsController < BaseController
   end
 
   def show
-    @product = Product.find_by_slug(params[:slug]).decorate
-    @brand = @product.brand
-    @reviews = ProductReviewDecorator.decorate_collection(@product.reviews)
+    @view_model = Products::ShowViewModel.new(product: product_from_slug)
   end
 
   private
@@ -31,5 +29,9 @@ class ProductsController < BaseController
           sort
           narrow
         ])
+    end
+
+    def product_from_slug
+      @product_from_slug ||= Product.find_by_slug(params[:slug])
     end
 end

@@ -1,6 +1,6 @@
 class CollectionViewModel < ApplicationViewModel
 
-  def initialize(products:, current_currency:)
+  def initialize(products, current_currency:)
     @products = products
     @current_currency = current_currency
   end

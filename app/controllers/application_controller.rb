@@ -1,14 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  helper_method :current_user, :current_currency
 
-  private
+  def current_user
+    @current_user ||= session[:current_user_id] &&
+      User.find_by(id: session[:current_user_id])
+  end
 
-    def current_user
-      @_current_user ||= session[:current_user_id] &&
-        User.find_by(id: session[:current_user_id])
-    end
-
-    def current_currency
-      helpers.current_currency
-    end
+  def current_currency
+    @current_currency ||=
+      begin
+        Currency.find_by_code(session[:current_currency]) || Currency.find_by_code('USD')
+      end
+  end
 end

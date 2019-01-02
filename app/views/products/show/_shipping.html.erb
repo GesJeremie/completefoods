@@ -1,67 +1,46 @@
-<div class="grid">
-
-  <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
-
-    <% if product.shipment.united_states? %>
-      <div class="product-show__item product-show__item--green">
-        <%= emoji 'usa' %>
-        <div class="product-show__item-label">United States</div>
-      </div>
-    <% else %>
-      <div class="product-show__item product-show__item--red">
-        <%= emoji 'usa' %>
-        <div class="product-show__item-label">United States</div>
-      </div>
-    <% end %>
-
-  </div>
-
-  <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
-
-    <% if product.shipment.canada? %>
-      <div class="product-show__item product-show__item--green">
-        <%= emoji 'canada' %>
-        <div class="product-show__item-label">Canada</div>
-      </div>
-    <% else %>
-      <div class="product-show__item product-show__item--red">
-        <%= emoji 'canada' %>
-        <div class="product-show__item-label">Canada</div>
-      </div>
-    <% end %>
-
-  </div>
-
-  <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
-
-    <% if product.shipment.europe? %>
-      <div class="product-show__item product-show__item--green">
-        <%= emoji 'europe' %>
-        <div class="product-show__item-label">Europe</div>
-      </div>
-    <% else %>
-      <div class="product-show__item product-show__item--red">
-        <%= emoji 'europe' %>
-        <div class="product-show__item-label">Europe</div>
-      </div>
-    <% end %>
-
-  </div>
-
-  <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
-
-    <% if product.shipment.rest_of_world? %>
-      <div class="product-show__item product-show__item--green">
-        <%= emoji 'world' %>
-        <div class="product-show__item-label">Rest of World</div>
-      </div>
-    <% else %>
-      <div class="product-show__item product-show__item--red">
-        <%= emoji 'world' %>
-        <div class="product-show__item-label">Rest of World</div>
-      </div>
-    <% end %>
-
-  </div>
-
-</div>
+<ul class="product-show__attributes">
+  <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.shipment.united_states? %>">
+    <div class="product-show__attribute-icon">
+      <%= emoji 'usa' %>
+    </div>
+    <div class="product-show__attribute-label">
+      United States
+    </div>
+    <div class="product-show__attribute-value">
+      <%= humanize_boolean(product.shipment.united_states?) %>
+    </div>
+  </li>
+  <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.shipment.canada? %>">
+    <div class="product-show__attribute-icon">
+      <%= emoji 'canada' %>
+    </div>
+    <div class="product-show__attribute-label">
+      Canada
+    </div>
+    <div class="product-show__attribute-value">
+      <%= humanize_boolean(product.shipment.canada?) %>
+    </div>
+  </li>
+  <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.shipment.europe? %>">
+    <div class="product-show__attribute-icon">
+      <%= emoji 'europe' %>
+    </div>
+    <div class="product-show__attribute-label">
+      Europe
+    </div>
+    <div class="product-show__attribute-value">
+      <%= humanize_boolean(product.shipment.europe?) %>
+    </div>
+  </li>
+  <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.shipment.rest_of_world? %>">
+    <div class="product-show__attribute-icon">
+      <%= emoji 'world' %>
+    </div>
+    <div class="product-show__attribute-label">
+      Rest of World
+    </div>
+    <div class="product-show__attribute-value">
+      <%= humanize_boolean(product.shipment.rest_of_world?) %>
+    </div>
+  </li>
+</ul>

@@ -4,14 +4,13 @@ class BrandsController < BaseController
   end
 
   def show
-    brand = brand_from_slug
-    @view_model = Brands::ShowViewModel.new(brand: brand)
+    @view_model = Brands::ShowViewModel.new(brand: brand_from_slug)
   end
 
   private
 
     def brand_from_slug
-      @brand_from_slug ||= Brand.find(id_from_slug).decorate
+      @brand_from_slug ||= Brand.find(id_from_slug)
     end
 
     def id_from_slug

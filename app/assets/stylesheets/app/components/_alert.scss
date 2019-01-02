@@ -2,12 +2,14 @@
     #ALERT
 \*------------------------------------*/
 
+$alert-bg-color: darken($gray--x-light, 5%) !default;
+
 .alert {
     display: inline-block;
     padding: double($spacing-unit);
     width: 100%;
-    color: $white;
-    background-color: $blue;
+    color: $black;
+    background-color: $alert-bg-color;
     border-radius: 5px;
 
     strong {
@@ -17,6 +19,6 @@
 
 .alert--small {
     padding: $spacing-unit * 1.5;
-    font-size: 13px;
+    font-size: 14px;
     line-height: 16px;
 }

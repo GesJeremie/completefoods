@@ -1,38 +1,38 @@
-<div class="hero">
-  <h1 class="hero__title">Brands</h1>
-  <h2 class="hero__subtitle">There are currently <%= @view_model.brands.count %> brands producing over <%= @view_model.count_active_products %> Complete Foods worlwide.</h2>
-</div>
+<% cache [@view_model.cache_key] do %>
+  <div class="hero">
+    <h1 class="hero__title">Brands</h1>
+    <h2 class="hero__subtitle">There are currently <%= @view_model.brands.count %> brands producing over <%= @view_model.count_active_products %> Complete Foods worlwide.</h2>
+  </div>
 
-<div class="grid grid--center">
-  <div class="grid__cell grid__cell--70-at-wide">
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--70-at-wide">
 
-    <div class="navigation-alphabet">
-      <% @view_model.navigation.map do |link| %>
-        <%= link %>
-      <% end %>
-    </div>
+      <div class="navigation-alphabet">
+        <% @view_model.navigation.map do |link| %>
+          <%= link %>
+        <% end %>
+      </div>
 
-    <% @view_model.brands.each do |brand| %>
-        <div id="<%= @view_model.navigation_anchor(brand) %>" class="brand-summary-extended clearfix">
-          <div class="brand-summary-extended__card">
-            <div class="brand-summary-extended__details">
-              <div class="brand-summary-extended__details-name">
-                <span class="brand-summary-extended__details-name-flag"><%= brand.flag %></span>
-                <%= link_to brand.name, brand_path(brand), class: 'link link--alt link--with-spacer' %>
+      <% @view_model.brands.each do |brand| %>
+          <div id="<%= @view_model.navigation_anchor(brand) %>" class="brand-summary-extended clearfix">
+            <div class="brand-summary-extended__card">
+              <div class="brand-summary-extended__details">
+                <div class="brand-summary-extended__details-name">
+                  <span class="brand-summary-extended__details-name-flag"><%= brand.flag %></span>
+                  <%= link_to brand.name, brand_path(brand), class: 'link link--alt link--with-spacer' %>
+                </div>
+                <div class="brand-summary-extended__details-number-products">
+                  <%= pluralize(brand.products.count, 'product') %>
+                </div>
+                <div class="brand-summary-extended__details-actions">
+                  <%= link_to 'Website', brand.website, class: 'button button--no-margin button--fixed-width' if brand.website.present? %>
+                  <%= link_to 'Facebook', brand.facebook, class: 'button button--no-margin button--fixed-width' if brand.facebook.present? %>
+                </div>
               </div>
-              <div class="brand-summary-extended__details-number-products">
-                <%= pluralize(brand.products.count, 'product') %>
-              </div>
-              <div class="brand-summary-extended__details-actions">
-                <%= link_to 'Website', brand.website, class: 'button button--no-margin button--fixed-width' if brand.website.present? %>
-                <%= link_to 'Facebook', brand.facebook, class: 'button button--no-margin button--fixed-width' if brand.facebook.present? %>
-              </div>
-            </div>
 
-            <div class="brand-summary-extended__products">
-              <div class="grid">
-                <% brand.products.each do |product| %>
-                  <% if product.active? %>
+              <div class="brand-summary-extended__products">
+                <div class="grid">
+                  <% @view_model.active_products_brand(brand).each do |product| %>
                     <div class="grid__cell grid__cell--20-at-wide">
                       <%= link_to product_path(product), class: 'brand-summary-extended__product link link--alt' do %>
                         <div class="brand-summary-extended__product-body">
@@ -42,13 +42,13 @@
                       <% end %>
                     </div>
                   <% end %>
-                <% end %>
+                </div>
               </div>
+
             </div>
-
           </div>
-        </div>
-    <% end %>
+      <% end %>
 
+    </div>
   </div>
-</div>
+<% end %>

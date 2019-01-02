@@ -1,0 +1,16 @@
+<% brand = @view_model.brand %>
+
+<div class="hero hero--brand">
+  <h1 class="hero__title"><%= brand.name %></h1>
+  <h2 class="hero__subtitle"><%= @view_model.description.html_safe %></h2>
+  <div class="hero__buttons">
+    <%= link_to 'Website', brand.website, class: 'button button--no-margin button--fixed-width' if brand.website.present? %>
+    <%= link_to 'Facebook', brand.facebook, class: 'button button--no-margin button--fixed-width' if brand.facebook.present? %>
+  </div>
+</div>
+
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--70-at-wide">
+    <%= render partial: 'products/item', collection: @view_model.active_products, as: :product %>
+  </div>
+</div>

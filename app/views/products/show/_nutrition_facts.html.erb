@@ -1,27 +1,22 @@
 <table class="table">
   <tr>
     <th></th>
-    <th>Number</th>
-    <th>Ratio</th>
-  </tr>
-  <tr>
-    <td>Kcal</td>
-    <td><%= product.kcal_per_serving %></td>
-    <td></td>
+    <th>Per 100Kcal</th>
+    <th>Per Serving (<%= product.kcal_per_serving %> kcal)</th>
   </tr>
   <tr>
     <td>Protein</td>
+    <td><%= product.protein_per_kcal(100) %></td>
     <td><%= product.protein_per_serving %></td>
-    <td><%= product.protein_per_serving_ratio %>%</td>
   </tr>
   <tr>
     <td>Carbs</td>
+    <td><%= product.carbs_per_kcal(100) %></td>
     <td><%= product.carbs_per_serving %></td>
-    <td><%= product.carbs_per_serving_ratio %>%</td>
   </tr>
   <tr>
     <td>Fat</td>
+    <td><%= product.fat_per_kcal(100) %></td>
     <td><%= product.fat_per_serving %></td>
-    <td><%= product.fat_per_serving_ratio %>%</td>
   </tr>
 </table>

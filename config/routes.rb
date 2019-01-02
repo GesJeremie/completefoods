@@ -5,7 +5,7 @@ Rails.application.routes.draw do
     get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
   end
 
-  root 'home#index'
+  root 'pages#home'
 
   # Collections
   # TODO: Put in a collection scope.

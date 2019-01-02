@@ -1,55 +1,62 @@
-<% cache [@product, @reviews.count, current_currency.id] do %>
-  <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name}" %>
-  <% content_for :meta_description, "#{@product.name} costs #{from_usd_to_current_currency(@product.price.per_month_bulk_order_in_currency('USD'))} per month and is manufactured by #{@brand.name} in #{@brand.country.name}." %>
-  <% content_for :meta_image, @product.image_url %>
+<% cache [@view_model.product, @view_model.reviews.count, current_currency.id] do %>
+
+  <%
+    product = @view_model.product
+    brand = @view_model.brand
+    reviews = @view_model.reviews
+
+    content_for :meta_title, @view_model.meta_title
+    content_for :meta_description, @view_model.meta_description
+    content_for :meta_image, @view_model.meta_image
+  %>
 
   <div class="product-show">
     <div class="grid grid--center">
-      <div class="grid__cell grid__cell--90 grid__cell--70-at-medium">
+      <div class="grid__cell grid__cell--70">
 
         <div class="product-show__heading">
-          <div class="product-show__thumbnail" style="background-image: url('<%= @product.image_url %>')"></div>
-          <h1 class="product-show__title"><%= @product.name %></h1>
-          <h3 class="product-show__from">Produced in <strong><%= @brand.country.name %></strong> by <strong><%= @brand.name %></strong></h3>
+          <div class="product-show__thumbnail" style="background-image: url('<%= product.image_url %>')"></div>
+          <h1 class="product-show__title"><%= product.name %></h1>
+          <h3 class="product-show__from">
+            Produced in <%= brand.flag %><strong><%= brand.country.name %></strong> by <strong><%= link_to brand.name, brand_path(brand), class: 'link link--alt' %></strong>
+          </h3>
         </div>
 
         <div class="product-show__call-to">
-          <a class="button button--primary button--call-to-action" target="_blank" href="<%= @product.brand.website %>">Website</a>
-
-          <% if @product.brand.facebook.present? %>
-            <a class="button button--primary button--call-to-action" target="_blank" href="<%= @product.brand.facebook %>">Facebook</a>
-          <% end %>
+          <%= link_to 'Website', brand.website, class: 'button button--fixed-width button--no-margin' if brand.website.present? %>
+          <%= link_to 'Facebook', brand.facebook, class: 'button button--fixed-width button--no-margin' if brand.facebook.present? %>
         </div>
 
         <div class="product-show__card">
 
           <h3 class="product-show__subtitle">Prices</h3>
-          <%= render 'products/show/prices', product: @product %>
+          <%= render 'products/show/prices', product: product %>
 
-          <h3 class="product-show__subtitle">Nutrition Facts per serving</h3>
-          <%= render 'products/show/nutrition_facts', product: @product %>
-
-          <h3 class="product-show__subtitle">Allergens</h3>
-          <%= render 'products/show/allergens', product: @product %>
-
-          <h3 class="product-show__subtitle">Diets</h3>
-          <%= render 'products/show/diets', product: @product %>
+          <h3 class="product-show__subtitle">Nutrition Facts</h3>
+          <%= render 'products/show/nutrition_facts', product: product %>
 
 
           <h3 class="product-show__subtitle">Shipping</h3>
-          <%= render 'products/show/shipping', product: @product %>
+          <%= render 'products/show/shipping', product: product %>
+
+          <h3 class="product-show__subtitle">Allergens</h3>
+          <%= render 'products/show/allergens', product: product %>
+
+          <h3 class="product-show__subtitle">Diets</h3>
+          <%= render 'products/show/diets', product: product %>
 
           <h3 class="product-show__subtitle">Misc</h3>
-          <%= render 'products/show/misc', product: @product %>
+          <%= render 'products/show/misc', product: product %>
 
-          <% if @product.notes.present? %>
+          <% if product.has_notes? %>
             <h3 class="product-show__subtitle">Team's Notes</h3>
-            <div class="product-show__notes"><%= @product.notes %></div>
+            <div class="product-show__notes"><%= product.notes %></div>
           <% end %>
 
+          <!--
           <h3 class="product-show__subtitle">Reviews</h3>
-          <%= render 'products/show/reviews', reviews: @reviews, product: @product %>
-
+          <%= render 'products/show/reviews', reviews: reviews, product: product %>
+          -->
       </div>
     </div>
   </div>

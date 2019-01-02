@@ -13,11 +13,7 @@ class CurrenciesController < BaseController
   private
 
     def currency_params
-      params.permit(allowed_params)
-    end
-
-    def allowed_params
-      %i[code]
+      params.permit(:code)
     end
 
     def allowed_code?

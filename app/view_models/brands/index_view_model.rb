@@ -8,6 +8,10 @@ class Brands::IndexViewModel < BrandsViewModel
     @used_anchors = []
   end
 
+  def cache_key
+    @brands.count
+  end
+
   def navigation
     ALPHABET.map do |letter|
       classes = %w[navigation-alphabet__link link link--alt]

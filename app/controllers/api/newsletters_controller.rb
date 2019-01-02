@@ -8,6 +8,6 @@ class Api::NewslettersController < Api::BaseController
   private
 
     def newsletter_params
-        params.permit(:email)
+      params.permit(:email)
     end
 end
