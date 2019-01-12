@@ -113,8 +113,16 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
 }
 
 .button--sponsor {
-    padding: $spacing-unit ($spacing-unit * 1.5);
+    padding: 8px 13px;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
     border-radius: 5px;
+    max-width: 200px;
+
+    @include respond-to('xx-wide') {
+        max-width: 100%;
+    }
 
     .sponsor--queal & {
         color: $white;
@@ -124,6 +132,11 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     .sponsor--powdermatter & {
         color: $white;
         background-color: $sponsor-powdermatter;
+    }
+
+    .sponsor--parachute & {
+        color: $white;
+        background-color: $sponsor-parachute;
     }
 }
 
