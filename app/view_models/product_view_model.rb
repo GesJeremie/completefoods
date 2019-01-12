@@ -51,11 +51,11 @@ class ProductViewModel < ApplicationViewModel
   end
 
   def image
-    model.image.variant(resize: '200x200').processed
+    model.image.variant(resize: '200x200')
   end
 
   def image_small
-    model.image.variant(resize: '100x100').processed
+    model.image.variant(resize: '100x100')
   end
 
   private

@@ -3,36 +3,36 @@
 \*------------------------------------*/
 
 .guru-card {
-    background: white;
-    border-radius: 10px;
+    margin-top: double($spacing-unit);
     padding: ($spacing-unit * 1.5) ($spacing-unit * 4);
     max-width: 610px;
-    margin: 0 auto;
+    background: $white;
     border: 2px solid $gray--medium-light;
+    border-radius: double($border-radius);
 }
 
     .guru-card__logo {
         display: inline-block;
-        padding-top: 5px;
-        width: 30%;
+        margin-top: $spacing-unit;
+        padding-top: halve($spacing-unit);
         text-align: center;
     }
 
     .guru-card__content {
         display: inline-block;
-        width: 70%;
+        margin: 10px 0;
+        width: 100%;
         float: right;
         font-size: 15px;
-        padding-left: 20px;
-        margin: 10px 0;
+        text-align: center;
     }
 
         .guru-card__title {
-            margin-bottom: $spacing-unit;
-            font-weight: bold;
-            font-size: 19px;
-            text-transform: capitalize;
             display: block;
+            margin-bottom: $spacing-unit;
+            font-size: 19px;
+            font-weight: bold;
+            text-transform: capitalize;
         }
 
         .guru-card__description {

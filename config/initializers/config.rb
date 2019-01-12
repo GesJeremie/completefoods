@@ -5,6 +5,8 @@ Rails.application.configure do
 
   config.narrow_max_results = 15
 
+  config.products_per_page = 20
+
   config.sorters = [
     { label: 'Nothing', value: :nothing, group: nil },
 

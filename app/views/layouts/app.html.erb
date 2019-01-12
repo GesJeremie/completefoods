@@ -29,33 +29,13 @@
   </head>
 
   <body>
+    <%= render 'shared/header' %>
 
-    <% if @layout_with_filters %>
+    <div class="layout">
+      <%= yield %>
+    </div>
 
-      <div id="drawer-finder" class="drawer drawer--left">
-        <%= render 'drawer_finder/main' %>
-        <main id="page-layout">
-          <%= render 'shared/header' %>
-
-          <div class="layout">
-            <%= yield %>
-          </div>
-
-          <%= render 'shared/footer' %>
-        </main>
-      </div>
-
-    <% else %>
-
-      <%= render 'shared/header' %>
-
-      <div class="layout">
-        <%= yield %>
-      </div>
-
-      <%= render 'shared/footer' %>
-
-    <% end %>
+    <%= render 'shared/footer' %>
 
     <% if Rails.env.production? %>
       <%= render 'shared/google_analytics' %>

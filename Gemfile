@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
 
@@ -46,10 +45,11 @@ gem 'mini_magick'
 # Let's scrap the web
 gem 'nokogiri'
 
-# Icons
-gem 'inline_svg'
+# Pagination
+gem 'will_paginate'
 
 # Front-end
+gem 'inline_svg'
 gem 'avalanche-rails', '~> 1.2.0'
 gem 'lodash-rails'
 gem 'jquery-rails'

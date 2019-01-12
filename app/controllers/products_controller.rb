@@ -1,34 +1,23 @@
 class ProductsController < BaseController
   def index
-    model = ProductResultsFinder.new(filter_params.to_h).execute
-    @products = ProductViewModel.wrap(model, view_model_options)
+    model = Product.active
+    products = ProductViewModel.wrap(model, view_model_options)
+
+    @products = PagedArray.new(
+      products,
+      page: params[:page],
+      per_page: products_per_page
+    )
   end
 
   def show
     model = Product.find_by_slug(params[:slug])
-    @product = ProductViewModel.new(model, view_model_options)
+    @product = ProductViewModel.wrap(model, view_model_options)
   end
 
   private
 
-    def filter_params
-      params.permit(%i[
-          powder
-          bottle
-          snack
-          vegetarian
-          vegan
-          gluten_free
-          lactose_free
-          united_states
-          canada
-          europe
-          rest_of_world
-          subscription_available
-          discount_for_subscription
-          made_in
-          sort
-          narrow
-        ])
+    def products_per_page
+      Rails.configuration.products_per_page
     end
 end

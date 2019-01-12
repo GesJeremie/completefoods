@@ -1,5 +1,4 @@
 class CurrenciesController < BaseController
-
   def update
     if allowed_code?
       session[:current_currency] = currency_params[:code]
