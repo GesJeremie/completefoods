@@ -1,61 +1,51 @@
-<% cache [@view_model.product, @view_model.reviews.count, current_currency.id] do %>
-
-  <%
-    product = @view_model.product
-    brand = @view_model.brand
-    reviews = @view_model.reviews
-
-    content_for :meta_title, @view_model.meta_title
-    content_for :meta_description, @view_model.meta_description
-    content_for :meta_image, @view_model.meta_image
-  %>
+<% cache [@product, @product.reviews.count, current_currency.id] do %>
 
   <div class="product-show">
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--70">
 
         <div class="product-show__heading">
-          <div class="product-show__thumbnail" style="background-image: url('<%= product.image_url %>')"></div>
-          <h1 class="product-show__title"><%= product.name %></h1>
+          <div class="product-show__thumbnail" style="background-image: url('<%= url_for(@product.image) %>')"></div>
+          <h1 class="product-show__title"><%= @product.name %></h1>
           <h3 class="product-show__from">
-            Produced in <%= brand.flag %><strong><%= brand.country.name %></strong> by <strong><%= link_to brand.name, brand_path(brand), class: 'link link--alt' %></strong>
+            Produced in <%= flag_icon(@product.country_code_symbol) %><strong><%= @product.brand.country.name %></strong> by <strong><%= link_to @product.brand.name, brand_path(@product.brand.model), class: 'link link--alt' %></strong>
           </h3>
         </div>
 
         <div class="product-show__call-to">
-          <%= link_to 'Website', brand.website, class: 'button button--fixed-width button--no-margin' if brand.website.present? %>
-          <%= link_to 'Facebook', brand.facebook, class: 'button button--fixed-width button--no-margin' if brand.facebook.present? %>
+          <%= link_to 'Website', @product.brand.website, class: 'button button--fixed-width button--no-margin' if @product.brand.website.present? %>
+          <%= link_to 'Facebook', @product.brand.facebook, class: 'button button--fixed-width button--no-margin' if @product.brand.facebook.present? %>
         </div>
 
         <div class="product-show__card">
 
           <h3 class="product-show__subtitle">Prices</h3>
-          <%= render 'products/show/prices', product: product %>
+          <%= render 'products/show/prices', product: @product %>
 
           <h3 class="product-show__subtitle">Nutrition Facts</h3>
-          <%= render 'products/show/nutrition_facts', product: product %>
+          <%= render 'products/show/nutrition_facts', product: @product %>
 
 
           <h3 class="product-show__subtitle">Shipping</h3>
-          <%= render 'products/show/shipping', product: product %>
+          <%= render 'products/show/shipping', product: @product %>
 
           <h3 class="product-show__subtitle">Allergens</h3>
-          <%= render 'products/show/allergens', product: product %>
+          <%= render 'products/show/allergens', product: @product %>
 
           <h3 class="product-show__subtitle">Diets</h3>
-          <%= render 'products/show/diets', product: product %>
+          <%= render 'products/show/diets', product: @product %>
 
           <h3 class="product-show__subtitle">Misc</h3>
-          <%= render 'products/show/misc', product: product %>
+          <%= render 'products/show/misc', product: @product %>
 
-          <% if product.has_notes? %>
+          <% if @product.has_notes? %>
             <h3 class="product-show__subtitle">Team's Notes</h3>
-            <div class="product-show__notes"><%= product.notes %></div>
+            <div class="product-show__notes"><%= @product.notes %></div>
           <% end %>
 
           <!--
           <h3 class="product-show__subtitle">Reviews</h3>
-          <%= render 'products/show/reviews', reviews: reviews, product: product %>
+          <%= render 'products/show/reviews', product: @product %>
           -->
       </div>
     </div>

@@ -41,7 +41,7 @@
   </form>
 
   <div data-controller="product-reviews-list">
-    <% unless reviews.any? %>
+    <% unless product.reviews.any? %>
       <div class="product-reviews__no-results">
         <div class="product-reviews__no-results-icon-container">
           <%= image_tag 'sad-emoji.png', class: 'product-reviews__no-results-icon' %>
@@ -50,7 +50,7 @@
       </div>
     <% else %>
       <ul class="product-reviews__list">
-        <% reviews.each do |review| %>
+        <% product.reviews.each do |review| %>
           <li class="product-reviews__list-item">
             <div class="product-reviews__list-score">
               <%= review.score_humanized %>

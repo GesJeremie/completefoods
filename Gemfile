@@ -40,9 +40,6 @@ gem 'countries'
 gem 'money-rails', '~>1'
 gem 'money-open-exchange-rates'
 
-# Presenters
-gem 'draper'
-
 # Resize pictures
 gem 'mini_magick'
 

@@ -1,17 +1,17 @@
 class BrandsController < BaseController
   def index
-    @view_model = Brands::IndexViewModel.new(brands: Brand.with_active_products)
+    model = Brand.with_active_products
+
+    @brands = BrandViewModel.wrap(model, view_model_options)
+    @navigation = BrandNavigationViewModel.new(model, view_model_options)
   end
 
   def show
-    @view_model = Brands::ShowViewModel.new(brand: brand_from_slug)
+    model = Brand.find(id_from_slug)
+    @brand = BrandViewModel.new(model, view_model_options)
   end
 
   private
-
-    def brand_from_slug
-      @brand_from_slug ||= Brand.find(id_from_slug)
-    end
 
     def id_from_slug
       @id_from_slug ||= params[:slug].split('-').first rescue nil

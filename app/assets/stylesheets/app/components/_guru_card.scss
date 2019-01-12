@@ -1,0 +1,40 @@
+/*------------------------------------*\
+    #GURU-CARD
+\*------------------------------------*/
+
+.guru-card {
+    background: white;
+    border-radius: 10px;
+    padding: ($spacing-unit * 1.5) ($spacing-unit * 4);
+    max-width: 610px;
+    margin: 0 auto;
+    border: 2px solid $gray--medium-light;
+}
+
+    .guru-card__logo {
+        display: inline-block;
+        padding-top: 5px;
+        width: 30%;
+        text-align: center;
+    }
+
+    .guru-card__content {
+        display: inline-block;
+        width: 70%;
+        float: right;
+        font-size: 15px;
+        padding-left: 20px;
+        margin: 10px 0;
+    }
+
+        .guru-card__title {
+            margin-bottom: $spacing-unit;
+            font-weight: bold;
+            font-size: 19px;
+            text-transform: capitalize;
+            display: block;
+        }
+
+        .guru-card__description {
+            line-height: double($spacing-unit);
+        }

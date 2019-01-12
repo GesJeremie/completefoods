@@ -1,2 +1,0 @@
-class PagesViewModel < ApplicationViewModel
-end

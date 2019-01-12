@@ -4,6 +4,7 @@ class CollectionsController < BaseController
   before_action :valid_brand?, only: [:made_by]
 
   def index
+    @view_model = Collections::IndexViewModel.new
   end
 
   def cheapest

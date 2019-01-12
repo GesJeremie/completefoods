@@ -9,8 +9,8 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     display: inline-block;
     margin: 0;
     margin-top: double($spacing-unit);
-    padding: $spacing-unit;
     color: $white;
+    padding: 15px 25px;
     font-size: 14px;
     font-weight: 700;
     text-align: center;
@@ -26,6 +26,10 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
 
 .button--secondary {
     background-color: $purple;
+}
+
+.button--small {
+    padding: $spacing-unit;
 }
 
 .button--large {

@@ -1,6 +1,6 @@
 class PagesController < BaseController
   def home
-    @view_model = Pages::HomeViewModel.new
+    @page = PageViewModel.wrap(nil, view_model_options)
   end
 
   def what_is_a_complete_food; end

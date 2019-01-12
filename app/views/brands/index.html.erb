@@ -1,25 +1,25 @@
-<% cache [@view_model.cache_key] do %>
+<% cache [@brands.count] do %>
   <div class="hero">
     <h1 class="hero__title">Brands</h1>
-    <h2 class="hero__subtitle">There are currently <%= @view_model.brands.count %> brands producing over <%= @view_model.count_active_products %> Complete Foods worlwide.</h2>
+    <h2 class="hero__subtitle">There are currently <%= @brands.count %> brands producing over <%= count_active_products %> Complete Foods worlwide.</h2>
   </div>
 
   <div class="grid grid--center">
     <div class="grid__cell grid__cell--70-at-wide">
 
       <div class="navigation-alphabet">
-        <% @view_model.navigation.map do |link| %>
-          <%= link %>
+        <% @navigation.items.map do |item| %>
+          <%= link_to(item[:letter], "##{item[:letter]}", class: item[:class_css]) %>
         <% end %>
       </div>
 
-      <% @view_model.brands.each do |brand| %>
-          <div id="<%= @view_model.navigation_anchor(brand) %>" class="brand-summary-extended clearfix">
+      <% @brands.each do |brand| %>
+          <div id="<%= @navigation.anchor(brand) %>" class="brand-summary-extended clearfix">
             <div class="brand-summary-extended__card">
               <div class="brand-summary-extended__details">
                 <div class="brand-summary-extended__details-name">
-                  <span class="brand-summary-extended__details-name-flag"><%= brand.flag %></span>
-                  <%= link_to brand.name, brand_path(brand), class: 'link link--alt link--with-spacer' %>
+                  <span class="brand-summary-extended__details-name-flag"><%= flag_icon(brand.country_code_symbol) %></span>
+                  <%= link_to brand.name, brand_path(brand.model), class: 'link link--alt link--with-spacer' %>
                 </div>
                 <div class="brand-summary-extended__details-number-products">
                   <%= pluralize(brand.products.count, 'product') %>
@@ -32,11 +32,11 @@
 
               <div class="brand-summary-extended__products">
                 <div class="grid">
-                  <% @view_model.active_products_brand(brand).each do |product| %>
+                  <% brand.active_products.each do |product| %>
                     <div class="grid__cell grid__cell--20-at-wide">
-                      <%= link_to product_path(product), class: 'brand-summary-extended__product link link--alt' do %>
+                      <%= link_to product_path(product.model), class: 'brand-summary-extended__product link link--alt' do %>
                         <div class="brand-summary-extended__product-body">
-                          <div class="brand-summary-extended__product-cover" style="background-image: url('<%= product.image_url %>')"></div>
+                          <div class="brand-summary-extended__product-cover" style="background-image: url('<%= url_for(product.image) %>')"></div>
                           <div class="brand-summary-extended__product-name"><%= product.name %></div>
                         </div>
                       <% end %>

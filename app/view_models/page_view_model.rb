@@ -1,9 +1,9 @@
-class Pages::HomeViewModel < PagesViewModel
+class PageViewModel < ApplicationViewModel
   def preview_brands
     @preview_brands ||=
       begin
         brands = Brand.reorder(name: :asc).slice(0, number_items_preview_brands)
-        BrandDecorator.decorate_collection(brands)
+        BrandViewModel.wrap(brands, options)
       end
   end
 

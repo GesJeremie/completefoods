@@ -28,7 +28,7 @@
   </div>
 
   <div data-target="header-menu.links" class="header__links">
-    <a class="header__link" href="#">Collections</a>
+    <%= link_to 'Collections', collections_path, class: 'header__link' %>
     <%= link_to 'Brands', brands_path, class: 'header__link' %>
     <%= link_to 'Explore all Products', products_path, class: 'header__link header__link--highlight' %>
   </div>

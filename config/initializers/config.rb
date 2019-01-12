@@ -41,24 +41,26 @@ Rails.application.configure do
   ]
 
   config.collections = [
-    { name: 'Cheapest', cover: 'collections/cheapest.jpg', route: 'cheapest' },
-    { name: 'Most Expensive', cover: 'collections/most_expensive.jpg', route: 'most-expensive'},
-    { name: 'For Vegans', cover: 'collections/vegan.jpg', route: 'for-vegans' },
-    { name: 'For Vegetarians', cover: 'collections/vegetarian.jpg', route: 'for-vegetarians' },
+    { name: 'Cheapest', cover: 'collections/cheapest.jpg', group: 'price', route: 'cheapest' },
+    { name: 'Most Expensive', cover: 'collections/most_expensive.jpg', group: 'price', route: 'most-expensive'},
 
-    { name: 'Snacks', cover: 'collections/snacks.jpg', route: 'snacks' },
-    { name: 'Ready To Drink', cover: 'collections/ready_to_drink.jpg', route: 'ready-to-drink' },
-    { name: 'Powders', cover: 'collections/powder.jpg', route: 'powders' },
-    { name: 'For Athletes', cover: 'collections/athletes.jpg', route: 'for-athletes' },
+    { name: 'For Vegans', cover: 'collections/vegan.jpg', group: 'diet', route: 'for-vegans' },
+    { name: 'For Vegetarians', cover: 'collections/vegetarian.jpg', group: 'diet', route: 'for-vegetarians' },
 
-    { name: 'Gluten Free', cover: 'collections/gluten_free.jpg', route: 'gluten-free' },
-    { name: 'Lactose Free', cover: 'collections/milk.jpg', route: 'lactose-free' },
+    { name: 'Snacks', cover: 'collections/snacks.jpg', group: 'type', route: 'snacks' },
+    { name: 'Ready To Drink', cover: 'collections/ready_to_drink.jpg', group: 'type', route: 'ready-to-drink' },
+    { name: 'Powders', cover: 'collections/powder.jpg', group: 'type', route: 'powders' },
 
-    { name: 'Made in Canada', cover: 'collections/canada.jpg', route: 'made-in-canada' },
-    { name: 'Made in USA', cover: 'collections/us.jpg', route: 'made-in-united-states' },
-    { name: 'Made in India', cover: 'collections/india.jpg', route: 'made-in-india' },
-    { name: 'Made in France', cover: 'collections/france.jpg', route: 'made-in-france' },
-    { name: 'Made in Germany', cover: 'collections/germany.png', route: 'made-in-germany' },
-    { name: 'Made in Netherlands', cover: 'collections/netherlands.jpg', route: 'made-in-netherlands' }
+    { name: 'For Athletes', cover: 'collections/athletes.jpg', group: 'misc', route: 'for-athletes' },
+
+    { name: 'Gluten Free', cover: 'collections/gluten_free.jpg', group: 'allergens', route: 'gluten-free' },
+    { name: 'Lactose Free', cover: 'collections/milk.jpg', group: 'allergens', route: 'lactose-free' },
+
+    { name: 'Made in Canada', cover: 'collections/canada.jpg', group: 'country', route: 'made-in-canada' },
+    { name: 'Made in USA', cover: 'collections/us.jpg', group: 'country', route: 'made-in-united-states' },
+    { name: 'Made in India', cover: 'collections/india.jpg', group: 'coutry', route: 'made-in-india' },
+    { name: 'Made in France', cover: 'collections/france.jpg', group: 'country', route: 'made-in-france' },
+    { name: 'Made in Germany', cover: 'collections/germany.png', group: 'country', route: 'made-in-germany' },
+    { name: 'Made in Netherlands', cover: 'collections/netherlands.jpg', group: 'country', route: 'made-in-netherlands' }
   ]
 end

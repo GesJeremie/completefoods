@@ -5,51 +5,49 @@
 $collection-summary-border-radius: 5px !default;
 $collection-summary-title-text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.35), 1px 1px 5px rgba(0, 0, 0, 0.5) !default;
 
-.collection-summary {}
+.collection-summary {
+    margin: quadruple($spacing-unit) 0;
+}
 
-    .collection-summary__parent {
-        margin: quadruple($spacing-unit) 0;
-    }
+    .collection-summary__item {}
 
-        .collection-summary__item {}
+        .collection-summary__item-cover {
+            position: relative;
+            margin-bottom: double($spacing-unit);
+            width: 100%;
+            height: 180px;
+            background-size: cover;
+            background-position: center center;
+            border-radius: $collection-summary-border-radius;
 
-            .collection-summary__item-cover {
-                position: relative;
-                margin-bottom: double($spacing-unit);
-                width: 100%;
-                height: 180px;
-                background-size: cover;
-                background-position: center center;
+            &:after {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                background-color: $black;
                 border-radius: $collection-summary-border-radius;
-
-                &:after {
-                    position: absolute;
-                    top: 0;
-                    right: 0;
-                    bottom: 0;
-                    left: 0;
-                    background-color: $black;
-                    border-radius: $collection-summary-border-radius;
-                    opacity: 0.1;
-                    transition: opacity 0.5s;
-                    content: '';
-                }
-
-                &:hover {
-                    &:after {
-                        opacity: 0.2;
-                    }
-                }
+                opacity: 0.1;
+                transition: opacity 0.5s;
+                content: '';
             }
 
-                .collection-summary__item-title {
-                    @include center('vertical');
-                    right: 0;
-                    left: 0;
-                    z-index: 1;
-                    color: $white;
-                    font-size: 23px;
-                    font-weight: bold;
-                    text-align: center;
-                    text-shadow: $collection-summary-title-text-shadow;
+            &:hover {
+                &:after {
+                    opacity: 0.2;
                 }
+            }
+        }
+
+            .collection-summary__item-title {
+                @include center('vertical');
+                right: 0;
+                left: 0;
+                z-index: 1;
+                color: $white;
+                font-size: 23px;
+                font-weight: bold;
+                text-align: center;
+                text-shadow: $collection-summary-title-text-shadow;
+            }

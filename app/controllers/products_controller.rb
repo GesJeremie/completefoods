@@ -1,11 +1,12 @@
 class ProductsController < BaseController
   def index
-    @products = ProductResultsFinder.new(filter_params.to_h).execute
-    @products = ProductDecorator.decorate_collection(@products)
+    model = ProductResultsFinder.new(filter_params.to_h).execute
+    @products = ProductViewModel.wrap(model, view_model_options)
   end
 
   def show
-    @view_model = Products::ShowViewModel.new(product: product_from_slug)
+    model = Product.find_by_slug(params[:slug])
+    @product = ProductViewModel.new(model, view_model_options)
   end
 
   private
@@ -29,9 +30,5 @@ class ProductsController < BaseController
           sort
           narrow
         ])
-    end
-
-    def product_from_slug
-      @product_from_slug ||= Product.find_by_slug(params[:slug])
     end
 end

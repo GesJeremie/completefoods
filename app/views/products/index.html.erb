@@ -1,17 +1,33 @@
 <% @layout_with_filters = true %>
 <% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Soylent" %>
 
-<div class="hero hero--home">
+<div class="hero hero--products">
   <h1 class="hero__title">
-    Soylent Alternatives <br/>currently available <br/>worldwide
-    <span class="hero__icon"><%= emoji(:world) %></span>
+    Explore all Products
   </h1>
   <h2 class="hero__subtitle">
-    We reference <%= Product.active.count %> products from <%= Brand.count %> brands.<br/>
-    Yes, that's a sh** load of products.
+    We currently reference <%= count_active_products %> products from <%= count_brands %> brands.
   </h2>
 </div>
 
-<%= render 'products/results', products: @products %>
+<div class="guru-card clearfix">
+  <div class="guru-card__logo">
+    <%= image_tag 'guru.svg' %>
+  </div>
+  <div class="guru-card__content">
+    <div class="guru-card__title">Overwhelmed by the choice?</div>
+    <div class="guru-card__description">Let the guru help you find the best Complete Food based on your preferences.</div>
+    <a href="#" class="button button--secondary button--capitalized button--with-arrow">Ask the Guru</a>
+  </div>
+</div>
 
-<%= render 'shared/newsletter' %>
+
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--70-at-wide">
+    <%= render partial: 'products/item', collection: @products, as: :product %>
+  </div>
+</div>
+
+<%
+#render 'shared/newsletter'
+%>

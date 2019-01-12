@@ -18,7 +18,7 @@
 }
 
 .hero--brand {}
-
+.hero--products {}
 .hero--collection {}
 
     .hero__title {
@@ -57,6 +57,10 @@
 
         .hero--brand & {
             margin-bottom: $spacing-unit;
+        }
+
+        .hero--products & {
+            margin-bottom: triple($spacing-unit);
         }
     }
 
