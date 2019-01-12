@@ -1,6 +1,6 @@
 class ProductsController < BaseController
   def index
-    model = Product.active
+    model = Product.active.order('name ASC')
     products = ProductViewModel.wrap(model, view_model_options)
 
     @products = PagedArray.new(
