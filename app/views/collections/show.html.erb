@@ -1,0 +1,18 @@
+<div class="hero hero--collection">
+  <h1 class="hero__title">
+    <%= params[:slug] %>
+  </h1>
+
+  <h2 class="hero__subtitle hero__subtitle--with-action">
+    lolipop
+  </h2>
+</div>
+
+
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--80-at-wide">
+    <%= render partial: 'products/item', collection: @products, as: :product %>
+  </div>
+</div>
+
+<%= render 'products', products: @products %>

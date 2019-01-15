@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resources :brands, only: [:index, :show], param: :slug
   resources :products, only: [:index, :show], param: :slug
-  resources :collections, only: [:index]
+  resources :collections, only: [:index, :show], param: :slug
   resources :currencies, only: [:update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
 

@@ -1,7 +1,7 @@
 class ProductMadeInFinder
 
   # Examples:
-  # ProductMadeInFinder.new(Product.all, {made_in: 'netherlands'}).execute
+  # ProductMadeInFinder.new(Product.all, { made_in: 'netherlands' }).execute
 
   def initialize(products, params = {})
     @products = products

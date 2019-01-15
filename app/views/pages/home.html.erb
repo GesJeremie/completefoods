@@ -17,12 +17,13 @@
       <hr class="divider divider--small" />
 
       <% @page.preview_collections.each_slice(4) do |collections| %>
+
         <div class="grid grid--center">
           <% collections.each do |collection| %>
             <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
-              <a href="<%= collection[:route] %>">
-                <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection[:cover]) %>')">
-                  <div class="collection-summary__item-title"><%= collection[:name] %></div>
+              <a href="<%= collection_path(collection.slug) %>">
+                <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>')">
+                  <div class="collection-summary__item-title"><%= collection.name %></div>
                 </div>
               </a>
             </div>

@@ -42,6 +42,9 @@ gem 'money-open-exchange-rates'
 # Resize pictures
 gem 'mini_magick'
 
+# Models without databases
+gem 'active_hash'
+
 # Let's scrap the web
 gem 'nokogiri'
 

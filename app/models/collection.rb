@@ -1,53 +1,62 @@
-class Collection
-  attr_reader :collection
+class Collection < ActiveHash::Base
+  self.data = [
+    { group_id: 1, slug: 'cheapest' },
+    { group_id: 1, slug: 'most-expensive'},
 
-  COLLECTIONS = [
-    { name: 'Cheapest', cover: 'cheapest.jpg', slug: 'cheapest' },
-    { name: 'Most Expensive', cover: 'most_expensive.jpg', slug: 'most_expensive' },
-    { name: 'For Vegans', cover: 'vegan.jpg' },
-    { name: 'For Vegetarians', cover: 'vegetarian.jpg' },
+    { group_id: 2, slug: 'for-vegans' },
+    { group_id: 2, slug: 'for-vegetarians' },
 
-    { name: 'Snacks', cover: 'snacks.jpg' },
-    { name: 'Ready To Drink', cover: 'ready_to_drink.jpg' },
-    { name: 'Powders', cover: 'powder.jpg' },
-    { name: 'For Athletes', cover: 'athletes.jpg' },
+    { group_id: 3, slug: 'snacks'},
+    { group_id: 3, slug: 'ready-to-drink' },
+    { group_id: 3, slug: 'powders' },
 
-    { name: 'Gluten Free', cover: 'gluten_free.jpg' },
-    { name: 'Lactose Free', cover: 'milk.jpg' },
+    { group_id: 4, slug: 'for-athletes' },
 
-    { name: 'Made in Canada', cover: 'canada.jpg' },
-    { name: 'Made in US', cover: 'us.jpg' },
-    { name: 'Made in India', cover: 'india.jpg' },
-    { name: 'Made in France', cover: 'france.jpg' },
-    { name: 'Made in Germany', cover: 'germany.png' },
-    { name: 'Made in Netherlands', cover: 'netherlands.jpg' }
+    { group_id: 5, slug: 'gluten-free' },
+    { group_id: 5, slug: 'lactose-free' },
 
-  ].freeze
-
-  def self.all
-    COLLECTIONS.map { |collection| new(collection) }
-  end
-
-  def initialize(collection)
-    @collection = collection
-  end
+    { group_id: 6, slug: 'made-in-canada' },
+    { group_id: 6, slug: 'made-in-united-states' },
+    { group_id: 6, slug: 'made-in-india' },
+    { group_id: 6, slug: 'made-in-france' },
+    { group_id: 6, slug: 'made-in-germany' },
+    { group_id: 6, slug: 'made-in-netherlands' },
+    { group_id: 6, slug: 'made-in-singapore' },
+    { group_id: 6, slug: 'made-in-united-kingdom' },
+    { group_id: 6, slug: 'made-in-czech-republic' },
+    { group_id: 6, slug: 'made-in-italy' },
+    { group_id: 6, slug: 'made-in-austria' },
+    { group_id: 6, slug: 'made-in-finland' },
+    { group_id: 6, slug: 'made-in-estonia' },
+    { group_id: 6, slug: 'made-in-spain' },
+    { group_id: 6, slug: 'made-in-sweden' },
+    { group_id: 6, slug: 'made-in-india' }
+  ]
 
   def name
-    collection[:name]
-  end
-
-  def slug
-    collection[:slug]
+    self.slug.titleize
   end
 
   def cover
-    path_covers << collection[:cover]
+    "#{self.slug.underscore}.jpg"
+  end
+
+  def group
+    group = groups.find { |group| group[:id] == self.group_id }
+    group[:slug]
   end
 
   private
 
-    def path_covers
-      'collections/'
+    def groups
+      [
+        { id: 1, slug: 'price' },
+        { id: 2, slug: 'diet' },
+        { id: 3, slug: 'type' },
+        { id: 4, slug: 'misc' },
+        { id: 5, slug: 'allergen' },
+        { id: 6, slug: 'country' }
+      ]
     end
 
 end

@@ -8,7 +8,11 @@ class PageViewModel < ApplicationViewModel
   end
 
   def preview_collections
-    @preview_collections ||= Rails.configuration.collections.slice(0, number_items_preview_collections)
+    @preview_collections ||=
+      begin
+        collections = Collection.all.slice(0, number_items_preview_collections)
+        CollectionViewModel.wrap(collections, options)
+      end
   end
 
   private

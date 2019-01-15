@@ -1,28 +1,22 @@
-
-<div class="hero hero--collection">
+<div class="hero hero--collections">
   <h1 class="hero__title">
     Collections
   </h1>
-
-  <div class="collection-summary">
-    <% @view_model.collections do |group, collections| %>
-
-      <% binding.pry %>
-      <h2><%= group %></h2>
-
+</div>
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--80-at-wide">
+    <div class="collection-summary">
       <div class="grid grid--center">
-        <% collections.each do |collection| %>
-
+        <% @collections.each do |collection| %>
           <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
-            <a href="<%= collection[:route] %>">
-              <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection[:cover]) %>')">
-                <div class="collection-summary__item-title"><%= collection[:name] %></div>
+            <a href="<%= collection_path(collection.slug) %>">
+              <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>'">
+                <div class="collection-summary__item-title"><%= collection.name %></div>
               </div>
             </a>
           </div>
         <% end %>
       </div>
-    <% end %>
+    </div>
   </div>
-
 </div>
