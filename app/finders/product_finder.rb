@@ -1,4 +1,4 @@
-class ProductResultsFinder
+class ProductFinder
   attr_reader :params
 
   def initialize(params = {})
@@ -18,6 +18,6 @@ class ProductResultsFinder
   private
 
     def active_products
-      Product.includes( { brand: [:country] }, { price: [:currency] }, { image_attachment: [:blob] } ).active
+      Product.includes( { brand: [:country] }, { price: [:currency] }, { image_attachment: [:blob] } ).active.order(name: :asc)
     end
 end

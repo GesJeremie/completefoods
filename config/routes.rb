@@ -7,26 +7,6 @@ Rails.application.routes.draw do
 
   root 'pages#home'
 
-  # Collections
-  # TODO: Put in a collection scope.
-  get 'cheapest', to: 'collections#cheapest'
-  get 'for-athletes', to: 'collections#athletes'
-  get 'for-vegans', to: 'collections#vegan'
-  get 'for-vegetarians', to: 'collections#vegetarian'
-  get 'gluten-free', to: 'collections#gluten_free'
-  get 'lactose-free', to: 'collections#lactose_free'
-  get 'made-by-:brand', to: 'collections#made_by'
-  get 'made-in-:country', to: 'collections#made_in'
-  get 'most-expensive', to: 'collections#most_expensive'
-  get 'powders', to: 'collections#powders'
-  get 'ready-to-drink', to: 'collections#ready_to_drink'
-  get 'snacks', to: 'collections#snacks'
-
-  # Collections aliases for sitemap (TODO: Remove from there + sitemap)
-  get 'produced-in-:country', to: 'collections#made_in'
-  get 'suitable-for-vegans', to: 'collections#vegan'
-  get 'produced-by-:brand', to: 'collections#made_by'
-
   resources :brands, only: [:index, :show], param: :slug
   resources :products, only: [:index, :show], param: :slug
   resources :collections, only: [:index, :show], param: :slug

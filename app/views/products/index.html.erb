@@ -13,20 +13,12 @@
   <div class="grid__cell grid__cell--80-at-wide">
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--25">
-        <div class="guru-card clearfix">
-          <div class="guru-card__content">
-            <div class="guru-card__title">Overwhelmed by the choices?</div>
-            <div class="guru-card__description">Let the guru help you find the best Complete Food based on your preferences.</div>
-            <%= image_tag 'guru.svg', class: 'guru-card__logo' %>
-            <a href="#" class="button button--secondary button--capitalized button--with-arrow">Ask the Guru</a>
-          </div>
-        </div>
+        <%= render 'wizard/card' %>
       </div>
       <div class="grid__cell grid__cell--75">
         <%= render partial: 'products/item', collection: @products, as: :product %>
 
         <%= will_paginate @products %>
-
       </div>
     </div>
 

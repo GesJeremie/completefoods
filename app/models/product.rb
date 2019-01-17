@@ -37,7 +37,6 @@ class Product < ApplicationRecord
 
   validates_with ImageUploadValidator, attributes: [:image]
 
-  default_scope { order(id: :asc) }
   scope :active, -> { where(active: true) }
 
   def to_param

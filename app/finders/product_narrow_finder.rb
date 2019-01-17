@@ -1,4 +1,5 @@
 class ProductNarrowFinder
+  attr_reader :products, :params
 
   # Examples:
   # ProductNarrowFinder.new(Product.active, { narrow: 'kcal_per_serving_most' })
@@ -10,12 +11,12 @@ class ProductNarrowFinder
   end
 
   def execute
-    return @products unless @params[:narrow]&.present?
-    return @products if @params[:narrow] == 'nothing'
+    return products unless params[:narrow]&.present?
+    return products if params[:narrow] == 'nothing'
 
-    products = @products.take(max_results)
+    products_narrowed = products.take(max_results)
 
-    ProductSortFinder.new(products, { sort: @params[:narrow] }).execute
+    ProductSortFinder.new(products_narrowed, { sort: params[:narrow] }).execute
   end
 
   private

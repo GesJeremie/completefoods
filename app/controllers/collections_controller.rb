@@ -9,8 +9,12 @@ class CollectionsController < BaseController
   end
 
   def show
-    model = CollectionProductsFinder.new(params[:slug]).perform
-    @products = ProductViewModel.wrap(model, view_model_options)
+    collection = Collection.where(slug: params[:slug]).first
+    products = CollectionProductsFinder.new(collection.slug).perform
+    products = ProductViewModel.wrap(products, view_model_options)
+
+    @collection = CollectionViewModel.wrap(collection, view_model_options)
+    @products = PagedArray.new(products, page: params[:page], per_page: products_per_page)
   end
 
   # def cheapest
@@ -86,6 +90,10 @@ class CollectionsController < BaseController
   # end
 
   private
+
+    def products_per_page
+      Rails.configuration.products_per_page
+    end
 
     # def view_model_options
     #   {

@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ProductResultsFinderTest < ActiveSupport::TestCase
+class ProductFinderTest < ActiveSupport::TestCase
 
   def setup
     5.times { create_product_matching_filters }
