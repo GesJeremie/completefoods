@@ -29,11 +29,11 @@ class ProductDecorator < Draper::Decorator
   end
 
   def image_url
-    h.url_for(product.image.variant(resize: '200x200').processed)
+    h.url_for(product.image.variant(resize: '200x200'))
   end
 
   def image_small_url
-    h.url_for(product.image.variant(resize: '100x100').processed)
+    h.url_for(product.image.variant(resize: '100x100'))
   end
 
   private
