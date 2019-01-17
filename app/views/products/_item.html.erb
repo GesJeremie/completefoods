@@ -62,8 +62,8 @@
 
 <% if local_assigns.fetch(:with_sponsors, true) %>
 
-  <%= render 'sponsors/queal' if product_counter == 2 %>
-  <%= render 'sponsors/parachute' if product_counter == 6 %>
+  <%= render 'sponsors/queal.html.erb' if product_counter == 2 %>
+  <%= render 'sponsors/parachute.html.erb' if product_counter == 6 %>
 
 
   <% if product_counter == 6 %>
