@@ -12,7 +12,10 @@ Dir[Rails.root.join('test/factories/**/*.rb')].each { |file| require file }
 # Uncomment for awesome colorful output
 require 'minitest/pride'
 
+FactoryBot.find_definitions
+
 class ActiveSupport::TestCase
+  include FactoryBot::Syntax::Methods
 
   def self.prepare
     Rails.application.load_seed
