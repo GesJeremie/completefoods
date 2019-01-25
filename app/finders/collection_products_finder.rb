@@ -57,10 +57,6 @@ class CollectionProductsFinder
       find_products({ made_in: 'canada' })
     end
 
-    def made_in_france
-      find_products({ made_in: 'france' })
-    end
-
     def made_in_united_states
       find_products({ made_in: 'united_states' })
     end

@@ -1,5 +1,4 @@
 class ProductFactory
-
   def initialize(overrides = {})
     @overrides = overrides
   end
@@ -20,6 +19,7 @@ class ProductFactory
   end
 
   private
+    attr_reader :overrides
 
     def attributes
       {
@@ -38,9 +38,9 @@ class ProductFactory
         subscription_available: Faker::Boolean.boolean,
         discount_for_subscription: Faker::Boolean.boolean,
         state: Product::STATES.sample,
-        active: Faker::Boolean.boolean,
+        active: true,
         image: nil
-      }.merge(@overrides)
+      }.merge(overrides)
     end
 
     def placeholder

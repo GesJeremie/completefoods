@@ -61,14 +61,11 @@ gem 'bootstrap', '~> 4.1.1'
 gem 'select2-rails'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'pry'
+  gem 'pry-rails'
   gem 'faker'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'rails_real_favicon'
@@ -77,5 +74,4 @@ group :development do
 end
 
 group :test do
-  gem 'factory_bot_rails', '~> 4.0'
 end

@@ -1,5 +1,4 @@
 class ProductShipmentFactory
-
   def initialize(overrides = {})
     @overrides = overrides
   end
@@ -8,8 +7,8 @@ class ProductShipmentFactory
     ProductShipment.new(attributes)
   end
 
-
   private
+    attr_reader :overrides
 
     def attributes
       {
@@ -17,6 +16,6 @@ class ProductShipmentFactory
         united_states: Faker::Boolean.boolean,
         canada: Faker::Boolean.boolean,
         europe: Faker::Boolean.boolean
-      }.merge(@overrides)
+      }.merge(overrides)
     end
 end
