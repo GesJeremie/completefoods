@@ -1,64 +1,126 @@
 require 'test_helper'
 
 class CollectionProductsFinderTest < ActiveSupport::TestCase
+  include Factories::Support::Traits
+
+  def collections_made_in
+    @collections_made_in ||= Rails.application.config.collections_made_in
+  end
 
   def product_price(product)
     product.price.per_day_in_currency(type: :bulk_order, currency: :usd)
   end
 
-  test 'cheapest' do
-    20.times do
-      create(:product)
-    end
-
-    collection = CollectionProductsFinder.new('cheapest').perform
-
-    assert_equal 15, collection.count
-    assert product_price(collection.first) <= product_price(collection.last)
+  def product_country(product)
+    product.brand.country.name.parameterize.underscore
   end
 
-  test 'most expensive' do
-    20.times do
-      create(:product)
-    end
+  test 'cheapest' do
+    20.times { create(:product) }
 
-    collection = CollectionProductsFinder.new('most-expensive').perform
+    products = CollectionProductsFinder.new('cheapest').perform
 
-    assert_equal 15, collection.count
-    assert product_price(collection.first) >= product_price(collection.last)
+    assert_equal 15, products.count
+    assert product_price(products.first) <= product_price(products.last)
   end
 
   test 'for athletes' do
-    #assert false
+    20.times { create(:product) }
+
+    products = CollectionProductsFinder.new('for-athletes').perform
+
+    assert_equal 15, products.count
+    assert products.first.protein_per_kcal(100) <= products.last.protein_per_kcal(100)
   end
 
   test 'for vegans' do
-    10.times do
-      create(:product, { diet: build(:product_diet, { vegan: true }) })
-    end
+    10.times { create(:product, { diet: vegan }) }
+    10.times { create(:product, { diet: non_vegan }) }
 
-    10.times do
-      create(:product, { diet: build(:product_diet, { vegan: false }) })
-    end
+    products = CollectionProductsFinder.new('for-vegans').perform
 
-    collection = CollectionProductsFinder.new('for-vegans').perform
-
-    assert_equal 10, collection.count
-    assert_equal true, collection.first.diet.vegan
+    assert_equal 10, products.count
+    assert_equal true, products.first.diet.vegan
   end
 
   test 'for vegetarians' do
-    10.times do
-      create(:product, { diet: build(:product_diet, { vegetarian: true }) })
-    end
+    10.times { create(:product, { diet: vegetarian }) }
+    10.times { create(:product, { diet: non_vegetarian }) }
 
-    10.times do
-      create(:product, { diet: build(:product_diet, { vegetarian: false }) })
-    end
+    products = CollectionProductsFinder.new('for-vegetarians').perform
 
-    collection = CollectionProductsFinder.new('for-vegetarians').perform
-
-    assert_equal 10, collection.count
-    assert_equal true, collection.first.diet.vegetarian
+    assert_equal 10, products.count
+    assert_equal true, products.first.diet.vegetarian
   end
+
+  test 'gluten free' do
+    10.times { create(:product, { allergen: gluten }) }
+    10.times { create(:product, { allergen: gluten_free }) }
+
+    products = CollectionProductsFinder.new('gluten-free').perform
+
+    assert_equal 10, products.count
+    assert_equal false, products.first.allergen.gluten
+  end
+
+  test 'lactose free' do
+    10.times { create(:product, { allergen: lactose }) }
+    10.times { create(:product, { allergen: lactose_free }) }
+
+    products = CollectionProductsFinder.new('lactose-free').perform
+
+    assert_equal 10, products.count
+    assert_equal false, products.first.allergen.lactose
+  end
+
+  test 'made in' do
+    collections_made_in.each { |country| create(:product, made_in(country)) }
+
+    collections_made_in.each do |country|
+      products = CollectionProductsFinder.new("made-in-#{country}").perform
+
+      assert_equal product_country(products.first), country
+      assert_equal 1, products.count
+    end
+  end
+
+  test 'most expensive' do
+    20.times { create(:product) }
+
+    products = CollectionProductsFinder.new('most-expensive').perform
+
+    assert_equal 15, products.count
+    assert product_price(products.first) >= product_price(products.last)
+  end
+
+  test 'powders' do
+    10.times { create(:product, { state: 'powder' }) }
+    10.times { create(:product, { state: 'bottle' }) }
+
+    products = CollectionProductsFinder.new('powders').perform
+
+    assert_equal 10, products.count
+    assert_equal 'powder', products.first.state
+  end
+
+  test 'ready to drink' do
+    10.times { create(:product, { state: 'bottle' }) }
+    10.times { create(:product, { state: 'snack' }) }
+
+    products = CollectionProductsFinder.new('ready-to-drink').perform
+
+    assert_equal 10, products.count
+    assert_equal 'bottle', products.first.state
+  end
+
+  test 'snacks' do
+    10.times { create(:product, { state: 'snack' }) }
+    10.times { create(:product, { state: 'powder' }) }
+
+    products = CollectionProductsFinder.new('snacks').perform
+
+    assert_equal 10, products.count
+    assert_equal 'snack', products.first.state
+  end
+
 end

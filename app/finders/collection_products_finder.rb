@@ -1,4 +1,4 @@
-class CollectionProductsFinder
+class CollectionProductsFinder < ApplicationFinder
   attr_reader :collection_slug
 
   def initialize(collection_slug)
@@ -16,21 +16,32 @@ class CollectionProductsFinder
   private
 
     def find_products(options = {})
-      ProductFinder.new(options).execute
+      ProductFinder.new(options).perform
     end
 
-    # Queries for each collection
+    ##
+    # Define made_in_xxxx methods
+    #
+    # Examples:
+    # => made_in_canada
+    # => made_in_france
+    # => made_in_india
+    # => ...
+    ##
+    Rails.application.config.collections_made_in.each do |country|
+      method_name = "made_in_#{country}"
+
+      define_method method_name do
+        find_products({ made_in: country })
+      end
+    end
 
     def cheapest
-      find_products({ sort: 'cheapest_bulk_order' }).take(15)
-    end
-
-    def most_expensive
-      find_products({ sort: 'most_expensive_bulk_order' }).take(15)
+      find_products({ sort: :cheapest_bulk_order }).take(15)
     end
 
     def for_athletes
-      find_products({ sort: 'protein_per_serving_most' }).take(15)
+      find_products({ sort: :most_protein }).take(15)
     end
 
     def for_vegans
@@ -49,64 +60,8 @@ class CollectionProductsFinder
       find_products({ lactose_free: true })
     end
 
-    def made_in_france
-      find_products({ made_in: 'france' })
-    end
-
-    def made_in_canada
-      find_products({ made_in: 'canada' })
-    end
-
-    def made_in_united_states
-      find_products({ made_in: 'united_states' })
-    end
-
-    def made_in_india
-      find_products({ made_in: 'india' })
-    end
-
-    def made_in_finland
-      find_products({ made_in: 'finland' })
-    end
-
-    def made_in_italy
-      find_products({ made_in: 'italy' })
-    end
-
-    def made_in_estonia
-      find_products({ made_in: 'estonia' })
-    end
-
-    def made_in_spain
-      find_products({ made_in: 'spain' })
-    end
-
-    def made_in_austria
-      find_products({ made_in: 'austria' })
-    end
-
-    def made_in_sweden
-      find_products({ made_in: 'sweden' })
-    end
-
-    def made_in_germany
-      find_products({ made_in: 'germany' })
-    end
-
-    def made_in_netherlands
-      find_products({ made_in: 'netherlands' })
-    end
-
-    def made_in_singapore
-      find_products({ made_in: 'singapore' })
-    end
-
-    def made_in_united_kingdom
-      find_products({ made_in: 'united_kingdom' })
-    end
-
-    def made_in_czech_republic
-      find_products({ made_in: 'czech_republic' })
+    def most_expensive
+      find_products({ sort: :most_expensive_bulk_order }).take(15)
     end
 
     def powders

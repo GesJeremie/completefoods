@@ -11,7 +11,7 @@ class ProductFilterFinder
     @params = params
   end
 
-  def execute
+  def perform
     by_state
 
     by(:subscription_available)

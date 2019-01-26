@@ -5,12 +5,12 @@ class ProductFinder
     @params = params
   end
 
-  def execute
+  def perform
     products = active_products
-    products = ProductMadeInFinder.new(products, params).execute
-    products = ProductFilterFinder.new(products, params).execute
-    products = ProductSortFinder.new(products, params).execute
-    products = ProductNarrowFinder.new(products, params).execute
+    products = ProductMadeInFinder.new(products, params).perform
+    products = ProductFilterFinder.new(products, params).perform
+    products = ProductSortFinder.new(products, params).perform
+    products = ProductNarrowFinder.new(products, params).perform
 
     products
   end

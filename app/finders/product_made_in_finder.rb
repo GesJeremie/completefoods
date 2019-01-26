@@ -9,7 +9,7 @@ class ProductMadeInFinder
     @params = params
   end
 
-  def execute
+  def perform
     return products unless params[:made_in]&.present?
     return products unless country_id.present?
     return products if params[:made_in] == 'everywhere'

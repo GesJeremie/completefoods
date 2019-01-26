@@ -43,21 +43,33 @@ class Product < ApplicationRecord
     self.slug
   end
 
-  def protein_per_serving_ratio
-    ratios[:protein_ratio]
+  def protein_per_kcal(kcal)
+    (protein_per_serving / kcal_per_serving) * kcal
   end
 
-  def carbs_per_serving_ratio
-    ratios[:carbs_ratio]
+  def carbs_per_kcal(kcal)
+    (carbs_per_serving / kcal_per_serving) * kcal
   end
 
-  def fat_per_serving_ratio
-    ratios[:fat_ratio]
+  def fat_per_kcal(kcal)
+    (fat_per_serving / kcal_per_serving) * kcal
   end
 
-  private
+  # def protein_per_serving_ratio
+  #   ratios[:protein_ratio]
+  # end
 
-    def ratios
-      @ratios ||= ProductNutritionRatiosService.new({ product: self }).execute
-    end
+  # def carbs_per_serving_ratio
+  #   ratios[:carbs_ratio]
+  # end
+
+  # def fat_per_serving_ratio
+  #   ratios[:fat_ratio]
+  # end
+
+  # private
+
+  #   def ratios
+  #     @ratios ||= ProductNutritionRatiosService.new({ product: self }).execute
+  #   end
 end

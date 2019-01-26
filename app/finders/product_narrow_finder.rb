@@ -10,13 +10,13 @@ class ProductNarrowFinder
     @params = params
   end
 
-  def execute
+  def perform
     return products unless params[:narrow]&.present?
     return products if params[:narrow] == 'nothing'
 
     products_narrowed = products.take(max_results)
 
-    ProductSortFinder.new(products_narrowed, { sort: params[:narrow] }).execute
+    ProductSortFinder.new(products_narrowed, { sort: params[:narrow] }).perform
   end
 
   private

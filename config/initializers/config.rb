@@ -7,6 +7,25 @@ Rails.application.configure do
 
   config.products_per_page = 20
 
+  config.collections_made_in = [
+    'austria',
+    'canada',
+    'czech_republic',
+    'estonia',
+    'finland',
+    'france',
+    'germany',
+    'india',
+    'italy',
+    'netherlands',
+    'singapore',
+    'spain',
+    'sweden',
+    'united_kingdom',
+    'united_states'
+  ]
+
+
   config.sorters = [
     { label: 'Nothing', value: :nothing, group: nil },
 
