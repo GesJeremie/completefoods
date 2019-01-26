@@ -3,14 +3,8 @@
     <%= @collection.name %>
   </h1>
 
-  <h2 class="hero__subtitle hero__subtitle--with-action">
-    <% if @collection.slug == 'cheapest' %>
-      This is the <strong>Top 15</strong> of the cheapest <strong>Complete Foods</strong> based on the <strong><%= count_active_products %> products</strong> we reference.
-    <% end %>
-
-    <% if @collection.slug == 'most-expensive' %>
-      This is the <strong>Top 15</strong> of the most expensive <strong>Complete Foods</strong> based on the <strong><%= count_active_products %> products</strong> we reference.
-    <% end %>
+  <h2 class="hero__subtitle">
+    <%= @collection.description %>
   </h2>
 </div>
 
