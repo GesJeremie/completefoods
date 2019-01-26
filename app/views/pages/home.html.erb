@@ -21,11 +21,11 @@
         <div class="grid grid--center">
           <% collections.each do |collection| %>
             <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
-              <a href="<%= collection_path(collection.slug) %>">
+              <%= link_to collection_path(collection.model) do %>
                 <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>')">
                   <div class="collection-summary__item-title"><%= collection.name %></div>
                 </div>
-              </a>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -49,7 +49,7 @@
         <div class="grid grid--center">
           <% @page.preview_brands.each do |brand| %>
             <div class="grid__cell grid__cell--25-at-wide">
-              <%= link_to brands_path, class: 'brand-summary' do %>
+              <%= link_to brand_path(brand.model), class: 'brand-summary' do %>
                 <div class="brand-summary__item">
                   <span class="brand-summary__item-flag"><%= flag_icon(brand.country_code_symbol) %></span>
                   <span class="brand-summary__item-name"><%= brand.name %></span>
