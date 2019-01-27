@@ -13,8 +13,12 @@ class BrandViewModel < ApplicationViewModel
     model.country.code.downcase.to_sym
   end
 
+  def products
+    @products ||= BrandViewModel.wrap(model.products)
+  end
+
   def active_products
-    @active_products ||= ProductViewModel.wrap(products.active, options)
+    @active_products ||= ProductViewModel.wrap(model.products.active, options)
   end
 
   private

@@ -1,7 +1,7 @@
 class Dashboard::ProductReviewsController < Dashboard::BaseController
   def index
-    @product_reviews = ProductReview.all
-    @product_reviews = ProductReviewDecorator.decorate_collection(@product_reviews)
+    model = ProductReview.all
+    @reviews = ProductReviewViewModel.wrap(model)
   end
 
   def destroy
