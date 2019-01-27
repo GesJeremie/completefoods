@@ -17,6 +17,7 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     text-decoration: none;
     background-color: $black;
     border-radius: 5px;
+    box-shadow: $box-shadow--button;
 }
 
 .button:disabled {
