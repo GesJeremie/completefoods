@@ -1,4 +1,9 @@
 class CurrenciesController < BaseController
+  def index
+    model = Currency.popular
+    @currencies = CurrencyViewModel.wrap(model, view_model_options)
+  end
+
   def update
     if allowed_code?
       session[:current_currency] = currency_params[:code]

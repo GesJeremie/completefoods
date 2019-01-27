@@ -1,21 +1,3 @@
-<!-- <div id="dropdown-currencies" class="currencies">
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--70-at-medium">
-      <div class="currencies__title">Show me the prices in:</div>
-      <ul class="currencies__list">
-        <% Currency.popular.each do |currency| %>
-          <li class="currencies__item">
-            <%= link_to currency_path(currency.code), { method: :put, class: currency_selected_class(currency, current_currency) } do %>
-              <span class="currencies__item-name"><%= currency.name %></span>
-              <span class="currencies__item-code"><%= currency.code %></span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-  </div>
-</div> -->
-
 <div data-controller="header-menu" class="header clearfix">
   <div class="header__logo">
     <%= link_to root_path, class: 'link' do %>
@@ -34,31 +16,8 @@
   </div>
 
   <div data-target="header-menu.currency" class="header__currency">
-    <span class="header__currency-label">Currency: <a href="#" class="link" data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency"><%= current_currency.code %></a></span>
-  </div>
-
-    <!-- <a data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency" href="#" class="navigation__list-item-link">
-      <%= image_tag 'coin.png', class: 'navigation__currency-icon' %>
-      <span class="navigation__currency-label"><span class="navigation__currency-label-text">Currency:</span> <%= current_currency.code %></span>
-    </a> -->
-</div>
-
-<!--
-<div id="dropdown-currencies" class="currencies">
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--70-at-medium">
-      <div class="currencies__title">Show me the prices in:</div>
-      <ul class="currencies__list">
-        <% Currency.popular.each do |currency| %>
-          <li class="currencies__item">
-            <%= link_to currency_path(currency.code), { method: :put, class: currency_selected_class(currency, current_currency) } do %>
-              <span class="currencies__item-name"><%= currency.name %></span>
-              <span class="currencies__item-code"><%= currency.code %></span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+    <span class="header__currency-label">Currency:
+      <%= link_to current_currency.code, currencies_path, class: 'link', data: { controller: 'modal-xhr' } %>
+    </span>
   </div>
 </div>
--->

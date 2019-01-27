@@ -2,7 +2,11 @@
     #BREAKPOINTS
 \*------------------------------------*/
 
+// Default
 $small-breakpoint:      480px !default;
 $medium-breakpoint:     760px !default;
 $wide-breakpoint:       960px !default;
 $x-wide-breakpoint:     1160px !default;
+
+// Hooks
+$tingle-medium-breakpoint: 541px !default;

@@ -1,0 +1,14 @@
+<div class="currencies">
+  <div class="currencies__title">Show me the prices in:</div>
+    <ul class="currencies__list">
+      <% @currencies.each do |currency| %>
+        <li class="currencies__item">
+          <%= link_to currency_path(currency.code), { method: :put, class: currency.selected_class } do %>
+            <span class="currencies__item-name"><%= currency.name %></span>
+            <span class="currencies__item-code"><%= currency.code %></span>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>

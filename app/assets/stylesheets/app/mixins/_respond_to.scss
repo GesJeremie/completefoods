@@ -12,6 +12,8 @@ $breakpoints: (
   'medium': #{$medium-breakpoint},
   'wide':   #{$wide-breakpoint},
   'x-wide': #{$x-wide-breakpoint},
+
+  'tingle-medium': #{$tingle-medium-breakpoint}
 );
 
 @mixin respond-to($breakpoint) {

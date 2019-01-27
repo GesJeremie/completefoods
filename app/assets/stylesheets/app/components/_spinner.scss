@@ -1,0 +1,39 @@
+/*------------------------------------*\
+    #SPINNER
+\*------------------------------------*/
+
+$spinner-size: 70px !default;
+$spinner-bounce-size: 18px !default;
+
+.spinner {
+    margin: ($spacing-unit * 5) auto;
+    width: $spinner-size;
+    text-align: center;
+}
+
+.spinner__bounce {
+    display: inline-block;
+    width: $spinner-bounce-size;
+    height: $spinner-bounce-size;
+    background-color: $purple;
+    border-radius: 100%;
+    animation: bounce 1.4s infinite ease-in-out both;
+}
+
+.spinner__bounce--first {
+    animation-delay: -0.32s;
+}
+
+.spinner__bounce--second {
+    animation-delay: -0.16s;
+}
+
+@keyframes bounce {
+    0%, 80%, 100% {
+        transform: scale(0);
+    }
+
+    40% {
+        transform: scale(1);
+    }
+}
