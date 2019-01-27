@@ -61,20 +61,9 @@
 <% end %>
 
 <% if local_assigns.fetch(:with_sponsors, true) %>
-
   <%= render 'sponsors/queal.html.erb' if product_counter == 2 %>
   <%= render 'sponsors/parachute.html.erb' if product_counter == 6 %>
-
-
-  <% if product_counter == 6 %>
-    <!-- <div class="sponsor sponsor--powdermatter">
-      <div class="sponsor__container">
-        <%= image_tag 'sponsors/powdermatter.jpg', class: 'sponsor__logo' %>
-        <p class="sponsor__text">
-          <span>Powder Matter</span> is a <span>delicious</span> complete meal in a bag that can be mixed into a shake.
-          <%= link_to 'See more', 'https://goo.gl/gregreg', target: '_blank', class: 'button button--sponsor' %>
-        </p>
-      </div>
-    </div> -->
-  <% end %>
+  <!--
+  <%= render 'sponsors/powdermatter.html.erb' if product_counter == 10 %>
+  !-->
 <% end %>
