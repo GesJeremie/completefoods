@@ -1,6 +1,6 @@
 class WizardController < BaseController
   before_action :set_current_wizard
-  before_action :ensure_can_show_step!, except: [:index]
+  before_action :ensure_allowed_step!, except: [:index]
   before_action :set_current_step, except: [:index]
 
   def index
@@ -37,6 +37,12 @@ class WizardController < BaseController
       return if session[:current_wizard].present?
 
       session[:current_wizard] = Wizard.new.tap(&:save).id
+    end
+
+    def ensure_allowed_step!
+      unless current_wizard.allowed_step?(action_name)
+        redirect_to action: :index
+      end
     end
 
     def set_current_step

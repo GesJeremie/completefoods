@@ -14,7 +14,7 @@ class Wizard < ApplicationRecord
   end
 
   def steps_remaining_without_current_step
-    steps_remaining - current_step
+    steps_remaining - [current_step]
   end
 
   def previous_step
@@ -31,6 +31,10 @@ class Wizard < ApplicationRecord
 
   def completed?
     current_step == 'completed'
+  end
+
+  def allowed_step?(step)
+    (current_step == step) || step_completed?(step) || (next_step == step)
   end
 
   private
