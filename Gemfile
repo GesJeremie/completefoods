@@ -51,6 +51,9 @@ gem 'nokogiri'
 # Pagination
 gem 'will_paginate'
 
+# Wizard system
+gem 'wicked'
+
 # Front-end
 gem 'inline_svg'
 gem 'avalanche-rails', '~> 1.2.0'

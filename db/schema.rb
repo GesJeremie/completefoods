@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_30_143224) do
+ActiveRecord::Schema.define(version: 2019_01_28_050502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -140,6 +140,14 @@ ActiveRecord::Schema.define(version: 2018_12_30_143224) do
     t.integer "flavor", default: 0
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
+  end
+
+  create_table "wizards", force: :cascade do |t|
+    t.string "email"
+    t.string "current_step"
+    t.jsonb "search_attributes"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
