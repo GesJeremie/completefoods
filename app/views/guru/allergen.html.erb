@@ -1,0 +1,20 @@
+<div class="guru">
+  <%= form_tag guru_index_path, method: 'post' do %>
+    <div class="guru__question">
+      Do you have any food allergies / intolerances?
+    </div>
+    <div class="guru__choices">
+      <div class="guru__choice">
+        Gluten
+      </div>
+      <div class="guru__choice">
+        Lactose
+      </div>
+    </div>
+    <div class="guru__note">
+      I will soon add more allergies / intolerances to this question (Ogm, nuts, soy ...)
+    </div>
+
+    <%= button_tag 'Continue' %>
+  <% end %>
+</div>

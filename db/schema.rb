@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_28_050502) do
+ActiveRecord::Schema.define(version: 2019_01_31_022953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -142,12 +142,21 @@ ActiveRecord::Schema.define(version: 2019_01_28_050502) do
     t.index ["slug"], name: "index_products_on_slug", unique: true
   end
 
-  create_table "wizards", force: :cascade do |t|
-    t.string "email"
-    t.string "current_step"
-    t.jsonb "search_attributes"
+  create_table "wizard_steps", force: :cascade do |t|
+    t.bigint "wizard_id"
+    t.string "name"
+    t.boolean "completed", default: false
+    t.jsonb "answers"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["wizard_id"], name: "index_wizard_steps_on_wizard_id"
+  end
+
+  create_table "wizards", force: :cascade do |t|
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_wizards_on_token", unique: true
   end
 
 end

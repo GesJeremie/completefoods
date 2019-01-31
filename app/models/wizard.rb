@@ -1,45 +1,48 @@
 class Wizard < ApplicationRecord
-  STEPS_ORDER = %w[allergen diet location type subscription sort narrow].freeze
+  has_secure_token
+  has_many :wizard_steps
 
-  def step_completed?(step)
-    steps_completed.include?(step)
-  end
+  # STEPS_ORDER = %w[allergen diet location type subscription sort narrow].freeze
 
-  def steps_completed
-    STEPS_ORDER.slice(0, current_step_index)
-  end
+  # def step_completed?(step)
+  #   steps_completed.include?(step)
+  # end
 
-  def steps_remaining
-    STEPS_ORDER - steps_completed
-  end
+  # def steps_completed
+  #   STEPS_ORDER.slice(0, current_step_index)
+  # end
 
-  def steps_remaining_without_current_step
-    steps_remaining - [current_step]
-  end
+  # def steps_remaining
+  #   STEPS_ORDER - steps_completed
+  # end
 
-  def previous_step
-    steps_completed.last
-  end
+  # def steps_remaining_without_current_step
+  #   steps_remaining - [current_step]
+  # end
 
-  def next_step
-    steps_remaining_without_current_step.first
-  end
+  # def previous_step
+  #   steps_completed.last
+  # end
 
-  def started?
-    current_step != STEPS_ORDER.first
-  end
+  # def next_step
+  #   steps_remaining_without_current_step.first
+  # end
 
-  def completed?
-    current_step == 'completed'
-  end
+  # def started?
+  #   current_step != STEPS_ORDER.first
+  # end
 
-  def allowed_step?(step)
-    (current_step == step) || step_completed?(step) || (next_step == step)
-  end
+  # def completed?
+  #   current_step == 'completed'
+  # end
 
-  private
+  # def allowed_step?(step)
+  #   (current_step == step) || step_completed?(step) || (next_step == step)
+  # end
 
-    def current_step_index
-      STEPS_ORDER.find_index(current_step)
-    end
+  # private
+
+  #   def current_step_index
+  #     STEPS_ORDER.find_index(current_step)
+  #   end
 end
