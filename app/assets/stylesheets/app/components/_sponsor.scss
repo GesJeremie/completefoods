@@ -60,7 +60,15 @@
 
                 .sponsor--parachute & {
                     display: block;
+                    font-size: 15px;
                 }
+            }
+
+            .sponsor__text--small {
+                padding-top: halve($spacing-unit);
+                font-size: 13px;
+                font-weight: normal;
+                border-bottom: 0;
             }
 
         .sponsor__container-action {
