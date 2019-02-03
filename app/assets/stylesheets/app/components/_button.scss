@@ -18,6 +18,7 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     background-color: $black;
     border-radius: 5px;
     box-shadow: $box-shadow--button;
+    cursor: pointer;
 }
 
 .button:disabled {
@@ -48,6 +49,10 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
 
 .button--no-margin {
     margin: 0;
+}
+
+.button--no-box-shadow {
+    box-shadow: none;
 }
 
 .button--fixed-width {

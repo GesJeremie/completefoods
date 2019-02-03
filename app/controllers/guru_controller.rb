@@ -5,10 +5,17 @@ class GuruController < BaseController
     redirect_to action: wizard.current_step.name
   end
 
+  def show
+    # If finished display results of wizard
+    # else redirect to root_path
+  end
+
   def create
+
+
     wizard.current_step.tap do |step|
-      step.answers = wizard_params
-      step.completed = true
+      step.answers = guru_params
+      #step.completed = true
       step.save
     end
 
@@ -38,8 +45,8 @@ class GuruController < BaseController
 
   private
 
-    def wizard_params
-      params.permit(:answers)
+    def guru_params
+      params.require(:answers).permit!
     end
 
     def wizard

@@ -1,0 +1,124 @@
+/*------------------------------------*\
+    #GURU
+\*------------------------------------*/
+
+$guru-box-shadow: 0 5px 9.5px 0.5px rgba(0, 0, 0, 0.08) !default;
+$guru-steps-size: 110px !default;
+$guru-steps-color: $blue !default;
+
+@mixin create-guru-steps-progress($color, $lighten: 8%) {
+    $progress: 0;
+
+    @while $progress <= 100 {
+        .guru__steps-progress--#{$progress} {
+            @if $progress == 0 {
+                background: linear-gradient(180deg, lighten($color, $lighten) 95%, $color 5%);
+            }
+            @else
+            {
+                background: linear-gradient(180deg, lighten($color, $lighten) #{100 - $progress}#{"%"}, $color #{$progress}#{"%"});
+            }
+        }
+
+        $progress: $progress + 10;
+    }
+}
+
+.guru {
+    position: relative;
+    margin: 0 quadruple($spacing-unit);
+    padding: ($spacing-unit * 7) ($spacing-unit * 5);
+    text-align: center;
+    background-color: $white;
+    border-radius: double($border-radius);
+    box-shadow: $guru-box-shadow;
+}
+
+    .guru__steps {
+        position: absolute;
+        top: -46px;
+        right: -35px;
+        width: $guru-steps-size;
+        height: $guru-steps-size;
+    }
+
+        .guru__steps-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+            .guru__steps-content {
+                @include center;
+                width: 100%;
+                color: $white;
+                font-family: $font-numeric;
+                font-weight: 900;
+                letter-spacing: -2px;
+            }
+
+                .guru__steps-current {
+                    font-size: 30px;
+                    letter-spacing: -3px;
+                }
+
+                .guru__steps-total {
+                    font-size: 19px;
+                    letter-spacing: 0;
+                }
+
+            .guru__steps-progress {
+                width: 100%;
+                height: 100%;
+                background-color: $guru-steps-color;
+                border-radius: 50%;
+            }
+
+            @include create-guru-steps-progress($guru-steps-color); // scss-lint:disable Indentation
+
+
+    .guru__logo {
+        padding-right: quadruple($spacing-unit);
+        text-align: center;
+    }
+
+        .guru__note {
+            margin-top: $spacing-unit;
+            font-size: 13px;
+            font-style: italic;
+            line-height: double($spacing-unit);
+            text-align: center;
+        }
+
+
+    .guru__question {
+        margin-bottom: double($spacing-unit);
+        font-weight: 700;
+    }
+
+    .guru__choices {}
+
+        .guru__choice {
+            margin: halve($spacing-unit) 0;
+            margin-right: halve($spacing-unit);
+            padding: double($spacing-unit) 0;
+            font-size: 14px;
+            text-align: center;
+            border: 1px solid $gray--medium;
+            border-radius: 5px;
+            vertical-align: middle;
+
+            &:hover {
+                background-color: $gray--x-light;
+                cursor: pointer;
+            }
+        }
+
+            .guru__choice-label {
+                vertical-align: middle;
+            }
+
+    .guru__footer {
+        margin-top: quadruple($spacing-unit);
+        text-align: right;
+    }
