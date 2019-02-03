@@ -1,8 +1,7 @@
-class WizardGuruService
-  STEPS = %w[allergen diet location type subscription sort narrow].freeze
-
-  def initialize(session_id = nil)
-    @session_id = session_id
+class Wizard::BaseService
+  def initialize(wizard_id = nil, wizard_steps = [])
+    @wizard_id = wizard_id
+    @wizard_steps = wizard_steps
   end
 
   def id
@@ -10,11 +9,11 @@ class WizardGuruService
   end
 
   def steps
-    wizard.wizard_steps
+    wizard.wizard_steps.reorder('created_at ASC')
   end
 
-  def current_step
-    steps_remaining.first
+  def step(name)
+    steps.find_by_name(name)
   end
 
   def steps_completed
@@ -27,10 +26,6 @@ class WizardGuruService
 
   def steps_remaining_without_current
     steps_remaining - [current_step]
-  end
-
-  def step_allowed?(step_name)
-    !steps_remaining_without_current.map(&:name).include?(step_name)
   end
 
   def current_step
@@ -50,14 +45,15 @@ class WizardGuruService
   end
 
   private
-    attr_reader :session_id
+    attr_reader :wizard_id
+    attr_reader :wizard_steps
 
     def wizard
       @wizard ||= fetch_wizard
     end
 
     def fetch_wizard
-      return Wizard.find(session_id) if session_id.present?
+      return Wizard.find(wizard_id) if wizard_id.present?
 
       create_wizard
     end
@@ -70,12 +66,6 @@ class WizardGuruService
     end
 
     def build_steps
-      STEPS.map { |step| build_step(step) }
-    end
-
-    def build_step(name)
-      WizardStep.new.tap do |step|
-        step.name = name
-      end
+      wizard_steps.map { |step| WizardStep.new(name: step) }
     end
 end

@@ -3,8 +3,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_currency
 
   def current_currency
-    @current_currency ||=
-      begin
+    @current_currency ||= begin
         Currency.find_by_code(session[:current_currency]) || Currency.find_by_code('USD')
       end
   end

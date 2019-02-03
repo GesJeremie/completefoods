@@ -12,15 +12,27 @@ Rails.application.routes.draw do
   resources :collections, only: [:index, :show], param: :slug
   resources :currencies, only: [:index, :update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
-  resources :guru, only: [:index, :create] do
+
+  resource :guru do
     collection do
-      get 'allergen'
-      get 'diet'
-      get 'location'
-      get 'type'
-      get 'subscription'
-      get 'sort'
-      get 'narrow'
+      get '/', action: :index, as: :index
+      get :allergen
+      get :diet
+      get :location
+      get :type
+      get :subscription_create
+      get :sort
+      get :narrow
+      get '/:id', action: :show, as: :show
+
+      post :allergen_create
+      post :diet_create
+      post :location_create
+      post :type_create
+      post :subscription_create
+      post :sort_create
+      post :sort_create
+      post :narrow_create
     end
   end
 

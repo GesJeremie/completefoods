@@ -1,6 +1,6 @@
 class CollectionViewModel < ApplicationViewModel
   def description
-    @description ||= Description.new(model).perform
+    @description ||= CollectionDescription.new(model).perform
   end
 
   def image

@@ -98,7 +98,7 @@
     .product-item__cost {
         margin-top: triple($spacing-unit);
         margin-right: $spacing-unit;
-        color: $green;
+        color: $blue;
         text-align: right;
 
         @include respond-to('medium') {
@@ -122,7 +122,7 @@
 
         .product-item__cost-description {
             display: block;
-            color: $green;
+            color: $blue;
             font-size: 12px;
             font-weight: 300;
 

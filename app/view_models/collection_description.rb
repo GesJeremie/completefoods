@@ -1,4 +1,4 @@
-class CollectionViewModel::Description
+class CollectionDescription
   include CounterHelper
 
   def initialize(collection)

@@ -1,19 +1,21 @@
 <div class="hero hero--guru">
   <h1 class="hero__title">Your Quest is over!</h1>
-  <h2 class="hero__subtitle">Answer the Guru's question and you will find the best Complete Foods for you - Based on the <%= count_active_products %> products and <%= count_brands %> brands we reference.
+  <h2 class="hero__subtitle">Answer the Guru's questions to find the best Complete Foods for you - Based on the <%= count_active_products %> products and <%= count_brands %> brands we reference.
 </div>
-
 
 <div class="grid grid--center">
   <div class="grid__cell grid__cell--70">
     <div class="guru">
+
       <div class="guru__steps">
         <div class="guru__steps-container">
           <div class="guru__steps-content">
-            <span class="guru__steps-current">01</span>
-            <span class="guru__steps-total">/08</span>
+            <span class="guru__steps-current"><%= leading_zero(@guru_step.progress_current) %></span>
+            <span class="guru__steps-total">/<%= leading_zero(@guru_step.progress_total) %></span>
           </div>
-          <div class="guru__steps-progress guru__steps-progress--30"></div>
+          <div class="guru__steps-circle">
+            <div class="guru__steps-progress" style="height: <%= @guru_step.progress_height %>%"></div>
+          </div>
         </div>
       </div>
 
@@ -28,28 +30,30 @@
         </div>
 
         <div class="grid__cell grid__cell--60">
-
-          <%= form_tag guru_index_path, method: 'post' do %>
+          <%= form_tag allergen_create_guru_path, method: 'post' do %>
             <div class="heading heading--4 guru__question">
               Do you have any food allergies?
             </div>
 
-
             <div class="guru__choices">
               <div class="grid">
                 <div class="grid__cell grid__cell--50">
-                  <div class="guru__choice">
-                    <%= check_box_tag 'answers[gluten]', nil %>
-                    <%= emoji('flour') %>
+                  <%= label_tag nil, class: 'guru__choice' do %>
+                    <%= check_box_tag 'answers[gluten]', nil, @guru_step.answer_for(:gluten), class: 'guru__choice-checkbox' %>
+                    <div class="guru__choice-content">
+                      <%= emoji('flour') %>
                       <span class="guru__choice-label">Gluten</span>
-                  </div>
+                    </div>
+                  <% end %>
                 </div>
                 <div class="grid__cell grid__cell--50">
-                  <div class="guru__choice">
-                    <%= check_box_tag 'answers[lactose]', nil %>
-                    <%= emoji('baby-bottle') %>
-                    <span class="guru__choice-label">Lactose</span>
-                  </div>
+                  <%= label_tag nil, class: 'guru__choice' do %>
+                    <%= check_box_tag 'answers[lactose]', nil, @guru_step.answer_for(:lactose), class: 'guru__choice-checkbox' %>
+                    <div class="guru__choice-content">
+                      <%= emoji('baby-bottle') %>
+                      <span class="guru__choice-label">Lactose</span>
+                    </div>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -58,13 +62,8 @@
               <%= button_tag 'Next Question', class: 'button button--secondary button--with-arrow button--no-box-shadow' %>
             </div>
           <% end %>
-
         </div>
-
-
       </div>
-
-
 
     </div>
   </div>

@@ -31,7 +31,6 @@ class BrandNavigationViewModel < ApplicationViewModel
   end
 
   private
-
     attr_accessor :used_anchors
 
     def active_letters
@@ -41,5 +40,4 @@ class BrandNavigationViewModel < ApplicationViewModel
     def active_letter?(letter)
       active_letters.include?(letter)
     end
-
 end

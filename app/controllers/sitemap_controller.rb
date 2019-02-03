@@ -1,12 +1,10 @@
 class SitemapController < BaseController
-
   def index
     set_products
     set_collection_made_in
     set_collection_made_by
     respond_to :xml
   end
-
 
   private
 

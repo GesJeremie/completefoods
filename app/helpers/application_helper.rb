@@ -17,6 +17,10 @@ module ApplicationHelper
     string.parameterize.truncate(80, omission: '')
   end
 
+  def leading_zero(number)
+    number.to_s.rjust(2, '0')
+  end
+
   def dashboard_flash_class(type)
     case type.to_sym
       when :notice  then 'alert alert-info'
