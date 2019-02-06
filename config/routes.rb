@@ -20,7 +20,7 @@ Rails.application.routes.draw do
       get :diet
       get :location
       get :type
-      get :subscription_create
+      get :subscription
       get :sort
       get :narrow
       get '/:id', action: :show, as: :show

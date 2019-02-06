@@ -3,6 +3,10 @@ class GuruStepViewModel < ApplicationViewModel
     current_step.answers[key.to_s] rescue nil
   end
 
+  def checked_for?(key, value)
+    value.to_s == answer_for(key)
+  end
+
   def progress_current
     current_step_index + 1
   end

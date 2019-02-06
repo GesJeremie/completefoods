@@ -1,0 +1,7 @@
+<%= label_tag nil, class: 'guru__choice' do %>
+  <%= check_box_tag "answers[#{attribute}]", nil, answer, class: 'guru__choice-checkbox' %>
+  <div class="guru__choice-content">
+    <%= emoji(icon) %>
+    <span class="guru__choice-label"><%= label %></span>
+  </div>
+<% end %>

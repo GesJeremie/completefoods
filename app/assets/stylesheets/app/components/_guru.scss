@@ -85,6 +85,7 @@ $guru-steps-progress-bg-color: $blue !default;
     .guru__question {
         margin-bottom: double($spacing-unit);
         font-weight: 700;
+        line-height: 1.2;
     }
 
     .guru__choices {}
@@ -99,7 +100,8 @@ $guru-steps-progress-bg-color: $blue !default;
             vertical-align: middle;
         }
 
-            .guru__choice-checkbox {
+            .guru__choice-checkbox,
+            .guru__choice-radio {
                 display: none;
 
                 &:checked + .guru__choice-content {
@@ -115,6 +117,7 @@ $guru-steps-progress-bg-color: $blue !default;
                 padding: double($spacing-unit) 0;
                 border: 1px solid $gray--medium;
                 border-radius: 5px;
+                user-select: none;
 
                 &:hover {
                     background-color: $gray--x-light;
