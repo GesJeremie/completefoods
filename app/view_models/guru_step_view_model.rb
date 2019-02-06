@@ -26,7 +26,7 @@ class GuruStepViewModel < ApplicationViewModel
   private
 
     def steps
-      @steps ||= model.steps
+      @steps ||= model.wizard_steps
     end
 
     def current_step

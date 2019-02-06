@@ -61,7 +61,17 @@ class GurusController < BaseController
     end
 
     def wizard
-      @wizard ||= Wizard::GuruResolverService.new(session).perform
+      @wizard ||= (saved_wizard || new_wizard)
+    end
+
+    def saved_wizard
+      @saved_wizard ||= Wizard.find_by_id(session[:guru_wizard])
+    end
+
+    def new_wizard
+      Wizards::BuilderGuru.new.create.tap do |wizard|
+        session[:guru_wizard] = wizard.id
+      end
     end
 
     def step_view_model(current_step)
