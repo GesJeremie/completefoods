@@ -65,7 +65,7 @@ class GurusController < BaseController
     end
 
     def saved_wizard
-      @saved_wizard ||= Wizard.find_by_id(session[:guru_wizard])
+      Wizard.find_by_id(session[:guru_wizard])
     end
 
     def new_wizard
