@@ -20,6 +20,11 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     border-radius: 5px;
     box-shadow: $box-shadow--button;
     cursor: pointer;
+    vertical-align: middle;
+}
+
+.button + .button {
+    margin-left: $spacing-unit;
 }
 
 .button:disabled {
@@ -29,6 +34,11 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
 
 .button--secondary {
     background-color: $purple;
+}
+
+.button--muted {
+    color: $gray;
+    background-color: $gray--medium-light;
 }
 
 .button--small {
