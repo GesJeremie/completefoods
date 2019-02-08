@@ -1,71 +1,110 @@
 class GurusController < BaseController
-  before_action :set_view_models,
+  before_action :set_view_model,
     only: %i[allergen diet location type subscription sort email]
 
   before_action :save_answers,
     only: %i[allergen_create diet_create location_create type_create subscription_create sort_create email_create]
 
   def index
-    redirect_to action: wizard.current_step.name
+    if wizard.finished?
+      redirect_to(action: :show, id: wizard.token) and return
+    else
+      redirect_to(action: wizard.current_step.name) and return
+    end
   end
 
   def show
-    # If finished display results of wizard
-    # else redirect to root_path
+    model = Wizard.find_by_token(params[:id])
+
+    unless model.finished?
+      redirect_to action: :index
+    end
   end
 
   def allergen; end
   def allergen_create
-    redirect_to action: :index
+    redirect_to_next_step
   end
 
   def diet; end
   def diet_create
-    redirect_to action: :index
+    redirect_to_next_step
   end
 
   def location; end
   def location_create
-    redirect_to action: :index
+    redirect_to_next_step
   end
 
   def type; end
   def type_create
-    redirect_to action: :index
+    redirect_to_next_step
   end
 
   def subscription; end
   def subscription_create
-    redirect_to action: :index
+    redirect_to_next_step
   end
 
   def sort; end
   def sort_create
-    redirect_to action: :index
+    redirect_to_next_step
   end
 
   def narrow; end
   def narrow_create
-    redirect_to action: :index
+    redirect_to_next_step
   end
 
   def email; end
   def email_create
-    redirect_to action: :index
+    redirect_to_next_step
   end
 
   private
 
-    def set_view_models
-      step = action_name.to_sym
-      @guru_step = step_view_model(step)
+    #
+    # Before Actions
+    #
+    def set_view_model
+      @guru_step = GuruStepViewModel.wrap(
+        wizard,
+        view_model_options.merge(current_step: current_step)
+      )
     end
 
     def save_answers
-      step = action_name.remove('_create').to_sym
-      save_answers_for_step(step)
+      wizard.step(current_step).tap do |step|
+        step.completed = true
+        step.answers = send("#{current_step}_params")
+        step.save
+      end
     end
 
+    #
+    # Methods
+    #
+    def redirect_to_next_step
+      next_step = wizard.step_after(
+        wizard.step(current_step)
+      )
+
+      if next_step.present?
+        redirect_to action: next_step.name and return
+      else
+        redirect_to action: :index and return
+      end
+    end
+
+    def current_step
+      action_name
+      .remove('_create')
+      .to_sym
+    end
+
+    #
+    # Wizards
+    #
     def wizard
       @wizard ||= (saved_wizard || new_wizard)
     end
@@ -80,21 +119,9 @@ class GurusController < BaseController
       end
     end
 
-    def step_view_model(current_step)
-      GuruStepViewModel.wrap(
-        wizard,
-        view_model_options.merge(current_step: current_step)
-      )
-    end
-
-    def save_answers_for_step(name)
-      wizard.step(name).tap do |step|
-        step.completed = true
-        step.answers = send("#{name}_params")
-        step.save
-      end
-    end
-
+    #
+    # Params
+    #
     def answers_params(*allowed_answers)
       params.permit(answers: allowed_answers)[:answers]
     end

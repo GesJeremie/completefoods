@@ -6,6 +6,10 @@ class Wizard < ApplicationRecord
     wizard_steps.find_by_name(name)
   end
 
+  def step_index(step)
+    wizard_steps.find_index(step)
+  end
+
   def steps_completed
     wizard_steps.where(completed: true)
   end
@@ -31,11 +35,13 @@ class Wizard < ApplicationRecord
   end
 
   def step_after(step)
-    # implement
+    return if step_index(step) == wizard_steps.size
+    wizard_steps[ step_index(step) + 1 ]
   end
 
   def step_before(step)
-    # implement
+    return if step_index(step) == 0
+    wizard_steps[ step_index(step) - 1 ]
   end
 
   def finished?
