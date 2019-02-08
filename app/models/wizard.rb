@@ -7,11 +7,11 @@ class Wizard < ApplicationRecord
   end
 
   def steps_completed
-    steps.where(completed: true)
+    wizard_steps.where(completed: true)
   end
 
   def steps_remaining
-    steps.where(completed: false)
+    wizard_steps.where(completed: false)
   end
 
   def steps_remaining_without_current
@@ -31,19 +31,14 @@ class Wizard < ApplicationRecord
   end
 
   def step_after(step)
-    wizard_steps.reorder('')
+    # implement
   end
 
   def step_before(step)
+    # implement
   end
 
   def finished?
     steps_remaining.empty?
   end
-
-  private
-
-    def steps
-      wizard_steps.reorder('created_at ASC')
-    end
 end

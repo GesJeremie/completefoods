@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       get :type
       get :subscription
       get :sort
-      get :narrow
+      get :email
       get '/:id', action: :show, as: :show
 
       post :allergen_create
@@ -32,7 +32,7 @@ Rails.application.routes.draw do
       post :subscription_create
       post :sort_create
       post :sort_create
-      post :narrow_create
+      post :email_create
     end
   end
 

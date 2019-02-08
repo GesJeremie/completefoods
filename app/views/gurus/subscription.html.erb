@@ -8,27 +8,30 @@
     <div class="guru__choices">
       <div class="grid">
         <div class="grid__cell grid__cell--50">
-          <%= guru_checkbox_tag(
+          <%= guru_radio_button_tag(
             label: 'Yes',
-            icon: 'flour',
-            attribute: :yes,
-            answer: @guru_step.answer_for(:yes)
+            icon: 'super_smile',
+            key: :subscription,
+            value: :yes,
+            checked: @guru_step.checked_for?(:subscription, :yes)
             ) %>
         </div>
         <div class="grid__cell grid__cell--50">
-          <%= guru_checkbox_tag(
+          <%= guru_radio_button_tag(
             label: 'No',
-            icon: 'flour',
-            attribute: :no,
-            answer: @guru_step.answer_for(:no)
+            icon: 'smile',
+            key: :subscription,
+            value: :no,
+            checked: @guru_step.checked_for?(:subscription, :no)
             ) %>
         </div>
         <div class="grid__cell grid__cell--100">
-          <%= guru_checkbox_tag(
+          <%= guru_radio_button_tag(
             label: 'Yes, but only if I get a discount!',
-            icon: 'flour',
-            attribute: :yes_only_discount,
-            answer: @guru_step.answer_for(:yes_only_discount)
+            icon: 'discount',
+            key: :subscription,
+            value: :yes_only_discount,
+            checked: @guru_step.checked_for?(:subscription, :yes_only_discount)
             ) %>
         </div>
       </div>

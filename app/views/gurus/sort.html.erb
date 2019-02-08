@@ -1,1 +1,31 @@
-<h1>Sort</h1>
+<%= render layout: 'step', locals: { step: @guru_step } do %>
+
+  <%= form_tag sort_create_guru_path, method: 'post' do %>
+    <div class="heading heading--4 guru__question">
+      All right, it seems I found X products for your preferences, let's sort them together!
+    </div>
+
+    <div class="guru__choices">
+      <div class="grid">
+        <div class="grid__cell grid__cell--100">
+          <%# TODO: Use rails html helpers for that %>
+          <select name="answers[sort]">
+            <% Sort.grouped.each do |group| %>
+              <optgroup label="<%= group.first.to_s.titleize %>">
+
+                <% group.last.each do |sort| %>
+                  <option value="<%= sort.value %>"><%= sort.label_group %></option>
+                <% end %>
+
+              </optgroup>
+
+            <% end %>
+          </select>
+
+        </div>
+      </div>
+    </div>
+
+    <%= render 'gurus/footer' %>
+  <% end %>
+<% end %>

@@ -1,7 +1,7 @@
 <%= label_tag nil, class: 'guru__choice' do %>
   <%= radio_button_tag "answers[#{key}]", value, checked, class: 'guru__choice-radio' %>
   <div class="guru__choice-content">
-    <%= emoji(icon) %>
+    <%= inline_svg("#{icon}.svg", class: 'icon') %>
     <span class="guru__choice-label"><%= label %></span>
   </div>
 <% end %>

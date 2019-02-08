@@ -1,9 +1,9 @@
 class GurusController < BaseController
   before_action :set_view_models,
-    only: %i[allergen diet location type subscription sort narrow]
+    only: %i[allergen diet location type subscription sort email]
 
   before_action :save_answers,
-    only: %i[allergen_create diet_create location_create type_create subscription_create sort_create narrow_create]
+    only: %i[allergen_create diet_create location_create type_create subscription_create sort_create email_create]
 
   def index
     redirect_to action: wizard.current_step.name
@@ -41,10 +41,16 @@ class GurusController < BaseController
 
   def sort; end
   def sort_create
+    redirect_to action: :index
   end
 
   def narrow; end
   def narrow_create
+    redirect_to action: :index
+  end
+
+  def email; end
+  def email_create
     redirect_to action: :index
   end
 
@@ -107,5 +113,17 @@ class GurusController < BaseController
 
     def type_params
       answers_params(:powder, :ready_to_drink, :snack)
+    end
+
+    def subscription_params
+      answers_params(:yes, :yes_only_discount)
+    end
+
+    def sort_params
+      answers_params(:sort)
+    end
+
+    def email_params
+      answers_params(:email)
     end
 end

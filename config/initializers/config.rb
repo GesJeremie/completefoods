@@ -25,7 +25,6 @@ Rails.application.configure do
     'united_states'
   ]
 
-
   config.sorters = [
     { label: 'Nothing', value: :nothing, group: nil },
 
