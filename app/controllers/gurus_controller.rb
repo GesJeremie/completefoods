@@ -7,7 +7,9 @@ class GurusController < BaseController
 
   def index
     if wizard.finished?
-      redirect_to(action: :show, id: wizard.token) and return
+      token = wizard.token
+      session[:guru_wizard] = nil
+      redirect_to(action: :show, id: token) and return
     else
       redirect_to(action: wizard.current_step.name) and return
     end
