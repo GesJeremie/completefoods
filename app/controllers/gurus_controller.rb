@@ -2,6 +2,12 @@ class GurusController < BaseController
   before_action :set_view_model,
     only: %i[allergen diet location type subscription sort email]
 
+  before_action :ensure_can_show_step,
+    only: %i[allergen diet location type subscription sort email]
+
+  before_action :ensure_enough_products_to_sort,
+    only: %i[sort]
+
   before_action :save_answers,
     only: %i[allergen_create diet_create location_create type_create subscription_create sort_create email_create]
 
@@ -17,10 +23,12 @@ class GurusController < BaseController
 
   def show
     model = Wizard.find_by_token(params[:id])
+    redirect_to(action: :index) unless model.finished?
 
-    unless model.finished?
-      redirect_to action: :index
-    end
+    @products = ProductViewModel.wrap(
+      GuruProductsFinder.new(model.answers).perform,
+      view_model_options
+    )
   end
 
   def allergen; end
@@ -81,6 +89,23 @@ class GurusController < BaseController
         step.answers = send("#{current_step}_params")
         step.save
       end
+    end
+
+    def ensure_can_show_step
+      # Implement
+    end
+
+    def ensure_enough_products_to_sort
+      @products = GuruProductsFinder.new(wizard.answers).perform
+
+      return if @products.size > 3
+
+      wizard.step(current_step).tap do |step|
+        step.completed = true
+        step.save
+      end
+
+      redirect_to_next_step
     end
 
     #

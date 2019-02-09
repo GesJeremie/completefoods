@@ -1,1 +1,6 @@
-<h1>Show</h1>
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--80-at-wide">
+    <h1 class="heading heading--1">Products matching your preferences!</h1>
+    <%= render partial: 'products/item', collection: @products, as: :product %>
+  </div>
+</div>

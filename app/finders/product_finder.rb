@@ -18,6 +18,9 @@ class ProductFinder
   private
 
     def active_products
-      Product.includes( { brand: [:country] }, { price: [:currency] }, { image_attachment: [:blob] } ).active.order(name: :asc)
+      Product
+        .includes( { brand: [:country] }, { price: [:currency] }, { image_attachment: [:blob] } )
+        .active
+        .order(name: :asc)
     end
 end

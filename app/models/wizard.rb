@@ -2,6 +2,10 @@ class Wizard < ApplicationRecord
   has_secure_token
   has_many :wizard_steps
 
+  def answers
+    wizard_steps.pluck(:answers).compact.reduce({}, :merge)
+  end
+
   def step(name)
     wizard_steps.find_by_name(name)
   end

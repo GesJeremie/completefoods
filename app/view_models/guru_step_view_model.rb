@@ -19,10 +19,6 @@ class GuruStepViewModel < ApplicationViewModel
     (progress_current * 100) / progress_total
   end
 
-  def next_step
-    model.step_after(current_step)
-  end
-
   def previous_step
     model.step_before(current_step)
   end
@@ -35,6 +31,10 @@ class GuruStepViewModel < ApplicationViewModel
 
   def previous_button?
     previous_step.present?
+  end
+
+  def last_step?
+    model.step_after(current_step).nil?
   end
 
   private

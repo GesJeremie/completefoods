@@ -2,7 +2,7 @@
 
   <%= form_tag sort_create_guru_path, method: 'post' do %>
     <div class="heading heading--4 guru__question">
-      All right, it seems I found X products for your preferences, let's sort them together!
+      All right, it seems I found <%= @products.size %> products for your preferences, let's sort them together!
     </div>
 
     <div class="guru__choices">
