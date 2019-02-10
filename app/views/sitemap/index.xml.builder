@@ -16,43 +16,20 @@ xml.urlset(xmlns: 'http://www.sitemaps.org/schemas/sitemap/0.9') do
     end
   end
 
-  @collection_made_in.each do |made_in|
+  @collections.each do |collection|
     xml.url do
-      xml.loc "#{root_url}made-in-#{made_in}"
-      xml.changefreq('daily')
-      xml.priority '0.8'
-    end
-
-    xml.url do
-      xml.loc "#{root_url}produced-in-#{made_in}"
+      xml.loc collection_url(collection.slug)
       xml.changefreq('daily')
       xml.priority '0.8'
     end
   end
 
-  @collection_made_by.each do |made_by|
+  @brands.each do |brand|
     xml.url do
-      xml.loc "#{root_url}made-by-#{made_by}"
-      xml.changefreq('daily')
-      xml.priority '0.8'
-    end
-
-    xml.url do
-      xml.loc "#{root_url}produced-by-#{made_by}"
+      xml.loc brand_url(brand)
       xml.changefreq('daily')
       xml.priority '0.8'
     end
   end
 
-  xml.url do
-    xml.loc "#{root_url}suitable-for-vegans"
-    xml.changefreq('daily')
-    xml.priority '0.8'
-  end
-
-  xml.url do
-    xml.loc "#{root_url}for-vegans"
-    xml.changefreq('daily')
-    xml.priority '0.8'
-  end
 end
