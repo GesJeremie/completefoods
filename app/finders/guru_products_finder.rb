@@ -61,6 +61,10 @@ class GuruProductsFinder < ApplicationFinder
 
   private
     def states_preferences
+      @states_preferences ||= fetch_states_preferences
+    end
+
+    def fetch_states_preferences
       preferences = []
 
       preferences.push('powder') if answers[:powder] == 'on'

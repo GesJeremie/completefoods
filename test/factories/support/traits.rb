@@ -1,39 +1,47 @@
 module Factories
   module Support
     module Traits
-      def vegetarian
+      def trait_vegetarian
         build(:product_diet, { vegetarian: true })
       end
 
-      def non_vegetarian
+      def trait_non_vegetarian
         build(:product_diet, { vegetarian: false })
       end
 
-      def vegan
+      def trait_vegan
         build(:product_diet, { vegan: true })
       end
 
-      def non_vegan
+      def trait_non_vegan
         build(:product_diet, { vegan: false })
       end
 
-      def gluten
+      def trait_gluten
         build(:product_allergen, { gluten: true })
       end
 
-      def gluten_free
+      def trait_gluten_free
         build(:product_allergen, { gluten: false })
       end
 
-      def lactose
+      def trait_lactose
         build(:product_allergen, { lactose: true })
       end
 
-      def lactose_free
+      def trait_lactose_free
         build(:product_allergen, { lactose: false })
       end
 
-      def made_in(country)
+      def trait_shipment_united_states
+        build(:product_shipment, { united_states: true })
+      end
+
+      def trait_shipment_europe
+        build(:product_shipment, { europe: true })
+      end
+
+      def trait_made_in(country)
         country = Country.find_by_name(country.titleize)
 
         { brand: create(:brand, { country: country }) }

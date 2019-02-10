@@ -34,8 +34,8 @@ class CollectionProductsFinderTest < ActiveSupport::TestCase
   end
 
   test 'for vegans' do
-    10.times { create(:product, { diet: vegan }) }
-    10.times { create(:product, { diet: non_vegan }) }
+    10.times { create(:product, { diet: trait_vegan }) }
+    10.times { create(:product, { diet: trait_non_vegan }) }
 
     products = CollectionProductsFinder.new('for-vegans').perform
 
@@ -44,8 +44,8 @@ class CollectionProductsFinderTest < ActiveSupport::TestCase
   end
 
   test 'for vegetarians' do
-    10.times { create(:product, { diet: vegetarian }) }
-    10.times { create(:product, { diet: non_vegetarian }) }
+    10.times { create(:product, { diet: trait_vegetarian }) }
+    10.times { create(:product, { diet: trait_non_vegetarian }) }
 
     products = CollectionProductsFinder.new('for-vegetarians').perform
 
@@ -54,8 +54,8 @@ class CollectionProductsFinderTest < ActiveSupport::TestCase
   end
 
   test 'gluten free' do
-    10.times { create(:product, { allergen: gluten }) }
-    10.times { create(:product, { allergen: gluten_free }) }
+    10.times { create(:product, { allergen: trait_gluten }) }
+    10.times { create(:product, { allergen: trait_gluten_free }) }
 
     products = CollectionProductsFinder.new('gluten-free').perform
 
@@ -64,8 +64,8 @@ class CollectionProductsFinderTest < ActiveSupport::TestCase
   end
 
   test 'lactose free' do
-    10.times { create(:product, { allergen: lactose }) }
-    10.times { create(:product, { allergen: lactose_free }) }
+    10.times { create(:product, { allergen: trait_lactose }) }
+    10.times { create(:product, { allergen: trait_lactose_free }) }
 
     products = CollectionProductsFinder.new('lactose-free').perform
 
@@ -74,7 +74,7 @@ class CollectionProductsFinderTest < ActiveSupport::TestCase
   end
 
   test 'made in' do
-    collections_made_in.each { |country| create(:product, made_in(country)) }
+    collections_made_in.each { |country| create(:product, trait_made_in(country)) }
 
     collections_made_in.each do |country|
       products = CollectionProductsFinder.new("made-in-#{country}").perform
