@@ -23,121 +23,35 @@ class ProductSortFinder
 
   private
 
-    def cheapest_bulk_order
+    def price_highest_possible
+      products.sort_by { |product| product.price.per_kcal_in_currency(500, currency: 'USD', type: :minimum_order) }.reverse
+    end
+
+    def price_lowest_possible
       products.sort_by { |product| product.price.per_kcal_in_currency(500, currency: 'USD', type: :bulk_order) }
     end
 
-    def most_expensive_bulk_order
-      cheapest_bulk_order.reverse
-    end
-
-    def most_protein
+    def protein_highest
       products.sort_by { |product| product.protein_per_kcal(100) }
     end
 
-    def less_protein
-      most_protein.reverse
+    def protein_lowest
+      protein_highest.reverse
     end
 
-    def most_carbs
+    def carbs_highest
       products.sort_by { |product| product.carbs_per_kcal(100) }
     end
 
-    def less_carbs
-      most_carbs.reverse
+    def carbs_lowest
+      carbs_highest.reverse
     end
 
-    def most_fat
+    def fat_highest
       products.sort_by { |product| product.fat_per_kcal(100) }
     end
 
-    def less_fat
-      most_fat.reverse
+    def fat_lowest
+      fat_highest.reverse
     end
-
-    # def protein_per_serving_ratio_most
-    #  products.sort_by(&:protein_per_serving_ratio).reverse
-    # end
-
-    # def nothing
-    #   products
-    # end
-
-    # # KCAL
-    # def kcal_per_serving_lowest
-    #   products.sort_by(&:kcal_per_serving)
-    # end
-
-    # def kcal_per_serving_most
-    #   products.sort_by(&:kcal_per_serving).reverse
-    # end
-
-    # # FAT
-    # def fat_per_serving_lowest
-    #   products.sort_by(&:fat_per_serving)
-    # end
-
-    # def fat_per_serving_most
-    #   products.sort_by(&:fat_per_serving).reverse
-    # end
-
-    # def fat_per_serving_ratio_lowest
-    #   products.sort_by(&:fat_per_serving_ratio)
-    # end
-
-    # def fat_per_serving_ratio_most
-    #   products.sort_by(&:fat_per_serving_ratio).reverse
-    # end
-
-    # # CARBS
-    # def carbs_per_serving_lowest
-    #   products.sort_by(&:carbs_per_serving)
-    # end
-
-    # def carbs_per_serving_most
-    #   products.sort_by(&:carbs_per_serving).reverse
-    # end
-
-    # def carbs_per_serving_ratio_lowest
-    #   products.sort_by(&:carbs_per_serving_ratio)
-    # end
-
-    # def carbs_per_serving_ratio_most
-    #   products.sort_by(&:carbs_per_serving_ratio).reverse
-    # end
-
-    # # PROTEIN
-    # def protein_per_serving_lowest
-    #   products.sort_by(&:protein_per_serving)
-    # end
-
-    # def protein_per_serving_most
-    #   products.sort_by(&:protein_per_serving).reverse
-    # end
-
-    # def protein_per_serving_ratio_lowest
-    #   products.sort_by(&:protein_per_serving_ratio)
-    # end
-
-    # def protein_per_serving_ratio_most
-    #   products.sort_by(&:protein_per_serving_ratio).reverse
-    # end
-
-    # # PRICE (day)
-    # def price_per_day_minimum_order_cheapest
-    #   products.sort_by { |product| product.price.per_day_minimum_order_in_currency('USD') }
-    # end
-
-    # def price_per_day_minimum_order_most_expensive
-    #   products.sort_by { |product| product.price.per_day_minimum_order_in_currency('USD') }.reverse
-    # end
-
-    # def price_per_day_bulk_order_cheapest
-    #   products.sort_by { |product| product.price.per_day_bulk_order_in_currency('USD') }
-    # end
-
-    # def price_per_day_bulk_order_most_expensive
-    #   products.sort_by { |product| product.price.per_day_bulk_order_in_currency('USD') }.reverse
-    # end
-
 end

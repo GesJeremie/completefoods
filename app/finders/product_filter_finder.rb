@@ -39,15 +39,15 @@ class ProductFilterFinder
       # Can be more DRY via Product.states.keys.each
       # but we are losing in readability, let's keep it
       # as-is right now.
-      if params[:powder]&.present?
+      if params[:powder].present?
         query.push("state = #{Product.states[:powder]}")
       end
 
-      if params[:bottle]&.present?
+      if params[:bottle].present?
         query.push("state = #{Product.states[:bottle]}")
       end
 
-      if params[:snack]&.present?
+      if params[:snack].present?
         query.push("state = #{Product.states[:snack]}")
       end
 
@@ -57,7 +57,7 @@ class ProductFilterFinder
     end
 
     def by(column)
-      return unless params[column]&.present?
+      return unless params[column].present?
 
       @products = @products.where(column => true)
     end
@@ -71,9 +71,7 @@ class ProductFilterFinder
     end
 
     def by_allergen(column)
-      column_as_param = "#{column}_free".to_sym # :gluten becomes :gluten_free
-
-      return unless params[column_as_param]&.present?
+      return unless params[column].present?
 
       @products = @products.joins(:allergen).where(product_allergens: { column => false })
     end
@@ -81,7 +79,7 @@ class ProductFilterFinder
     private
 
       def by_relation(relation, relation_scope, column)
-        return unless params[column]&.present?
+        return unless params[column].present?
 
         @products = @products.joins(relation).where(relation_scope => { column => true })
       end

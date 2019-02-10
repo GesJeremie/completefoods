@@ -65,8 +65,6 @@ class GuruProductsFinder < ApplicationFinder
       search[:sort] = options['sort'].to_sym
     end
 
-    binding.pry
-
     ProductFinder.new(search).perform
   end
 end

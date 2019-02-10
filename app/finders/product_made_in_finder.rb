@@ -10,7 +10,7 @@ class ProductMadeInFinder
   end
 
   def perform
-    return products unless params[:made_in]&.present?
+    return products unless params[:made_in].present?
     return products unless country_id.present?
     return products if params[:made_in] == 'everywhere'
 

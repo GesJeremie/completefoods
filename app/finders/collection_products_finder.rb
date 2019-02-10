@@ -37,7 +37,7 @@ class CollectionProductsFinder < ApplicationFinder
     end
 
     def cheapest
-      find_products({ sort: :cheapest_bulk_order }).take(15)
+      find_products({ sort: :price_lowest_possible }).take(15)
     end
 
     def for_athletes
@@ -53,15 +53,15 @@ class CollectionProductsFinder < ApplicationFinder
     end
 
     def gluten_free
-      find_products({ gluten_free: true })
+      find_products({ gluten: false })
     end
 
     def lactose_free
-      find_products({ lactose_free: true })
+      find_products({ lactose: false })
     end
 
     def most_expensive
-      find_products({ sort: :most_expensive_bulk_order }).take(15)
+      find_products({ sort: :price_highest_possible }).take(15)
     end
 
     def powders

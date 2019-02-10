@@ -1,7 +1,7 @@
 class Sort < ActiveHash::Base
   self.data = [
-    { value: :price_highest, label: 'Highest Possible', group: :price },
-    { value: :price_lowest, label: 'Lowest Possible', group: :price },
+    { value: :price_highest_possible, label: 'Highest Possible', group: :price },
+    { value: :price_lowest_possible, label: 'Lowest Possible', group: :price },
     { value: :carbs_highest, label: 'Highest', group: :carbs },
     { value: :carbs_lowest, label: 'Lowest', group: :carbs },
     { value: :protein_highest, label: 'Highest', group: :protein },
