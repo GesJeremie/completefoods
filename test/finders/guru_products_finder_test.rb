@@ -35,7 +35,7 @@ class GuruProductsFinderTest < ActiveSupport::TestCase
 
   test 'country' do
     create(:product, { shipment: trait_shipment_united_states })
-    create(:product, { shipment: trait_shipment_europe })
+    create(:product, { shipment: trait_shipment_not_united_states })
 
     products = finder({ country: 'united_states' })
 
@@ -71,8 +71,8 @@ class GuruProductsFinderTest < ActiveSupport::TestCase
   end
 
   test 'sort' do
-    create(:product, { kcal: 100, fat_per_serving: 20 })
-    create(:product, { kcal: 100, fat_per_serving: 80 })
+    create(:product, { kcal_per_serving: 100, fat_per_serving: 20 })
+    create(:product, { kcal_per_serving: 100, fat_per_serving: 80 })
 
     products = finder({ sort: 'fat_lowest' })
 

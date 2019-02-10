@@ -37,8 +37,8 @@ module Factories
         build(:product_shipment, { united_states: true })
       end
 
-      def trait_shipment_europe
-        build(:product_shipment, { europe: true })
+      def trait_shipment_not_united_states
+        build(:product_shipment, { united_states: false })
       end
 
       def trait_made_in(country)
