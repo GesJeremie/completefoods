@@ -36,7 +36,7 @@ class ProductPrice < ApplicationRecord
   end
 
   def per_month_in_currency(type:, currency:)
-    in_currency(per_month(type: type), currency: currency)
+    in_currency(per_month(type: type), currency)
   end
 
   private

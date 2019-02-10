@@ -15,8 +15,8 @@ class CollectionProductsFinder < ApplicationFinder
 
   private
 
-    def find_products(options = {})
-      ProductFinder.new(options).perform
+    def products
+      Product.active
     end
 
     ##
@@ -32,47 +32,47 @@ class CollectionProductsFinder < ApplicationFinder
       method_name = "made_in_#{country}"
 
       define_method method_name do
-        find_products({ made_in: country })
+        Refinements::MadeIn.new(products, country.to_sym).perform
       end
     end
 
     def cheapest
-      find_products({ sort: :price_lowest_possible }).take(15)
+      Refinements::Sort.new(products, :price_lowest_possible).perform.take(15)
     end
 
     def for_athletes
-      find_products({ sort: :most_protein }).take(15)
+      Refinements::Sort.new(products, :protein_highest).perform.take(15)
     end
 
     def for_vegans
-      find_products({ vegan: true })
+      products.select { |product| product.diet.vegan? }
     end
 
     def for_vegetarians
-      find_products({ vegetarian: true })
+      products.select { |product| product.diet.vegetarian? }
     end
 
     def gluten_free
-      find_products({ gluten: false })
+      products.select { |product| !product.allergen.gluten? }
     end
 
     def lactose_free
-      find_products({ lactose: false })
+      products.select { |product| !product.allergen.lactose? }
     end
 
     def most_expensive
-      find_products({ sort: :price_highest_possible }).take(15)
+      Refinements::Sort.new(products, :price_highest_possible).perform.take(15)
     end
 
     def powders
-      find_products({ powder: true })
+      products.select { |product| product.state == 'powder' }
     end
 
     def ready_to_drink
-      find_products({ bottle: true })
+      products.select { |product| product.state == 'bottle' }
     end
 
     def snacks
-      find_products({ snack: true })
+      products.select { |product| product.state == 'snack' }
     end
 end

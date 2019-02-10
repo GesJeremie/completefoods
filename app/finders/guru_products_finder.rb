@@ -1,70 +1,76 @@
 class GuruProductsFinder < ApplicationFinder
-  attr_reader :options
+  attr_reader :answers
 
-  def initialize(options = {})
-    @options = options
+  def initialize(answers)
+    @answers = answers
   end
 
   def perform
-    search = {}
+    products = Product.active
 
-    if options['lactose'] == 'on'
-      search[:lactose_free] = true
+    products.select do |product|
+      states_preferences.include?(product.state)
     end
 
-    if options['gluten'] == 'on'
-      search[:gluten_free] = true
+    if answers[:lactose] == 'on'
+      products = products.select { |product| !product.allergen.lactose? }
     end
 
-    if options['vegan'] == 'on'
-      search[:vegan] = true
+    if answers[:gluten] == 'on'
+      products = products.select { |product| !product.allergen.gluten? }
     end
 
-    if options['vegetarian'] == 'on'
-      search[:vegetarian] = true
+    if answers[:vegan] == 'on'
+      products = products.select { |product| product.diet.vegan? }
     end
 
-    if options['country'] == 'united_states'
-      search[:united_states] = true
+    if answers[:vegetarian] == 'on'
+      products = products.select { |product| product.diet.vegetarian? }
     end
 
-    if options['country'] == 'canada'
-      search[:canada] = true
+    if answers[:country] == 'united_states'
+      products = products.select { |product| product.shipment.united_states? }
     end
 
-    if options['country'] == 'europe'
-      search[:europe] = true
+    if answers[:country] == 'europe'
+      products = products.select { |product| product.shipment.europe? }
     end
 
-    if options['country'] == 'other'
-      search[:rest_of_world] = true
+    if answers[:country] == 'canada'
+      products = products.select { |product| product.shipment.canada? }
     end
 
-    if options['snack'] == 'on'
-      search[:snack] = true
+    if answers[:country] == 'other'
+      products = products.select { |product| product.shipment.rest_of_world? }
     end
 
-    if options['powder'] == 'on'
-      search[:powder] = true
+    if answers[:subscription] == 'yes'
+      products = products.select { |product| product.subscription_available? }
     end
 
-    if options['ready_to_drink'] == 'on'
-      search[:bottle] = true
+    if answers[:subscription] == 'yes_only_discount'
+      products = products.select { |product| product.subscription_available? && product.discount_for_subscription?}
     end
 
-    if options['subscription'] == 'yes'
-      search[:subscription_available] = true
+    if answers[:sort].present?
+      products = Refinements::Sort.new(products, answers[:sort]).perform
     end
 
-    if options['subscription'] == 'yes_only_discount'
-      search[:subscription_available] = true
-      search[:discount_for_subscription] = true
-    end
-
-    if options['sort'].present?
-      search[:sort] = options['sort'].to_sym
-    end
-
-    ProductFinder.new(search).perform
+    products
   end
+
+  private
+    def states_preferences
+      preferences = []
+
+      preferences.push('powder') if answers[:powder] == 'on'
+      preferences.push('snack') if answers[:snack] == 'on'
+      preferences.push('bottle') if answers[:ready_to_drink] == 'on'
+
+      if preferences.any?
+        preferences
+      else
+        ['powder', 'snack', 'bottle']
+      end
+    end
 end

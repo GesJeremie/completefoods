@@ -84,15 +84,19 @@
             text-align: center;
         }
 
-        .product-item__list-label {
-            display: block;
-            color: $gray--light;
-        }
+            .product-item__list-label {
+                display: block;
+                color: $gray--light;
+            }
 
-        .product-item__list-value {
-            display: block;
-            margin-top: 3px;
-        }
+            .product-item__list-label--per-serving {
+                font-size: 12px;
+            }
+
+            .product-item__list-value {
+                display: block;
+                margin-top: 3px;
+            }
 
 
     .product-item__cost {

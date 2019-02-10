@@ -1,21 +1,18 @@
-class ProductSortFinder
+class Refinements::Sort
+  attr_reader :products
+  attr_reader :sort
 
-  attr_reader :products, :params
-
-  # Examples:
-  # ProductSortFinder.new(Product.active, { sort: 'kcal_per_serving_most' }).perform
-  # ProductSortFinder.new(Product.all, { sort: 'carbs_per_serving_lowest' }).perform
-
-  def initialize(products, params = {})
+  #
+  # Example: Refinements::Sort.new(Product.active, :price_highest_possible).perform
+  #
+  def initialize(products, sort)
     @products = products
-    @params = params
+    @sort = sort
   end
 
   def perform
-    return products unless params[:sort]&.present?
-
-    if self.respond_to?(params[:sort], true)
-      send(params[:sort])
+    if self.respond_to?(sort, true)
+      send(sort)
     else
       products
     end
@@ -31,27 +28,27 @@ class ProductSortFinder
       products.sort_by { |product| product.price.per_kcal_in_currency(500, currency: 'USD', type: :bulk_order) }
     end
 
-    def protein_highest
+    def protein_lowest
       products.sort_by { |product| product.protein_per_kcal(100) }
     end
 
-    def protein_lowest
-      protein_highest.reverse
-    end
-
-    def carbs_highest
-      products.sort_by { |product| product.carbs_per_kcal(100) }
+    def protein_highest
+      protein_lowest.reverse
     end
 
     def carbs_lowest
-      carbs_highest.reverse
+      products.sort_by { |product| product.carbs_per_kcal(100) }
     end
 
-    def fat_highest
-      products.sort_by { |product| product.fat_per_kcal(100) }
+    def carbs_highest
+      carbs_lowest.reverse
     end
 
     def fat_lowest
-      fat_highest.reverse
+      products.sort_by { |product| product.fat_per_kcal(100) }
+    end
+
+    def fat_highest
+      fat_lowest.reverse
     end
 end

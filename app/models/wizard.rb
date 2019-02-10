@@ -3,7 +3,11 @@ class Wizard < ApplicationRecord
   has_many :wizard_steps
 
   def answers
-    wizard_steps.pluck(:answers).compact.reduce({}, :merge)
+    wizard_steps
+      .pluck(:answers)
+      .compact
+      .reduce({}, :merge)
+      .symbolize_keys
   end
 
   def step(name)
