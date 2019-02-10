@@ -1,7 +1,7 @@
 <ul class="product-show__attributes">
   <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.subscription_available? %>">
     <div class="product-show__attribute-icon">
-      <%= emoji 'box' %>
+      <%= inline_svg('package.svg', class: 'icon') %>
     </div>
     <div class="product-show__attribute-label">
       Subscription Available
@@ -12,7 +12,7 @@
   </li>
   <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.discount_for_subscription? %>">
     <div class="product-show__attribute-icon">
-      <%= emoji 'money' %>
+      <%= inline_svg('discount.svg', class: 'icon') %>
     </div>
     <div class="product-show__attribute-label">
       Discount for subscription

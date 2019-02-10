@@ -123,6 +123,8 @@ $product-show-attribute-bg-color: darken($gray--x-light, 1%) !default;
 
                 .product-show__attribute-icon {
                     display: inline-block;
+                    margin-right: halve($spacing-unit);
+                    vertical-align: middle;
                 }
 
                 .product-show__attribute-label {

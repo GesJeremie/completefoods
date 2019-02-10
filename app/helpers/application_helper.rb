@@ -29,8 +29,4 @@ module ApplicationHelper
       when :alert   then 'alert alert-error'
     end
   end
-
-  def emoji(name)
-    image_tag "emojis/#{name}.png", class: "emoji emoji--#{name}"
-  end
 end

@@ -1,7 +1,7 @@
 <ul class="product-show__attributes">
   <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.shipment.united_states? %>">
     <div class="product-show__attribute-icon">
-      <%= emoji 'usa' %>
+      <%= inline_svg('united_states.svg', class: 'icon') %>
     </div>
     <div class="product-show__attribute-label">
       United States
@@ -12,7 +12,7 @@
   </li>
   <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.shipment.canada? %>">
     <div class="product-show__attribute-icon">
-      <%= emoji 'canada' %>
+      <%= inline_svg('canada.svg', class: 'icon') %>
     </div>
     <div class="product-show__attribute-label">
       Canada
@@ -23,7 +23,7 @@
   </li>
   <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.shipment.europe? %>">
     <div class="product-show__attribute-icon">
-      <%= emoji 'europe' %>
+      <%= inline_svg('europe.svg', class: 'icon') %>
     </div>
     <div class="product-show__attribute-label">
       Europe
@@ -34,7 +34,7 @@
   </li>
   <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.shipment.rest_of_world? %>">
     <div class="product-show__attribute-icon">
-      <%= emoji 'world' %>
+      <%= inline_svg('world.svg', class: 'icon') %>
     </div>
     <div class="product-show__attribute-label">
       Rest of World

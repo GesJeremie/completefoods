@@ -1,7 +1,7 @@
 <ul class="product-show__attributes">
   <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.diet.vegetarian? %>">
     <div class="product-show__attribute-icon">
-      <%= emoji 'watermelon' %>
+      <%= inline_svg('watermelon.svg', class: 'icon') %>
     </div>
     <div class="product-show__attribute-label">
       Vegetarian
@@ -12,7 +12,7 @@
   </li>
   <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.diet.vegan? %>">
     <div class="product-show__attribute-icon">
-      <%= emoji 'plant' %>
+      <%= inline_svg('vegan.svg', class: 'icon') %>
     </div>
     <div class="product-show__attribute-label">
       Vegan
