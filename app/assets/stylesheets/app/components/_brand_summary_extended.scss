@@ -13,7 +13,6 @@
     }
 
         .brand-summary-extended__details {
-            display: flex;
             padding: double($spacing-unit);
             border-bottom: 2px solid $gray--medium-light;
         }
@@ -39,13 +38,6 @@
                 font-weight: 600;
                 background-color: $red--light;
                 border-radius: 5px;
-                align-self: center;
-            }
-
-            .brand-summary-extended__details-actions {
-                display: inline-block;
-                margin-left: auto;
-                text-align: right;
                 align-self: center;
             }
 
@@ -87,4 +79,10 @@
                             height: 100px;
                         }
                     }
+
+        .brand-summary-extended__footer {
+            padding: double($spacing-unit);
+            text-align: left;
+            border-top: 2px solid $gray--medium-light;
+        }
 
