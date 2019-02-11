@@ -4,7 +4,7 @@
 
 .layout {
     margin: 0 auto;
-    width: 95%;
+    padding: 0 $spacing-unit;
     max-width: 1420px;
 
     @include respond-to('medium') {
