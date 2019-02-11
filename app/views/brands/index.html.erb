@@ -1,7 +1,12 @@
+<% description = "Browse through the #{@brands.count} brands producing over #{count_active_products} Complete Foods worlwide." %>
+
+<% content_for :meta_title, "#{DEFAULT_META['title']} - Brands" %>
+<% content_for :meta_description, description %>
+
 <% cache [@brands.count] do %>
   <div class="hero">
     <h1 class="hero__title">Brands</h1>
-    <h2 class="hero__subtitle">There are currently <%= @brands.count %> brands producing over <%= count_active_products %> Complete Foods worlwide.</h2>
+    <h2 class="hero__subtitle"><%= description %></h2>
   </div>
 
   <div class="grid grid--center">
