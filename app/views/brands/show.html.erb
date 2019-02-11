@@ -1,3 +1,6 @@
+<% content_for :meta_title, "#{DEFAULT_META['title']} - Brand #{@brand.name}" %>
+<% content_for :meta_description, @brand.description %>
+
 <div class="hero hero--brand">
   <h1 class="hero__title"><%= @brand.name %></h1>
   <h2 class="hero__subtitle"><%= @brand.description %></h2>
