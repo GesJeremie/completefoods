@@ -1,3 +1,6 @@
+<% content_for :meta_title, "#{DEFAULT_META['title']} - #{@collection.name}" %>
+<% content_for :meta_description, @collection.description %>
+
 <div class="hero hero--collection">
   <h1 class="hero__title">
     <%= @collection.name %>
