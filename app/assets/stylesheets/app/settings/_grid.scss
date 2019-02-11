@@ -34,4 +34,5 @@ $av-breakpoints: (
     'medium':   "screen and (min-width: #{$medium-breakpoint})",
     'wide':     "screen and (min-width: #{$wide-breakpoint})",
     'x-wide':   "screen and (min-width: #{$x-wide-breakpoint})",
+    'xx-wide':   "screen and (min-width: #{$xx-wide-breakpoint})"
 );

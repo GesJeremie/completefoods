@@ -12,13 +12,16 @@
 </div>
 
 <div class="grid grid--center">
-  <div class="grid__cell grid__cell--80-at-wide">
+  <div class="grid__cell grid__cell--90-at-wide">
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--25">
         <%= render 'gurus/card' %>
       </div>
       <div class="grid__cell grid__cell--75">
-        <%= render partial: 'products/item', collection: @products, as: :product %>
+        <% @products.each_with_index do |product, index| %>
+          <%= render partial: 'products/item', locals: { product: product } %>
+          <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
+        <% end %>
         <%= will_paginate(@products) %>
       </div>
     </div>

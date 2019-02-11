@@ -7,27 +7,75 @@
 }
 
     .sponsor__container {
+        margin: 0 auto;
+        width: 100%;
         line-height: 30px;
         text-align: center;
+
+        @include respond-to('medium') {
+            width: 90%;
+        }
     }
 
-        .sponsor__logo {
-            display: inline-block;
-            vertical-align: middle;
+        .sponsor__container-logo {
+            padding-bottom: $spacing-unit;
+            text-align: center;
 
-            .sponsor--powdermatter & {
-                margin-right: double($spacing-unit);
-                width: 60px;
+            @include respond-to('xx-wide') {
+                padding-bottom: 0;
+            }
+
+        }
+
+            .sponsor__logo {
+                display: block;
+                margin: 0 auto;
+
+                .sponsor--powdermatter & {
+                    width: 70px;
+                }
+
+                .sponsor--parachute & {
+                    width: 50px;
+                }
+            }
+
+        .sponsor__container-text {
+            padding-bottom: $spacing-unit;
+
+            @include respond-to('xx-wide') {
+                padding-bottom: 0;
             }
         }
 
-        .sponsor__text {
-            display: inline-block;
-            vertical-align: middle;
+            .sponsor__text {
+                display: block;
+                text-align: center;
 
-            span {
-                padding-bottom: 1px;
-                font-weight: 700;
-                border-bottom: 2px solid $black;
+                span {
+                    padding-bottom: 1px;
+                    font-weight: 700;
+                    border-bottom: 2px solid $black;
+                }
+
+                .sponsor--parachute & {
+                    display: block;
+                    font-size: 15px;
+                }
+            }
+
+            .sponsor__text--small {
+                padding-top: halve($spacing-unit);
+                font-size: 13px;
+                font-weight: normal;
+                border-bottom: 0;
+            }
+
+        .sponsor__container-action {
+            padding-bottom: $spacing-unit;
+            text-align: center;
+
+            @include respond-to('xx-wide') {
+                padding-bottom: 0;
             }
         }

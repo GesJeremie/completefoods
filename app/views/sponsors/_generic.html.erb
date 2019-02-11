@@ -1,0 +1,23 @@
+<div class="sponsor sponsor--<%= sponsor[:name] %>">
+  <div class="sponsor__container">
+    <div class="grid grid--middle grid--center">
+      <div class="grid__cell grid__cell--10-at-xx-wide">
+        <div class="sponsor__container-logo">
+          <%= image_tag sponsor[:logo_path], class: 'sponsor__logo' %>
+        </div>
+      </div>
+      <div class="grid__cell grid__cell--70-at-xx-wide">
+        <div class="sponsor__container-text">
+          <div class="sponsor__text">
+            <%= sponsor[:text].html_safe %>
+          </div>
+        </div>
+      </div>
+      <div class="grid__cell grid__cell--20-at-xx-wide">
+        <div class="sponsor__container-action">
+          <%= link_to sponsor[:action_text], sponsor[:action_link], target: '_blank', class: 'button button--sponsor' %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
