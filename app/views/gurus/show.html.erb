@@ -1,6 +1,23 @@
+<div class="hero hero--guru">
+  <h1 class="hero__title">
+    Your Results
+  </h1>
+  <h2 class="hero__subtitle">
+    The Guru found 23 Complete Foods matching your preferences!
+  </h2>
+</div>
+
 <div class="grid grid--center">
-  <div class="grid__cell grid__cell--80-at-wide">
-    <h1 class="heading heading--1">Products matching your preferences!</h1>
-    <%= render partial: 'products/item', collection: @products, as: :product %>
+  <div class="grid__cell grid__cell--90-at-wide">
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--25-at-x-wide">
+        <%= render 'gurus/again' %>
+      </div>
+      <div class="grid__cell grid__cell--75-at-x-wide">
+        <% @products.each_with_index do |product, index| %>
+          <%= render partial: 'products/item', locals: { product: product } %>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
