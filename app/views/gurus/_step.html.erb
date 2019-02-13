@@ -4,13 +4,13 @@
 </div>
 
 <div class="grid grid--center">
-  <div class="grid__cell grid__cell--70">
+  <div class="grid__cell grid__cell--70-at-x-wide">
     <div class="guru">
 
       <%= render 'gurus/current_steps', step: step %>
 
       <div class="grid grid--center grid--middle">
-        <div class="grid__cell grid__cell--40">
+        <div class="grid__cell grid__cell--40-at-medium">
           <div class="guru__logo">
             <%= image_tag 'guru.svg', width: 220 %>
             <div class="guru__note">
@@ -19,7 +19,7 @@
           </div>
         </div>
 
-        <div class="grid__cell grid__cell--60">
+        <div class="grid__cell grid__cell--60-at-medium">
           <%= yield %>
         </div>
       </div>

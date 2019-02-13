@@ -10,20 +10,29 @@ $guru-steps-progress-bg-color: $blue !default;
 
 .guru {
     position: relative;
-    margin: 0 quadruple($spacing-unit);
+    margin-top: double($spacing-unit);
     padding: ($spacing-unit * 7) ($spacing-unit * 5);
     text-align: center;
     background-color: $white;
     border-radius: double($border-radius);
     box-shadow: $guru-box-shadow;
+
+    @include respond-to('wide') {
+        margin: 0 quadruple($spacing-unit);
+    }
 }
 
     .guru__steps {
-        position: absolute;
-        top: -46px;
-        right: -35px;
+        @include center('horizontal');
+        top: -8%;
         width: $guru-steps-size;
         height: $guru-steps-size;
+
+        @include respond-to('medium') {
+            top: -46px;
+            right: -35px;
+            left: auto;
+        }
     }
 
         .guru__steps-container {
@@ -69,8 +78,13 @@ $guru-steps-progress-bg-color: $blue !default;
 
 
     .guru__logo {
-        padding-right: quadruple($spacing-unit);
+        margin-bottom: double($spacing-unit);
         text-align: center;
+
+        @include respond-to('wide') {
+            margin-bottom: 0;
+            padding-right: quadruple($spacing-unit);
+        }
     }
 
         .guru__note {
@@ -86,6 +100,11 @@ $guru-steps-progress-bg-color: $blue !default;
         margin-bottom: double($spacing-unit);
         font-weight: 700;
         line-height: 1.2;
+        text-align: center;
+
+        @include respond-to('medium') {
+            text-align: left;
+        }
     }
 
     .guru__choices {}
@@ -132,5 +151,9 @@ $guru-steps-progress-bg-color: $blue !default;
 
     .guru__footer {
         margin-top: quadruple($spacing-unit);
-        text-align: right;
+        text-align: center;
+
+        @include respond-to('medium') {
+            text-align: right;
+        }
     }

@@ -4,6 +4,8 @@
 
 $button-filters-hover-bg-color:                 darken($green, 5%) !default;
 $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
+$button-fixed-width:                            150px !default;
+
 
 .button {
     display: inline-block;
@@ -21,10 +23,22 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
     box-shadow: $box-shadow--button;
     cursor: pointer;
     vertical-align: middle;
+
+    .guru__footer & {
+        width: 100%;
+
+        @include respond-to('medium') {
+            width: auto;
+        }
+    }
 }
 
 .button + .button {
-    margin-left: $spacing-unit;
+    margin-left: 0;
+
+    @include respond-to('medium') {
+        margin-left: $spacing-unit;
+    }
 }
 
 .button:disabled {
@@ -67,7 +81,8 @@ $button-show-results-filters-hover-bg-color:    darken($green, 5%) !default;
 }
 
 .button--fixed-width {
-    width: 150px;
+    width: $button-fixed-width;
+    max-width: $button-fixed-width;
 }
 
 .button--with-arrow {

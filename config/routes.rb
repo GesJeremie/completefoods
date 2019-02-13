@@ -20,16 +20,17 @@ Rails.application.routes.draw do
       get '/', action: :index, as: :index
       get :allergen
       get :diet
-      get :location
+      get :country
       get :type
       get :subscription
       get :sort
       get :email
+      get :no_results
       get '/:id', action: :show, as: :show
 
       post :allergen_create
       post :diet_create
-      post :location_create
+      post :country_create
       post :type_create
       post :subscription_create
       post :sort_create

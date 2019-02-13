@@ -7,7 +7,7 @@
 
     <div class="guru__choices">
       <div class="grid">
-        <div class="grid__cell grid__cell--50">
+        <div class="grid__cell grid__cell--50-at-medium">
           <%= guru_checkbox_tag(
             label: 'Powder',
             icon: 'powder',
@@ -15,7 +15,7 @@
             answer: @guru_step.answer_for(:powder)
             ) %>
         </div>
-        <div class="grid__cell grid__cell--50">
+        <div class="grid__cell grid__cell--50-at-medium">
           <%= guru_checkbox_tag(
             label: 'Ready-to-Drink',
             icon: 'bottle',
@@ -23,7 +23,7 @@
             answer: @guru_step.answer_for(:ready_to_drink)
             ) %>
         </div>
-        <div class="grid__cell grid__cell--50">
+        <div class="grid__cell grid__cell--50-at-medium">
           <%= guru_checkbox_tag(
             label: 'Snack',
             icon: 'snack',

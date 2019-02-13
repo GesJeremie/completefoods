@@ -1,15 +1,15 @@
 class GurusController < BaseController
   before_action :set_view_model,
-    only: %i[allergen diet location type subscription sort email]
+    only: %i[allergen diet country type subscription sort email]
 
   before_action :ensure_can_show_step,
-    only: %i[allergen diet location type subscription sort email]
+    only: %i[allergen diet country type subscription sort email]
 
   before_action :ensure_enough_products_to_sort,
     only: %i[sort]
 
   before_action :save_answers,
-    only: %i[allergen_create diet_create location_create type_create subscription_create sort_create email_create]
+    only: %i[allergen_create diet_create country_create type_create subscription_create sort_create email_create]
 
   def index
     if wizard.finished?
@@ -22,13 +22,10 @@ class GurusController < BaseController
   end
 
   def show
-    model = Wizard.find_by_token(params[:id])
+    model = Wizard.find_by!(token: params[:id])
     redirect_to(action: :index) unless model.finished?
 
-    @products = ProductViewModel.wrap(
-      GuruProductsFinder.new(model.answers).perform,
-      view_model_options
-    )
+    @products = products_based_on_answers_provided
   end
 
   def allergen; end
@@ -41,8 +38,8 @@ class GurusController < BaseController
     redirect_to_next_step
   end
 
-  def location; end
-  def location_create
+  def country; end
+  def country_create
     redirect_to_next_step
   end
 
@@ -56,7 +53,9 @@ class GurusController < BaseController
     redirect_to_next_step
   end
 
-  def sort; end
+  def sort
+    @products = products_based_on_answers_provided
+  end
   def sort_create
     redirect_to_next_step
   end
@@ -70,6 +69,8 @@ class GurusController < BaseController
   def email_create
     redirect_to_next_step
   end
+
+  def no_results; end
 
   private
 
@@ -96,9 +97,7 @@ class GurusController < BaseController
     end
 
     def ensure_enough_products_to_sort
-      @products = GuruProductsFinder.new(wizard.answers).perform
-
-      return if @products.size > 3
+      return if products_based_on_answers_provided.size > 3
 
       wizard.step(current_step).tap do |step|
         step.completed = true
@@ -127,6 +126,15 @@ class GurusController < BaseController
       action_name
       .remove('_create')
       .to_sym
+    end
+
+    def products_based_on_answers_provided
+      @products_based_on_answers_provided ||= begin
+        ProductViewModel.wrap(
+          GuruProductsFinder.new(wizard.answers).perform,
+          view_model_options
+        )
+      end
     end
 
     #
@@ -161,7 +169,7 @@ class GurusController < BaseController
       answers_params(:vegan, :vegetarian)
     end
 
-    def location_params
+    def country_params
       answers_params(:country)
     end
 
