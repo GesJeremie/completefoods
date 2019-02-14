@@ -52,10 +52,6 @@ class GuruProductsFinder < ApplicationFinder
       products = products.select { |product| product.subscription_available? && product.discount_for_subscription?}
     end
 
-    if answers[:sort].present?
-      products = Refinements::Sort.new(products, answers[:sort]).perform
-    end
-
     products
   end
 

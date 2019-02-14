@@ -23,7 +23,6 @@ Rails.application.routes.draw do
       get :country
       get :type
       get :subscription
-      get :sort
       get :email
       get :no_results
       get '/:id', action: :show, as: :show
@@ -33,7 +32,6 @@ Rails.application.routes.draw do
       post :country_create
       post :type_create
       post :subscription_create
-      post :sort_create
       post :sort_create
       post :email_create
     end

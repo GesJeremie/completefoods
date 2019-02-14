@@ -13,7 +13,7 @@
 <div class="grid grid--center">
   <div class="grid__cell grid__cell--70-at-wide">
     <% @brand.active_products.each_with_index do |product, index| %>
-      <%= render partial: 'products/item', locals: { product: product } %>
+      <%= render partial: 'products/item_per_serving', locals: { product: product } %>
       <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
     <% end %>
   </div>

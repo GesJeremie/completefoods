@@ -1,15 +1,12 @@
 class GurusController < BaseController
   before_action :set_view_model,
-    only: %i[allergen diet country type subscription sort email]
+    only: %i[allergen diet country type subscription email]
 
   before_action :ensure_can_show_step,
-    only: %i[allergen diet country type subscription sort email]
-
-  before_action :ensure_enough_products_to_sort,
-    only: %i[sort]
+    only: %i[allergen diet country type subscription email]
 
   before_action :save_answers,
-    only: %i[allergen_create diet_create country_create type_create subscription_create sort_create email_create]
+    only: %i[allergen_create diet_create country_create type_create subscription_create email_create]
 
   def index
     if wizard.finished?
@@ -25,7 +22,17 @@ class GurusController < BaseController
     model = Wizard.find_by!(token: params[:id])
     redirect_to(action: :index) unless model.finished?
 
-    @products = products_based_on_answers_provided
+    products = GuruProductsFinder.new(model.answers).perform
+
+    if params[:sort].present?
+      products = Refinements::Sort.new(products, params[:sort]).perform
+    end
+
+    @guru = model
+    @products = ProductViewModel.wrap(
+      products,
+      view_model_options
+    )
   end
 
   def allergen; end
@@ -50,13 +57,6 @@ class GurusController < BaseController
 
   def subscription; end
   def subscription_create
-    redirect_to_next_step
-  end
-
-  def sort
-    @products = products_based_on_answers_provided
-  end
-  def sort_create
     redirect_to_next_step
   end
 
@@ -96,17 +96,6 @@ class GurusController < BaseController
       # Implement
     end
 
-    def ensure_enough_products_to_sort
-      return if products_based_on_answers_provided.size > 3
-
-      wizard.step(current_step).tap do |step|
-        step.completed = true
-        step.save
-      end
-
-      redirect_to_next_step
-    end
-
     #
     # Methods
     #
@@ -126,15 +115,6 @@ class GurusController < BaseController
       action_name
       .remove('_create')
       .to_sym
-    end
-
-    def products_based_on_answers_provided
-      @products_based_on_answers_provided ||= begin
-        ProductViewModel.wrap(
-          GuruProductsFinder.new(wizard.answers).perform,
-          view_model_options
-        )
-      end
     end
 
     #
@@ -179,10 +159,6 @@ class GurusController < BaseController
 
     def subscription_params
       answers_params(:yes, :yes_only_discount)
-    end
-
-    def sort_params
-      answers_params(:sort)
     end
 
     def email_params
