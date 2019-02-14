@@ -22,11 +22,9 @@ class GurusController < BaseController
     model = Wizard.find_by!(token: params[:id])
     redirect_to(action: :index) unless model.finished?
 
+    params[:sort] = params[:sort] || 'price_lowest_possible'
     products = GuruProductsFinder.new(model.answers).perform
-
-    if params[:sort].present?
-      products = Refinements::Sort.new(products, params[:sort]).perform
-    end
+    products = Refinements::Sort.new(products, params[:sort]).perform
 
     @guru = model
     @products = ProductViewModel.wrap(

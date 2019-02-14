@@ -4,7 +4,7 @@
       Your Results
     </h1>
     <h2 class="hero__subtitle">
-      The Guru found <% @products.size %> Complete Foods matching your preferences!
+      The Guru found <%= @products.size %> Complete Foods matching your preferences!
     </h2>
   </div>
 
@@ -25,7 +25,7 @@
                         <optgroup label="<%= group.first.to_s.titleize %>">
 
                           <% group.last.each do |sort| %><
-                            <option value="<%= sort.value %>" <%= 'selected="selected"' if sort.value == params[:sort].to_sym %>><%= sort.label_group %></option>
+                            <option value="<%= sort.value %>" <%= 'selected="selected"' if sort.value == params[:sort]&.to_sym %>><%= sort.label_group %></option>
                           <% end %>
 
                         </optgroup>
