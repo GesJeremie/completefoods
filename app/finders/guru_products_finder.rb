@@ -6,7 +6,14 @@ class GuruProductsFinder < ApplicationFinder
   end
 
   def perform
-    products = Product.active
+    products = Product.includes(
+      :allergen,
+      :diet,
+      :shipment,
+      { price: [:currency] },
+      { image_attachment: [:blob] },
+      { brand: [:country] }
+    ).active
 
     products.select do |product|
       states_preferences.include?(product.state)

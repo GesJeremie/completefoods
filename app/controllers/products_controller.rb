@@ -1,7 +1,6 @@
 class ProductsController < BaseController
   def index
-    model = Product.active.order('name ASC')
-    products = ProductViewModel.wrap(model, view_model_options)
+    products = ProductViewModel.wrap(find_products, view_model_options)
 
     @products = PagedArray.new(
       products,
@@ -19,5 +18,18 @@ class ProductsController < BaseController
 
     def products_per_page
       Rails.configuration.products_per_page
+    end
+
+    def find_products
+      Product.includes(
+        :allergen,
+        :diet,
+        :shipment,
+        { price: [:currency] },
+        { image_attachment: [:blob] },
+        { brand: [:country] }
+      )
+      .active
+      .order('name ASC')
     end
 end

@@ -25,7 +25,6 @@
                         <optgroup label="<%= group.first.to_s.titleize %>">
 
                           <% group.last.each do |sort| %><
-                            <% binding.pry %>
                             <option value="<%= sort.value %>" <%= 'selected="selected"' if sort.value == params[:sort].to_sym %>><%= sort.label_group %></option>
                           <% end %>
 
