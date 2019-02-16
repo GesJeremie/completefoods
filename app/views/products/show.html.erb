@@ -1,4 +1,4 @@
-<% cache [@product, current_currency.id] do %>
+<% cache [@product, @product.brand, current_currency.id] do %>
   <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name} by #{@product.brand.name}" %>
   <% content_for :meta_description, "#{@product.name} is a Complete Food produced in #{@product.brand.country.name} by #{@product.brand.name}" %>
 
