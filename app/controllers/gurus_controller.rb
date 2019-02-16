@@ -2,9 +2,6 @@ class GurusController < BaseController
   before_action :set_view_model,
     only: %i[allergen diet country type subscription email]
 
-  before_action :ensure_can_show_step,
-    only: %i[allergen diet country type subscription email]
-
   before_action :save_answers,
     only: %i[allergen_create diet_create country_create type_create subscription_create email_create]
 
@@ -26,11 +23,13 @@ class GurusController < BaseController
     products = GuruProductsFinder.new(model.answers).perform
     products = Refinements::Sort.new(products, params[:sort]).perform
 
+    @products = []
+
     @guru = model
-    @products = ProductViewModel.wrap(
-      products,
-      view_model_options
-    )
+    #@products = ProductViewModel.wrap(
+    #  products,
+    #  view_model_options
+    #)
   end
 
   def allergen; end
@@ -88,10 +87,6 @@ class GurusController < BaseController
         step.answers = send("#{current_step}_params")
         step.save
       end
-    end
-
-    def ensure_can_show_step
-      # Implement
     end
 
     #

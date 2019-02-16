@@ -1,51 +1,65 @@
-<div class="guru-results">
-  <div class="hero hero--guru">
-    <h1 class="hero__title">
-      Your Results
-    </h1>
-    <h2 class="hero__subtitle">
-      The Guru found <%= @products.size %> Complete Foods matching your preferences!
-    </h2>
-  </div>
+<% if @products.size.zero? %>
+  <div class="guru-results">
+    <div class="hero hero--guru">
+      <h1 class="hero__title">
+        Your Results
+      </h1>
+      <h2 class="hero__subtitle">
+        Oops, the Guru didn't find any Complete Foods matching your preferences!
+      </h2>
+      <%= link_to "Let's try again?", guru_path, class: 'button button--large button--secondary button--capitalized' %>
+    </div>
 
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--90-at-wide">
-      <div class="grid grid--center">
-        <div class="grid__cell grid__cell--25-at-x-wide">
-          <%= render 'gurus/again' %>
-        </div>
-        <div class="grid__cell grid__cell--75-at-x-wide">
-          <% if @products.size > 3 %>
-            <%= form_tag show_guru_path(@guru.token), method: 'get' do %>
-              <div class="guru-results__sort">
-                <div class="grid grid--middle">
-                  <div class="grid__cell grid__cell--80">
-                    <select name="sort">
-                      <% Sort.grouped.each do |group| %>
-                        <optgroup label="<%= group.first.to_s.titleize %>">
+<% else %>
+  <div class="guru-results">
+    <div class="hero hero--guru">
+      <h1 class="hero__title">
+        Your Results
+      </h1>
+      <h2 class="hero__subtitle">
+        The Guru found <%= @products.size %> Complete Foods matching your preferences!
+      </h2>
+    </div>
 
-                          <% group.last.each do |sort| %><
-                            <option value="<%= sort.value %>" <%= 'selected="selected"' if sort.value == params[:sort]&.to_sym %>><%= sort.label_group %></option>
-                          <% end %>
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--90-at-wide">
+        <div class="grid grid--center">
+          <div class="grid__cell grid__cell--25-at-x-wide">
+            <%= render 'gurus/again' %>
+          </div>
+          <div class="grid__cell grid__cell--75-at-x-wide">
+            <% if @products.size > 3 %>
+              <%= form_tag show_guru_path(@guru.token), method: 'get' do %>
+                <div class="guru-results__sort">
+                  <div class="grid grid--middle">
+                    <div class="grid__cell grid__cell--80">
+                      <select name="sort">
+                        <% Sort.grouped.each do |group| %>
+                          <optgroup label="<%= group.first.to_s.titleize %>">
 
-                        </optgroup>
+                            <% group.last.each do |sort| %><
+                              <option value="<%= sort.value %>" <%= 'selected="selected"' if sort.value == params[:sort]&.to_sym %>><%= sort.label_group %></option>
+                            <% end %>
 
-                      <% end %>
-                    </select>
-                  </div>
-                  <div class="grid__cell grid__cell--20">
-                    <button class="button button--no-margin">Sort</button>
+                          </optgroup>
+
+                        <% end %>
+                      </select>
+                    </div>
+                    <div class="grid__cell grid__cell--20">
+                      <button class="button button--no-margin">Sort</button>
+                    </div>
                   </div>
                 </div>
-              </div>
+              <% end %>
             <% end %>
-          <% end %>
 
-          <% @products.each_with_index do |product, index| %>
-            <%= render partial: 'products/item_per_kcal', locals: { product: product } %>
-          <% end %>
+            <% @products.each_with_index do |product, index| %>
+              <%= render partial: 'products/item_per_kcal', locals: { product: product } %>
+            <% end %>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>
