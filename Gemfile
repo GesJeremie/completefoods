@@ -21,13 +21,8 @@ gem 'jbuilder', '~> 2.5'
 # Postgresql Driver
 gem 'pg'
 
-gem 'bootsnap'
-
 # Linting
 gem 'rubocop', require: false
-
-# Curl requests
-gem 'httparty'
 
 # Encrypt password
 gem 'bcrypt'
@@ -45,14 +40,9 @@ gem 'mini_magick'
 # Models without databases
 gem 'active_hash'
 
-# Let's scrap the web
-gem 'nokogiri'
-
 # Pagination
 gem 'will_paginate'
 
-# Wizard system
-gem 'wicked'
 
 # Front-end
 gem 'inline_svg'

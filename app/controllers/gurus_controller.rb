@@ -23,13 +23,11 @@ class GurusController < BaseController
     products = GuruProductsFinder.new(model.answers).perform
     products = Refinements::Sort.new(products, params[:sort]).perform
 
-    @products = []
-
     @guru = model
-    #@products = ProductViewModel.wrap(
-    #  products,
-    #  view_model_options
-    #)
+    @products = ProductViewModel.wrap(
+      products,
+      view_model_options
+    )
   end
 
   def allergen; end
