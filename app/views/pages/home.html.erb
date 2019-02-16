@@ -1,3 +1,4 @@
+<% cache [@page.preview_collections.size, @page.preview_brands.size, count_active_products] do %>
 <% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Complete Food" %>
 
 <div class="hero hero--home">
@@ -10,58 +11,60 @@
 
 <div class="divider divider--secondary"></div>
 
-<div class="collection-summary">
+  <div class="collection-summary">
 
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--80-at-wide">
-      <h3 class="heading heading--1 heading--center">Browse Collections</h3>
-      <hr class="divider divider--small" />
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--80-at-wide">
+        <h3 class="heading heading--1 heading--center">Browse Collections</h3>
+        <hr class="divider divider--small" />
 
-      <% @page.preview_collections.each_slice(4) do |collections| %>
+        <% @page.preview_collections.each_slice(4) do |collections| %>
+
+          <div class="grid grid--center">
+            <% collections.each do |collection| %>
+              <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
+                <%= link_to collection_path(collection.slug) do %>
+                  <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>')">
+                    <div class="collection-summary__item-title"><%= collection.name %></div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
 
         <div class="grid grid--center">
-          <% collections.each do |collection| %>
-            <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
-              <%= link_to collection_path(collection.slug) do %>
-                <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>')">
-                  <div class="collection-summary__item-title"><%= collection.name %></div>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
+          <%= link_to 'Browse more collections', collections_path, class: 'button button--large' %>
         </div>
-      <% end %>
-
-      <div class="grid grid--center">
-        <%= link_to 'Browse more collections', collections_path, class: 'button button--large' %>
       </div>
     </div>
   </div>
-</div>
+
 
 <div class="divider divider--secondary"></div>
 
-<div class="brand-summary__parent">
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--80">
-        <h3 class="heading heading--1 heading--center">Browse Brands</h3>
-        <hr class="divider divider--small" />
+  <div class="brand-summary__parent">
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--80">
+          <h3 class="heading heading--1 heading--center">Browse Brands</h3>
+          <hr class="divider divider--small" />
 
-        <div class="grid grid--center">
-          <% @page.preview_brands.each do |brand| %>
-            <div class="grid__cell grid__cell--25-at-wide">
-              <%= link_to brand_path(brand.model), class: 'brand-summary' do %>
-                <div class="brand-summary__item">
-                  <span class="brand-summary__item-flag"><%= flag_icon(brand.country_code_symbol) %></span>
-                  <span class="brand-summary__item-name"><%= brand.name %></span>
-                </div>
-              <% end %>
-            </div>
-          <% end %>
+          <div class="grid grid--center">
+            <% @page.preview_brands.each do |brand| %>
+              <div class="grid__cell grid__cell--25-at-wide">
+                <%= link_to brand_path(brand.model), class: 'brand-summary' do %>
+                  <div class="brand-summary__item">
+                    <span class="brand-summary__item-flag"><%= flag_icon(brand.country_code_symbol) %></span>
+                    <span class="brand-summary__item-name"><%= brand.name %></span>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
 
-          <%= link_to 'Browse more brands', brands_path, class: 'button button--large' %>
-        </div>
+            <%= link_to 'Browse more brands', brands_path, class: 'button button--large' %>
+          </div>
 
-     </div>
+       </div>
+    </div>
   </div>
-</div>
+<% end %>

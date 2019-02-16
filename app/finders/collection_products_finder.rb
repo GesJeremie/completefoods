@@ -16,7 +16,14 @@ class CollectionProductsFinder < ApplicationFinder
   private
 
     def products
-      Product.active
+      Product.includes(
+        :allergen,
+        :diet,
+        :shipment,
+        { price: [:currency] },
+        { image_attachment: [:blob] },
+        { brand: [:country] }
+      ).active
     end
 
     ##

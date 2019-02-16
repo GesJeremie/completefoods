@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
   BOOLEANS = [true, false].freeze
 
-  belongs_to :brand
+  belongs_to :brand, touch: true
 
   enum state: STATES.map(&:to_sym)
   enum flavor: FLAVORS.map(&:to_sym)

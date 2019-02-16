@@ -1,0 +1,26 @@
+<% cache [brands.size] do %>
+  <div class="brand-summary__parent">
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--80">
+          <h3 class="heading heading--1 heading--center">Browse Brands</h3>
+          <hr class="divider divider--small" />
+
+          <div class="grid grid--center">
+            <% brands.each do |brand| %>
+              <div class="grid__cell grid__cell--25-at-wide">
+                <%= link_to brand_path(brand.model), class: 'brand-summary' do %>
+                  <div class="brand-summary__item">
+                    <span class="brand-summary__item-flag"><%= flag_icon(brand.country_code_symbol) %></span>
+                    <span class="brand-summary__item-name"><%= brand.name %></span>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+
+            <%= link_to 'Browse more brands', brands_path, class: 'button button--large' %>
+          </div>
+
+       </div>
+    </div>
+  </div>
+<% end %>

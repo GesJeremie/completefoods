@@ -1,25 +1,27 @@
-<% content_for :meta_title, "#{DEFAULT_META['title']} - Our Collections" %>
-<% content_for :meta_description, "Browse through our collections to find the Complete Food you are looking for." %>
+<% cache @collections.size do %>
+  <% content_for :meta_title, "#{DEFAULT_META['title']} - Our Collections" %>
+  <% content_for :meta_description, "Browse through our collections to find the Complete Food you are looking for." %>
 
-<div class="hero hero--collections">
-  <h1 class="hero__title">
-    Collections
-  </h1>
-</div>
-<div class="grid grid--center">
-  <div class="grid__cell grid__cell--80-at-wide">
-    <div class="collection-summary">
-      <div class="grid grid--center">
-        <% @collections.each do |collection| %>
-          <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
-            <a href="<%= collection_path(collection.slug) %>">
-              <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>'">
-                <div class="collection-summary__item-title"><%= collection.name %></div>
-              </div>
-            </a>
-          </div>
-        <% end %>
+  <div class="hero hero--collections">
+    <h1 class="hero__title">
+      Collections
+    </h1>
+  </div>
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--80-at-wide">
+      <div class="collection-summary">
+        <div class="grid grid--center">
+          <% @collections.each do |collection| %>
+            <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
+              <a href="<%= collection_path(collection.slug) %>">
+                <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>'">
+                  <div class="collection-summary__item-title"><%= collection.name %></div>
+                </div>
+              </a>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
-</div>
+<% end %>

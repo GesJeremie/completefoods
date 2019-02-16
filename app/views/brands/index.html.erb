@@ -3,7 +3,7 @@
 <% content_for :meta_title, "#{DEFAULT_META['title']} - Brands" %>
 <% content_for :meta_description, description %>
 
-<% cache [@brands.count] do %>
+<% cache [Brand.maximum(:updated_at), Product.maximum(:updated_at)] do %>
   <div class="hero">
     <h1 class="hero__title">Brands</h1>
     <h2 class="hero__subtitle"><%= description %></h2>
