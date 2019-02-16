@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
+  before_action :redirect_if_old_domain
 
   def current_currency
     @current_currency ||= begin
@@ -13,4 +14,13 @@ class ApplicationController < ActionController::Base
       current_currency: current_currency
     )
   end
+
+  private
+    def redirect_if_old_domain
+      return unless Rails.env.production?
+
+      if ['www.soylent-alternatives.com', 'soylent-alternatives.com'].include?(request.host)
+        redirect_to "#{request.protocol}completefood.guru#{request.fullpath}", :status => :moved_permanently
+      end
+    end
 end
