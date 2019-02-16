@@ -1,6 +1,5 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2'
 
@@ -22,13 +21,8 @@ gem 'jbuilder', '~> 2.5'
 # Postgresql Driver
 gem 'pg'
 
-gem 'bootsnap'
-
 # Linting
 gem 'rubocop', require: false
-
-# Curl requests
-gem 'httparty'
 
 # Encrypt password
 gem 'bcrypt'
@@ -40,39 +34,38 @@ gem 'countries'
 gem 'money-rails', '~>1'
 gem 'money-open-exchange-rates'
 
-# Presenters
-gem 'draper'
-
 # Resize pictures
 gem 'mini_magick'
 
-# Let's scrap the web
-gem 'nokogiri'
+# Models without databases
+gem 'active_hash'
 
-# Icons
-gem 'fontcustom'
+# Pagination
+gem 'will_paginate'
+
 
 # Front-end
+gem 'inline_svg'
 gem 'avalanche-rails', '~> 1.2.0'
 gem 'lodash-rails'
 gem 'jquery-rails'
 gem 'flag-icons-rails'
 gem 'bootstrap', '~> 4.1.1'
 gem 'select2-rails'
+gem 'js-routes'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platform: :mri
-  gem 'pry'
+  gem 'pry-rails'
   gem 'faker'
 end
 
-
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   gem 'rails_real_favicon'
   gem 'bullet'
   gem 'scout_apm'
+end
+
+group :test do
 end

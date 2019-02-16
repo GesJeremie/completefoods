@@ -1,0 +1,24 @@
+<ul class="product-show__attributes">
+  <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.diet.vegetarian? %>">
+    <div class="product-show__attribute-icon">
+      <%= inline_svg('watermelon.svg', class: 'icon') %>
+    </div>
+    <div class="product-show__attribute-label">
+      Vegetarian
+    </div>
+    <div class="product-show__attribute-value">
+      <%= humanize_boolean(product.diet.vegetarian?) %>
+    </div>
+  </li>
+  <li class="product-show__attribute <%= 'product-show__attribute--unavailable' unless product.diet.vegan? %>">
+    <div class="product-show__attribute-icon">
+      <%= inline_svg('vegan.svg', class: 'icon') %>
+    </div>
+    <div class="product-show__attribute-label">
+      Vegan
+    </div>
+    <div class="product-show__attribute-value">
+      <%= humanize_boolean(product.diet.vegan?) %>
+    </div>
+  </li>
+</ul>

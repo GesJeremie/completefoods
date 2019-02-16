@@ -1,4 +1,8 @@
 class CurrenciesController < BaseController
+  def index
+    model = Currency.popular
+    @currencies = CurrencyViewModel.wrap(model, view_model_options)
+  end
 
   def update
     if allowed_code?
@@ -13,11 +17,7 @@ class CurrenciesController < BaseController
   private
 
     def currency_params
-      params.permit(allowed_params)
-    end
-
-    def allowed_params
-      %i[code]
+      params.permit(:code)
     end
 
     def allowed_code?

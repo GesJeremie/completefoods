@@ -1,0 +1,7 @@
+<div class="guru__footer">
+  <% if step.previous_button? %>
+    <%= link_to 'Previous Question', send(step.previous_step_path), class: 'button button--muted button--no-box-shadow' %>
+  <% end %>
+
+  <%= button_tag (step.last_step? ? 'See results' : 'Next Question'), class: 'button button--secondary button--with-arrow button--no-box-shadow' %>
+</div>

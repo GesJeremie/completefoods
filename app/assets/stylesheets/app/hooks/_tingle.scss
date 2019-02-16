@@ -1,0 +1,34 @@
+/*------------------------------------*\
+    #TINGLE
+\*------------------------------------*/
+
+.tingle-modal-box {
+    height: 100%;
+
+    @include respond-to('tingle-medium') {
+        height: auto;
+    }
+}
+
+    .tingle-modal__close {
+        text-align: right;
+        background: $white;
+
+        @include respond-to('tingle-medium') {
+            background: none;
+        }
+    }
+
+        .tingle-modal__closeIcon {
+            margin-right: double($spacing-unit);
+            color: $black;
+            font-size: 50px;
+
+            @include respond-to('tingle-medium') {
+                color: $white;
+            }
+        }
+
+        .tingle-modal__closeLabel {
+            display: none;
+        }

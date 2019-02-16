@@ -1,0 +1,2 @@
+class ProductReviewViewModel < ApplicationViewModel
+end

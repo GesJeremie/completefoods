@@ -1,5 +1,4 @@
 class ProductAllergenFactory
-
   def initialize(overrides = {})
     @overrides = overrides
   end
@@ -9,6 +8,7 @@ class ProductAllergenFactory
   end
 
   private
+    attr_reader :overrides
 
     def attributes
       {
@@ -17,6 +17,6 @@ class ProductAllergenFactory
         nut: Faker::Boolean.boolean,
         ogm: Faker::Boolean.boolean,
         soy: Faker::Boolean.boolean
-      }.merge(@overrides)
+      }.merge(overrides)
     end
 end

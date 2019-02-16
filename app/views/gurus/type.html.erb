@@ -1,0 +1,39 @@
+<%= render layout: 'step', locals: { step: @guru_step } do %>
+
+  <%= form_tag type_create_guru_path, method: 'post' do %>
+    <div class="heading heading--4 guru__question">
+      What kind of Complete Food are you looking for?
+    </div>
+
+    <div class="guru__choices">
+      <div class="grid">
+        <div class="grid__cell grid__cell--50-at-medium">
+          <%= guru_checkbox_tag(
+            label: 'Powder',
+            icon: 'powder',
+            attribute: :powder,
+            answer: @guru_step.answer_for(:powder)
+            ) %>
+        </div>
+        <div class="grid__cell grid__cell--50-at-medium">
+          <%= guru_checkbox_tag(
+            label: 'Ready-to-Drink',
+            icon: 'bottle',
+            attribute: :ready_to_drink,
+            answer: @guru_step.answer_for(:ready_to_drink)
+            ) %>
+        </div>
+        <div class="grid__cell grid__cell--50-at-medium">
+          <%= guru_checkbox_tag(
+            label: 'Snack',
+            icon: 'snack',
+            attribute: :snack,
+            answer: @guru_step.answer_for(:snack)
+            ) %>
+        </div>
+      </div>
+    </div>
+
+    <%= render 'gurus/footer', step: @guru_step %>
+  <% end %>
+<% end %>

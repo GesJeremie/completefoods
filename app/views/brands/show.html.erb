@@ -1,0 +1,20 @@
+<% content_for :meta_title, "#{DEFAULT_META['title']} - Brand #{@brand.name}" %>
+<% content_for :meta_description, @brand.description %>
+
+<div class="hero hero--brand">
+  <h1 class="hero__title"><%= @brand.name %></h1>
+  <h2 class="hero__subtitle"><%= @brand.description %></h2>
+  <div class="hero__buttons">
+    <%= link_to 'Website', @brand.website, class: 'button button--no-margin button--fixed-width' if @brand.website.present? %>
+    <%= link_to 'Facebook', @brand.facebook, class: 'button button--no-margin button--fixed-width' if @brand.facebook.present? %>
+  </div>
+</div>
+
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--70-at-wide">
+    <% @brand.active_products.each_with_index do |product, index| %>
+      <%= render partial: 'products/item_per_serving', locals: { product: product } %>
+      <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
+    <% end %>
+  </div>
+</div>

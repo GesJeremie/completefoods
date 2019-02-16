@@ -4,7 +4,7 @@ class Product < ApplicationRecord
 
   BOOLEANS = [true, false].freeze
 
-  belongs_to :brand
+  belongs_to :brand, touch: true
 
   enum state: STATES.map(&:to_sym)
   enum flavor: FLAVORS.map(&:to_sym)
@@ -37,28 +37,21 @@ class Product < ApplicationRecord
 
   validates_with ImageUploadValidator, attributes: [:image]
 
-  default_scope { order(id: :asc) }
   scope :active, -> { where(active: true) }
 
   def to_param
     self.slug
   end
 
-  def protein_per_serving_ratio
-    ratios[:protein_ratio]
+  def protein_per_kcal(kcal)
+    (protein_per_serving / kcal_per_serving) * kcal
   end
 
-  def carbs_per_serving_ratio
-    ratios[:carbs_ratio]
+  def carbs_per_kcal(kcal)
+    (carbs_per_serving / kcal_per_serving) * kcal
   end
 
-  def fat_per_serving_ratio
-    ratios[:fat_ratio]
+  def fat_per_kcal(kcal)
+    (fat_per_serving / kcal_per_serving) * kcal
   end
-
-  private
-
-    def ratios
-      @ratios ||= ProductNutritionRatiosService.new({ product: self }).execute
-    end
 end

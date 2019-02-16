@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    #FLAG-ICON
+\*------------------------------------*/
+
+.flag-icon {
+    .hero--brand & {
+        width: 16px;
+    }
+
+    .product-show__from & {
+        display: inline-block;
+        margin-right: halve($spacing-unit);
+        width: 16px;
+    }
+}

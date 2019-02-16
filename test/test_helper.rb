@@ -1,18 +1,14 @@
 ENV['RAILS_ENV'] = 'test'
+
 require File.expand_path('../../config/environment', __FILE__)
 require 'rails/test_help'
 
-# Add factories
+# Load factories
 Dir[Rails.root.join('test/factories/**/*.rb')].each { |file| require file }
 
-# To add Capybara feature tests add `gem 'minitest-rails-capybara'`
-# to the test group in the Gemfile and uncomment the following:
-# require 'minitest/rails/capybara'
-
-# Uncomment for awesome colorful output
-require 'minitest/pride'
-
 class ActiveSupport::TestCase
+  include Factories::Support::Helpers
+  include Factories::Support::Traits
 
   def self.prepare
     Rails.application.load_seed

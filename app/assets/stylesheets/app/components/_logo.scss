@@ -19,13 +19,13 @@
 
     .logo__soylent,
     .logo__alternatives {
-        font-size: $font-size - 1px;
+        font-size: 13px;
         font-family: $font-logo;
         font-weight: 600;
         vertical-align: middle;
 
         @include respond-to('medium') {
-            font-size: $font-size + 3px;
+            font-size: 17px;
         }
     }
 

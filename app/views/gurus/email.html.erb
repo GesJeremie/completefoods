@@ -1,0 +1,17 @@
+<%= render layout: 'step', locals: { step: @guru_step } do %>
+
+  <%= form_tag email_create_guru_path, method: 'post' do %>
+    <div class="heading heading--4 guru__question">
+      Don't miss out when a new product match your preferences!
+    </div>
+
+    <div class="guru__choices">
+      <div class="grid">
+        <div class="grid__cell grid__cell--80">
+          <%= text_field_tag 'answers[email]', nil, class: 'text-box', placeholder: 'email@domain.com' %>
+      </div>
+    </div>
+
+    <%= render 'gurus/footer', step: @guru_step %>
+  <% end %>
+<% end %>

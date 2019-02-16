@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_20_193316) do
+ActiveRecord::Schema.define(version: 2019_02_16_111522) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,9 @@ ActiveRecord::Schema.define(version: 2018_10_20_193316) do
     t.string "name"
     t.string "website"
     t.string "facebook"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["country_id"], name: "index_brands_on_country_id"
   end
 
@@ -139,6 +142,23 @@ ActiveRecord::Schema.define(version: 2018_10_20_193316) do
     t.integer "flavor", default: 0
     t.index ["brand_id"], name: "index_products_on_brand_id"
     t.index ["slug"], name: "index_products_on_slug", unique: true
+  end
+
+  create_table "wizard_steps", force: :cascade do |t|
+    t.bigint "wizard_id"
+    t.string "name"
+    t.boolean "completed", default: false
+    t.jsonb "answers"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["wizard_id"], name: "index_wizard_steps_on_wizard_id"
+  end
+
+  create_table "wizards", force: :cascade do |t|
+    t.string "token"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_wizards_on_token", unique: true
   end
 
 end

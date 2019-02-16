@@ -1,0 +1,42 @@
+<%= render layout: 'step', locals: { step: @guru_step } do %>
+
+  <%= form_tag subscription_create_guru_path, method: 'post' do %>
+    <div class="heading heading--4 guru__question">
+      Many brands of Complete Foods let you subscribe monthly. Does it matter to you?
+    </div>
+
+    <div class="guru__choices">
+      <div class="grid">
+        <div class="grid__cell grid__cell--50">
+          <%= guru_radio_button_tag(
+            label: 'Yes',
+            icon: 'super_smile',
+            key: :subscription,
+            value: :yes,
+            checked: @guru_step.checked_for?(:subscription, :yes)
+            ) %>
+        </div>
+        <div class="grid__cell grid__cell--50">
+          <%= guru_radio_button_tag(
+            label: 'No',
+            icon: 'smile',
+            key: :subscription,
+            value: :no,
+            checked: @guru_step.checked_for?(:subscription, :no)
+            ) %>
+        </div>
+        <div class="grid__cell grid__cell--100">
+          <%= guru_radio_button_tag(
+            label: 'Yes, but only if I get a discount!',
+            icon: 'discount',
+            key: :subscription,
+            value: :yes_only_discount,
+            checked: @guru_step.checked_for?(:subscription, :yes_only_discount)
+            ) %>
+        </div>
+      </div>
+    </div>
+
+    <%= render 'gurus/footer', step: @guru_step %>
+  <% end %>
+<% end %>

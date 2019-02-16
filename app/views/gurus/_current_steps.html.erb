@@ -1,0 +1,11 @@
+<div class="guru__steps">
+  <div class="guru__steps-container">
+    <div class="guru__steps-content">
+      <span class="guru__steps-current"><%= leading_zero(step.progress_current) %></span>
+      <span class="guru__steps-total">/<%= leading_zero(step.progress_total) %></span>
+    </div>
+    <div class="guru__steps-circle">
+      <div class="guru__steps-progress" style="height: <%= step.progress_height %>%"></div>
+    </div>
+  </div>
+</div>

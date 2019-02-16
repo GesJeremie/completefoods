@@ -3,7 +3,8 @@
 \*------------------------------------*/
 
 .link {
-    color: $green;
+    color: $purple;
+    text-decoration-style: dotted;
 
     .hero__action & {
         color: $black;
@@ -11,8 +12,32 @@
         text-decoration: none;
         border-bottom: 1px solid $black;
     }
+
+    .header__logo & {
+        color: $black;
+        text-decoration: none;
+        border: 0;
+    }
 }
 
 .link--alt {
     color: $black;
+}
+
+.link--with-spacer {
+    text-decoration: none;
+    border-bottom: 1px solid $purple;
+
+    &.link--alt {
+        border-bottom: 1px dotted $black;
+    }
+}
+
+.link--disabled {
+    text-decoration: none;
+
+    &:focus,
+    &:hover {
+        cursor: not-allowed;
+    }
 }

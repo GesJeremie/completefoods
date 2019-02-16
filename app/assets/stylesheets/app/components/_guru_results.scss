@@ -1,0 +1,16 @@
+/*------------------------------------*\
+    #GURU-RESULTS
+\*------------------------------------*/
+
+.guru-results {}
+
+    .guru-results__sort {
+        margin-top: $spacing-unit * 2.5;
+        vertical-align: middle;
+
+        @include respond-to('medium') {
+            width: 40%;
+        }
+    }
+
+        .guru-results__sort-select {}

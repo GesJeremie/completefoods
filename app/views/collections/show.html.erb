@@ -1,0 +1,31 @@
+<% cache [(params[:page] || 0), @collection.name, current_currency.id] do %>
+  <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@collection.name}" %>
+  <% content_for :meta_description, @collection.description %>
+
+  <div class="hero hero--collection">
+    <h1 class="hero__title">
+      <%= @collection.name %>
+    </h1>
+
+    <h2 class="hero__subtitle">
+      <%= @collection.description %>
+    </h2>
+  </div>
+
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--90-at-wide">
+      <div class="grid grid--center">
+        <div class="grid__cell grid__cell--25">
+          <%= render 'gurus/card' %>
+        </div>
+        <div class="grid__cell grid__cell--75">
+          <% @products.each_with_index do |product, index| %>
+            <%= render partial: 'products/item_per_serving', locals: { product: product } %>
+            <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
+          <% end %>
+          <%= will_paginate(@products) %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -2,10 +2,13 @@
     #SELECT2
 \*------------------------------------*/
 
-$select2-height: 68px !default;
+$select2-height: 49px !default;
 
 .select2-container {
-    width: 100% !important;
+    width: 100% !important; // scss-lint:disable ImportantRule
+
+    .guru-results__sort & {
+    }
 }
 
 .select2-container .select2-selection--single {

@@ -1,320 +1,50 @@
-<% cache [@product, @reviews.count, current_currency.id] do %>
-  <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name}" %>
-  <% content_for :meta_description, "#{@product.name} costs #{from_usd_to_current_currency(@product.price.per_month_bulk_order_in_currency('USD'))} per month and is manufactured by #{@brand.name} in #{@brand.country.name}." %>
-  <% content_for :meta_image, @product.image_url %>
-
-    <div class="product-show">
-      <div class="grid grid--center">
-        <div class="grid__cell grid__cell--90 grid__cell--70-at-medium">
-
-          <div class="product-show__heading">
-            <div class="product-show__thumbnail" style="background-image: url('<%= @product.image_url %>')"></div>
-            <h1 class="product-show__title"><%= @product.name %></h1>
-            <h3 class="product-show__from">Produced in <strong><%= @brand.country.name %></strong> by <strong><%= @brand.name %></strong></h3>
-          </div>
-
-          <div class="product-show__call-to">
-            <a class="button button--primary button--call-to-action" target="_blank" href="<%= @product.brand.website %>">Website</a>
-
-            <% if @product.brand.facebook.present? %>
-              <a class="button button--primary button--call-to-action" target="_blank" href="<%= @product.brand.facebook %>">Facebook</a>
-            <% end %>
-          </div>
-
-          <div class="product-show__card">
-
-            <h3 class="product-show__subtitle">Prices</h3>
-
-            <table class="table">
-              <tr>
-                <th></th>
-                <th>Bulk Order</th>
-                <th>Minimum Order</th>
-              </tr>
-              <tr>
-                <td>Per Serving</td>
-                <td><%= from_usd_to_current_currency(@product.price.per_serving_bulk_order_in_currency('USD')) %></td>
-                <td><%= from_usd_to_current_currency(@product.price.per_serving_minimum_order_in_currency('USD')) %></td>
-              </tr>
-              <tr>
-                <td>Per Day</td>
-                <td><%= from_usd_to_current_currency(@product.price.per_day_bulk_order_in_currency('USD')) %></td>
-                <td><%= from_usd_to_current_currency(@product.price.per_day_minimum_order_in_currency('USD')) %></td>
-              </tr>
-              <tr>
-                <td>Per Month</td>
-                <td><%= from_usd_to_current_currency(@product.price.per_month_bulk_order_in_currency('USD')) %></td>
-                <td><%= from_usd_to_current_currency(@product.price.per_month_minimum_order_in_currency('USD')) %></td>
-              </tr>
-            </table>
-
-            <div class="alert alert--small"><strong>Note:</strong> The prices shown above don't include any shipping cost nor discount (yet!).</div>
-
-            <h3 class="product-show__subtitle">Nutrition Facts per serving</h3>
-
-            <table class="table">
-              <tr>
-                <th></th>
-                <th>Number</th>
-                <th>Ratio</th>
-              </tr>
-              <tr>
-                <td>Kcal</td>
-                <td><%= @product.kcal_per_serving %></td>
-                <td></td>
-              </tr>
-              <tr>
-                <td>Protein</td>
-                <td><%= @product.protein_per_serving %></td>
-                <td><%= @product.protein_per_serving_ratio %>%</td>
-              </tr>
-              <tr>
-                <td>Carbs</td>
-                <td><%= @product.carbs_per_serving %></td>
-                <td><%= @product.carbs_per_serving_ratio %>%</td>
-              </tr>
-              <tr>
-                <td>Fat</td>
-                <td><%= @product.fat_per_serving %></td>
-                <td><%= @product.fat_per_serving_ratio %>%</td>
-              </tr>
-            </table>
-
-            <h3 class="product-show__subtitle">Allergens</h3>
-
-            <div class="grid">
-              <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
-
-                <% if @product.allergen.gluten? %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'corn' %>
-                    <div class="product-show__item-label">Not Gluten Free</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'corn' %>
-                    <div class="product-show__item-label">Gluten Free</div>
-                  </div>
-                <% end %>
-
-              </div>
-
-              <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
-
-                <% if @product.allergen.lactose? %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'baby-bottle' %>
-                    <div class="product-show__item-label">Not Lactose Free</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'baby-bottle' %>
-                    <div class="product-show__item-label">Lactose Free</div>
-                  </div>
-                <% end %>
-
-              </div>
-            </div>
-
-            <h3 class="product-show__subtitle">Diets</h3>
-
-            <div class="grid">
-
-              <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
-
-                <% if @product.diet.vegan? %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'plant' %>
-                    <div class="product-show__item-label">Suitable for Vegans</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'plant' %>
-                    <div class="product-show__item-label">Not suitable for Vegans</div>
-                  </div>
-                <% end %>
-
-              </div>
-
-              <div class="grid__cell grid__cell--100 grid__cell--50-at-medium grid__cell--33-at-wide">
-
-                <% if @product.diet.vegetarian? %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'watermelon' %>
-                    <div class="product-show__item-label">Suitable for Vegetarians</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'watermelon' %>
-                    <div class="product-show__item-label">Not suitable for Vegetarians</div>
-                  </div>
-                <% end %>
-
-              </div>
-
-            </div>
-
-
-            <h3 class="product-show__subtitle">Shipping</h3>
-
-            <div class="grid">
-
-              <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
-
-                <% if @product.shipment.united_states? %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'usa' %>
-                    <div class="product-show__item-label">United States</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'usa' %>
-                    <div class="product-show__item-label">United States</div>
-                  </div>
-                <% end %>
-
-              </div>
-
-              <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
-
-                <% if @product.shipment.canada? %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'canada' %>
-                    <div class="product-show__item-label">Canada</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'canada' %>
-                    <div class="product-show__item-label">Canada</div>
-                  </div>
-                <% end %>
-
-              </div>
-
-              <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
-
-                <% if @product.shipment.europe? %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'europe' %>
-                    <div class="product-show__item-label">Europe</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'europe' %>
-                    <div class="product-show__item-label">Europe</div>
-                  </div>
-                <% end %>
-
-              </div>
-
-              <div class="grid__cell grid__cell--50-at-medium grid__cell--25-at-wide">
-
-                <% if @product.shipment.rest_of_world? %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'world' %>
-                    <div class="product-show__item-label">Rest of World</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'world' %>
-                    <div class="product-show__item-label">Rest of World</div>
-                  </div>
-                <% end %>
-
-              </div>
-
-            </div>
-
-            <h3 class="product-show__subtitle">Misc</h3>
-
-            <div class="grid">
-
-              <div class="grid__cell grid__cell--50-at-medium grid__cell--33-at-wide">
-
-                <% if @product.subscription_available? %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'box' %>
-                    <div class="product-show__item-label">Subscription Available</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'box' %>
-                    <div class="product-show__item-label">Subscription not Available</div>
-                  </div>
-                <% end %>
-
-              </div>
-
-              <div class="grid__cell grid__cell--50-at-medium grid__cell--33-at-wide">
-
-                <% if @product.discount_for_subscription? %>
-                  <div class="product-show__item product-show__item--green">
-                    <%= emoji 'money' %>
-                    <div class="product-show__item-label">Discount for Subscription</div>
-                  </div>
-                <% else %>
-                  <div class="product-show__item product-show__item--red">
-                    <%= emoji 'money' %>
-                    <div class="product-show__item-label">No Discount for Subscription</div>
-                  </div>
-                <% end %>
-
-              </div>
-            </div>
-
-            <% if @product.notes.present? %>
-              <h3 class="product-show__subtitle">Team's Notes</h3>
-              <div class="product-show__notes"><%= @product.notes %></div>
-            <% end %>
-
-            <h3 class="product-show__subtitle">Reviews</h3>
-
-            <div class="product-reviews">
-
-              <form data-controller="product-reviews-write" data-action="submit->product-reviews-write#onSubmit">
-                <div data-controller="product-reviews-choices" data-product-reviews-choices-starts-score="0" class="product-reviews__choices">
-                  <input data-target="product-reviews-choices.score" type="hidden" name="score" value="0" />
-
-                  <div class="grid">
-                    <div class="grid__cell grid__cell--33 grid__cell--20-at-wide">
-                      <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="0" class="button button--product-reviews-choice active" href="#">Hell No!</a>
-                    </div>
-
-                    <div class="grid__cell grid__cell--33 grid__cell--20-at-wide">
-                      <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="1" class="button button--product-reviews-choice" href="#">Meh</a>
-                    </div>
-
-                    <div class="grid__cell grid__cell--33 grid__cell--20-at-wide">
-                      <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="2" class="button button--product-reviews-choice" href="#">Okay</a>
-                    </div>
-
-                    <div class="grid__cell grid__cell--33 grid__cell--20-at-wide">
-                      <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="3" class="button button--product-reviews-choice" href="#">Great</a>
-                    </div>
-
-                    <div class="grid__cell grid__cell--33 grid__cell--20-at-wide">
-                      <a data-action="click->product-reviews-choices#onClickChoice" data-target="product-reviews-choices.choice" data-score="4" class="button button--product-reviews-choice" href="#">Excellent</a>
-                    </div>
-                  </div>
-
-                  <div data-target="product-reviews-choices.meaning" class="product-reviews__meaning">
-                  </div>
-                </div>
-
-                <div class="product-reviews__content">
-                  <textarea data-autosize name="description" class="product-reviews__content-textarea" placeholder="Optional - Feel free to justify your choice"></textarea>
-                </div>
-
-                <input data-target="product-reviews-write.productId" type="hidden" name="product_id" value="<%= @product.id %>" />
-
-                <div data-target="product-reviews-write.errors" class="product-reviews__errors"></div>
-                <button data-target="product-reviews-write.submit" type="submit" class="button button--primary">Submit Review</button>
-              </form>
-
-              <%= render 'products/reviews.html.erb', reviews: @reviews %>
-
-          </div>
+<% cache [@product, @product.brand, current_currency.id] do %>
+  <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name} by #{@product.brand.name}" %>
+  <% content_for :meta_description, "#{@product.name} is a Complete Food produced in #{@product.brand.country.name} by #{@product.brand.name}" %>
+
+  <div class="product-show">
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--80-at-wide grid__cell--70-at-x-wide">
+
+        <div class="product-show__heading">
+          <div class="product-show__thumbnail" style="background-image: url('<%= url_for(@product.image) %>')"></div>
+          <h1 class="product-show__title"><%= @product.name %></h1>
+          <h3 class="product-show__from">
+            Produced in <%= flag_icon(@product.country_code_symbol) %><strong><%= @product.brand.country.name %></strong> by <strong><%= link_to @product.brand.name, brand_path(@product.brand.model), class: 'link link--alt' %></strong>
+          </h3>
         </div>
+
+        <div class="product-show__call-to">
+          <%= link_to 'Website', @product.brand.website, class: 'button button--fixed-width button--no-margin' if @product.brand.website.present? %>
+          <%= link_to 'Facebook', @product.brand.facebook, class: 'button button--fixed-width button--no-margin' if @product.brand.facebook.present? %>
+        </div>
+
+        <div class="product-show__card">
+
+          <h3 class="product-show__subtitle">Prices</h3>
+          <%= render 'products/show/prices', product: @product %>
+
+          <h3 class="product-show__subtitle">Nutrition Facts</h3>
+          <%= render 'products/show/nutrition_facts', product: @product %>
+
+
+          <h3 class="product-show__subtitle">Shipping</h3>
+          <%= render 'products/show/shipping', product: @product %>
+
+          <h3 class="product-show__subtitle">Allergens</h3>
+          <%= render 'products/show/allergens', product: @product %>
+
+          <h3 class="product-show__subtitle">Diets</h3>
+          <%= render 'products/show/diets', product: @product %>
+
+          <h3 class="product-show__subtitle">Misc</h3>
+          <%= render 'products/show/misc', product: @product %>
+
+          <% if @product.has_notes? %>
+            <h3 class="product-show__subtitle">Team's Notes</h3>
+            <div class="product-show__notes"><%= @product.notes %></div>
+          <% end %>
       </div>
     </div>
+  </div>
 <% end %>

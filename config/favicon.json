@@ -11,7 +11,7 @@
                 "precomposed_icons": false,
                 "declare_only_default_icon": true
             },
-            "app_name": "Soylent Alternatives"
+            "app_name": "CompleteFoods.guru"
         },
         "desktop_browser": [
 
@@ -29,7 +29,7 @@
                     "rectangle": false
                 }
             },
-            "app_name": "Soylent Alternatives"
+            "app_name": "CompleteFoods.guru"
         },
         "android_chrome": {
             "picture_aspect": "no_change",

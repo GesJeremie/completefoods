@@ -1,47 +1,23 @@
-<div id="dropdown-currencies" class="currencies">
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--70-at-medium">
-      <div class="currencies__title">Show me the prices in:</div>
-      <ul class="currencies__list">
-        <% Currency.popular.each do |currency| %>
-          <li class="currencies__item">
-            <%= link_to currency_path(currency.code), { method: :put, class: currency_selected_class(currency, current_currency) } do %>
-              <span class="currencies__item-name"><%= currency.name %></span>
-              <span class="currencies__item-code"><%= currency.code %></span>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+<div data-controller="header-menu" class="header clearfix">
+  <div class="header__logo">
+    <%= link_to root_path, class: 'link' do %>
+      CompleteFoods<span class="header__logo-guru">.guru</span>
+    <% end %>
   </div>
-</div>
 
-<div class="header">
-  <div class="grid grid--center grid--middle">
-    <div class="grid__cell grid__cell--80 grid__cell--50-at-medium grid__cell--30-at-wide">
-      <a href="<%= root_path %>" class="logo">
-        <%= image_tag 'kiwi.png', class: 'logo__image' %>
-        <span class="logo__soylent">
-          Soylent
-        </span>
-        <span class="logo__alternatives">
-          Alternatives
-        </span>
-      </a>
-    </div>
-    <div class="grid__cell grid__cell--20 grid__cell--50-at-medium grid__cell--70-at-wide">
-      <div class="navigation">
-        <div class="navigation__header">
-          <ul class="navigation__list">
-            <li class="navigation__list-item navigation__list-item--currency">
-              <a data-controller="dropdown-currencies" data-action="click->dropdown-currencies#onClickCurrency" href="#" class="navigation__list-item-link">
-                <%= image_tag 'coin.png', class: 'navigation__currency-icon' %>
-                <span class="navigation__currency-label"><span class="navigation__currency-label-text">Currency:</span> <%= current_currency.code %></span>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
+  <div data-action="click->header-menu#onClickMenu" class="header__menu">
+    <%= inline_svg('menu.svg', class: 'icon') %>
+  </div>
+
+  <div data-target="header-menu.links" class="header__links">
+    <%= link_to 'Collections', collections_path, class: 'header__link' %>
+    <%= link_to 'Brands', brands_path, class: 'header__link' %>
+    <%= link_to 'Explore all Products', products_path, class: 'header__link header__link--highlight' %>
+  </div>
+
+  <div data-target="header-menu.currency" class="header__currency">
+    <span class="header__currency-label">Currency:
+      <%= link_to current_currency.code, currencies_path, class: 'link', data: { controller: 'modal-xhr' } %>
+    </span>
   </div>
 </div>

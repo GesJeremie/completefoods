@@ -13,17 +13,22 @@
     }
 }
 
-.hero--home {}
+.hero--home {
+    padding-bottom: $spacing-unit * 12;
+}
+
+.hero--brand {}
+.hero--products {}
 .hero--collection {}
 
     .hero__title {
-        font-size: $font-size + 24px;
+        font-size: 38px;
         font-weight: bold;
-        line-height: 40px;
+        line-height: quadruple($spacing-unit);
         text-transform: capitalize;
 
         @include respond-to('medium') {
-            font-size: $font-size + 44px;
+            font-size: 58px;
             line-height: 58px;
         }
     }
@@ -32,21 +37,30 @@
         margin: 0 auto;
         margin-top: double($spacing-unit);
         margin-bottom: $spacing-unit * 5;
-        max-width: 550px;
-        font-size: $font-size - 1px;
-        line-height: 22px;
+        max-width: 580px;
+        font-size: 17px;
+        line-height: triple($spacing-unit);
 
         @include respond-to('medium') {
-            font-size: $font-size + 3px;
-            line-height: 30px;
+            font-size: 20px;
+            line-height: $spacing-unit * 3.5;
         }
 
         .hero--home & {
             margin-bottom: double($spacing-unit);
+
         }
 
         .hero--collection & {
             max-width: 700px;
+        }
+
+        .hero--brand & {
+            margin-bottom: $spacing-unit;
+        }
+
+        .hero--products & {
+            margin-bottom: triple($spacing-unit);
         }
     }
 
@@ -56,15 +70,19 @@
 
     .hero__action {
         margin-bottom: double($spacing-unit);
-        font-size: $font-size - 1px;
+        font-size: 13px;
         font-style: italic;
 
         @include respond-to('medium') {
-            font-size: $font-size + 3px;
+            font-size: 17px;
         }
     }
 
+    .hero__buttons {
+        margin-bottom: double($spacing-unit);
+    }
+
     .hero__icon {
-        font-size: $font-size + 26px;
+        font-size: 40px;
         vertical-align: middle;
     }

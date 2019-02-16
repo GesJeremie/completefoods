@@ -1,17 +1,29 @@
-<% @layout_with_filters = true %>
-<% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Soylent" %>
+<% cache [Product.maximum(:updated_at), current_currency.id, (params[:page] || 0)] do %>
+  <% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Soylent" %>
 
-<div class="hero hero--home">
-  <h1 class="hero__title">
-    Soylent Alternatives <br/>currently available <br/>worldwide
-    <span class="hero__icon"><%= emoji(:world) %></span>
-  </h1>
-  <h2 class="hero__subtitle">
-    We reference <%= Product.active.count %> products from <%= Brand.count %> brands.<br/>
-    Yes, that's a sh** load of products.
-  </h2>
-</div>
+  <div class="hero hero--products">
+    <h1 class="hero__title">
+      Explore all Products
+    </h1>
+    <h2 class="hero__subtitle">
+      We currently reference <%= count_active_products %> products from <%= count_brands %> brands.
+    </h2>
+  </div>
 
-<%= render 'products/results', products: @products %>
-
-<%= render 'shared/newsletter' %>
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--90-at-wide">
+      <div class="grid grid--center">
+        <div class="grid__cell grid__cell--25-at-x-wide">
+          <%= render 'gurus/card' %>
+        </div>
+        <div class="grid__cell grid__cell--75-at-x-wide">
+          <% @products.each_with_index do |product, index| %>
+            <%= render partial: 'products/item_per_serving', locals: { product: product } %>
+            <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
+          <% end %>
+          <%= will_paginate @products %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

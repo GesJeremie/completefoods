@@ -1,0 +1,14 @@
+/*------------------------------------*\
+    #NAVIGATION-ALPHABET
+\*------------------------------------*/
+
+.navigation-alphabet {
+    line-height: triple($spacing-unit);
+    text-align: center;
+}
+
+    .navigation-alphabet__link {
+        display: inline-block;
+        margin: 0 (halve($spacing-unit) / 2);
+        font-size: 20px;
+    }

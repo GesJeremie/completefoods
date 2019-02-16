@@ -1,35 +1,35 @@
 class ProductsController < BaseController
   def index
-    @products = ProductResultsFinder.new(filter_params.to_h).execute
-    @products = ProductDecorator.decorate_collection(@products)
+    products = ProductViewModel.wrap(find_products, view_model_options)
+
+    @products = PagedArray.new(
+      products,
+      page: params[:page],
+      per_page: products_per_page
+    )
   end
 
   def show
-    @product = Product.find_by_slug(params[:slug]).decorate
-    @brand = @product.brand
-    @reviews = ProductReviewDecorator.decorate_collection(@product.reviews)
+    model = Product.find_by_slug(params[:slug])
+    @product = ProductViewModel.wrap(model, view_model_options)
   end
 
   private
 
-    def filter_params
-      params.permit(%i[
-          powder
-          bottle
-          snack
-          vegetarian
-          vegan
-          gluten_free
-          lactose_free
-          united_states
-          canada
-          europe
-          rest_of_world
-          subscription_available
-          discount_for_subscription
-          made_in
-          sort
-          narrow
-        ])
+    def products_per_page
+      Rails.configuration.products_per_page
+    end
+
+    def find_products
+      Product.includes(
+        :allergen,
+        :diet,
+        :shipment,
+        { price: [:currency] },
+        { image_attachment: [:blob] },
+        { brand: [:country] }
+      )
+      .active
+      .order('name ASC')
     end
 end

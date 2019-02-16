@@ -10,15 +10,7 @@
 
     .footer__contact {
         margin-bottom: triple($spacing-unit);
-        font-size: $font-size;
-    }
-
-    .footer__copyright {
-        font-size: $font-size - 2px;
-
-        @include respond-to('medium') {
-            font-size: $font-size;
-        }
+        font-size: 14px;
     }
 
     .footer__links {

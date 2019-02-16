@@ -7,10 +7,10 @@
       <strong>Name:</strong> <%= @brand.name %><br/>
       <strong>Website:</strong> <%= @brand.website %><br/>
       <strong>Facebook:</strong> <%= @brand.facebook %><br/>
-      <strong>Country:</strong> <%= @brand.flag %> <%= @brand.country.name %>
+      <strong>Country:</strong> <%= flag_icon(@brand.country_code_symbol) %> <%= @brand.country.name %>
     </div>
     <div class="card-footer">
-      <%= link_to 'Edit', edit_dashboard_brand_path(@brand) %>
+      <%= link_to 'Edit', edit_dashboard_brand_path(@brand.model) %>
     </div>
   </div>
 
@@ -34,8 +34,8 @@
           <th scope="row"><%= product.id %></th>
           <td><%= product.name %></td>
           <td>
-            <%= link_to 'Show', dashboard_product_path(product), target: '_blank' %> /
-            <%= link_to 'Edit', edit_dashboard_product_path(product), target: '_blank' %>
+            <%= link_to 'Show', dashboard_product_path(product.model), target: '_blank' %> /
+            <%= link_to 'Edit', edit_dashboard_product_path(product.model), target: '_blank' %>
           </td>
         </tr>
 

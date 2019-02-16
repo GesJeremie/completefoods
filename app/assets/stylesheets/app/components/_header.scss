@@ -2,6 +2,120 @@
     #HEADER
 \*------------------------------------*/
 
+/**
+ * 1. Always display the menu on larger viewports (bypass state javascript controller header_menu.js)
+ */
+
 .header {
-    margin: double($spacing-unit);
+    margin: 0 auto;
+    margin-top: 0;
+    padding: triple($spacing-unit);
+    width: 90%;
+    color: $black;
+    background: $white;
+    border: 2px solid $gray--medium-light;
+    border-top: 0;
+    border-radius: 10px;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
+
+    @include respond-to('x-wide') {
+        width: 70%;
+    }
 }
+
+    .header__logo {
+        display: inline-block;
+        padding-right: double($spacing-unit);
+        color: $black;
+        font-size: 18px;
+        font-weight: 400;
+        border-right: 1px solid $white;
+    }
+
+        .header__logo-guru {
+            font-weight: 600;
+        }
+
+
+    .header__menu {
+        display: inline-block;
+        float: right;
+        vertical-align: middle;
+        user-select: none;
+
+        &:focus,
+        &:hover {
+            cursor: pointer;
+        }
+
+        @include respond-to('x-wide') {
+            display: none;
+        }
+    }
+
+    .header__links {
+        display: none;
+        margin: double($spacing-unit) 0;
+        text-align: center;
+
+        @include respond-to('x-wide') {
+            display: inline-block !important; /* [1] */ // scss-lint:disable ImportantRule
+            margin: 0;
+            margin-left: double($spacing-unit);
+            text-align: left;
+        }
+    }
+
+        .header__link:first-of-type {
+            margin-left: 0;
+        }
+
+        .header__link {
+            display: block;
+            margin: 0;
+            margin-bottom: $spacing-unit;
+            padding: $spacing-unit;
+            color: $black;
+            font-weight: 700;
+            text-transform: uppercase;
+            text-decoration: none;
+            background: $gray--x-light;
+            border-radius: 5px;
+
+            @include respond-to('x-wide') {
+                display: inline-block;
+                margin: 0 $spacing-unit;
+                padding: 0;
+                background: none;
+                border-radius: 0;
+            }
+        }
+
+        .header__link--highlight {
+            color: $white;
+            background: $purple;
+            border-radius: 5px;
+
+            @include respond-to('x-wide') {
+                padding: halve($spacing-unit) $spacing-unit;
+            }
+        }
+
+    .header__currency {
+        display: none;
+        float: right;
+        color: $black;
+
+        @include respond-to('x-wide') {
+            display: inline-block !important; /* [1] */ // scss-lint:disable ImportantRule
+        }
+    }
+
+        .header__currency-label {}
+
+            .header__currency-code {
+                color: $purple;
+                text-decoration: underline;
+                text-decoration-style: dotted;
+            }

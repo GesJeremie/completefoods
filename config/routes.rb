@@ -1,34 +1,47 @@
 Rails.application.routes.draw do
 
   # Redirect www to no-www
-  constraints subdomain: 'www' do
-    get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
+  if Rails.env.production?
+    constraints subdomain: 'www' do
+      get ':any', to: redirect(subdomain: nil, path: '/%{any}'), any: /.*/
+    end
   end
 
-  root 'home#index'
+  root 'pages#home'
 
-  # Collections
-  get 'cheapest', to: 'collections#cheapest'
-  get 'for-athletes', to: 'collections#athletes'
-  get 'for-vegans', to: 'collections#vegan'
-  get 'for-vegetarians', to: 'collections#vegetarian'
-  get 'gluten-free', to: 'collections#gluten_free'
-  get 'lactose-free', to: 'collections#lactose_free'
-  get 'made-by-:brand', to: 'collections#made_by'
-  get 'made-in-:country', to: 'collections#made_in'
-  get 'most-expensive', to: 'collections#most_expensive'
-  get 'powders', to: 'collections#powders'
-  get 'ready-to-drink', to: 'collections#ready_to_drink'
-  get 'snacks', to: 'collections#snacks'
-
-  # Collections aliases for sitemap (TODO: Remove from there + sitemap)
-  get 'produced-in-:country', to: 'collections#made_in'
-  get 'suitable-for-vegans', to: 'collections#vegan'
-  get 'produced-by-:brand', to: 'collections#made_by'
-
+  resources :brands, only: [:index, :show], param: :slug
   resources :products, only: [:index, :show], param: :slug
-  resources :currencies, only: [:update], param: :code
+  resources :collections, only: [:index, :show], param: :slug
+  resources :currencies, only: [:index, :update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
+
+  resource :guru do
+    collection do
+      get '/', action: :index, as: :index
+      get :allergen
+      get :diet
+      get :country
+      get :type
+      get :subscription
+      get :email
+      get :no_results
+      get '/:id', action: :show, as: :show
+
+      post :allergen_create
+      post :diet_create
+      post :country_create
+      post :type_create
+      post :subscription_create
+      post :sort_create
+      post :email_create
+    end
+  end
+
+  resources :pages, only: [] do
+    collection do
+      get 'what-is-a-complete-food'
+    end
+  end
 
   namespace :dashboard do
     root 'brands#index'
@@ -43,6 +56,5 @@ Rails.application.routes.draw do
     resources :product_reviews, only: [:create, :show]
     resources :newsletters, only: [:create]
   end
-
 end
 

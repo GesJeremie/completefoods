@@ -3,14 +3,34 @@
 \*------------------------------------*/
 
 .currencies {
-    display: none;
-    padding: double($spacing-unit);
-    background-color: $white;
+    font-size: 16px;
+    background: $white;
+
+    .layout & {
+        margin-top: double($spacing-unit);
+        padding: triple($spacing-unit);
+        border: 2px solid $gray--medium-light;
+        border-radius: 10px;
+
+        @include respond-to('medium') {
+            margin: double($spacing-unit) auto;
+            width: 90%;
+        }
+
+        @include respond-to('x-wide') {
+            width: 70%;
+        }
+    }
 }
 
     .currencies__title {
         margin-bottom: double($spacing-unit);
         font-weight: 700;
+        text-align: center;
+
+        @include respond-to('medium') {
+            text-align: left;
+        }
     }
 
     .currencies__list {

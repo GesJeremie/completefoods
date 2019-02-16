@@ -1,18 +1,22 @@
 class Dashboard::ProductsController < Dashboard::BaseController
   def index
-    @products = Product.includes(:brand).all
+    model = Product.includes(:brand).all
+    @products = ProductViewModel.wrap(model)
   end
 
   def show
-    @product = Product.find_by_slug(params[:slug])
+    model = Product.find_by_slug(params[:slug])
+    @product = ProductViewModel.wrap(model)
   end
 
   def new
-    @product = Product.new
-    @product.build_diet
-    @product.build_allergen
-    @product.build_price
-    @product.build_shipment
+    product = Product.new
+    product.build_diet
+    product.build_allergen
+    product.build_price
+    product.build_shipment
+
+    @product = product
   end
 
   def create

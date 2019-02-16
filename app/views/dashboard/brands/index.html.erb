@@ -22,14 +22,14 @@
         <tr>
           <th scope="row"><%= brand.id %></th>
           <td><%= brand.name %></td>
-          <td><%= brand.flag %> <%= brand.country.name %></td>
+          <td><%= flag_icon(brand.country_code_symbol) %> <%= brand.country.name %></td>
           <td>
             <%= brand.products.count %>
           </td>
           <td>
-            <%= link_to 'Show', dashboard_brand_path(brand) %> /
-            <%= link_to 'Edit', edit_dashboard_brand_path(brand) %> /
-            <%= link_to 'Delete', dashboard_brand_path(brand), method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%= link_to 'Show', dashboard_brand_path(brand.model) %> /
+            <%= link_to 'Edit', edit_dashboard_brand_path(brand.model) %> /
+            <%= link_to 'Delete', dashboard_brand_path(brand.model), method: :delete, data: { confirm: 'Are you sure?' } %>
           </td>
         </tr>
 

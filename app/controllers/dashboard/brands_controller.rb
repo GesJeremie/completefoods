@@ -1,11 +1,12 @@
 class Dashboard::BrandsController < Dashboard::BaseController
   def index
-    @brands = Brand.includes(:country).all
-    @brands = BrandDecorator.decorate_collection(@brands)
+    model = Brand.includes(:country, :products).all
+    @brands = BrandViewModel.wrap(model, view_model_options)
   end
 
   def show
-    @brand = Brand.find(params[:id]).decorate
+    model = Brand.find(params[:id])
+    @brand = BrandViewModel.wrap(model, view_model_options)
   end
 
   def new
@@ -13,9 +14,9 @@ class Dashboard::BrandsController < Dashboard::BaseController
   end
 
   def create
-    @brand = Brand.new(brand_params)
+    brand = Brand.new(brand_params)
 
-    if @brand.save
+    if brand.save
       redirect_to dashboard_brands_path
     else
       render :new
@@ -34,8 +35,7 @@ class Dashboard::BrandsController < Dashboard::BaseController
   end
 
   def destroy
-    @brand = Brand.find(params[:id])
-    @brand.destroy
+    Brand.find(params[:id]).destroy
 
     redirect_to dashboard_brands_path
   end

@@ -16,6 +16,7 @@
         },
 
         isMobile: function () {
+            // TODO: Use real breakpoints (avalanche scss setup)
             return $(window).width() < 760;
         }
     };

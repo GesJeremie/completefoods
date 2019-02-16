@@ -1,0 +1,29 @@
+<div class="hero hero--guru">
+  <h1 class="hero__title">Your Quest is over!</h1>
+  <h2 class="hero__subtitle">Answer the Guru's questions to find the best Complete Foods for you - Based on the <%= count_active_products %> products and <%= count_brands %> brands we reference.
+</div>
+
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--70-at-x-wide">
+    <div class="guru">
+
+      <%= render 'gurus/current_steps', step: step %>
+
+      <div class="grid grid--center grid--middle">
+        <div class="grid__cell grid__cell--40-at-medium">
+          <div class="guru__logo">
+            <%= image_tag 'guru.svg', width: 220 %>
+            <div class="guru__note">
+              <%= yield :note %>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid__cell grid__cell--60-at-medium">
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
