@@ -31,7 +31,6 @@
           <th scope="col">Token</th>
           <th scope="col">Finished</th>
           <th scope="col">Email</th>
-          <th scope="col">Number Results</th>
           <th scope="col">Answers</th>
         </tr>
       </thead>
@@ -53,10 +52,7 @@
 
           </td>
           <td>
-            <%= guru.answers[:email] || 'None.' %>
-          </td>
-          <td>
-            <%= GuruProductsFinder.new(guru.answers).perform.size %>
+            <%= guru.answers[:email].present? ? guru.answers[:email] : 'N/A' %>
           </td>
           <td>
             <%= guru.answers %>
