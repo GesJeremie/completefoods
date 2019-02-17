@@ -55,7 +55,7 @@
 
       <div class="grid__cell grid__cell--20-at-medium">
         <div class="product-item__cost">
-          <span class="product-item__cost-value"><%= from_usd_to(current_currency, product.price.per_kcal(100, type: :bulk_order)) %></span>
+          <span class="product-item__cost-value"><%= from_usd_to(current_currency, product.price.per_kcal_in_currency(100, currency: 'USD', type: :bulk_order)) %></span>
           <span class="product-item__cost-description">per 100kcal - bulk order</span>
         </div>
       </div>
