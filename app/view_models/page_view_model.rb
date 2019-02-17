@@ -9,7 +9,7 @@ class PageViewModel < ApplicationViewModel
 
   private
     def brands
-      Brand.includes(:country).reorder(name: :asc).take(number_items_preview_brands)
+      Brand.includes(:country).with_active_products.reorder(name: :asc).take(number_items_preview_brands)
     end
 
     def collections
