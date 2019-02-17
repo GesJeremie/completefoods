@@ -1,4 +1,4 @@
-<% cache [@page.preview_collections.size, @page.preview_brands.size, count_active_products] do %>
+<% cache [Product.maximum(:updated_at), Brand.maximum(:updated_at)] do %>
 <% content_for :meta_title, "#{DEFAULT_META['title']} - We Help you Find your Next Complete Food" %>
 
 <div class="hero hero--home">

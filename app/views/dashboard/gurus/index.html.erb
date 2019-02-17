@@ -1,0 +1,70 @@
+<div class="container">
+  <h1 class="mb-3 mt-3">Gurus <span class="text-muted">(<%= @gurus.size %>)</span></h1>
+
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card text-white bg-success mb-3">
+          <div class="card-header">Started</div>
+          <div class="card-body">
+            <h5 class="card-title"><%= @gurus.size %></h5>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card text-white bg-success mb-3">
+          <div class="card-header">Finished</div>
+          <div class="card-body">
+            <h5 class="card-title"><%= @gurus.select(&:finished?).size %></h5>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Started</th>
+          <th scope="col">Token</th>
+          <th scope="col">Finished</th>
+          <th scope="col">Email</th>
+          <th scope="col">Number Results</th>
+          <th scope="col">Answers</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+      <% @gurus.each do |guru| %>
+        <tr>
+          <td><%= guru.id %></th>
+          <td><%= time_ago_in_words(guru.created_at) %> ago</td>
+          <td><%= link_to guru.token, show_guru_path(guru.token), class: 'link', target: '_blank' %></td>
+          <td>
+
+            <% if guru.finished? %>
+              <span class="text-success"><%= humanize_boolean(guru.finished?) %></span>
+            <% else %>
+              <span class="text-danger"><%= humanize_boolean(guru.finished?) %></span>
+            <% end %>
+
+          </td>
+          <td>
+            <%= guru.answers[:email] || 'None.' %>
+          </td>
+          <td>
+            <%= GuruProductsFinder.new(guru.answers).perform.size %>
+          </td>
+          <td>
+            <%= guru.answers %>
+          </td>
+        </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+</div>

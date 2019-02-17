@@ -49,6 +49,7 @@ Rails.application.routes.draw do
     resources :products, param: :slug
     resources :newsletters, only: [:index, :destroy]
     resources :product_reviews, only: [:index, :destroy]
+    resources :gurus, only: [:index]
   end
 
   namespace :api, constraints: { format: 'json' } do
