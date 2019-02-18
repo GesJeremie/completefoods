@@ -15,10 +15,10 @@
   <div class="grid grid--center">
     <div class="grid__cell grid__cell--90-at-wide">
       <div class="grid grid--center">
-        <div class="grid__cell grid__cell--25">
+        <div class="grid__cell grid__cell--25-at-x-wide">
           <%= render 'gurus/card' %>
         </div>
-        <div class="grid__cell grid__cell--75">
+        <div class="grid__cell grid__cell--75-at-x-wide">
           <% @products.each_with_index do |product, index| %>
             <%= render partial: 'products/item_per_serving', locals: { product: product } %>
             <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
