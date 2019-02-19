@@ -22,11 +22,11 @@ class BrandViewModel < ApplicationViewModel
   end
 
   def products
-    @products ||= BrandViewModel.wrap(model.products)
+    @products ||= ProductViewModel.wrap(model.products.reorder('products.name asc'), options)
   end
 
   def active_products
-    @active_products ||= ProductViewModel.wrap(model.products.active, options)
+    @active_products ||= ProductViewModel.wrap(model.products.reorder('products.name asc').active, options)
   end
 
   private

@@ -1,6 +1,6 @@
 class BrandsController < BaseController
   def index
-    model = Brand.with_active_products
+    model = Brand.includes(:country).with_active_products
 
     @brands = BrandViewModel.wrap(model, view_model_options)
     @navigation = BrandNavigationViewModel.new(model, view_model_options)
