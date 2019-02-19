@@ -23,7 +23,7 @@ class CollectionProductsFinder < ApplicationFinder
         { price: [:currency] },
         { image_attachment: [:blob] },
         { brand: [:country] }
-      ).active
+      ).reorder(name: :asc).active
     end
 
     ##
