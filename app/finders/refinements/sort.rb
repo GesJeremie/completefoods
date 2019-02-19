@@ -21,7 +21,7 @@ class Refinements::Sort
   private
 
     def price_highest_possible
-      products.sort_by { |product| product.price.per_kcal_in_currency(500, currency: 'USD', type: :minimum_order) }.reverse
+      products.sort_by { |product| product.price.per_kcal_in_currency(500, currency: 'USD', type: :bulk_order) }.reverse
     end
 
     def price_lowest_possible
