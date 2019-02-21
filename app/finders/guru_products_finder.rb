@@ -15,7 +15,7 @@ class GuruProductsFinder < ApplicationFinder
       { brand: [:country] }
     ).active
 
-    products.select do |product|
+    products = products.select do |product|
       states_preferences.include?(product.state)
     end
 

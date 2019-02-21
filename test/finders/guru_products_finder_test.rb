@@ -13,6 +13,29 @@ class GuruProductsFinderTest < ActiveSupport::TestCase
     create(:product, { subscription_available: true, discount_for_subscription: true })
   end
 
+  test 'find by state' do
+    create(:product, { state: :powder })
+    create(:product, { state: :snack })
+    create(:product, { state: :bottle })
+
+    products_powder = finder({ powder: 'on' })
+    products_snack = finder({ snack: 'on' })
+    products_bottle = finder({ ready_to_drink: 'on' })
+
+    products_powder_and_snack = finder({ powder: 'on', snack: 'on' })
+
+    assert_equal 1, products_powder.count
+    assert_equal 1, products_snack.count
+    assert_equal 1, products_bottle.count
+    assert_equal 2, products_powder_and_snack.count
+
+    assert_equal 'powder', products_powder.first.state
+    assert_equal 'snack', products_snack.first.state
+    assert_equal 'bottle', products_bottle.first.state
+    refute_equal 'bottle', products_powder_and_snack.first.state
+    refute_equal 'bottle', products_powder_and_snack.second.state
+  end
+
   test 'allergen gluten' do
     create(:product, { allergen: trait_gluten })
     create(:product, { allergen: trait_gluten_free })
