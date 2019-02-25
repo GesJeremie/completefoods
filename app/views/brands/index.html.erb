@@ -1,6 +1,6 @@
 <% description = "Browse through the #{@brands.count} brands producing over #{count_active_products} Complete Foods worlwide." %>
 
-<% content_for :meta_title, "#{DEFAULT_META['title']} - Brands" %>
+<% content_for :meta_title, "#{DEFAULT_META['title']} - Browse all Brands" %>
 <% content_for :meta_description, description %>
 
 <% cache [Brand.maximum(:updated_at), Product.maximum(:updated_at)] do %>

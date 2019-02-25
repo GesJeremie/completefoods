@@ -1,7 +1,7 @@
-<% cache [@product, @product.brand, current_currency.id] do %>
-  <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name} by #{@product.brand.name}" %>
-  <% content_for :meta_description, "#{@product.name} is a Complete Food produced in #{@product.brand.country.name} by #{@product.brand.name}" %>
+<% content_for :meta_title, "#{DEFAULT_META['title']} - #{@product.name} by #{@product.brand.name}" %>
+<% content_for :meta_description, "#{@product.name} is a Complete Food produced in #{@product.brand.country.name} by #{@product.brand.name}" %>
 
+<% cache [@product, @product.brand, current_currency.id] do %>
   <div class="product-show">
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--80-at-wide grid__cell--70-at-x-wide">

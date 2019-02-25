@@ -1,7 +1,7 @@
-<% cache [(params[:page] || 0), @collection.name, current_currency.id] do %>
-  <% content_for :meta_title, "#{DEFAULT_META['title']} - #{@collection.name}" %>
-  <% content_for :meta_description, @collection.description %>
+<% content_for :meta_title, "#{DEFAULT_META['title']} - #{@collection.name}" %>
+<% content_for :meta_description, strip_tags(@collection.description) %>
 
+<% cache [(params[:page] || 0), @collection.name, current_currency.id] do %>
   <div class="hero hero--collection">
     <h1 class="hero__title">
       <%= @collection.name %>
