@@ -54,4 +54,22 @@ class Product < ApplicationRecord
   def fat_per_kcal(kcal)
     (fat_per_serving / kcal_per_serving) * kcal
   end
+
+  def protein_ratio
+    ratios.protein_ratio
+  end
+
+  def carbs_ratio
+    ratios.carbs_ratio
+  end
+
+  def fat_ratio
+    ratios.fat_ratio
+  end
+
+  private
+
+    def ratios
+      @ratios ||= ProductRatio.new(self)
+    end
 end

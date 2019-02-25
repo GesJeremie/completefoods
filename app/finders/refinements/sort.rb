@@ -51,4 +51,28 @@ class Refinements::Sort
     def fat_highest
       fat_lowest.reverse
     end
+
+    def protein_ratio_lowest
+      products.sort_by(&:protein_ratio)
+    end
+
+    def protein_ratio_highest
+      protein_ratio_lowest.reverse
+    end
+
+    def fat_ratio_lowest
+      products.sort_by(&:fat_ratio)
+    end
+
+    def fat_ratio_highest
+      fat_ratio_lowest.reverse
+    end
+
+    def carbs_ratio_lowest
+      products.sort_by(&:carbs_ratio)
+    end
+
+    def carbs_ratio_highest
+      carbs_ratio_lowest.reverse
+    end
 end
