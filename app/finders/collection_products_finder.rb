@@ -48,7 +48,7 @@ class CollectionProductsFinder < ApplicationFinder
     end
 
     def for_athletes
-      Refinements::Sort.new(products, :protein_highest).perform.take(15)
+      Refinements::Sort.new(products, :protein_ratio_highest).perform.take(15)
     end
 
     def for_vegans
