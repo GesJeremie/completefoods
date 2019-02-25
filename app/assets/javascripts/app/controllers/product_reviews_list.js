@@ -1,3 +1,4 @@
+/*
 (function() {
     'use strict';
 
@@ -9,9 +10,6 @@
             targets: ['container']
         },
 
-        /**
-         * Boot
-         */
 
         initialize: function () {
             this.subscribeListeners();
@@ -25,10 +23,6 @@
             $(document).trigger('productReviewsList:refreshed');
         },
 
-        /**
-         * Callbacks
-         */
-
         onReviewAdded: function (event, data) {
             $.get('/api/product_reviews/' + data.productId, this.onFetchProductReviewsDone.bind(this));
         },
@@ -41,3 +35,4 @@
 
     window.app.stimulus.register('product-reviews-list', Controller);
 }());
+*/

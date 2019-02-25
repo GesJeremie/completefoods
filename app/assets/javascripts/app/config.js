@@ -1,8 +1,7 @@
-(function() {
+(function () {
     'use strict';
 
     window.app.config = {
-        isBatman: true
+        delayBeforeToShowNewsletter: 1000
     };
-
 }());

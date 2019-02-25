@@ -1,3 +1,4 @@
+/*
 (function() {
     'use strict';
 
@@ -11,9 +12,7 @@
             targets: ['errors', 'submit', 'productId']
         },
 
-        /**
-         * Boot
-         */
+
 
         emitReviewAdded: function () {
             $(document).trigger('productReviewsWrite:reviewAdded', {
@@ -21,17 +20,11 @@
             });
         },
 
-        /**
-         * Getters
-         */
-
         getProductId: function () {
             return $(this.productIdTarget).val();
         },
 
-        /**
-         * Methods
-         */
+
 
         showSuccess: function () {
             swal({
@@ -58,9 +51,6 @@
             $(this.submitTarget).prop('disabled', true);
         },
 
-        /**
-         * Callbacks
-         */
 
         onSubmit: function (event) {
             event.preventDefault();
@@ -91,3 +81,4 @@
 
     window.app.stimulus.register('product-reviews-write', Controller);
 }());
+*/

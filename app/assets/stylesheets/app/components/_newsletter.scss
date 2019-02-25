@@ -2,34 +2,36 @@
     #NEWSLETTER
 \*------------------------------------*/
 
-$newsletter-bg-color: #54a0ff !default;
 
 .newsletter {
-    display: none;
-    margin-top: quadruple($spacing-unit);
-    margin-bottom: double($spacing-unit);
-    padding: $spacing-unit double($spacing-unit);
-    color: $white;
     text-align: center;
-    background-color: $newsletter-bg-color;
-    border-radius: 5px;
-
-    @include respond-to('wide') {
-        display: block;
-    }
 }
 
     .newsletter__description {
-        display: inline-block;
+        display: block;
+        margin-top: $spacing-unit;
+        margin-bottom: halve($spacing-unit);
+        color: $purple;
+        line-height: 1.1;
+    }
+
+    .newsletter__highlight {
+        font-size: 13px;
+    }
+
+    .newsletter__gif {
+        margin: double($spacing-unit) 0;
+        border-radius: $border-radius;
     }
 
     .newsletter__input {
-        display: inline-block;
-        margin: 0 $spacing-unit;
-        margin-right: halve($spacing-unit);
-        padding: $spacing-unit;
-        font-size: 15px;
+        display: block;
+        margin: $spacing-unit auto;
+        padding: double($spacing-unit);
+        width: 100%;
+        max-width: 400px;
+        font-size: 17px;
         font-weight: 600;
-        border: 0;
-        border-radius: 5px;
+        border: 2px solid $gray--medium;
+        border-radius: $border-radius;
     }

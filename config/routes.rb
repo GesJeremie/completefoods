@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :collections, only: [:index, :show], param: :slug
   resources :currencies, only: [:index, :update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
+  resource :newsletter, only: [:show, :create]
 
   resource :guru do
     collection do
@@ -47,7 +48,6 @@ Rails.application.routes.draw do
     root 'brands#index'
     resources :brands
     resources :products, param: :slug
-    resources :newsletters, only: [:index, :destroy]
     resources :product_reviews, only: [:index, :destroy]
     resources :gurus, only: [:index]
   end

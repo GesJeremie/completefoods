@@ -95,6 +95,10 @@ $button-fixed-width:                            150px !default;
     }
 }
 
+.button--with-icon {
+    vertical-align: middle;
+}
+
 .button--filters {
     margin: 0;
     padding: double($spacing-unit);

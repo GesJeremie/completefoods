@@ -11,14 +11,15 @@
       autosize
       tingle
       js-routes
-      app/boot
-      app/helpers/cast_bool
-      app/helpers/inflector_listener_method
-      app/initializers/lazy_load_images
-      app/initializers/select2
-      app/initializers/autosize
+      boot
+      app/config
+      app/mixins/cast_bool
+      app/services/modal
+      app/controllers/select2
+      app/controllers/autosize
       app/controllers/modal_xhr
       app/controllers/header_menu
+      app/controllers/newsletters/modal
     ).each do |asset|
       require_asset asset
    end

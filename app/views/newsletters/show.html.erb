@@ -1,0 +1,28 @@
+<div class="grid grid--center">
+  <div class="grid__cell grid__cell--90 grid__cell--70-at-wide">
+    <div class="newsletter">
+      <%= form_tag newsletter_path, method: 'post'  do %>
+
+        <div class="newsletter__description heading heading--3">
+          Get discounts up to 50% <br/> on your favorite Complete Foods.<br/>
+        </div>
+
+        <div class="newsletter__highlight">No Spam. No Bullshit.</div>
+
+        <%= image_tag 'sure.gif', class: 'newsletter__gif' %>
+
+        <%= email_field_tag 'email', nil, placeholder: 'Email', class: 'newsletter__input', data: { target: 'newsletter.email' } %>
+        <%= button_tag type: 'submit', class: 'button button--secondary button--large button--no-margin button--with-icon' do %>
+          Submit <%= inline_svg('send_mail.svg', class: 'icon') %>
+        <% end %>
+
+        <!--
+        <p class="newsletter__description">Fuck yeah</p>
+
+        <%= email_field_tag 'email', nil, placeholder: 'Email', class: 'newsletter__input', data: { target: 'newsletter.email' } %>
+        <%= button_tag 'Notify me!', type: 'submit', class: 'button button--newsletter' %>
+        -->
+      <% end %>
+    </div>
+  </div>
+</div>

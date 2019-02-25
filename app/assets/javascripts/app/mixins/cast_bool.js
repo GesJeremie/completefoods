@@ -12,14 +12,9 @@
      * _.castBool('false') // false
      */
 
-    var mixin = {
-        init: function (value) {
-            return (value.toLowerCase() == 'true');
-        }
+    var castBool = function () {
+        return (value.toLowerCase() == 'true');
     };
 
-    _.mixin({'castBool': function (value) {
-        return mixin.init(value);
-    }});
-
+    _.mixin({'castBool': castBool});
 }());

@@ -1,3 +1,4 @@
+/*
 (function() {
     'use strict';
 
@@ -17,9 +18,6 @@
             4: 'You found THE one - and will eat only that for the rest of your life.'
         },
 
-        /**
-         * Boot
-         */
 
         initialize: function () {
             var score = this.data.get('startsScore');
@@ -27,9 +25,6 @@
             this.updateMeaning(score);
         },
 
-        /**
-         * Methods
-         */
 
         updateScore: function (score) {
             $(this.scoreTarget).val(score);
@@ -47,9 +42,6 @@
             $choices.removeClass('active');
         },
 
-        /**
-         * Callbacks
-         */
 
         onClickChoice: function (event) {
             event.preventDefault();
@@ -66,3 +58,4 @@
 
     window.app.stimulus.register('product-reviews-choices', Controller);
 }());
+*/

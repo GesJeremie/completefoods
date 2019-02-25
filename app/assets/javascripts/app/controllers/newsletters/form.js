@@ -1,11 +1,8 @@
-/**
- * ProductList
- */
-
+/*
 (function() {
     'use strict';
 
-    var Controller = new Class({
+    window.app.stimulus.register('newsletter-form', new Class({
 
         extends: Stimulus.Controller,
 
@@ -13,9 +10,6 @@
             targets: ['newsletter','email']
         },
 
-        /**
-         * Methods
-         */
 
         showSuccess: function () {
             swal({
@@ -52,9 +46,7 @@
             return _.isEmpty(email);
         },
 
-        /**
-         * Callbacks
-         */
+
 
         onRequestNewslettersDone: function (response) {
             response.success ? this.showSuccess() : this.showError(response);
@@ -68,7 +60,6 @@
             $.post('/api/newsletters', {email: this.getEmail()}).done(this.onRequestNewslettersDone.bind(this));
         }
 
-    });
-
-    window.app.stimulus.register('newsletter', Controller);
+    }));
 }());
+*/
