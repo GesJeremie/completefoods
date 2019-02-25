@@ -11,9 +11,10 @@
 
         <%= image_tag 'sure.gif', class: 'newsletter__gif' %>
 
-        <%= email_field_tag 'email', nil, placeholder: 'Email', class: 'newsletter__input', data: { target: 'newsletter.email' } %>
+        <%= email_field_tag 'email', nil, placeholder: 'Email', class: 'newsletter__input', data: { controller: 'focus' } %>
+
         <%= button_tag type: 'submit', class: 'button button--secondary button--large button--no-margin button--with-icon' do %>
-          Submit <%= inline_svg('send_mail.svg', class: 'icon') %>
+          Notify Me <%= inline_svg('send_mail.svg', class: 'icon') %>
         <% end %>
 
         <!--
