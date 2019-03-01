@@ -37,7 +37,7 @@
                     <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--20-at-wide">
                       <%= link_to product_path(product.model), class: 'brand-summary-extended__product link link--alt' do %>
                         <div class="brand-summary-extended__product-body">
-                          <div class="brand-summary-extended__product-cover" style="background-image: url('<%= url_for(product.image) %>')"></div>
+                          <div class="brand-summary-extended__product-cover" data-lazy data-src="<%= url_for(product.image) %>"></div>
                           <div class="brand-summary-extended__product-name"><%= product.name %></div>
                         </div>
                       <% end %>
