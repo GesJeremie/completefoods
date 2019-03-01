@@ -4,11 +4,12 @@ class NewslettersController < BaseController
     model = Newsletter.new(newsletter_params)
 
     if model.save
-      flash[:success] = 'Noted! We will let you know!'
-      session[:newsletter_try] = true
+      flash.now[:success] = 'Noted - We will let you know!'
     else
-      flash[:error] = 'You are already enrolled'
+      flash.now[:error] = 'Sorry - You are already enrolled!'
     end
+
+    render :show
   end
 
   def show

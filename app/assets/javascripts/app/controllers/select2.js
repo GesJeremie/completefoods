@@ -1,6 +1,12 @@
 (function() {
     'use strict';
 
+    /**
+     * @description
+     * This controller is in charge to initialize the plugin select2
+     * to prettify the selects when the window is larger than medium.
+     */
+
     window.app.stimulus.register('select2', new Class({
 
         extends: Stimulus.Controller,
@@ -10,15 +16,11 @@
          */
 
         initialize: function () {
-            if (this.isMobile()) { return; }
+            if (window.app.services.breakpoint.isSmallerThan('medium')) { return; }
 
             $('select').select2({
                 minimumResultsForSearch: -1
             });
-        },
-
-        isMobile: function () {
-            return $(window).width() < 760;
         }
     }));
 }());

@@ -7,7 +7,7 @@
      * within a modal.
      */
 
-    window.app.stimulus.register('modal-xhr', new Class({
+    window.app.stimulus.register('modal-button', new Class({
 
         extends: Stimulus.Controller,
 

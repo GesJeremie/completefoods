@@ -15,6 +15,22 @@ $alert-bg-color: darken($gray--x-light, 5%) !default;
     strong {
         font-weight: 700;
     }
+
+    .newsletter & {
+        display: block;
+        margin: 0 auto;
+        max-width: 400px;
+    }
+}
+
+.alert--error {
+    color: $white;
+    background-color: $red;
+}
+
+.alert--success {
+    color: $white;
+    background-color: $green;
 }
 
 .alert--small {

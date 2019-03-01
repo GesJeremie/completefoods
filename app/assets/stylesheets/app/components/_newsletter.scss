@@ -4,7 +4,12 @@
 
 
 .newsletter {
+    margin-top: double($spacing-unit);
     text-align: center;
+
+    .tingle-modal-box & {
+        margin-top: 0;
+    }
 }
 
     .newsletter__description {

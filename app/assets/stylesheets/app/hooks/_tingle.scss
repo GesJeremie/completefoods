@@ -13,6 +13,7 @@
     .tingle-modal__close {
         text-align: right;
         background: $white;
+        outline: 0;
 
         @include respond-to('tingle-medium') {
             background: none;

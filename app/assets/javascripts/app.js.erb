@@ -11,16 +11,18 @@
       autosize
       tingle
       js-routes
+      js_cookie
       boot
       app/config
-      app/mixins/cast_bool
+      app/services/breakpoint
       app/services/modal
       app/controllers/focus
       app/controllers/select2
       app/controllers/autosize
-      app/controllers/modal_xhr
+      app/controllers/modal_button
+      app/controllers/modal_form
+      app/controllers/modal_newsletter
       app/controllers/header_menu
-      app/controllers/newsletters/modal
     ).each do |asset|
       require_asset asset
    end

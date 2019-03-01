@@ -24,13 +24,19 @@
         currentModal = null,
 
         create = function (html, options = {}) {
-            if (!_.isNull(currentModal)) {
-                currentModal.close();
+
+            if (!options.replace) {
+
+                if (!_.isNull(currentModal)) {
+                    currentModal.close();
+                }
+
+                currentModal = new tingle.modal(options);
             }
 
-            currentModal = new tingle.modal(options);
             currentModal.setContent(html);
             currentModal.open();
+
             return currentModal;
         },
 
@@ -42,13 +48,34 @@
             });
 
             request
-            .done(function (html) { create(html, options) })
-            .fail(function () { create(TEMPLATES.error, options) });
+            .done(function (html) {
+                create(html, options)
+            })
+            .fail(function () {
+                create(TEMPLATES.error, options)
+            });
+        },
+
+        createFromForm = function ($form, options = {}) {
+            var request = $.ajax({
+                url: $form.attr('action'),
+                method: $form.attr('method'),
+                data: $form.serialize()
+            });
+
+            request
+            .done(function (html) {
+                create(html, options)
+            })
+            .fail(function () {
+                create(TEMPLATES.errors, options)
+            })
         };
 
     window.app.services.modal = {
         create: create,
         createFromUrl: createFromUrl,
+        createFromForm: createFromForm,
         current: function () {
             return currentModal;
         }

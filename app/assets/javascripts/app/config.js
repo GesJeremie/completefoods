@@ -2,6 +2,13 @@
     'use strict';
 
     window.app.config = {
-        delayBeforeToShowNewsletter: 1000
+        breakpoints: {
+            'small': 480,
+            'medium': 760,
+            'wide': 960,
+            'x-wide': 1160,
+            'xx-wide': 1310
+        },
+        delayBeforeToShowNewsletter: 7000 // 7 seconds
     };
 }());
