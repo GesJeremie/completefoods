@@ -1,0 +1,44 @@
+/*------------------------------------*\
+    #SHOWCASE
+\*------------------------------------*/
+
+.showcase {
+    margin: quadruple($spacing-unit) 0;
+}
+
+    .showcase__list {
+        padding-top: double($spacing-unit);
+        text-align: center;
+    }
+
+        .showcase__list-item {
+            display: inline-block;
+            margin-bottom: triple($spacing-unit);
+            width: 100%;
+            vertical-align: middle;
+
+            @include respond-to('medium') {
+                margin-bottom: 0;
+                width: 200px;
+            }
+
+            @include respond-to('wide') {
+                width: 280px;
+            }
+        }
+
+            .showcase__logo {
+                max-width: 200px;
+            }
+
+            .showcase__logo--queal {
+                max-width: 80px;
+            }
+
+            .showcase__logo--parachute {
+                max-width: 180px;
+            }
+
+            .showcase__logo--powdermatter {
+                max-width: 100px;
+            }
