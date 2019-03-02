@@ -24,6 +24,10 @@ $heading-6-font-size:  16px !default;
     font-size: $heading-2-font-size;
     font-weight: bold;
     line-height: 1;
+
+    .brands & {
+        padding-top: double($spacing-unit);
+    }
 }
 
 .heading--3 {
@@ -57,4 +61,8 @@ $heading-6-font-size:  16px !default;
 
 .heading--center {
     text-align: center;
+}
+
+.heading--upcase {
+    text-transform: uppercase;
 }

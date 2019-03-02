@@ -7,6 +7,8 @@
 }
 
     .brand-summary-extended__card {
+        display: block;
+        text-decoration: none;
         background-color: $white;
         border-radius: 5px;
         box-shadow: $box-shadow;
@@ -19,6 +21,7 @@
 
             .brand-summary-extended__details-name {
                 display: inline-block;
+                color: $black;
                 font-size: 18px;
                 font-weight: 600;
                 align-self: center;
@@ -30,59 +33,15 @@
                 }
 
             .brand-summary-extended__details-number-products {
-                display: inline-block;
-                margin-left: $spacing-unit;
-                padding: halve($spacing-unit) $spacing-unit;
-                color: $white;
-                font-size: 12px;
-                font-weight: 600;
-                background-color: $red--light;
-                border-radius: 5px;
-                align-self: center;
-            }
-
-        .brand-summary-extended__products {
-            padding: 0 double($spacing-unit);
-        }
-
-            .brand-summary-extended__product {
                 display: block;
-                position: relative;
-                margin: $spacing-unit 0;
-                padding: $spacing-unit 0;
-                text-align: center;
-                background-color: $white;
-                border-radius: 5px;
-            }
+                margin-top: double($spacing-unit);
+                align-self: center;
 
-                .brand-summary-extended__product-body {
+                span {
+                    padding: halve($spacing-unit) $spacing-unit;
+                    color: $white;
+                    font-size: 12px;
+                    background-color: $red--light;
+                    border-radius: $border-radius;
                 }
-
-                    .brand-summary-extended__product-name {
-                        margin-top: $spacing-unit;
-                        font-size: 14px;
-                        font-weight: 500;
-                        text-transform: capitalize;
-                    }
-
-                    .brand-summary-extended__product-cover {
-                        display: inline-block;
-                        width: 80px;
-                        height: 80px;
-                        background-size: cover;
-                        border-radius: 50%;
-                        box-shadow: $box-shadow--thumbnail;
-                        vertical-align: middle;
-
-                        @include respond-to('medium') {
-                            width: 100px;
-                            height: 100px;
-                        }
-                    }
-
-        .brand-summary-extended__footer {
-            padding: double($spacing-unit);
-            text-align: left;
-            border-top: 2px solid $gray--medium-light;
-        }
-
+            }

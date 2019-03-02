@@ -2,7 +2,7 @@ class BrandsController < BaseController
   def index
     model = Brand.includes(:country).with_active_products
 
-    @brands = BrandViewModel.wrap(model, view_model_options)
+    @brands = BrandViewModel.wrap(model, view_model_options).group_by { |brand| brand.name[0].downcase }
     @navigation = BrandNavigationViewModel.new(model, view_model_options)
   end
 

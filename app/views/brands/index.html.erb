@@ -4,57 +4,51 @@
 <% content_for :meta_description, description %>
 
 <% cache [Brand.maximum(:updated_at), Product.maximum(:updated_at)] do %>
-  <div class="hero">
-    <h1 class="hero__title">Brands</h1>
-    <h2 class="hero__subtitle"><%= description %></h2>
-  </div>
+  <div class="brands">
+    <div class="hero">
+      <h1 class="hero__title">Brands</h1>
+      <h2 class="hero__subtitle"><%= description %></h2>
+    </div>
 
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--70-at-wide">
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--70-at-wide">
 
-      <div class="navigation-alphabet">
-        <% @navigation.items.map do |item| %>
-          <%= link_to(item[:letter], "##{item[:letter]}", class: item[:class_css]) %>
-        <% end %>
-      </div>
+        <div class="navigation-alphabet">
+          <% @navigation.items.map do |item| %>
+            <%= link_to(item[:letter], "##{item[:letter]}", class: item[:class_css]) %>
+          <% end %>
+        </div>
 
-      <% @brands.each do |brand| %>
-          <div id="<%= @navigation.anchor(brand) %>" class="brand-summary-extended clearfix">
-            <div class="brand-summary-extended__card">
-              <div class="brand-summary-extended__details">
-                <div class="brand-summary-extended__details-name">
-                  <span class="brand-summary-extended__details-name-flag"><%= flag_icon(brand.country_code_symbol) %></span>
-                  <%= link_to brand.name, brand_path(brand.model), class: 'link link--alt link--with-spacer' %>
-                </div>
-                <div class="brand-summary-extended__details-number-products">
-                  <%= pluralize(brand.products.count, 'product') %>
-                </div>
+        <div class="grid">
+            <% @brands.each do |letter, brand_collection| %>
+
+              <div id="<%= letter.upcase %>" class="grid__cell grid__cell--100">
+                <h3 class="heading heading--2 heading--upcase"><%= letter %></h3>
+                <div class="divider"></div>
               </div>
 
-              <div class="brand-summary-extended__products">
-                <div class="grid">
-                  <% brand.active_products.each do |product| %>
-                    <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--20-at-wide">
-                      <%= link_to product_path(product.model), class: 'brand-summary-extended__product link link--alt' do %>
-                        <div class="brand-summary-extended__product-body">
-                          <div class="brand-summary-extended__product-cover" data-lazy data-src="<%= url_for(product.image) %>"></div>
-                          <div class="brand-summary-extended__product-name"><%= product.name %></div>
+              <% brand_collection.each do |brand| %>
+                <div class="grid__cell grid__cell--33-at-medium grid__cell--33-at-x-wide">
+                  <div class="brand-summary-extended clearfix">
+                    <%= link_to brand_path(brand.model), class: 'brand-summary-extended__card' do %>
+                      <div class="brand-summary-extended__details">
+                        <div class="brand-summary-extended__details-name">
+                          <span class="brand-summary-extended__details-name-flag"><%= flag_icon(brand.country_code_symbol) %></span>
+                          <%= brand.name %>
                         </div>
-                      <% end %>
-                    </div>
-                  <% end %>
+                        <div class="brand-summary-extended__details-number-products">
+                          <span><%= pluralize(brand.products.count, 'product') %></span>
+                        </div>
+                      </div>
+                    <% end %>
+                  </div>
                 </div>
-              </div>
+              <% end %>
 
-              <div class="brand-summary-extended__footer">
-                <%= link_to 'Website', brand.website, class: 'button button--no-margin button--fixed-width' if brand.website.present? %>
-                <%= link_to 'Facebook', brand.facebook, class: 'button button--no-margin button--fixed-width' if brand.facebook.present? %>
-              </div>
+            <% end %>
+        </div>
 
-            </div>
-          </div>
-      <% end %>
-
+      </div>
     </div>
   </div>
 <% end %>
