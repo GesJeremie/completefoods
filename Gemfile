@@ -43,6 +43,8 @@ gem 'active_hash'
 # Pagination
 gem 'will_paginate'
 
+# Markdown Converter
+gem 'redcarpet'
 
 # Front-end
 gem 'inline_svg'

@@ -20,6 +20,12 @@
         </div>
 
         <div class="product-show__card">
+          <% if @product.description.present? %>
+            <h3 class="product-show__subtitle">About</h3>
+            <div class="product-show__description markdown">
+              <%= @product.description %>
+            </div>
+          <% end %>
 
           <h3 class="product-show__subtitle">Prices</h3>
           <%= render 'products/show/prices', product: @product %>

@@ -2,6 +2,7 @@
     #LINK
 \*------------------------------------*/
 
+%link,
 .link {
     color: $purple;
     text-decoration-style: dotted;
@@ -20,6 +21,7 @@
     }
 }
 
+%link--alt,
 .link--alt {
     color: $black;
 }

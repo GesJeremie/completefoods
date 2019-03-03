@@ -1,0 +1,80 @@
+/*------------------------------------*\
+    #MARKDOWN
+\*------------------------------------*/
+
+$markdown-blockquote-bg-color: #e7eaf0 !default;
+
+.markdown {
+    font-weight: 300;
+
+    p {
+        margin: double($spacing-unit) 0;
+        font-size: 17px;
+        line-height: 1.5;
+    }
+
+    blockquote {
+        display: inline-block;
+        margin: $spacing-unit 0;
+        background: $markdown-blockquote-bg-color;
+        border-radius: $border-radius;
+
+        p {
+            margin: 0;
+            padding: $spacing-unit ($spacing-unit * 1.5);
+            font-size: 14px;
+        }
+    }
+
+    em {
+        font-style: italic;
+    }
+
+    strong {
+        font-weight: bold;
+    }
+
+    ul {
+        list-style-type: circle;
+
+        li {
+            margin: $spacing-unit 0;
+            margin-left: double($spacing-unit);
+        }
+    }
+
+    a {
+        @extend %link;
+        @extend %link--alt;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @extend %heading;
+        margin-top: double($spacing-unit);
+    }
+
+    h1 {
+        @extend %heading--1;
+    }
+
+    h2 {
+        @extend %heading--2;
+    }
+
+    h3 {
+        @extend %heading--3;
+    }
+
+    h4 {
+        @extend %heading--4;
+    }
+
+    h5 {
+        @extend %heading--5;
+    }
+
+    h6 {
+        @extend %heading--6;
+    }
+
+}

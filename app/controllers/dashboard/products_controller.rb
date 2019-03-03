@@ -64,20 +64,21 @@ class Dashboard::ProductsController < Dashboard::BaseController
 
     def allowed_product_params
       %i[
-        brand_id
-        name
-        kcal_per_serving
-        protein_per_serving
-        carbs_per_serving
-        fat_per_serving
-        subscription_available
-        discount_for_subscription
-        state
         active
-        image
-        notes
-        slug
+        brand_id
+        carbs_per_serving
+        description
+        discount_for_subscription
+        fat_per_serving
         flavor
+        image
+        kcal_per_serving
+        name
+        notes
+        protein_per_serving
+        slug
+        state
+        subscription_available
       ]
     end
 
@@ -93,17 +94,17 @@ class Dashboard::ProductsController < Dashboard::BaseController
 
     def allowed_diets_params
       %i[
+        ketogenic
         vegan
         vegetarian
-        ketogenic
       ]
     end
 
     def allowed_prices_params
       %i[
         currency_id
-        per_serving_minimum_order
         per_serving_bulk_order
+        per_serving_minimum_order
       ]
     end
 

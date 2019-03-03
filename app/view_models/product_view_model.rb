@@ -11,6 +11,15 @@ class ProductViewModel < ApplicationViewModel
     model.brand.country.code.downcase.to_sym
   end
 
+  def description
+    return if model.description.empty?
+
+    Redcarpet::Markdown.new(
+      Redcarpet::Render::HTML,
+      tables: true
+    ).render(model.description).html_safe
+  end
+
   def brand
     @brand ||= BrandViewModel.wrap(model.brand, options)
   end

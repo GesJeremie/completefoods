@@ -9,17 +9,20 @@ $heading-4-font-size:  20px !default;
 $heading-5-font-size:  18px !default;
 $heading-6-font-size:  16px !default;
 
+%heading,
 .heading {
     display: block;
     margin-bottom: double($spacing-unit);
 }
 
+%heading--1,
 .heading--1 {
     font-size: $heading-1-font-size;
     font-weight: bold;
     line-height: 1;
 }
 
+%heading--2,
 .heading--2 {
     font-size: $heading-2-font-size;
     font-weight: bold;
@@ -30,13 +33,14 @@ $heading-6-font-size:  16px !default;
     }
 }
 
+%heading--3,
 .heading--3 {
     font-size: $heading-3-font-size;
     font-weight: bold;
     line-height: 1;
 }
 
-
+%heading--4,
 .heading--4 {
     font-size: $heading-4-font-size;
     font-weight: bold;
@@ -47,12 +51,14 @@ $heading-6-font-size:  16px !default;
     }
 }
 
+%heading--5,
 .heading--5 {
     font-size: $heading-5-font-size;
     font-weight: bold;
     line-height: 1;
 }
 
+%heading--6,
 .heading--6 {
     font-size: $heading-6-font-size;
     font-weight: 300;
