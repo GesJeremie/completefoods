@@ -51,6 +51,7 @@ Rails.application.routes.draw do
     resources :product_reviews, only: [:index, :destroy]
     resources :gurus, only: [:index]
     resources :newsletters, only: [:index, :destroy]
+    resources :alerts, only: [:index]
   end
 
   namespace :api, constraints: { format: 'json' } do

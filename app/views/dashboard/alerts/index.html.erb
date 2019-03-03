@@ -1,0 +1,31 @@
+<div class="container">
+  <h1 class="mb-3 mt-3">Alerts <span class="text-muted">(<%= @products_with_empty_description.count %>)</span></h1>
+
+  <div class="table-responsive">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Description</th>
+          <th scope="col">Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+
+      <% @products_with_empty_description.each_with_index do |product, index| %>
+
+        <tr>
+          <th scope="row"><%= index + 1 %></th>
+          <td>Product <%= product.name %> doesn't have a description</td>
+          <td>
+            <%= link_to 'Show Product', dashboard_product_path(product) %>
+          </td>
+        </tr>
+
+      <% end %>
+
+      </tbody>
+    </table>
+  </div>
+</div>
