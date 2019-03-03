@@ -12,7 +12,7 @@ class ProductViewModel < ApplicationViewModel
   end
 
   def description
-    return if model.description.empty?
+    return unless model.description.present?
 
     Redcarpet::Markdown.new(
       Redcarpet::Render::HTML,
