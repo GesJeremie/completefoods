@@ -1,3 +1,5 @@
+require 'redcarpet/render_strip'
+
 class ProductViewModel < ApplicationViewModel
   def has_notes?
     model.notes.present?
@@ -18,6 +20,22 @@ class ProductViewModel < ApplicationViewModel
       Redcarpet::Render::HTML,
       tables: true
     ).render(model.description).html_safe
+  end
+
+  def description_without_markdown
+    return unless model.description.present?
+
+    Redcarpet::Markdown.new(
+      Redcarpet::Render::StripDown
+    ).render(model.description)
+  end
+
+  def meta_description
+    if model.description.present?
+      truncate(description_without_markdown, length: 158)
+    else
+      "#{name} is a Complete Food produced in #{model.brand.country.name} by #{model.brand.name}"
+    end
   end
 
   def brand
