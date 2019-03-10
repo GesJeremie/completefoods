@@ -18,11 +18,26 @@
           <%= render 'gurus/card' %>
         </div>
         <div class="grid__cell grid__cell--75-at-x-wide">
-          <% @products.each_with_index do |product, index| %>
-            <%= render partial: 'products/item_per_serving', locals: { product: product } %>
-            <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
+
+          <%= form_tag products_path, method: 'get', class: 'search-form' do %>
+            <%= text_field_tag 'search', params[:search], placeholder: 'Search a product, brand or country...', class: 'text-box' %>
+            <%= button_tag 'Search', class: 'button button--no-margin' %>
           <% end %>
-          <%= will_paginate @products %>
+
+          <% if @products.empty? %>
+            <div class="empty-state">
+              <div class="empty-state__title heading heading--3">No Results for `<%= params[:search]&.titleize %>`</div>
+              <div class="empty-state__description">
+                Your search yielded no results. Check for spelling mistakes or try using a broarder search phrase.
+              </div>
+            </div>
+          <% else %>
+            <% @products.each_with_index do |product, index| %>
+              <%= render partial: 'products/item_per_serving', locals: { product: product } %>
+              <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
+            <% end %>
+            <%= will_paginate @products %>
+          <% end %>
         </div>
       </div>
     </div>

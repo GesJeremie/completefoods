@@ -37,7 +37,18 @@ class Product < ApplicationRecord
 
   validates_with ImageUploadValidator, attributes: [:image]
 
-  scope :active, -> { where(active: true) }
+  def self.active
+    where(active: true)
+  end
+
+  def self.search(query)
+    joins(brand: :country).where('
+      products.name ILIKE ANY (ARRAY[:terms]) OR
+      countries.name ILIKE ANY (ARRAY[:terms]) OR
+      brands.name ILIKE ANY (ARRAY[:terms])',
+      terms: query.split.map { |term| '%' + term + '%' }
+    )
+  end
 
   def to_param
     self.slug

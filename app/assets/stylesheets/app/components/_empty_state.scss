@@ -1,0 +1,15 @@
+/*------------------------------------*\
+    #EMPTY-STATE
+\*------------------------------------*/
+
+.empty-state {
+    margin: double($spacing-unit) 0;
+    padding: $spacing-unit * 6;
+    text-align: center;
+    background: $white;
+    border: 2px solid $gray--medium-light;
+    border-radius: $border-radius;
+}
+
+    .empty-state__title {}
+    .empty-state__description {}

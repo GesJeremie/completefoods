@@ -29,19 +29,17 @@
 
               <% brand_collection.each do |brand| %>
                 <div class="grid__cell grid__cell--33-at-medium grid__cell--33-at-x-wide">
-                  <div class="brand-summary-extended clearfix">
-                    <%= link_to brand_path(brand.model), class: 'brand-summary-extended__card' do %>
-                      <div class="brand-summary-extended__details">
-                        <div class="brand-summary-extended__details-name">
-                          <span class="brand-summary-extended__details-name-flag"><%= flag_icon(brand.country_code_symbol) %></span>
-                          <%= brand.name %>
-                        </div>
-                        <div class="brand-summary-extended__details-number-products">
-                          <span><%= pluralize(brand.products.count, 'product') %></span>
-                        </div>
+                  <%= link_to brand_path(brand.model), class: 'brand-card' do %>
+                    <div class="brand-card__details">
+                      <div class="brand-card__details-name">
+                        <span class="brand-card__details-name-flag"><%= flag_icon(brand.country_code_symbol) %></span>
+                        <%= brand.name %>
                       </div>
-                    <% end %>
-                  </div>
+                      <div class="brand-card__details-number-products">
+                        <span><%= pluralize(brand.products.count, 'product') %></span>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               <% end %>
 

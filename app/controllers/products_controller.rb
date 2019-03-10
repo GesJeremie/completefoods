@@ -16,20 +16,15 @@ class ProductsController < BaseController
 
   private
 
-    def products_per_page
-      Rails.configuration.products_per_page
+    def find_products
+      if params[:search].present?
+        Product.active.search(params[:search])
+      else
+        Product.active.order('name ASC')
+      end
     end
 
-    def find_products
-      Product.includes(
-        :allergen,
-        :diet,
-        :shipment,
-        { price: [:currency] },
-        { image_attachment: [:blob] },
-        { brand: [:country] }
-      )
-      .active
-      .order('name ASC')
+    def products_per_page
+      Rails.configuration.products_per_page
     end
 end

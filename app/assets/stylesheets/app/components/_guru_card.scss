@@ -16,7 +16,7 @@
     border-radius: double($border-radius);
 
     @include respond-to('x-wide') {
-        margin-top: double($spacing-unit);
+        margin-right: $spacing-unit;
         color: $black;
         background-image: none;
     }
