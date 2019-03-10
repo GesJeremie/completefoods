@@ -1,7 +1,7 @@
 <% content_for :meta_title, "#{DEFAULT_META['title']} - Browse all Complete Foods" %>
 <% content_for :meta_description, "Browse through the #{count_active_products} Complete Foods currently available worlwide." %>
 
-<% cache [Product.maximum(:updated_at), current_currency.id, (params[:page] || 0)] do %>
+<% cache [Product.maximum(:updated_at), current_currency.id, (params[:page] || 0), params[:search]] do %>
   <div class="hero hero--products">
     <h1 class="hero__title">
       Explore all Products

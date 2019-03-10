@@ -18,10 +18,18 @@ class ProductsController < BaseController
 
     def find_products
       if params[:search].present?
-        Product.active.search(params[:search])
+        products.search(params[:search])
       else
-        Product.active.order('name ASC')
+        products.order('name ASC')
       end
+    end
+
+    def products
+      Product.includes(
+        { price: [:currency] },
+        { image_attachment: [:blob] },
+        { brand: [:country] }
+      ).active
     end
 
     def products_per_page

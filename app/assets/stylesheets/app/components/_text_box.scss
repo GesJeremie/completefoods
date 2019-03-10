@@ -10,10 +10,16 @@
     border-radius: $border-radius;
 
     .search-form & {
+        display: block;
         padding: ($spacing-unit * 1.5) double($spacing-unit);
-        max-width: 400px;
+        width: 100%;
         font-size: 14px;
         border: 2px solid $gray--medium;
         vertical-align: middle;
+
+        @include respond-to('medium') {
+            display: inline-block;
+            max-width: 400px;
+        }
     }
 }

@@ -30,7 +30,7 @@ class CollectionProductsFinderTest < ActiveSupport::TestCase
     products = CollectionProductsFinder.new('for-athletes').perform
 
     assert_equal 15, products.count
-    assert products.first.protein_per_kcal(100) >= products.last.protein_per_kcal(100)
+    assert products.first.protein_ratio >= products.last.protein_ratio
   end
 
   test 'for vegans' do

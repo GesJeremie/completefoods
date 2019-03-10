@@ -31,6 +31,14 @@ $button-fixed-width:                            150px !default;
             width: auto;
         }
     }
+
+    .search-form & {
+        margin-top: $spacing-unit;
+
+        @include respond-to('medium') {
+            margin-top: 0;
+        }
+    }
 }
 
 .button + .button {
