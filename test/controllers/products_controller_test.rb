@@ -8,7 +8,7 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test 'display show' do
     product = create(:product)
-    get products_path(product.slug)
+    get product_path(product.slug)
     assert_response :success
   end
 end

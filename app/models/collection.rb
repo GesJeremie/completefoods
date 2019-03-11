@@ -6,7 +6,7 @@ class Collection < ActiveHash::Base
     { group_id: 2, slug: 'for-vegans' },
     { group_id: 2, slug: 'for-vegetarians' },
 
-    { group_id: 3, slug: 'snacks'},
+    { group_id: 3, slug: 'ready-to-eat'},
     { group_id: 3, slug: 'ready-to-drink' },
     { group_id: 3, slug: 'powders' },
 

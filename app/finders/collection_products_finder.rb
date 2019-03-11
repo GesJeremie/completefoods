@@ -79,7 +79,7 @@ class CollectionProductsFinder < ApplicationFinder
       products.select { |product| product.state == 'bottle' }
     end
 
-    def snacks
+    def ready_to_eat
       products.select { |product| product.state == 'snack' }
     end
 end

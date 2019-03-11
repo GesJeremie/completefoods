@@ -113,11 +113,11 @@ class CollectionProductsFinderTest < ActiveSupport::TestCase
     assert_equal 'bottle', products.first.state
   end
 
-  test 'snacks' do
+  test 'ready to eat' do
     10.times { create(:product, { state: 'snack' }) }
     10.times { create(:product, { state: 'powder' }) }
 
-    products = CollectionProductsFinder.new('snacks').perform
+    products = CollectionProductsFinder.new('ready-to-eat').perform
 
     assert_equal 10, products.count
     assert_equal 'snack', products.first.state
