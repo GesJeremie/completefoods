@@ -1,7 +1,9 @@
-<% description = "Browse through the #{@brands.count} brands producing over #{count_active_products} Complete Foods worlwide." %>
+<% # TODO: Improve description code %>
+<% description = "Browse through the #{@brands.count} brands such as #{Brand.first&.name}, #{Brand.second&.name} and #{Brand.third&.name} producing over #{count_active_products} complete foods worlwide." %>
 
-<% content_for :meta_title, "#{DEFAULT_META['title']} - Browse all Brands" %>
+<% content_for :meta_title, "Browse Brands — #{DEFAULT_META['site_name']}" %>
 <% content_for :meta_description, description %>
+<% content_for :meta_image, 'meta/brands.png' %>
 
 <% cache [Brand.maximum(:updated_at), Product.maximum(:updated_at)] do %>
   <div class="brands">
