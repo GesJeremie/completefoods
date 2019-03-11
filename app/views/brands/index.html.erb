@@ -1,9 +1,13 @@
-<% # TODO: Improve description code %>
+<% @page_title = 'Browse Brands — Complete Food' %>
 <% description = "Browse through the #{@brands.count} brands such as #{Brand.first&.name}, #{Brand.second&.name} and #{Brand.third&.name} producing over #{count_active_products} complete foods worlwide." %>
 
-<% content_for :meta_title, "Browse Brands — #{DEFAULT_META['site_name']}" %>
-<% content_for :meta_description, description %>
-<% content_for :meta_image, 'meta/brands.png' %>
+<% content_for :head do %>
+  <meta name="description" content="<%= description %>">
+  <meta property="og:title" content="<%= @page_title %>">
+  <meta property="og:url" content="<%= request.original_url %>">
+  <meta property="og:description" content="<%= description %>">
+  <meta property="og:image" content="<%= image_url('meta/brands.png') %>" />
+<% end %>
 
 <% cache [Brand.maximum(:updated_at), Product.maximum(:updated_at)] do %>
   <div class="brands">

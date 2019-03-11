@@ -1,6 +1,10 @@
 module ApplicationHelper
   include ActionView::Helpers::AssetTagHelper
 
+  def page_title
+    return @page_title.presence || 'There is more than Soylent — Complete Food'
+  end
+
   def humanize_boolean(boolean)
     I18n.t((!!boolean).to_s)
   end

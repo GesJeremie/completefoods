@@ -1,5 +1,13 @@
-<% content_for :meta_title, "#{DEFAULT_META['title']} - Brand #{@brand.name}" %>
-<% content_for :meta_description, @brand.description %>
+<% #TODO: Fix SEO here %>
+<% @page_title = "Brand #{@brand.name} — Complete Food" %>
+
+<% content_for :head do %>
+  <meta name="description" content="<%= description %>">
+  <meta property="og:title" content="<%= @page_title %>">
+  <meta property="og:url" content="<%= request.original_url %>">
+  <meta property="og:description" content="<%= @brand.description %>">
+  <!-- <meta property="og:image" content="<%= image_url('meta/brands.png') %>" /> -->
+<% end %>
 
 <div class="hero hero--brand">
   <h1 class="hero__title"><%= @brand.name %></h1>
