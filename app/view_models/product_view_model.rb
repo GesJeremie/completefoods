@@ -13,6 +13,14 @@ class ProductViewModel < ApplicationViewModel
     model.brand.country.code.downcase.to_sym
   end
 
+  def meta_description
+    if model.description.present?
+      truncate(description_without_markdown, length: 158)
+    else
+      "#{name} is a Complete Food produced in #{model.brand.country.name} by #{model.brand.name}"
+    end
+  end
+
   def description
     return unless model.description.present?
 
@@ -30,13 +38,6 @@ class ProductViewModel < ApplicationViewModel
     ).render(model.description)
   end
 
-  def meta_description
-    if model.description.present?
-      truncate(description_without_markdown, length: 158)
-    else
-      "#{name} is a Complete Food produced in #{model.brand.country.name} by #{model.brand.name}"
-    end
-  end
 
   def brand
     @brand ||= BrandViewModel.wrap(model.brand, options)

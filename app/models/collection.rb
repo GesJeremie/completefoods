@@ -29,16 +29,11 @@ class Collection < ActiveHash::Base
     { group_id: 6, slug: 'made-in-finland' },
     { group_id: 6, slug: 'made-in-estonia' },
     { group_id: 6, slug: 'made-in-spain' },
-    { group_id: 6, slug: 'made-in-sweden' },
-    { group_id: 6, slug: 'made-in-india' }
+    { group_id: 6, slug: 'made-in-sweden' }
   ]
 
   def name
     self.slug.titleize
-  end
-
-  def cover
-    "#{self.slug.underscore}.jpg"
   end
 
   def group

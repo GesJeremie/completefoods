@@ -1,5 +1,6 @@
-<% content_for :meta_title, "#{DEFAULT_META['title']} - #{@collection.name}" %>
-<% content_for :meta_description, strip_tags(@collection.description) %>
+<% content_for :meta_title, "#{@collection.name} — #{DEFAULT_META['site_name']}" %>
+<% content_for :meta_description, @collection.meta_description %>
+<% content_for :meta_image, @collection.meta_image %>
 
 <% cache [(params[:page] || 0), @collection.name, current_currency.id] do %>
   <div class="hero hero--collection">
@@ -20,8 +21,8 @@
         </div>
         <div class="grid__cell grid__cell--75-at-x-wide">
           <% @products.each_with_index do |product, index| %>
-            <%= render partial: 'products/item_per_serving', locals: { product: product } %>
-            <%= render partial: 'sponsors/sponsor', locals: { product_counter: index } %>
+            <%= render 'products/item_per_serving', product: product %>
+            <%= render 'sponsors/sponsor', product_counter: index %>
           <% end %>
           <%= will_paginate(@products) %>
         </div>

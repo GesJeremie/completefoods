@@ -54,7 +54,7 @@
             <% end %>
 
             <% @products.each_with_index do |product, index| %>
-              <%= render partial: 'products/item_per_kcal', locals: { product: product } %>
+              <%= render 'products/item_per_kcal', product: product %>
             <% end %>
           </div>
         </div>
