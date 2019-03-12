@@ -25,11 +25,7 @@ class ProductsController < BaseController
     end
 
     def products
-      Product.includes(
-        { price: [:currency] },
-        { image_attachment: [:blob] },
-        { brand: [:country] }
-      ).active
+      Product.preload_defaults.active
     end
 
     def products_per_page

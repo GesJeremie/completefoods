@@ -4,7 +4,7 @@ class ProductDiet < ApplicationRecord
   belongs_to :product, touch: true
 
   validates :product, presence: true
-  validates :vegan, inclusion: { in: BOOLEANS }
-  validates :vegetarian, inclusion: { in: BOOLEANS }
-  validates :ketogenic, inclusion: { in: BOOLEANS }
+  validates :vegan, inclusion: BOOLEANS
+  validates :vegetarian, inclusion: BOOLEANS
+  validates :ketogenic, inclusion: BOOLEANS
 end

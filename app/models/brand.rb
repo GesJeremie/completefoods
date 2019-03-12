@@ -9,10 +9,10 @@ class Brand < ApplicationRecord
   default_scope { order(name: :asc) }
 
   def self.with_active_products
-    Brand.joins(:products).where('products.active', true).group('brands.id')
+    joins(:products).where('products.active', true).group('brands.id')
   end
 
   def to_param
-    self.id.to_s << '-' << self.name.parameterize
+    id.to_s + '-' + name.parameterize
   end
 end

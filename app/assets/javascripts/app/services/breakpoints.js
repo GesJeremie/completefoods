@@ -7,7 +7,7 @@
             return $(window).width() < BREAKPOINTS[breakpoint];
         };
 
-    window.app.services.breakpoint = {
+    window.app.services.breakpoints = {
         isSmallerThan: isSmallerThan
     };
 }());

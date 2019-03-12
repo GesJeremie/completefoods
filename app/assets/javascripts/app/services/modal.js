@@ -2,23 +2,8 @@
     'use strict';
 
     var TEMPLATES = {
-            loading: (function () {
-                return [
-                    '<div class="spinner">',
-                        '<div class="spinner__bounce spinner__bounce--first"></div>',
-                        '<div class="spinner__bounce spinner__bounce--second"></div>',
-                        '<div class="spinner__bounce spinner__bounce--third"></div>',
-                    '</div>'
-                ].join('')
-            }()),
-
-            error: (function () {
-                return [
-                    '<div class="modal-error">',
-                        '<div class="modal-error__description">An error occured!</div>',
-                    '</div>'
-                ].join('')
-            }())
+            loading: JST['app/templates/modal_loading'],
+            error: JST['app/templates/modal_error']
         },
 
         currentModal = null,
@@ -43,7 +28,7 @@
         createFromUrl = function (url, options = {}) {
             var request = $.get(url);
 
-            create(TEMPLATES.loading, {
+            create(TEMPLATES.loading(), {
                 closeMethods: []
             });
 
@@ -52,7 +37,7 @@
                 create(html, options)
             })
             .fail(function () {
-                create(TEMPLATES.error, options)
+                create(TEMPLATES.error(), options)
             });
         },
 
@@ -68,7 +53,7 @@
                 create(html, options)
             })
             .fail(function () {
-                create(TEMPLATES.errors, options)
+                create(TEMPLATES.error(), options)
             })
         };
 

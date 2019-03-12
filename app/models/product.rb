@@ -29,13 +29,24 @@ class Product < ApplicationRecord
   validates :protein_per_serving, presence: true, numericality: true
   validates :carbs_per_serving, presence: true, numericality: true
   validates :fat_per_serving, presence: true, numericality: true
-  validates :subscription_available, inclusion: { in: BOOLEANS }
-  validates :discount_for_subscription, inclusion: { in: BOOLEANS }
-  validates :state, inclusion: { in: STATES }
-  validates :flavor, inclusion: { in: FLAVORS }
-  validates :active, inclusion: { in: BOOLEANS }
+  validates :subscription_available, inclusion: BOOLEANS
+  validates :discount_for_subscription, inclusion: BOOLEANS
+  validates :state, inclusion: STATES
+  validates :flavor, inclusion: FLAVORS
+  validates :active, inclusion: BOOLEANS
 
   validates_with ImageUploadValidator, attributes: [:image]
+
+  def self.preload_defaults
+    includes(
+      :allergen,
+      :diet,
+      :shipment,
+      { price: [:currency] },
+      { image_attachment: [:blob] },
+      { brand: [:country] }
+    )
+  end
 
   def self.active
     where(active: true)
@@ -51,7 +62,7 @@ class Product < ApplicationRecord
   end
 
   def to_param
-    self.slug
+    slug
   end
 
   def protein_per_kcal(kcal)

@@ -9,6 +9,9 @@
             'x-wide': 1160,
             'xx-wide': 1310
         },
-        delayBeforeToShowNewsletter: 7000 // 7 seconds
+        modalNewsletter: {
+            delayBeforeToShow: 7000, // 7 seconds
+            cookieExpirationTime: 7 // 7 days
+        }
     };
 }());

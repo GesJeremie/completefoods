@@ -1,5 +1,4 @@
 class ImageUploadValidator < ActiveModel::EachValidator
-
   ALLOWED_TYPES = %w[image/png image/jpeg].freeze
 
   def validate_each(record, attribute, image)

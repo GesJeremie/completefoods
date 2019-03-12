@@ -16,7 +16,7 @@
          */
 
         initialize: function () {
-            if (window.app.services.breakpoint.isSmallerThan('medium')) { return; }
+            if (window.app.services.breakpoints.isSmallerThan('medium')) { return; }
 
             $('select').select2({
                 minimumResultsForSearch: -1

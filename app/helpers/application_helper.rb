@@ -9,18 +9,6 @@ module ApplicationHelper
     I18n.t((!!boolean).to_s)
   end
 
-  def icon_boolean(boolean)
-    boolean ? inline_svg('check.svg', class: 'icon') : inline_svg('cross.svg', class: 'icon')
-  end
-
-  def strikethrough_if_false(text, boolean)
-    boolean ? text : content_tag(:strike, text)
-  end
-
-  def to_slug(string)
-    string.parameterize.truncate(80, omission: '')
-  end
-
   def leading_zero(number)
     number.to_s.rjust(2, '0')
   end

@@ -69,6 +69,7 @@ GEM
     crass (1.0.4)
     domain_name (0.5.20180417)
       unf (>= 0.0.5, < 1.0.0)
+    ejs (1.1.1)
     erubi (1.7.1)
     execjs (2.7.0)
     faker (1.9.1)
@@ -253,6 +254,7 @@ DEPENDENCIES
   bootstrap (~> 4.1.1)
   bullet
   countries
+  ejs
   faker
   flag-icons-rails
   inline_svg

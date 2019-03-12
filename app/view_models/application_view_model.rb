@@ -5,11 +5,11 @@ class ApplicationViewModel
 
   attr_reader :model, :options
 
-  def self.wrap(input, options = {})
-    if input.is_a?(Enumerable)
-      input.map { |i| new(i, options) }
+  def self.wrap(model, options = {})
+    if model.is_a?(Enumerable)
+      model.map { |m| new(m, options) }
     else
-      new(input, options)
+      new(model, options)
     end
   end
 
@@ -23,16 +23,15 @@ class ApplicationViewModel
   end
 
   def method_missing(method, *args, &block)
-    if model && model.respond_to?(method)
-      # Define a method so the next call is faster
-      self.class.send(:define_method, method) do |*args, &blok|
-        model.send(method, *args, &blok)
-      end
+    super unless model
+    super unless model.respond_to?(method)
 
-      send(method, *args, &block)
-    else
-      super
+    # Define a method so the next call is faster
+    self.class.send(:define_method, method) do |*args, &blok|
+      model.send(method, *args, &blok)
     end
+
+    send(method, *args, &block)
 
   rescue NoMethodError => no_method_error
     super if no_method_error.name == method
