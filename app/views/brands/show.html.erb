@@ -2,11 +2,11 @@
 <% @page_title = "Brand #{@brand.name} — Complete Food" %>
 
 <% content_for :head do %>
-  <meta name="description" content="<%= description %>">
+  <meta name="description" content="<%= @brand.meta_description %>">
   <meta property="og:title" content="<%= @page_title %>">
   <meta property="og:url" content="<%= request.original_url %>">
   <meta property="og:description" content="<%= @brand.description %>">
-  <!-- <meta property="og:image" content="<%= image_url('meta/brands.png') %>" /> -->
+  <meta property="og:image" content="<%= image_url('meta/brands.png') %>" />
 <% end %>
 
 <div class="hero hero--brand">

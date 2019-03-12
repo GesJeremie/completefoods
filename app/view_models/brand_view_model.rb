@@ -1,6 +1,10 @@
 require 'uri'
 
 class BrandViewModel < ApplicationViewModel
+  def meta_description
+    strip_tags(description)
+  end
+
   def name
     model.name.capitalize
   end
@@ -31,7 +35,7 @@ class BrandViewModel < ApplicationViewModel
 
   private
     def generic_description
-      "#{model.name} is a brand based in #{model.country.name} currently producing #{pluralize(active_products.count, 'product')}"
+      "#{model.name} is a brand based in #{model.country.name} currently producing #{pluralize(active_products.count, 'complete food')}"
     end
 
     def website_with_utm_source

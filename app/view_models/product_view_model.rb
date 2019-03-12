@@ -1,6 +1,19 @@
 require 'redcarpet/render_strip'
 
 class ProductViewModel < ApplicationViewModel
+
+  def browser_title
+    "#{name} by #{model.brand.name} — Complete Food"
+  end
+
+  def meta_description
+    if model.description.present?
+      truncate(description_without_markdown, length: 158)
+    else
+      "#{name} is a Complete Food produced in #{model.brand.country.name} by #{model.brand.name}"
+    end
+  end
+
   def has_notes?
     model.notes.present?
   end
@@ -11,14 +24,6 @@ class ProductViewModel < ApplicationViewModel
 
   def country_code_symbol
     model.brand.country.code.downcase.to_sym
-  end
-
-  def meta_description
-    if model.description.present?
-      truncate(description_without_markdown, length: 158)
-    else
-      "#{name} is a Complete Food produced in #{model.brand.country.name} by #{model.brand.name}"
-    end
   end
 
   def description

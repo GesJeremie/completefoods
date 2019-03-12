@@ -1,5 +1,13 @@
-<% content_for :meta_title, "#{DEFAULT_META['title']} - Browse all Complete Foods" %>
-<% content_for :meta_description, "Browse through the #{count_active_products} Complete Foods currently available worlwide." %>
+<% @page_title = 'Browse Products — Complete Food' %>
+
+<% content_for :head do %>
+  <meta name="description" content="Discover the best complete foods based on price, diet, protein ratio, fat ratio, country of production and much more!">
+
+  <meta property="og:title" content="<%= @page_title %>">
+  <meta property="og:url" content="<%= request.original_url %>">
+  <meta property="og:description" content="Discover the best complete foods based on price, diet, protein ratio, fat ratio, country of production and much more!">
+  <meta property="og:image" content="<%= image_url('meta/products.png') %>" />
+<% end %>
 
 <% cache [Product.maximum(:updated_at), current_currency.id, (params[:page] || 0), params[:search]] do %>
   <div class="hero hero--products">

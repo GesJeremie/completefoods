@@ -1,3 +1,15 @@
+<% @page_title = 'Your Quest is over! — Complete Food' %>
+<% description = "Answer the Guru's questions to find the best Complete Foods for you - Based on the #{count_active_products} products and #{count_brands} brands we reference." %>
+
+<% content_for :head do %>
+  <meta name="description" content="<%= description %>">
+
+  <meta property="og:title" content="<%= @page_title %>">
+  <meta property="og:url" content="<%= request.original_url %>">
+  <meta property="og:description" content="<%= description %>">
+  <meta property="og:image" content="<%= image_url('meta/products.png') %>" />
+<% end %>
+
 <div class="hero hero--guru">
   <h1 class="hero__title">Your Quest is over!</h1>
   <h2 class="hero__subtitle">Answer the Guru's questions to find the best Complete Foods for you - Based on the <%= count_active_products %> products and <%= count_brands %> brands we reference.
