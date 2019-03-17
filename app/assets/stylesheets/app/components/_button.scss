@@ -39,6 +39,13 @@ $button-fixed-width:                            150px !default;
             margin-top: 0;
         }
     }
+
+    .result-filters__footer & {
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
+        padding-top: $spacing-unit * 2.5;
+        padding-bottom: $spacing-unit * 2.5;
+    }
 }
 
 .button + .button {
@@ -70,6 +77,10 @@ $button-fixed-width:                            150px !default;
 .button--large {
     padding: double($spacing-unit) quadruple($spacing-unit);
     font-size: 16px;
+}
+
+.button--full {
+    width: 100%;
 }
 
 .button--capitalized {

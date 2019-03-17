@@ -1,0 +1,105 @@
+<%= form_tag products_path, method: 'get', class: 'result-filters' do %>
+  <div class="result-filters__heading">Refine By</div>
+
+  <div class="result-filters__section">
+    <h6 class="heading heading--6 result-filters__section--heading">Food Allergies</h6>
+
+    <%= filter_checkbox_tag(
+          attribute: 'gluten_free',
+          label: 'Gluten Free',
+          icon: 'gluten',
+          value: params.dig(:filters, :gluten_free)) %>
+
+    <%= filter_checkbox_tag(
+          attribute: 'lactose_free',
+          label: 'Lactose Free',
+          icon: 'baby_bottle',
+          value: params.dig(:filters, :lactose_free)) %>
+  </div>
+
+  <div class="result-filters__section">
+    <h6 class="heading heading--6 result-filters__section--heading">Diet</h6>
+
+    <%= filter_checkbox_tag(
+          attribute: 'vegan',
+          label: 'Vegan',
+          icon: 'vegan',
+          value: params.dig(:filters, :vegan)) %>
+
+    <%= filter_checkbox_tag(
+          attribute: 'vegetarian',
+          label: 'Vegetarian',
+          icon: 'watermelon',
+          value: params.dig(:filters, :vegetarian)) %>
+  </div>
+
+  <div class="result-filters__section">
+    <h6 class="heading heading--6 result-filters__section--heading">Shipping To</h6>
+
+    <%= filter_checkbox_tag(
+          attribute: 'canada',
+          label: 'Canada',
+          icon: 'canada',
+          value: params.dig(:filters, :canada)) %>
+
+    <%= filter_checkbox_tag(
+          attribute: 'united_states',
+          label: 'United States',
+          icon: 'united_states',
+          value: params.dig(:filters, :united_states)) %>
+
+    <%= filter_checkbox_tag(
+          attribute: 'europe',
+          label: 'Europe',
+          icon: 'europe',
+          value: params.dig(:filters, :europe)) %>
+
+    <%= filter_checkbox_tag(
+          attribute: 'rest_of_world',
+          label: 'Other',
+          icon: 'world',
+          value: params.dig(:filters, :rest_of_world)) %>
+  </div>
+
+  <div class="result-filters__section">
+    <h6 class="heading heading--6 result-filters__section--heading">Type</h6>
+
+    <%= filter_checkbox_tag(
+          attribute: 'powder',
+          label: 'Powder',
+          icon: 'powder',
+          value: params.dig(:filters, :powder)) %>
+
+    <%= filter_checkbox_tag(
+          attribute: 'bottle',
+          label: 'Ready To Drink',
+          icon: 'bottle',
+          value: params.dig(:filters, :bottle)) %>
+
+    <%= filter_checkbox_tag(
+          attribute: 'snack',
+          label: 'Ready To Eat',
+          icon: 'snack',
+          value: params.dig(:filters, :snack)) %>
+  </div>
+
+  <div class="result-filters__section result-filters__section--subscription">
+    <h6 class="heading heading--6 result-filters__section--heading">Subscription</h6>
+
+    <%= filter_checkbox_tag(
+          attribute: 'subscription_available',
+          label: 'Subscription Available',
+          icon: 'package',
+          value: params.dig(:filters, :subscription_available)) %>
+
+    <%= filter_checkbox_tag(
+          attribute: 'discount_for_subscription',
+          label: 'Discount for Subscription',
+          icon: 'super_smile',
+          value: params.dig(:filters, :discount_for_subscription)) %>
+  </div>
+
+  <div class="result-filters__footer">
+    <button type="submit" class="button button--secondary button--large button--full">Update</button>
+  </div>
+<% end %>
