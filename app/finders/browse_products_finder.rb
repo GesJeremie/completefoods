@@ -7,44 +7,39 @@ class BrowseProductsFinder < ApplicationFinder
     @search = params[:search]
   end
 
-  # TODO: Switch to real SQL implementation
   def perform
     products = Product.preload_defaults.active
 
-    if shipping_countries_requested.any?
-      products = products.select do |product|
-        (shipping_countries_requested - product.shipment.shippable_countries).empty?
-      end
+    shipping_countries_requested.each do |country|
+      products = products.joins(:shipment).where("product_shipments.#{country} = true")
     end
 
     if product_states_requested.any?
-      products = products.select do |product|
-        product_states_requested.include?(product.state)
-      end
+      products = products.where(state: product_states_requested)
     end
 
     if has_filter?(:lactose_free)
-      products = products.select { |product| !product.allergen.lactose? }
+      products = products.joins(:allergen).where(product_allergens: { lactose: false })
     end
 
     if has_filter?(:gluten_free)
-      products = products.select { |product| !product.allergen.gluten? }
+      products = products.joins(:allergen).where(product_allergens: { gluten: false })
     end
 
     if has_filter?(:vegan)
-      products = products.select { |product| product.diet.vegan? }
+      products = products.joins(:diet).where(product_diets: { vegan: true })
     end
 
     if has_filter?(:vegetarian)
-      products = products.select { |product| product.diet.vegetarian? }
+      products = products.joins(:diet).where(product_diets: { vegetarian: true})
     end
 
     if has_filter?(:subscription_available)
-      products = products.select { |product| product.subscription_available? }
+      products = products.where(subscription_available: true)
     end
 
     if has_filter?(:discount_for_subscription)
-      products = products.select { |product| product.subscription_available? && product.discount_for_subscription?}
+      products = products.where(discount_for_subscription: true)
     end
 
     products
@@ -53,11 +48,11 @@ class BrowseProductsFinder < ApplicationFinder
   private
 
     def shipping_countries_requested
-      ProductShipment::SHIPPING_COUNTRIES.select { |country| has_filter?(country) }
+      @shipping_countries_requested ||= ProductShipment::SHIPPING_COUNTRIES.select { |country| has_filter?(country) }
     end
 
     def product_states_requested
-      Product::STATES.select { |state| has_filter?(state) }
+      @product_states_requested ||= Product::STATES.select { |state| has_filter?(state) }
     end
 
     def has_filter?(name)
