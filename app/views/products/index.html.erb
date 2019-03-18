@@ -18,34 +18,36 @@
     </h2>
   </div>
 
-  <div class="grid grid--center">
-    <div class="grid__cell grid__cell--90-at-wide">
-      <div class="grid grid--center">
-        <div class="grid__cell grid__cell--25-at-x-wide">
-          <%= render 'products/filters' %>
-        </div>
-        <div class="grid__cell grid__cell--75-at-x-wide">
+  <%= form_tag products_path, method: 'get' do %>
+    <div class="grid grid--center">
+      <div class="grid__cell grid__cell--90-at-wide">
+        <div class="grid grid--center">
+          <div class="grid__cell grid__cell--25-at-x-wide">
+            <%= render 'products/filters' %>
+          </div>
+          <div class="grid__cell grid__cell--75-at-x-wide">
 
-          <%= form_tag products_path, method: 'get', class: 'search-form' do %>
-            <%= text_field_tag 'search', params[:search], placeholder: 'Search a product, brand or country...', class: 'text-box' %>
-            <%= button_tag 'Search', class: 'button button--no-margin' %>
-          <% end %>
-
-          <% if @browse.products.empty? %>
-            <div class="empty-state">
-              <div class="empty-state__title heading heading--3">No Products Found</div>
-              <div class="empty-state__description">
-                Your search yielded no results.
-              </div>
+            <div class="search-form">
+              <%= text_field_tag 'search', params[:search], placeholder: 'Search a product, brand or country...', class: 'text-box' %>
+              <%= button_tag 'Search', type: 'submit', class: 'button button--no-margin' %>
             </div>
-          <% else %>
-            <% @browse.products.each_with_index do |product, index| %>
-              <%= render 'products/item_per_serving', product: product %>
-              <%= render 'sponsors/sponsor', product_counter: index %>
+
+            <% if @browse.products.empty? %>
+              <div class="empty-state">
+                <div class="empty-state__title heading heading--3">No Products Found</div>
+                <div class="empty-state__description">
+                  Your search yielded no results.
+                </div>
+              </div>
+            <% else %>
+              <% @browse.products.each_with_index do |product, index| %>
+                <%= render 'products/item_per_serving', product: product %>
+                <%= render 'sponsors/sponsor', product_counter: index %>
+              <% end %>
+              <%= will_paginate @browse.products %>
             <% end %>
-            <%= will_paginate @browse.products %>
-          <% end %>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  <% end %>

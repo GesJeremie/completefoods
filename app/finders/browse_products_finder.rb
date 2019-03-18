@@ -10,6 +10,12 @@ class BrowseProductsFinder < ApplicationFinder
   def perform
     products = Product.preload_defaults.active
 
+    if search.present?
+      products = products.search(search)
+    end
+
+    return products unless filters.present?
+
     shipping_countries_requested.each do |country|
       products = products.joins(:shipment).where("product_shipments.#{country} = true")
     end
@@ -52,7 +58,7 @@ class BrowseProductsFinder < ApplicationFinder
     end
 
     def product_states_requested
-      @product_states_requested ||= Product::STATES.select { |state| has_filter?(state) }
+      @product_states_requested ||= Product::STATES.map(&:to_sym).select { |state| has_filter?(state) }
     end
 
     def has_filter?(name)

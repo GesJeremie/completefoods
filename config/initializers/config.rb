@@ -10,6 +10,10 @@ Rails.application.configure do
   # on /products
   config.browse_products_per_page = 20
 
+  # How many products do you want to display per page
+  # on /collection/:collection
+  config.collection_products_per_page = 20
+
   # Define every "made in" collections
   config.collections_made_in = [
     'austria',

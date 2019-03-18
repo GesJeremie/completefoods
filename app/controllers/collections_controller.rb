@@ -17,6 +17,6 @@ class CollectionsController < BaseController
   private
 
     def products_per_page
-      Rails.configuration.products_per_page
+      Rails.configuration.collection_products_per_page
     end
 end
