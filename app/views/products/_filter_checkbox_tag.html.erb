@@ -1,4 +1,4 @@
-<%= label_tag nil, class: 'result-filters__choice' do %>
+<%= label_tag nil, class: "result-filters__choice", data: data do %>
   <%= check_box_tag "filters[#{attribute}]", nil, value, class: 'result-filters__choice-checkbox' %>
   <div class="result-filters__choice-content">
     <%= inline_svg("#{icon}.svg", class: 'icon') %>

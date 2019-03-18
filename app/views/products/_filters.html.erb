@@ -83,20 +83,27 @@
           value: params.dig(:filters, :snack)) %>
   </div>
 
-  <div class="result-filters__section result-filters__section--subscription">
+  <div class="result-filters__section result-filters__section--subscription" data-controller="filter-subscription-toggle">
     <h6 class="heading heading--6 result-filters__section--heading">Subscription</h6>
 
     <%= filter_checkbox_tag(
           attribute: 'subscription_available',
           label: 'Subscription Available',
           icon: 'package',
-          value: params.dig(:filters, :subscription_available)) %>
+          value: params.dig(:filters, :subscription_available),
+          data: {
+            target: 'filter-subscription-toggle.subscriptionAvailable',
+            action: 'click->filter-subscription-toggle#toggleDiscount'
+          }) %>
 
     <%= filter_checkbox_tag(
           attribute: 'discount_for_subscription',
           label: 'Discount for Subscription',
           icon: 'super_smile',
-          value: params.dig(:filters, :discount_for_subscription)) %>
+          value: params.dig(:filters, :discount_for_subscription),
+          data: {
+            target: 'filter-subscription-toggle.subscriptionDiscount',
+          }) %>
   </div>
 
   <div class="result-filters__footer">
