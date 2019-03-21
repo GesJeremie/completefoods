@@ -30,26 +30,38 @@
                 this.pendingRequest.abort();
             }
 
-            this.pendingRequest = this.makeRequestRefreshResults();
+            this.pendingRequest = this.makeRequest();
         },
 
-        makeRequestRefreshResults: function () {
+        makeRequest: function () {
             this.toggleLoading();
 
             return $.get(
-                Routes.productsPath(),
-                $(this.element).serialize()
+                this.getUrlRequest()
             )
-            .always(function () {
-                this.toggleLoading();
-                this.pendingRequest = false;
-            }.bind(this))
+            .always(
+                this.onAlways.bind(this)
+            )
             .done(
-                this.showNewResults.bind(this)
+                this.onDone.bind(this)
             )
             .fail(
-                this.showError.bind(this)
+                this.onFail.bind(this)
             );
+        },
+
+        onAlways: function () {
+            this.toggleLoading();
+            this.pendingRequest = false;
+        },
+
+        onDone: function (responseContent) {
+            this.refreshBrowserUrl();
+            this.showNewResults(responseContent);
+        },
+
+        onFail: function () {
+            this.showError();
         },
 
         toggleLoading: function () {
@@ -65,6 +77,16 @@
 
         showError: function () {
             // TODO: Implement.
+        },
+
+        getUrlRequest: function () {
+            var payload = $(this.element).serialize();
+
+            return Routes.productsPath(payload);
+        },
+
+        refreshBrowserUrl: function () {
+            window.history.pushState({}, null, this.getUrlRequest());
         }
     }));
 }());
