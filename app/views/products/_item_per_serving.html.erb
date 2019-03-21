@@ -5,10 +5,7 @@
         <div class="product-item__heading">
           <div class="grid grid--center grid--middle">
             <div class="grid__cell grid__cell--30">
-                <div class="product-item__heading-thumbnail" style="display: none" data-controller="lazy" data-lazy-src="<%= url_for(product.image) %>"></div>
-                <noscript>
-                  <div class="product-item__heading-thumbnail" style="background-image: url(<%= url_for(product.image) %>)"></div>
-                </noscript>
+              <div class="product-item__heading-thumbnail" style="background-image: url(<%= url_for(product.image) %>)"></div>
             </div>
             <div class="grid__cell grid__cell--70">
               <div class="product-item__heading-name">
