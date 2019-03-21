@@ -10,13 +10,7 @@
          */
 
         initialize: function () {
-            var $image = $(this.element);
-
-            // Drop no-js fallback
-            $image.removeAttr('style');
-
-            // Lazy load
-            $image.Lazy({
+            $(this.element).Lazy({
                 attribute: 'data-lazy-src'
             });
         }
