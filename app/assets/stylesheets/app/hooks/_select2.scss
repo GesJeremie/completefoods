@@ -7,7 +7,11 @@ $select2-height: 49px !default;
 .select2-container {
     width: 100% !important; // scss-lint:disable ImportantRule
 
-    .guru-results__sort & {
+    .sort-form & {
+        display: inline-block;
+        max-width: 300px;
+        font-size: 14px;
+        text-align: left;
     }
 }
 

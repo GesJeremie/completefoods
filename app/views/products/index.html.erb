@@ -27,9 +27,29 @@
           </div>
           <div class="grid__cell grid__cell--75-at-x-wide">
 
-            <div class="search-form">
-              <%= text_field_tag 'search', params[:search], placeholder: 'Search a product, brand or country...', class: 'text-box' %>
-              <%= button_tag 'Search', type: 'submit', class: 'button button--no-margin' %>
+            <div class="grid">
+              <div class="grid__cell grid__cell--50">
+                <div class="search-form">
+                  <%= text_field_tag 'search', params[:search], placeholder: 'Search a product, brand or country...', class: 'text-box' %>
+                  <%= button_tag 'Search', type: 'submit', class: 'button button--no-margin' %>
+                </div>
+              </div>
+
+              <div class="grid__cell grid__cell--50">
+                <div class="sort-form">
+                  <select name="sort">
+                    <option value="default" <%= 'selected="selected"' if (params[:sort].nil? || params[:sort] == 'default') %>>Default</option>
+                    <% Sort.grouped.each do |group| %>
+                      <optgroup label="<%= group.first.to_s.titleize %>">
+                        <% group.last.each do |sort| %><
+                          <option value="<%= sort.value %>" <%= 'selected="selected"' if sort.value == params[:sort]&.to_sym %>><%= sort.label_group %></option>
+                        <% end %>
+                      </optgroup>
+                    <% end %>
+                  </select>
+                  <%= button_tag 'Sort', type: 'submit', class: 'button button--no-margin' %>
+                </div>
+              </div>
             </div>
 
             <div class="product-results" data-target="browse-products.productResults">
@@ -42,7 +62,7 @@
                 </div>
               <% else %>
                 <% @browse.products.each_with_index do |product, index| %>
-                  <%= render 'products/item_per_serving', product: product %>
+                  <%= render 'products/item', product: product %>
                   <%= render 'sponsors/sponsor', product_counter: index %>
                 <% end %>
                 <%= will_paginate @browse.products %>

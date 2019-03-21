@@ -20,6 +20,10 @@ class Refinements::Sort
 
   private
 
+    def name
+      products.sort_by { |product| product.name }
+    end
+
     def price_highest_possible
       products.sort_by { |product| product.price.per_kcal_in_currency(500, currency: 'USD', type: :bulk_order) }.reverse
     end
@@ -29,7 +33,7 @@ class Refinements::Sort
     end
 
     def protein_lowest
-      products.sort_by { |product| product.protein_per_kcal(100) }
+      products.sort_by { |product| product.protein_per_kcal(500) }
     end
 
     def protein_highest
@@ -37,7 +41,7 @@ class Refinements::Sort
     end
 
     def carbs_lowest
-      products.sort_by { |product| product.carbs_per_kcal(100) }
+      products.sort_by { |product| product.carbs_per_kcal(500) }
     end
 
     def carbs_highest
@@ -45,7 +49,7 @@ class Refinements::Sort
     end
 
     def fat_lowest
-      products.sort_by { |product| product.fat_per_kcal(100) }
+      products.sort_by { |product| product.fat_per_kcal(500) }
     end
 
     def fat_highest

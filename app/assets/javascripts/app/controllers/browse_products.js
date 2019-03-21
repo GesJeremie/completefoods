@@ -21,6 +21,7 @@
 
         initialize: function () {
             $(this.element).find('input').on('change input submit', this.refreshResults.bind(this));
+            $(this.element).find('select').on('change', this.refreshResults.bind(this));
         },
 
         refreshResults: function (event) {
@@ -30,12 +31,13 @@
                 this.pendingRequest.abort();
             }
 
+            this.enableLoading();
+            this.disableButtons();
+
             this.pendingRequest = this.makeRequest();
         },
 
         makeRequest: function () {
-            this.toggleLoading();
-
             return $.get(
                 Routes.productsPath(),
                 this.getPayload()
@@ -52,7 +54,8 @@
         },
 
         onAlways: function () {
-            this.toggleLoading();
+            this.disableLoading();
+            this.enableButtons();
             this.pendingRequest = false;
         },
 
@@ -65,8 +68,20 @@
             this.showError();
         },
 
-        toggleLoading: function () {
-            $(this.productResultsTarget).toggleClass('product-results--refreshing');
+        enableLoading: function () {
+            $(this.productResultsTarget).addClass('product-results--refreshing');
+        },
+
+        disableLoading: function () {
+            $(this.productResultsTarget).removeClass('product-results--refreshing');
+        },
+
+        enableButtons: function () {
+            $(this.element).find('button[type="submit"]').removeAttr('disabled');
+        },
+
+        disableButtons: function () {
+            $(this.element).find('button[type="submit"]').attr('disabled', true);
         },
 
         showNewResults: function (responseContent) {

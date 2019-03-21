@@ -9,6 +9,10 @@
     background: $white;
     border: 2px solid $gray--medium-light;
     border-radius: $border-radius;
+
+    .product-results--refreshing & {
+        opacity: $opacity--refreshing;
+    }
 }
 
     .empty-state__title {}
