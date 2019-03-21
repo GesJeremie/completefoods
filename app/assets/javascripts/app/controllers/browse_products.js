@@ -37,7 +37,8 @@
             this.toggleLoading();
 
             return $.get(
-                this.getUrlRequest()
+                Routes.productsPath(),
+                this.getPayload()
             )
             .always(
                 this.onAlways.bind(this)
@@ -79,14 +80,14 @@
             // TODO: Implement.
         },
 
-        getUrlRequest: function () {
-            var payload = $(this.element).serialize();
-
-            return Routes.productsPath(payload);
+        getPayload: function () {
+            return $(this.element).serialize();
         },
 
         refreshBrowserUrl: function () {
-            window.history.pushState({}, null, this.getUrlRequest());
+            var url = '/products?' + this.getPayload();
+
+            window.history.pushState({}, null,  url);
         }
     }));
 }());
