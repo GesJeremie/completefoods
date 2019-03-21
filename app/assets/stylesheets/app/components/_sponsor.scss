@@ -4,7 +4,12 @@
 
 .sponsor {
     padding: double($spacing-unit);
+
+    .product-results--refreshing & {
+        opacity: $opacity--refreshing;
+    }
 }
+
 
     .sponsor__container {
         margin: 0 auto;

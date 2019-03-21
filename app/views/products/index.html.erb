@@ -18,7 +18,7 @@
     </h2>
   </div>
 
-  <%= form_tag products_path, method: 'get' do %>
+  <%= form_tag products_path, method: 'get', data: { controller: 'browse-products' } do %>
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--90-at-wide">
         <div class="grid grid--center">
@@ -32,20 +32,22 @@
               <%= button_tag 'Search', type: 'submit', class: 'button button--no-margin' %>
             </div>
 
-            <% if @browse.products.empty? %>
-              <div class="empty-state">
-                <div class="empty-state__title heading heading--3">No Products Found</div>
-                <div class="empty-state__description">
-                  Your search yielded no results.
+            <div class="product-results" data-target="browse-products.productResults">
+              <% if @browse.products.empty? %>
+                <div class="empty-state">
+                  <div class="empty-state__title heading heading--3">No Products Found</div>
+                  <div class="empty-state__description">
+                    Your search yielded no results.
+                  </div>
                 </div>
-              </div>
-            <% else %>
-              <% @browse.products.each_with_index do |product, index| %>
-                <%= render 'products/item_per_serving', product: product %>
-                <%= render 'sponsors/sponsor', product_counter: index %>
+              <% else %>
+                <% @browse.products.each_with_index do |product, index| %>
+                  <%= render 'products/item_per_serving', product: product %>
+                  <%= render 'sponsors/sponsor', product_counter: index %>
+                <% end %>
+                <%= will_paginate @browse.products %>
               <% end %>
-              <%= will_paginate @browse.products %>
-            <% end %>
+            </div>
           </div>
         </div>
       </div>

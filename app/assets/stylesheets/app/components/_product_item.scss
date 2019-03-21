@@ -19,9 +19,8 @@
         height: 100px;
     }
 
-    .product-list--refreshing & {
-        opacity: 0.3;
-        user-select: none;
+    .product-results--refreshing & {
+        opacity: $opacity--refreshing;
     }
 }
 

@@ -1,0 +1,28 @@
+/*------------------------------------*\
+    #PRODUCT-RESULTS
+\*------------------------------------*/
+
+.product-results {
+    position: relative;
+}
+
+.product-results--refreshing {
+    user-select: none;
+
+    &:before {
+        position: absolute;
+        right: 0;
+        left: 0;
+        z-index: 3;
+        margin: triple($spacing-unit) auto;
+        padding: triple($spacing-unit);
+        width: 200px;
+        color: $black;
+        font-weight: 700;
+        text-align: center;
+        background: $gray--medium-light;
+        border: 2px solid $gray--medium;
+        border-radius: $border-radius;
+        content: 'Refreshing ...';
+    }
+}

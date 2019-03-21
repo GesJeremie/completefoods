@@ -10,7 +10,15 @@
          */
 
         initialize: function () {
-            $('[data-lazy]').Lazy();
+            var $image = $(this.element);
+
+            // Drop no-js fallback
+            $image.removeAttr('style');
+
+            // Lazy load
+            $image.Lazy({
+                attribute: 'data-lazy-src'
+            });
         }
     }));
 }());

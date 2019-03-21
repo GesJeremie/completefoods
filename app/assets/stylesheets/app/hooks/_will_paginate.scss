@@ -32,4 +32,7 @@
         }
     }
 
+    .product-results--refreshing & {
+        opacity: $opacity--refreshing;
+    }
 }

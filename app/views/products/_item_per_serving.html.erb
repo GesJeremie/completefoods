@@ -5,7 +5,10 @@
         <div class="product-item__heading">
           <div class="grid grid--center grid--middle">
             <div class="grid__cell grid__cell--30">
-                <div class="product-item__heading-thumbnail" data-lazy data-src="<%= url_for(product.image) %>"></div>
+                <div class="product-item__heading-thumbnail" style="display: none" data-controller="lazy" data-lazy-src="<%= url_for(product.image) %>"></div>
+                <noscript>
+                  <div class="product-item__heading-thumbnail" style="background-image: url(<%= url_for(product.image) %>)"></div>
+                </noscript>
             </div>
             <div class="grid__cell grid__cell--70">
               <div class="product-item__heading-name">
@@ -28,25 +31,29 @@
             </div>
             <div class="grid__cell grid__cell--20">
               <div class="product-item__list-item">
-                <span class="product-item__list-label">Kcal</span> <span class="product-item__list-value"><%= product.kcal_per_serving %></span>
+                <span class="product-item__list-label">Kcal</span>
+                <span class="product-item__list-value"><%= product.kcal_per_serving %></span>
               </div>
             </div>
 
             <div class="grid__cell grid__cell--20">
               <div class="product-item__list-item">
-                <span class="product-item__list-label">Protein</span> <span class="product-item__list-value"><%= product.protein_per_serving %></span>
+                <span class="product-item__list-label">Protein</span>
+                <span class="product-item__list-value"><%= product.protein_per_serving %></span>
               </div>
             </div>
 
             <div class="grid__cell grid__cell--20">
               <div class="product-item__list-item">
-                <span class="product-item__list-label">Carbs</span> <span class="product-item__list-value"><%= product.carbs_per_serving %></span>
+                <span class="product-item__list-label">Carbs</span>
+                <span class="product-item__list-value"><%= product.carbs_per_serving %></span>
               </div>
             </div>
 
             <div class="grid__cell grid__cell--20">
               <div class="product-item__list-item">
-                <span class="product-item__list-label">Fat</span> <span class="product-item__list-value"><%= product.fat_per_serving %></span>
+                <span class="product-item__list-label">Fat</span>
+                <span class="product-item__list-value"><%= product.fat_per_serving %></span>
               </div>
             </div>
           </div>
@@ -55,7 +62,9 @@
 
       <div class="grid__cell grid__cell--20-at-medium">
         <div class="product-item__cost">
-          <span class="product-item__cost-value"><%= from_usd_to(current_currency, product.price.per_kcal_in_currency(100, currency: 'USD', type: :bulk_order)) %></span>
+          <span class="product-item__cost-value">
+            <%= from_usd_to(current_currency, product.price.per_kcal_in_currency(100, currency: 'USD', type: :bulk_order)) %>
+          </span>
           <span class="product-item__cost-description">per 100kcal - bulk order</span>
         </div>
       </div>
