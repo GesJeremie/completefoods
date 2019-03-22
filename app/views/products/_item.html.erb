@@ -10,8 +10,13 @@
             <div class="grid__cell grid__cell--70">
               <div class="product-item__heading-name">
                 <div class="product-item__heading-name-product"><%= product.name %></div>
-                <div class="product-item__flag"><%= flag_icon(product.country_code_symbol) %></div>
-                <div class="product-item__heading-name-brand"><%= product.brand.name %></div>
+                <div class="product-item__heading-name-brand-container">
+                  <div class="product-item__flag"><%= flag_icon(product.country_code_symbol) %></div>
+                  <div class="product-item__heading-name-brand"><%= product.brand.name %></div>
+                </div>
+                <div class="product-item__heading-name-type product-item__heading-name-type--<%= product.type_class %>">
+                  <span><%= product.type %></span>
+                </div>
               </div>
             </div>
           </div>

@@ -2,6 +2,8 @@ class Refinements::Sort
   attr_reader :products
   attr_reader :sort
 
+  KCAL_REFERENCE = 500.freeze
+
   #
   # Example: Refinements::Sort.new(Product.active, :price_highest_possible).perform
   #
@@ -25,15 +27,15 @@ class Refinements::Sort
     end
 
     def price_highest_possible
-      products.sort_by { |product| product.price.per_kcal_in_currency(500, currency: 'USD', type: :bulk_order) }.reverse
+      products.sort_by { |product| product.price.per_kcal_in_currency(KCAL_REFERENCE, currency: 'USD', type: :bulk_order) }.reverse
     end
 
     def price_lowest_possible
-      products.sort_by { |product| product.price.per_kcal_in_currency(500, currency: 'USD', type: :bulk_order) }
+      products.sort_by { |product| product.price.per_kcal_in_currency(KCAL_REFERENCE, currency: 'USD', type: :bulk_order) }
     end
 
     def protein_lowest
-      products.sort_by { |product| product.protein_per_kcal(500) }
+      products.sort_by { |product| product.protein_per_kcal(KCAL_REFERENCE) }
     end
 
     def protein_highest
@@ -41,7 +43,7 @@ class Refinements::Sort
     end
 
     def carbs_lowest
-      products.sort_by { |product| product.carbs_per_kcal(500) }
+      products.sort_by { |product| product.carbs_per_kcal(KCAL_REFERENCE) }
     end
 
     def carbs_highest
@@ -49,7 +51,7 @@ class Refinements::Sort
     end
 
     def fat_lowest
-      products.sort_by { |product| product.fat_per_kcal(500) }
+      products.sort_by { |product| product.fat_per_kcal(KCAL_REFERENCE) }
     end
 
     def fat_highest

@@ -22,6 +22,16 @@ class ProductViewModel < ApplicationViewModel
     model.name.capitalize
   end
 
+  def type
+    return 'Ready-to-Eat' if model.state == 'snack'
+    return 'Ready-to-Drink' if model.state == 'bottle'
+    return 'Powder' if model.state == 'powder'
+  end
+
+  def type_class
+    type.parameterize
+  end
+
   def country_code_symbol
     model.brand.country.code.downcase.to_sym
   end

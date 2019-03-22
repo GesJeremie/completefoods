@@ -27,7 +27,7 @@
         </div>
         <div class="grid__cell grid__cell--75-at-x-wide">
           <% @products.each_with_index do |product, index| %>
-            <%= render 'products/item_per_serving', product: product %>
+            <%= render 'products/item', product: product %>
             <%= render 'sponsors/sponsor', product_counter: index %>
           <% end %>
           <%= will_paginate(@products) %>
