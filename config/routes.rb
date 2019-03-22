@@ -25,8 +25,6 @@ Rails.application.routes.draw do
       get :type
       get :subscription
       get :email
-      get :no_results
-      get '/:id', action: :show, as: :show
 
       post :allergen_create
       post :diet_create

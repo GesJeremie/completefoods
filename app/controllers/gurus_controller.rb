@@ -6,28 +6,15 @@ class GurusController < BaseController
     only: %i[allergen_create diet_create country_create type_create subscription_create email_create]
 
   def index
-    if wizard.finished?
-      token = wizard.token
-      session[:guru_wizard] = nil
-      redirect_to(action: :show, id: token) and return
-    else
+    unless wizard.finished?
       redirect_to(action: wizard.current_step.name) and return
+    else
+      session[:guru_wizard] = nil
+
+      redirect_to products_path(params: {
+        filters: Gurus::AnswersToFilters.new(wizard.answers).perform
+      }) and return
     end
-  end
-
-  def show
-    model = Wizard.find_by!(token: params[:id])
-    redirect_to(action: :index) unless model.finished?
-
-    params[:sort] = params[:sort] || 'price_lowest_possible'
-    products = GuruProductsFinder.new(model.answers).perform
-    products = Refinements::Sort.new(products, params[:sort]).perform
-
-    @guru = model
-    @products = ProductViewModel.wrap(
-      products,
-      view_model_options
-    )
   end
 
   def allergen; end
@@ -149,7 +136,7 @@ class GurusController < BaseController
     end
 
     def subscription_params
-      answers_params(:yes, :yes_only_discount)
+      answers_params(:subscription)
     end
 
     def email_params

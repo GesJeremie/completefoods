@@ -8,6 +8,7 @@
     font-size: 14px;
     background: $white;
     border: 2px solid $gray--medium;
+    outline: 0;
 
     .sort-form & {
         @include respond-to('medium') {
