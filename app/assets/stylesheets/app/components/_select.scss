@@ -1,0 +1,25 @@
+/*------------------------------------*\
+    #SELECT
+\*------------------------------------*/
+
+.select {
+    width: 100%;
+    height: 51px;
+    font-size: 14px;
+    background: $white;
+    border: 2px solid $gray--medium;
+
+    .sort-form & {
+        @include respond-to('medium') {
+            max-width: 280px;
+        }
+
+        @include respond-to('wide') {
+            max-width: 250px;
+        }
+
+        @include respond-to('xx-wide') {
+            max-width: 300px;
+        }
+    }
+}

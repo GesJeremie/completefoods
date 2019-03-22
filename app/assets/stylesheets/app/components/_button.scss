@@ -32,19 +32,22 @@ $button-fixed-width:                            150px !default;
         }
     }
 
+    .sort-form &,
     .search-form & {
         margin-top: $spacing-unit;
+        width: 100%;
 
         @include respond-to('medium') {
             margin-top: 0;
+            width: auto;
         }
     }
 
     .result-filters__footer & {
-        border-top-right-radius: 0;
-        border-top-left-radius: 0;
         padding-top: $spacing-unit * 2.5;
         padding-bottom: $spacing-unit * 2.5;
+        border-top-right-radius: 0;
+        border-top-left-radius: 0;
     }
 }
 

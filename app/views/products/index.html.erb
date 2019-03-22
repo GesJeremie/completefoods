@@ -37,7 +37,7 @@
 
               <div class="grid__cell grid__cell--50">
                 <div class="sort-form">
-                  <select name="sort">
+                  <select name="sort" class="select">
                     <option value="default" <%= 'selected="selected"' if (params[:sort].nil? || params[:sort] == 'default') %>>Default</option>
                     <% Sort.grouped.each do |group| %>
                       <optgroup label="<%= group.first.to_s.titleize %>">

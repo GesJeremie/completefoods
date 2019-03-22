@@ -53,7 +53,6 @@ gem 'lodash-rails'
 gem 'jquery-rails'
 gem 'flag-icons-rails'
 gem 'bootstrap', '~> 4.1.1'
-gem 'select2-rails'
 gem 'js-routes'
 gem 'ejs'
 

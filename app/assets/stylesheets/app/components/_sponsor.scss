@@ -17,7 +17,7 @@
         line-height: 30px;
         text-align: center;
 
-        @include respond-to('medium') {
+        @include respond-to('xx-wide') {
             width: 90%;
         }
     }

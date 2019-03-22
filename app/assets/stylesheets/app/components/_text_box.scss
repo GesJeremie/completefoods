@@ -19,6 +19,14 @@
 
         @include respond-to('medium') {
             display: inline-block;
+            max-width: 280px;
+        }
+
+        @include respond-to('wide') {
+            max-width: 250px;
+        }
+
+        @include respond-to('xx-wide') {
             max-width: 300px;
         }
     }

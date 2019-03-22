@@ -3,6 +3,11 @@
 \*------------------------------------*/
 
 .sort-form {
-    text-align: right;
-}
+    margin-top: double($spacing-unit);
+    text-align: center;
 
+    @include respond-to('x-wide') {
+        margin-top: 0;
+        text-align: right;
+    }
+}
