@@ -31,7 +31,6 @@ Rails.application.routes.draw do
       post :country_create
       post :type_create
       post :subscription_create
-      post :sort_create
       post :email_create
     end
   end

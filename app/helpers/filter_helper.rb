@@ -7,13 +7,4 @@ module FilterHelper
       value: value,
       data: data
   end
-
-  def filter_radio_button_tag(key:, value:, icon:, label:, checked:)
-    render 'products/filter_radio_button_tag',
-      key: key,
-      value: value,
-      icon: icon,
-      label: label,
-      checked: checked
-  end
 end

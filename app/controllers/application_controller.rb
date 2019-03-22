@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   def current_currency
     @current_currency ||= begin
         Currency.find_by_code(session[:current_currency]) || Currency.find_by_code('USD')
-      end
+    end
   end
   helper_method :current_currency
 

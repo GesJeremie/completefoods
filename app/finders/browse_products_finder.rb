@@ -50,7 +50,7 @@ class BrowseProductsFinder < ApplicationFinder
       end
 
       if has_filter?(:vegetarian)
-        products = products.joins(:diet).where(product_diets: { vegetarian: true})
+        products = products.joins(:diet).where(product_diets: { vegetarian: true })
       end
 
       if has_filter?(:subscription_available)

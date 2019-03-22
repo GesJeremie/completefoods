@@ -27,16 +27,24 @@ class ProductPrice < ApplicationRecord
   end
 
   def per_kcal_in_currency(kcal, type:, currency:)
-    cost = per_kcal(kcal, type: type)
-    in_currency(cost, currency)
+    in_currency(
+      per_kcal(kcal, type: type),
+      currency
+    )
   end
 
   def per_day_in_currency(type:, currency:)
-    in_currency(per_day(type: type), currency)
+    in_currency(
+      per_day(type: type),
+      currency
+    )
   end
 
   def per_month_in_currency(type:, currency:)
-    in_currency(per_month(type: type), currency)
+    in_currency(
+      per_month(type: type),
+      currency
+    )
   end
 
   private
