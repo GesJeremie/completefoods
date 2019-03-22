@@ -1,20 +1,21 @@
 <% cache [product, current_currency.id] do %>
   <a href="<%= product_path(product.model) %>" class="product-item">
+
     <div class="grid">
       <div class="grid__cell grid__cell--40-at-medium">
-        <div class="product-item__heading">
+        <div class="product-item__details">
           <div class="grid grid--center grid--middle">
             <div class="grid__cell grid__cell--30">
-              <div class="product-item__heading-thumbnail" style="background-image: url(<%= url_for(product.image) %>)"></div>
+              <div class="product-item__thumbnail" style="background-image: url(<%= url_for(product.image) %>)"></div>
             </div>
             <div class="grid__cell grid__cell--70">
-              <div class="product-item__heading-name">
-                <div class="product-item__heading-name-product"><%= product.name %></div>
-                <div class="product-item__heading-name-brand-container">
+              <div class="product-item__heading">
+                <div class="product-item__name"><%= product.name %></div>
+                <div class="product-item__brand">
                   <div class="product-item__flag"><%= flag_icon(product.country_code_symbol) %></div>
-                  <div class="product-item__heading-name-brand"><%= product.brand.name %></div>
+                  <div class="product-item__brand-name"><%= product.brand.name %></div>
                 </div>
-                <div class="product-item__heading-name-type product-item__heading-name-type--<%= product.type_class %>">
+                <div class="product-item__type product-item__type--<%= product.type_class %>">
                   <span><%= product.type %></span>
                 </div>
               </div>
@@ -28,7 +29,7 @@
           <div class="grid grid--center grid--middle">
             <div class="grid__cell grid__cell--20">
               <div class="product-item__list-item">
-                <span class="product-item__list-label product-item__list-label--heading">Per 500kcal</span>
+                <span class="product-item__list-label product-item__list-label--note">Per 500kcal</span>
               </div>
             </div>
             <div class="grid__cell grid__cell--20">

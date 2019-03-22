@@ -24,13 +24,13 @@
 }
 
 
-    .product-item__heading {
+    .product-item__details {
         display: inline-block;
         width: 100%;
     }
 
 
-        .product-item__heading-thumbnail {
+        .product-item__thumbnail {
             display: inline-block;
             margin-left: $spacing-unit;
             width: 80px;
@@ -44,19 +44,19 @@
         }
 
 
-        .product-item__heading-name {
+        .product-item__heading {
             display: inline-block;
             margin-left: $spacing-unit;
             vertical-align: middle;
         }
 
-            .product-item__heading-name-product {
+            .product-item__name {
                 margin-bottom: halve($spacing-unit);
                 font-size: 18px;
                 font-weight: 700;
             }
 
-            .product-item__heading-name-brand-container {
+            .product-item__brand {
 
             }
 
@@ -70,13 +70,13 @@
                     }
                 }
 
-                .product-item__heading-name-brand {
+                .product-item__brand-name {
                     display: inline-block;
                     margin-top: ($spacing-unit / 3);
                     vertical-align: middle;
                 }
 
-            .product-item__heading-name-type {
+            .product-item__type {
                 margin: $spacing-unit 0;
 
                 span {
@@ -88,19 +88,19 @@
                 }
             }
 
-            .product-item__heading-name-type--ready-to-eat {
+            .product-item__type--ready-to-eat {
                 span {
                     background: $yellow;
                 }
             }
 
-            .product-item__heading-name-type--ready-to-drink {
+            .product-item__type--ready-to-drink {
                 span {
                     background: $red;
                 }
             }
 
-            .product-item__heading-name-type--powder {
+            .product-item__type--powder {
                 span {
                     background: $green;
                 }
@@ -124,7 +124,7 @@
                 color: $gray--light;
             }
 
-            .product-item__list-label--heading {
+            .product-item__list-label--note {
                 font-size: 12px;
             }
 
