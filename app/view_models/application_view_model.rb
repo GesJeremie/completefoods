@@ -44,7 +44,7 @@ class ApplicationViewModel
 
   def options_cache_key
     options
-    .except(:action, :controller)
+    .except(:action, :controller, :utf8)
     .to_a
     .sort
     .flatten

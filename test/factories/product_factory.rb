@@ -30,7 +30,7 @@ class ProductFactory
         allergen: ProductAllergenFactory.new.build,
 
         name: Faker::FunnyName.name,
-        slug: Faker::Internet.slug,
+        slug: Faker::Internet.slug(nil, '-'),
         kcal_per_serving: Faker::Number.between(10, 30),
         protein_per_serving: Faker::Number.between(10, 30),
         carbs_per_serving: Faker::Number.between(10, 30),

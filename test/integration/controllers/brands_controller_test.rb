@@ -1,12 +1,12 @@
 require 'test_helper'
 
-class ProductsControllerTest < ActionDispatch::IntegrationTest
+class BrandsControllerTest < ActionDispatch::IntegrationTest
   test 'display index' do
-    get products_path
+    get brands_path
     assert_response :success
 
-    10.times { create(:product) }
-    get products_path
+    10.times { create(:brand) }
+    get brands_path
     assert_response :success
   end
 
@@ -14,12 +14,11 @@ class ProductsControllerTest < ActionDispatch::IntegrationTest
 
   test 'display show' do
     assert_raises(ActiveRecord::RecordNotFound) do
-      get product_path('fake-slug')
+      get brand_path('fake-slug')
     end
 
-    product = create(:product)
-
-    get product_path(product)
+    brand = create(:brand)
+    get brand_path(brand)
     assert_response :success
   end
 end
