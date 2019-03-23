@@ -5,7 +5,8 @@ class ProductViewModel < ApplicationViewModel
   def cache_key
     [
       model.cache_key,
-      model.brand.cache_key
+      model.brand.cache_key,
+      options[:current_currency]
     ].join('/')
   end
 
