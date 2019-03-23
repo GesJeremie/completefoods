@@ -1,8 +1,12 @@
 class BrowseProductsViewModel < ApplicationViewModel
+  def cache_key
+    ['products', Product.maximum(:updated_at), options_cache_key].join('/')
+  end
+
   def products
     @products ||= begin
       products = BrowseProductsFinder.new(options).perform
-      products = ProductViewModel.wrap(products)
+      products = ProductViewModel.wrap(products, options)
 
       PagedArray.new(
         products,

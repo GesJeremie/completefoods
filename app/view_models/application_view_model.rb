@@ -41,4 +41,15 @@ class ApplicationViewModel
   def respond_to?(*args)
     super || (model && model.respond_to?(*args))
   end
+
+  def options_cache_key
+    options
+    .except(:action, :controller)
+    .to_a
+    .sort
+    .flatten
+    .map(&:to_s)
+    .reject(&:blank?)
+    .join('/')
+  end
 end

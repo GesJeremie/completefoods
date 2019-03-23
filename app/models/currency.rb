@@ -6,4 +6,9 @@ class Currency < ApplicationRecord
   def self.popular
     where(code: POPULAR_CURRENCIES).order(:name)
   end
+
+  # Used for cache_key in the view models
+  def to_s
+    self.code.parameterize
+  end
 end

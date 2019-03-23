@@ -10,7 +10,7 @@
   <meta property="og:image" content="<%= image_url('meta/brands.png') %>" />
 <% end %>
 
-<% cache [Brand.maximum(:updated_at), Product.maximum(:updated_at)] do %>
+<% cache ['brands', Brand.maximum(:updated_at), Product.maximum(:updated_at), 'index'] do %>
   <div class="brands">
     <div class="hero">
       <h1 class="hero__title">Brands</h1>

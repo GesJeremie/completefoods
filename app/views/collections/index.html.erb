@@ -9,8 +9,7 @@
   <meta property="og:image" content="<%= image_url('meta/collections.png') %>" />
 <% end %>
 
-
-<% cache @collections.size do %>
+<% cache ['collections', @collections.size, 'index'] do %>
   <div class="hero hero--collections">
     <h1 class="hero__title">
       Collections

@@ -8,7 +8,7 @@
   <meta property="og:image" content="<%= image_url(@collection.meta_image) %>" />
 <% end %>
 
-<% cache [(params[:page] || 0), @collection.name, current_currency.id] do %>
+<% cache "#{@collection.cache_key}/show" do %>
   <div class="hero hero--collection">
     <h1 class="hero__title">
       <%= @collection.name %>
