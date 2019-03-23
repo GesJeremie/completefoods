@@ -14,7 +14,7 @@
 }
 
 .hero--home {
-    padding-bottom: $spacing-unit * 12;
+    padding-bottom: $spacing-unit * 7;
 }
 
 .hero--brand {}
@@ -86,3 +86,20 @@
         font-size: 40px;
         vertical-align: middle;
     }
+
+    .hero__showcase {
+        margin-top: quadruple($spacing-unit);
+    }
+
+        .hero__showcase-logo {
+            max-width: 20px;
+            vertical-align: middle;
+        }
+
+        .hero__showcase-logo--queal {
+            max-width: 25px;
+        }
+
+        .hero__showcase-logo--powdermatter {
+            max-width: 30px;
+        }

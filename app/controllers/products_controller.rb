@@ -4,7 +4,7 @@ class ProductsController < BaseController
   end
 
   def show
-    model = Product.find_by_slug(params[:slug])
+    model = Product.find_by!(slug: params[:slug])
     @product = ProductViewModel.wrap(model, view_model_options)
   end
 end

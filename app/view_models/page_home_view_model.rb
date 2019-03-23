@@ -2,8 +2,8 @@ class PageHomeViewModel < ApplicationViewModel
   def cache_key
     [
       'pages',
-      Product.maximum(:updated_at).to_s(:number),
-      Brand.maximum(:updated_at).to_s(:number),
+      Product.maximum(:updated_at)&.to_s(:number),
+      Brand.maximum(:updated_at)&.to_s(:number),
     ].join('/')
   end
 

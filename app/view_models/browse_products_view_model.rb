@@ -2,7 +2,7 @@ class BrowseProductsViewModel < ApplicationViewModel
   def cache_key
     [
       'products',
-      Product.maximum(:updated_at).to_s(:number),
+      Product.maximum(:updated_at)&.to_s(:number),
       options_cache_key
     ].join('/')
   end

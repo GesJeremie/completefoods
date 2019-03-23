@@ -104,7 +104,7 @@ class BrowseProductsFinderTest < ActiveSupport::TestCase
     create(:product, { discount_for_subscription: true })
     create(:product, { discount_for_subscription: false })
 
-    products = finder(flters: { discount_for_subscription: 'on' })
+    products = finder(filters: { discount_for_subscription: 'on' })
 
     assert_equal 1, products.count
     assert_equal true, products.first.discount_for_subscription

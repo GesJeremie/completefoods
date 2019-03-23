@@ -3,8 +3,8 @@ class CollectionViewModel < ApplicationViewModel
   def cache_key
     [
       model.cache_key,
-      Product.maximum(:updated_at).to_s(:number),
-      Brand.maximum(:updated_at).to_s(:number)
+      Product.maximum(:updated_at)&.to_s(:number),
+      Brand.maximum(:updated_at)&.to_s(:number)
     ].join('/')
   end
 

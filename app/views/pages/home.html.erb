@@ -5,25 +5,18 @@
     <h2 class="hero__subtitle">There are currently more than <%= count_active_products %> Complete Foods available Worldwide. Choosing the best one can be overwhelming, let the Guru help you find the best based on your preferences.</h2>
 
     <%= link_to 'Ask the Guru', guru_path, class: 'button button--large button--secondary button--capitalized button--with-arrow' %>
-  </div>
 
-  <div class="divider divider--secondary"></div>
+    <div class="hero__showcase">
+      Recommended by
 
-  <div class="showcase">
-    <h3 class="heading heading--1 heading--center">They Love Us!</h3>
+      <%= image_tag 'showcase/logo_queal.png', class: 'hero__showcase-logo hero__showcase-logo--queal' %>
+      <%= link_to 'Queal', 'https://goo.gl/httDQJ', target: '_blank', class: 'link link--alt link--with-spacer' %>
 
-    <ul class="showcase__list">
-      <li class="showcase__list-item">
-        <%= link_to 'https://goo.gl/httDQJ', target: '_blank' do %>
-          <%= image_tag 'showcase/logo_queal.png', class: 'showcase__logo showcase__logo--queal' %>
-        <% end %>
-      </li>
-      <li class="showcase__list-item">
-        <%= link_to 'https://goo.gl/Nhqj7t', target: '_blank' do %>
-          <%= image_tag 'showcase/logo_powdermatter.png', class: 'showcase__logo showcase__logo--powdermatter' %>
-        <% end %>
-      </li>
-    </ul>
+      and
+
+      <%= image_tag 'showcase/logo_powdermatter.png', class: 'hero__showcase-logo hero__showcase-logo--powdermatter' %>
+      <%= link_to 'PowderMatter', 'https://goo.gl/Nhqj7t', target: '_blank', class: 'link link--alt link--with-spacer' %>
+    </div>
   </div>
 
   <div class="divider divider--secondary"></div>
