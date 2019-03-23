@@ -1,30 +1,28 @@
-<% cache ['pages', collections.size, 'home/preview_collections'] do %>
-  <div class="collection-summary">
+<div class="collection-summary">
 
-    <div class="grid grid--center">
-      <div class="grid__cell grid__cell--80-at-wide">
-        <h3 class="heading heading--1 heading--center">Browse Collections</h3>
-        <hr class="divider divider--small" />
+  <div class="grid grid--center">
+    <div class="grid__cell grid__cell--80-at-wide">
+      <h3 class="heading heading--1 heading--center">Browse Collections</h3>
+      <hr class="divider divider--small" />
 
-        <% collections.each_slice(4) do |group_collections| %>
-
-          <div class="grid grid--center">
-            <% group_collections.each do |collection| %>
-              <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
-                <%= link_to collection_path(collection.slug) do %>
-                  <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>')">
-                    <div class="collection-summary__item-title"><%= collection.name %></div>
-                  </div>
-                <% end %>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+      <% collections.each_slice(4) do |group_collections| %>
 
         <div class="grid grid--center">
-          <%= link_to 'Browse more collections', collections_path, class: 'button button--large' %>
+          <% group_collections.each do |collection| %>
+            <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
+              <%= link_to collection_path(collection.slug) do %>
+                <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>')">
+                  <div class="collection-summary__item-title"><%= collection.name %></div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
         </div>
+      <% end %>
+
+      <div class="grid grid--center">
+        <%= link_to 'Browse more collections', collections_path, class: 'button button--large' %>
       </div>
     </div>
   </div>
-<% end %>
+</div>

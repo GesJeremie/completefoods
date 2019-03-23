@@ -9,7 +9,7 @@
   <meta property="og:image" content="<%= image_url('meta/collections.png') %>" />
 <% end %>
 
-<% cache ['collections', @collections.size, 'index'] do %>
+<% cache "#{@browse_collections.cache_key}/index" do %>
   <div class="hero hero--collections">
     <h1 class="hero__title">
       Collections
@@ -19,7 +19,7 @@
     <div class="grid__cell grid__cell--80-at-wide">
       <div class="collection-summary">
         <div class="grid grid--center">
-          <% @collections.each do |collection| %>
+          <% @browse_collections.collections.each do |collection| %>
             <div class="grid__cell grid__cell--50 grid__cell--33-at-medium grid__cell--25-at-wide collection-summary__item">
               <a href="<%= collection_path(collection.slug) %>">
                 <div class="collection-summary__item-cover" style="background-image: url('<%= asset_path(collection.image) %>'">

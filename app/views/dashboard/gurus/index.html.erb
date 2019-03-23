@@ -28,9 +28,9 @@
         <tr>
           <th scope="col">#</th>
           <th scope="col">Started</th>
-          <th scope="col">Token</th>
           <th scope="col">Finished</th>
           <th scope="col">Answers</th>
+          <th scope="col">Action</th>
         </tr>
       </thead>
 
@@ -40,7 +40,6 @@
         <tr>
           <td><%= guru.id %></th>
           <td><%= time_ago_in_words(guru.created_at) %> ago</td>
-          <td><%= link_to guru.token, show_guru_path(guru.token), class: 'link', target: '_blank' %></td>
           <td>
 
             <% if guru.finished? %>
@@ -52,6 +51,9 @@
           </td>
           <td>
             <%= guru.answers %>
+          </td>
+          <td>
+            <%= link_to 'See results', products_path(params: { filters: Gurus::AnswersToFilters.new(guru.answers).perform }), class: 'link', target: '_blank' %>
           </td>
         </tr>
       <% end %>

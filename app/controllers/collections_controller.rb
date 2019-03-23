@@ -1,9 +1,6 @@
 class CollectionsController < BaseController
   def index
-    @collections = CollectionViewModel.wrap(
-      Collection.all,
-      view_model_options
-    )
+    @browse_collections = BrowseCollectionsViewModel.new(nil, view_model_options)
   end
 
   # TODO: Ensure collection exists.

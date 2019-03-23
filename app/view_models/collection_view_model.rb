@@ -1,7 +1,11 @@
 class CollectionViewModel < ApplicationViewModel
 
   def cache_key
-    @cache_key ||= [model.cache_key, options_cache_key].join('/')
+    [
+      model.cache_key,
+      Product.maximum(:updated_at).to_s(:number),
+      Brand.maximum(:updated_at).to_s(:number)
+    ].join('/')
   end
 
   def meta_description

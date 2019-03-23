@@ -1,4 +1,4 @@
-<% cache ['pages', Product.maximum(:updated_at), Brand.maximum(:updated_at), 'home'] do %>
+<% cache "#{@page.cache_key}/home" do %>
   <div class="hero hero--home">
     <%= image_tag 'guru.svg', width: 250 %>
     <h1 class="hero__title">Find your Complete Food.</h1>

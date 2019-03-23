@@ -3,7 +3,10 @@ require 'redcarpet/render_strip'
 class ProductViewModel < ApplicationViewModel
 
   def cache_key
-    @cache_key ||= [model.cache_key, model.brand.cache_key, options_cache_key].join('/')
+    [
+      model.cache_key,
+      model.brand.cache_key
+    ].join('/')
   end
 
   def browser_title
