@@ -9,7 +9,7 @@
   <meta property="og:image" content="<%= image_url('meta/collections.png') %>" />
 <% end %>
 
-<% cache "#{@browse_collections.cache_key}/index" do %>
+<% cache digest("#{@browse_collections.cache_key}/index") do %>
   <div class="hero hero--collections">
     <h1 class="hero__title">
       Collections

@@ -21,4 +21,8 @@ module ApplicationHelper
       when :alert   then 'alert alert-error'
     end
   end
+
+  def digest(cache_key)
+    Digest::MD5.hexdigest(cache_key)
+  end
 end

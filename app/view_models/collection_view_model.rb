@@ -4,7 +4,8 @@ class CollectionViewModel < ApplicationViewModel
     [
       model.cache_key,
       Product.maximum(:updated_at)&.to_s(:number),
-      Brand.maximum(:updated_at)&.to_s(:number)
+      Brand.maximum(:updated_at)&.to_s(:number),
+      options[:current_currency]
     ].join('/')
   end
 

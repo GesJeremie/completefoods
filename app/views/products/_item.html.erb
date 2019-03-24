@@ -1,4 +1,4 @@
-<% cache "#{product.cache_key}/item" do %>
+<% cache digest("#{product.cache_key}/item") do %>
   <a href="<%= product_path(product.model) %>" class="product-item">
 
     <div class="grid">

@@ -9,7 +9,7 @@
   <meta property="og:image" content="<%= image_url url_for(@product.image) %>" />
 <% end %>
 
-<% cache "#{@product.cache_key}/show" do %>
+<% cache digest("#{@product.cache_key}/show") do %>
   <div class="product-show">
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--80-at-wide grid__cell--70-at-x-wide">

@@ -1,4 +1,4 @@
-<% cache "#{@page.cache_key}/home" do %>
+<% cache digest("#{@page.cache_key}/home") do %>
   <div class="hero hero--home">
     <%= image_tag 'guru.svg', width: 250 %>
     <h1 class="hero__title">Find your Complete Food.</h1>
