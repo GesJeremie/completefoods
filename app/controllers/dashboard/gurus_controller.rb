@@ -1,5 +1,5 @@
 class Dashboard::GurusController < Dashboard::BaseController
   def index
-    @gurus = Wizard.all
+    @gurus = Wizard.recent.paginate(page: params[:page])
   end
 end

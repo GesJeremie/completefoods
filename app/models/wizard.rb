@@ -2,6 +2,12 @@ class Wizard < ApplicationRecord
   has_secure_token
   has_many :wizard_steps
 
+  class << self
+    def recent
+      order(created_at: 'DESC')
+    end
+  end
+
   def answers
     wizard_steps
       .pluck(:answers)

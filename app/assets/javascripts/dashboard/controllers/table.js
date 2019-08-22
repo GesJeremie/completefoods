@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    window.app.stimulus.register('tables', new Class({
+    window.app.stimulus.register('table', new Class({
 
         extends: Stimulus.Controller,
 
@@ -10,7 +10,7 @@
          */
 
         initialize: function () {
-            $('table').DataTable({
+            $(this.element).DataTable({
                 pageLength: 30
             });
         }
