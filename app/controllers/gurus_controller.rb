@@ -56,90 +56,90 @@ class GurusController < BaseController
 
   private
 
-    #
-    # Before Actions
-    #
-    def set_view_model
-      @guru_step = GuruStepViewModel.wrap(
-        wizard,
-        view_model_options.merge(current_step: current_step)
-      )
-    end
+  #
+  # Before Actions
+  #
+  def set_view_model
+    @guru_step = GuruStepViewModel.wrap(
+      wizard,
+      view_model_options.merge(current_step: current_step)
+    )
+  end
 
-    def save_answers
-      wizard.step(current_step).tap do |step|
-        step.completed = true
-        step.answers = send("#{current_step}_params")
-        step.save
-      end
+  def save_answers
+    wizard.step(current_step).tap do |step|
+      step.completed = true
+      step.answers = send("#{current_step}_params")
+      step.save
     end
+  end
 
-    #
-    # Methods
-    #
-    def redirect_to_next_step
-      next_step = wizard.step_after(
-        wizard.step(current_step)
-      )
+  #
+  # Methods
+  #
+  def redirect_to_next_step
+    next_step = wizard.step_after(
+      wizard.step(current_step)
+    )
 
-      if next_step.present?
-        redirect_to action: next_step.name and return
-      else
-        redirect_to action: :index and return
-      end
+    if next_step.present?
+      redirect_to action: next_step.name and return
+    else
+      redirect_to action: :index and return
     end
+  end
 
-    def current_step
-      action_name
-      .remove('_create')
-      .to_sym
-    end
+  def current_step
+    action_name
+    .remove('_create')
+    .to_sym
+  end
 
-    #
-    # Wizards
-    #
-    def wizard
-      @wizard ||= (saved_wizard || new_wizard)
-    end
+  #
+  # Wizards
+  #
+  def wizard
+    @wizard ||= (saved_wizard || new_wizard)
+  end
 
-    def saved_wizard
-      Wizard.find_by_id(session[:guru_wizard])
-    end
+  def saved_wizard
+    Wizard.find_by_id(session[:guru_wizard])
+  end
 
-    def new_wizard
-      Wizards::BuilderGuru.new.create.tap do |wizard|
-        session[:guru_wizard] = wizard.id
-      end
+  def new_wizard
+    Wizards::BuilderGuru.new.create.tap do |wizard|
+      session[:guru_wizard] = wizard.id
     end
+  end
 
-    #
-    # Params
-    #
-    def answers_params(*allowed_answers)
-      params.permit(answers: allowed_answers)[:answers]
-    end
+  #
+  # Params
+  #
+  def answers_params(*allowed_answers)
+    params.permit(answers: allowed_answers)[:answers]
+  end
 
-    def allergen_params
-      answers_params(:gluten, :lactose)
-    end
+  def allergen_params
+    answers_params(:gluten, :lactose)
+  end
 
-    def diet_params
-      answers_params(:vegan, :vegetarian)
-    end
+  def diet_params
+    answers_params(:vegan, :vegetarian)
+  end
 
-    def country_params
-      answers_params(:country)
-    end
+  def country_params
+    answers_params(:country)
+  end
 
-    def type_params
-      answers_params(:powder, :ready_to_drink, :snack)
-    end
+  def type_params
+    answers_params(:powder, :ready_to_drink, :snack)
+  end
 
-    def subscription_params
-      answers_params(:subscription)
-    end
+  def subscription_params
+    answers_params(:subscription)
+  end
 
-    def email_params
-      answers_params(:email)
-    end
+  def email_params
+    answers_params(:email)
+  end
 end

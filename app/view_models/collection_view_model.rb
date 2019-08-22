@@ -1,5 +1,4 @@
 class CollectionViewModel < ApplicationViewModel
-
   def cache_key
     [
       model.cache_key,

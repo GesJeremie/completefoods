@@ -41,18 +41,17 @@ class CollectionMetaDescription
     "Looking for the complete foods suitable for athletes? #{preview_product_names}"
   end
 
-
   private
 
-    def slug
-      collection.slug.underscore
-    end
+  def slug
+    collection.slug.underscore
+  end
 
-    def preview_product_names
-      names = collection.products.pluck(:name).take(3).join(', ')
+  def preview_product_names
+    names = collection.products.pluck(:name).take(3).join(', ')
 
-      if names.present?
-        "Take a look at #{names} and the others."
-      end
+    if names.present?
+      "Take a look at #{names} and the others."
     end
+  end
 end

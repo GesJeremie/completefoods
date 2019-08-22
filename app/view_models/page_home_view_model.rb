@@ -16,23 +16,24 @@ class PageHomeViewModel < ApplicationViewModel
   end
 
   private
-    def brands
-      Brand
-      .includes(:country)
-      .with_active_products
-      .reorder(name: :asc)
-      .take(number_items_preview_brands)
-    end
 
-    def collections
-      Collection.all.take(number_items_preview_collections)
-    end
+  def brands
+    Brand
+    .includes(:country)
+    .with_active_products
+    .reorder(name: :asc)
+    .take(number_items_preview_brands)
+  end
 
-    def number_items_preview_brands
-      Rails.configuration.number_items_preview_brands
-    end
+  def collections
+    Collection.all.take(number_items_preview_collections)
+  end
 
-    def number_items_preview_collections
-      Rails.configuration.number_items_preview_collections
-    end
+  def number_items_preview_brands
+    Rails.configuration.number_items_preview_brands
+  end
+
+  def number_items_preview_collections
+    Rails.configuration.number_items_preview_collections
+  end
 end

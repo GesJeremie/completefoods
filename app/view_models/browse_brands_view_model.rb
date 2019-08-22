@@ -37,11 +37,11 @@ class BrowseBrandsViewModel < ApplicationViewModel
 
   private
 
-    def active_letters
-      @active_letters ||= brands.pluck(:name).map(&:first).uniq.map(&:downcase)
-    end
+  def active_letters
+    @active_letters ||= brands.pluck(:name).map(&:first).uniq.map(&:downcase)
+  end
 
-    def active_letter?(letter)
-      active_letters.include?(letter)
-    end
+  def active_letter?(letter)
+    active_letters.include?(letter)
+  end
 end

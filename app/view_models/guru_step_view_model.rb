@@ -39,19 +39,19 @@ class GuruStepViewModel < ApplicationViewModel
 
   private
 
-    def steps
-      @steps ||= model.wizard_steps
-    end
+  def steps
+    @steps ||= model.wizard_steps
+  end
 
-    def current_step
-      @current_step ||= model.step(options[:current_step])
-    end
+  def current_step
+    @current_step ||= model.step(options[:current_step])
+  end
 
-    def current_step_index
-      @current_step_index ||= steps.index(current_step)
-    end
+  def current_step_index
+    @current_step_index ||= steps.index(current_step)
+  end
 
-    def total_steps
-      @total_steps ||= steps.count
-    end
+  def total_steps
+    @total_steps ||= steps.count
+  end
 end

@@ -1,5 +1,4 @@
 class NewslettersController < BaseController
-
   def create
     model = Newsletter.new(newsletter_params)
 
@@ -17,7 +16,7 @@ class NewslettersController < BaseController
 
   private
 
-    def newsletter_params
-      params.permit(:email)
-    end
+  def newsletter_params
+    params.permit(:email)
+  end
 end

@@ -40,13 +40,14 @@ class BrandViewModel < ApplicationViewModel
   end
 
   private
-    def generic_description
-      "#{model.name} is a brand based in #{model.country.name} currently producing #{pluralize(active_products.count, 'complete food')}"
-    end
 
-    def website_with_utm_source
-      uri = URI.parse(model.website)
-      uri.query = [uri.query, 'utm_source=completefood.guru'].compact.join('&')
-      uri.to_s
-    end
+  def generic_description
+    "#{model.name} is a brand based in #{model.country.name} currently producing #{pluralize(active_products.count, 'complete food')}"
+  end
+
+  def website_with_utm_source
+    uri = URI.parse(model.website)
+    uri.query = [uri.query, 'utm_source=completefood.guru'].compact.join('&')
+    uri.to_s
+  end
 end

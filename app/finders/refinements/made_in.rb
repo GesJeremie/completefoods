@@ -17,7 +17,12 @@ class Refinements::MadeIn
   end
 
   private
-    def country_id
-      @country_id ||= Country.where('lower(name) = ?', country.to_s.titleize.downcase).first&.id
-    end
+
+  def country_id
+    @country_id ||= Country.where('lower(name) = ?', country_sanitized).first&.id
+  end
+
+  def country_sanitized
+    country.to_s.titleize.downcase
+  end
 end

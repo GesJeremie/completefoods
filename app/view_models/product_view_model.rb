@@ -111,7 +111,7 @@ class ProductViewModel < ApplicationViewModel
 
   private
 
-    def decimal(number, precision)
-      sprintf("%.#{precision}f", number)
-    end
+  def decimal(number, precision)
+    sprintf("%.#{precision}f", number)
+  end
 end

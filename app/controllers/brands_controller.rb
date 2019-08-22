@@ -10,7 +10,7 @@ class BrandsController < BaseController
 
   private
 
-    def id_from_slug
-      @id_from_slug ||= params[:slug].split('-').first rescue nil
-    end
+  def id_from_slug
+    @id_from_slug ||= params[:slug].split('-').first rescue nil
+  end
 end

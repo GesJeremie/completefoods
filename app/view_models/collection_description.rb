@@ -29,7 +29,7 @@ class CollectionDescription
 
   private
 
-    def slug
-      collection.slug.underscore
-    end
+  def slug
+    collection.slug.underscore
+  end
 end

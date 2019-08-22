@@ -72,7 +72,7 @@ class CollectionProductsFinder < ApplicationFinder
 
   private
 
-    def products
-      Product.preload_defaults.reorder(name: :asc).active
-    end
+  def products
+    Product.preload_defaults.reorder(name: :asc).active
+  end
 end
