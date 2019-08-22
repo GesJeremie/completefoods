@@ -1,0 +1,22 @@
+/*------------------------------------*\
+    #CARD
+\*------------------------------------*/
+
+.card {
+    display: block;
+    position: relative;
+    margin-top: double($spacing-unit);
+    padding: double($spacing-unit);
+    text-align: left;
+    text-decoration: none;
+    background-color: $white;
+    border: 2px solid $gray--medium-light;
+    border-radius: 8px;
+
+    @include respond-to('medium') {
+        margin-top: triple($spacing-unit);
+        padding: $spacing-unit ($spacing-unit * 5);
+        padding-top: 0;
+        padding-bottom: quadruple($spacing-unit);
+    }
+}

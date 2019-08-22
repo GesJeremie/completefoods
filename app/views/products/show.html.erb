@@ -10,53 +10,52 @@
 <% end %>
 
 <% cache digest("#{@product.cache_key}/show") do %>
-  <div class="product-show">
+  <div class="product-details">
     <div class="grid grid--center">
       <div class="grid__cell grid__cell--80-at-wide grid__cell--70-at-x-wide">
 
-        <div class="product-show__heading">
-          <div class="product-show__thumbnail" style="background-image: url('<%= url_for(@product.image) %>')"></div>
-          <h1 class="product-show__title"><%= @product.name %></h1>
-          <h3 class="product-show__from">
+        <div class="product-details__heading">
+          <div class="product-details__thumbnail" style="background-image: url('<%= url_for(@product.image) %>')"></div>
+          <h1 class="product-details__title"><%= @product.name %></h1>
+          <h3 class="product-details__from">
             Produced in <%= flag_icon(@product.country_code_symbol) %><strong><%= @product.brand.country.name %></strong> by <strong><%= link_to @product.brand.name, brand_path(@product.brand.model), class: 'link link--alt' %></strong>
           </h3>
         </div>
 
-        <div class="product-show__call-to">
+        <div class="product-details__call-to">
           <%= link_to 'Website', @product.brand.website, class: 'button button--fixed-width button--no-margin' if @product.brand.website.present? %>
           <%= link_to 'Facebook', @product.brand.facebook, class: 'button button--fixed-width button--no-margin' if @product.brand.facebook.present? %>
         </div>
 
-        <div class="product-show__card">
+        <div class="card">
           <% if @product.description.present? %>
-            <h3 class="product-show__subtitle">About</h3>
-            <div class="product-show__description markdown">
+            <h3 class="product-details__subtitle">About</h3>
+            <div class="product-details__description markdown">
               <%= @product.description %>
             </div>
           <% end %>
 
-          <h3 class="product-show__subtitle">Prices</h3>
-          <%= render 'products/show/prices', product: @product %>
+          <h3 class="product-details__subtitle">Prices</h3>
+          <%= render 'products/prices', product: @product %>
 
-          <h3 class="product-show__subtitle">Nutrition Facts</h3>
-          <%= render 'products/show/nutrition_facts', product: @product %>
+          <h3 class="product-details__subtitle">Nutrition Facts</h3>
+          <%= render 'products/nutrition_facts', product: @product %>
 
+          <h3 class="product-details__subtitle">Shipping</h3>
+          <%= render 'products/shipping', product: @product %>
 
-          <h3 class="product-show__subtitle">Shipping</h3>
-          <%= render 'products/show/shipping', product: @product %>
+          <h3 class="product-details__subtitle">Allergens</h3>
+          <%= render 'products/allergens', product: @product %>
 
-          <h3 class="product-show__subtitle">Allergens</h3>
-          <%= render 'products/show/allergens', product: @product %>
+          <h3 class="product-details__subtitle">Diets</h3>
+          <%= render 'products/diets', product: @product %>
 
-          <h3 class="product-show__subtitle">Diets</h3>
-          <%= render 'products/show/diets', product: @product %>
-
-          <h3 class="product-show__subtitle">Misc</h3>
-          <%= render 'products/show/misc', product: @product %>
+          <h3 class="product-details__subtitle">Misc</h3>
+          <%= render 'products/misc', product: @product %>
 
           <% if @product.has_notes? %>
-            <h3 class="product-show__subtitle">Team's Notes</h3>
-            <div class="product-show__notes"><%= @product.notes %></div>
+            <h3 class="product-details__subtitle">Team's Notes</h3>
+            <div class="product-details__notes"><%= @product.notes %></div>
           <% end %>
       </div>
     </div>

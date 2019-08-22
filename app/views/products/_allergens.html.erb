@@ -1,0 +1,24 @@
+<ul class="product-details__attributes">
+  <li class="product-details__attribute <%= 'product-details__attribute--unavailable' if product.allergen.gluten? %>">
+    <div class="product-details__attribute-icon">
+      <%= inline_svg('gluten.svg', class: 'icon') %>
+    </div>
+    <div class="product-details__attribute-label">
+      Gluten Free
+    </div>
+    <div class="product-details__attribute-value">
+      <%= humanize_boolean(!product.allergen.gluten?) %>
+    </div>
+  </li>
+  <li class="product-details__attribute <%= 'product-details__attribute--unavailable' if product.allergen.lactose? %>">
+    <div class="product-details__attribute-icon">
+      <%= inline_svg('milk_bottle.svg', class: 'icon') %>
+    </div>
+    <div class="product-details__attribute-label">
+      Lactose Free
+    </div>
+    <div class="product-details__attribute-value">
+      <%= humanize_boolean(!product.allergen.lactose?) %>
+    </div>
+  </li>
+</ul>

@@ -1,0 +1,46 @@
+/*------------------------------------*\
+    #CARD-NAVIGATION
+\*------------------------------------*/
+
+.card-navigation {
+    .product-show__card & {
+        margin: 0 (-$spacing-unit * 5);
+    }
+}
+
+    .card-navigation__list {
+        @extend %clearfix;
+        margin: 0 auto;
+        margin-top: double($spacing-unit);
+        width: 60%;
+        font-size: 12px;
+        text-transform: capitalize;
+        border: 2px solid $purple;
+        border-radius: $border-radius;
+    }
+
+        .card-navigation__item {
+            display: block;
+            width: 50%;
+            float: left;
+        }
+
+        .card-navigation__item--selected {}
+
+            .card-navigation__link {
+                display: block;
+                padding: ($spacing-unit * 1.5) 0;
+                color: $purple;
+                font-weight: bold;
+                text-align: center;
+                text-transform: uppercase;
+                text-decoration: none;
+                cursor: pointer;
+                transition: background-color 0.1s ease;
+
+                &:hover,
+                .card-navigation__item--selected & {
+                    color: $white;
+                    background-color: $purple;
+                }
+            }

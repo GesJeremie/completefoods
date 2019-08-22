@@ -1,0 +1,46 @@
+<ul class="product-details__attributes">
+  <li class="product-details__attribute <%= 'product-details__attribute--unavailable' unless product.shipment.united_states? %>">
+    <div class="product-details__attribute-icon">
+      <%= inline_svg('united_states.svg', class: 'icon') %>
+    </div>
+    <div class="product-details__attribute-label">
+      United States
+    </div>
+    <div class="product-details__attribute-value">
+      <%= humanize_boolean(product.shipment.united_states?) %>
+    </div>
+  </li>
+  <li class="product-details__attribute <%= 'product-details__attribute--unavailable' unless product.shipment.canada? %>">
+    <div class="product-details__attribute-icon">
+      <%= inline_svg('canada.svg', class: 'icon') %>
+    </div>
+    <div class="product-details__attribute-label">
+      Canada
+    </div>
+    <div class="product-details__attribute-value">
+      <%= humanize_boolean(product.shipment.canada?) %>
+    </div>
+  </li>
+  <li class="product-details__attribute <%= 'product-details__attribute--unavailable' unless product.shipment.europe? %>">
+    <div class="product-details__attribute-icon">
+      <%= inline_svg('europe.svg', class: 'icon') %>
+    </div>
+    <div class="product-details__attribute-label">
+      Europe
+    </div>
+    <div class="product-details__attribute-value">
+      <%= humanize_boolean(product.shipment.europe?) %>
+    </div>
+  </li>
+  <li class="product-details__attribute <%= 'product-details__attribute--unavailable' unless product.shipment.rest_of_world? %>">
+    <div class="product-details__attribute-icon">
+      <%= inline_svg('world.svg', class: 'icon') %>
+    </div>
+    <div class="product-details__attribute-label">
+      Rest of World
+    </div>
+    <div class="product-details__attribute-value">
+      <%= humanize_boolean(product.shipment.rest_of_world?) %>
+    </div>
+  </li>
+</ul>
