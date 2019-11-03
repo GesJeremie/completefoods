@@ -1,13 +1,19 @@
 require 'redcarpet/render_strip'
 
 class ProductViewModel < ApplicationViewModel
-
   def cache_key
     [
       model.cache_key,
       model.brand.cache_key,
-      options[:current_currency]
+      options[:current_currency],
+      "voted-#{already_voted?}"
     ].join('/')
+  end
+
+  def already_voted?
+    return false unless options[:current_ip].present?
+
+    model.votes.exists?(ip: options[:current_ip])
   end
 
   def browser_title

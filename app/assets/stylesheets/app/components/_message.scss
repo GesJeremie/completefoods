@@ -1,0 +1,35 @@
+/*------------------------------------*\
+    #MESSAGE
+\*------------------------------------*/
+
+$message-bg-color: darken($gray--x-light, 5%) !default;
+
+.message {
+    display: inline-block;
+    margin: double($spacing-unit) 0;
+    padding: double($spacing-unit);
+    width: 100%;
+    color: $black;
+    background-color: $message-bg-color;
+    border-radius: 5px;
+
+    strong {
+        font-weight: 700;
+    }
+
+    .newsletter & {
+        display: block;
+        margin: 0 auto;
+        max-width: 400px;
+    }
+}
+
+.message--error {
+    color: $white;
+    background-color: $red;
+}
+
+.message--success {
+    color: $white;
+    background-color: $green;
+}

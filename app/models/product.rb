@@ -2,8 +2,6 @@ class Product < ApplicationRecord
   STATES = %w[powder bottle snack].freeze
   FLAVORS = %w[sweet savoury neutral].freeze
 
-  BOOLEANS = [true, false].freeze
-
   belongs_to :brand, touch: true
 
   enum state: STATES.map(&:to_sym)
@@ -13,7 +11,7 @@ class Product < ApplicationRecord
   has_one :diet, class_name: 'ProductDiet', dependent: :destroy
   has_one :price, class_name: 'ProductPrice', dependent: :destroy
   has_one :shipment, class_name: 'ProductShipment', dependent: :destroy
-  has_many :reviews, class_name: 'ProductReview', dependent: :destroy
+  has_many :votes, class_name: 'ProductVote', dependent: :destroy
 
   has_one_attached :image
 

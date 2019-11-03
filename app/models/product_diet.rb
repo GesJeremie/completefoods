@@ -1,6 +1,4 @@
 class ProductDiet < ApplicationRecord
-  BOOLEANS = [true, false].freeze
-
   belongs_to :product, touch: true
 
   validates :product, presence: true

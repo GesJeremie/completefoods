@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_03_034702) do
+ActiveRecord::Schema.define(version: 2019_11_03_032723) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "active_admin_comments", force: :cascade do |t|
+    t.string "namespace"
+    t.text "body"
+    t.string "resource_type"
+    t.bigint "resource_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+    t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
+    t.index ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
+  end
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -103,16 +117,6 @@ ActiveRecord::Schema.define(version: 2019_03_03_034702) do
     t.index ["product_id"], name: "index_product_prices_on_product_id"
   end
 
-  create_table "product_reviews", force: :cascade do |t|
-    t.bigint "product_id"
-    t.integer "score"
-    t.string "description"
-    t.string "ip"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["product_id"], name: "index_product_reviews_on_product_id"
-  end
-
   create_table "product_shipments", force: :cascade do |t|
     t.bigint "product_id"
     t.boolean "rest_of_world"
@@ -122,6 +126,17 @@ ActiveRecord::Schema.define(version: 2019_03_03_034702) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["product_id"], name: "index_product_shipments_on_product_id"
+  end
+
+  create_table "product_votes", force: :cascade do |t|
+    t.bigint "product_id"
+    t.string "ip"
+    t.boolean "recommend"
+    t.string "reason"
+    t.boolean "active"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_product_votes_on_product_id"
   end
 
   create_table "products", force: :cascade do |t|

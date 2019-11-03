@@ -1,6 +1,5 @@
 class ProductShipment < ApplicationRecord
   SHIPPING_COUNTRIES = %i[canada united_states europe rest_of_world].freeze
-  BOOLEANS = [true, false].freeze
 
   belongs_to :product, touch: true
 

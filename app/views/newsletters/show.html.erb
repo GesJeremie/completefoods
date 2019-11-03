@@ -18,17 +18,7 @@
 
         <%= image_tag 'sure.gif', class: 'newsletter__gif' %>
 
-        <% if flash[:error] %>
-          <div class="alert alert--error">
-            <%= flash[:error] %>
-          </div>
-        <% end %>
-
-        <% if flash[:success] %>
-          <div class="alert alert--success">
-            <%= flash[:success] %>
-          </div>
-        <% end %>
+        <%= render_flash_messages %>
 
         <%= email_field_tag 'email', nil, placeholder: 'Email', class: 'newsletter__input', data: { controller: 'focus' }, required: true, email: true %>
 

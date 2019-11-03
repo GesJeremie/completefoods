@@ -95,3 +95,24 @@
                             background: transparent;
                         }
                     }
+
+    .reviews__list {
+        margin-top: triple($spacing-unit);
+    }
+
+        .reviews__list-item {}
+
+        .reviews__list-item--upvote {
+            background: darken($gray--x-light, 1%);
+            border-left: 5px solid darken($gray--x-light, 5%);
+        }
+
+        .reviews__list-item--downvote {
+            background: $red--x-light;
+            border-left: 5px solid darken($red--x-light, 5%);
+        }
+
+            .reviews__list-item-content {
+                padding: double($spacing-unit);
+                line-height: 1.5;
+            }

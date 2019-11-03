@@ -8,7 +8,6 @@
 
     window.app.stimulus.register('panel-toggle', new Class({
 
-
         extends: Stimulus.Controller,
 
         static: {

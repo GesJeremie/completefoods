@@ -1,0 +1,110 @@
+<div class="reviews">
+  <div class="grid">
+    <div class="grid__cell grid__cell--50">
+      <div class="reviews__vote reviews__vote--upvote">
+        <div class="grid grid--center grid--middle">
+          <div class="grid__cell grid__cell--20">
+            <div class="reviews__vote-icon"> <%= inline_svg('upvote.svg', class: 'icon icon--large') %></div>
+          </div>
+          <div class="grid__cell grid__cell--80">
+            <div class="reviews__vote-count">
+              <% if product.votes.published.upvoted.any? %>
+               <%= pluralize(product.votes.upvoted.count, 'shopper') %>
+              <% else %>
+                Nobody
+              <% end %>
+            </div>
+            <div class="reviews__vote-label">
+              <% if product.votes.published.upvoted.any? %>
+                recommend this product
+              <% else %>
+                recommend this product yet
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid__cell grid__cell--50">
+      <div class="reviews__vote reviews__vote--downvote">
+        <div class="grid grid--center grid--middle">
+          <div class="grid__cell grid__cell--20">
+            <div class="reviews__vote-icon"> <%= inline_svg('downvote.svg', class: 'icon icon--large') %></div>
+          </div>
+          <div class="grid__cell grid__cell--80">
+            <div class="reviews__vote-count">
+              <% if product.votes.published.downvoted.any? %>
+               <%= pluralize(product.votes.published.downvoted.count, 'shopper') %>
+              <% else %>
+                Nobody
+              <% end %>
+            </div>
+            <div class="reviews__vote-label">
+              <% if product.votes.published.downvoted.any? %>
+                don't recommend this product
+              <% else %>
+                don't recommend this product yet
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid">
+    <div class="grid__cell">
+      <% unless @product.already_voted? %>
+        <%= form_tag vote_product_path(product.slug), method: 'post' do %>
+          <fieldset class="reviews__form" data-controller="reviews-form">
+            <legend class="reviews__form-title">Do you recommend this product?</legend>
+
+            <div class="reviews__form-choices">
+              <div class="grid">
+                <div class="grid__cell grid__cell--50">
+                  <div class="reviews__form-choice">
+                    <%= label_tag nil, class: 'reviews__form-choice' do %>
+                      <%= radio_button_tag 'recommend', '1', nil, class: 'reviews__form-choice-radio reviews__form-choice-radio--upvote', checked: true, data: { target: 'reviews-form.upvote' } %>
+                      <div class="reviews__form-choice-content">
+                        <span class="reviews__form-choice-label">Yes</span>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+                <div class="grid__cell grid__cell--50">
+                  <div class="reviews__form-choice">
+                    <%= label_tag nil, class: 'reviews__form-choice' do %>
+                      <%= radio_button_tag 'recommend', '0', nil, class: 'reviews__form-choice-radio reviews__form-choice-radio--downvote', data: { target: 'reviews-form.downvote' } %>
+                      <div class="reviews__form-choice-content">
+                        <span class="reviews__form-choice-label">No</span>
+                      </div>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="reviews__form-fields">
+              <%= text_area_tag 'reason', nil, class: 'text-box text-box--multi-line', placeholder: 'Why do you recommend this product? (very short reviews are allowed)', required: true, data: { target: 'reviews-form.reason' } %>
+            </div>
+
+            <div class="reviews__form-submit">
+              <%= button_tag 'Submit my review', class: 'button button--capitalized' %>
+            </div>
+
+          </fieldset>
+        <% end %>
+      <% end %>
+
+      <% if product.votes.published.any? %>
+        <div class="reviews__list">
+          <% product.votes.published.each do |vote| %>
+            <div class="reviews__list-item reviews__list-item--<%= vote.recommend ? 'upvote' : 'downvote' %>">
+              <div class="reviews__list-item-content"><%= simple_format(vote.reason) %></div>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -10,7 +10,13 @@ Rails.application.routes.draw do
   root 'pages#home'
 
   resources :brands, only: [:index, :show], param: :slug
-  resources :products, only: [:index, :show], param: :slug
+
+  resources :products, only: [:index, :show], param: :slug do
+    member do
+      post :vote
+    end
+  end
+
   resources :collections, only: [:index, :show], param: :slug
   resources :currencies, only: [:index, :update], param: :code
   resources :sitemap, only: [:index], constraints: { format: 'xml' }
