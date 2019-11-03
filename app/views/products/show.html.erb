@@ -57,6 +57,84 @@
             <h3 class="product-details__subtitle">Team's Notes</h3>
             <div class="product-details__notes"><%= @product.notes %></div>
           <% end %>
+
+          <h3 class="product-details__subtitle">Reviews</h3>
+
+          <div class="reviews">
+            <div class="grid">
+              <div class="grid__cell grid__cell--50">
+                <div class="reviews__vote reviews__vote--upvote">
+                  <div class="grid grid--center grid--middle">
+                    <div class="grid__cell grid__cell--20">
+                      <div class="reviews__vote-icon"> <%= inline_svg('upvote.svg', class: 'icon icon--large') %></div>
+                    </div>
+                    <div class="grid__cell grid__cell--80">
+                      <div class="reviews__vote-count">Nobody</div>
+                      <div class="reviews__vote-label">recommend this product yet</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="grid__cell grid__cell--50">
+                <div class="reviews__vote reviews__vote--downvote">
+                  <div class="grid grid--center grid--middle">
+                    <div class="grid__cell grid__cell--20">
+                      <div class="reviews__vote-icon"> <%= inline_svg('downvote.svg', class: 'icon icon--large') %></div>
+                    </div>
+                    <div class="grid__cell grid__cell--80">
+                      <div class="reviews__vote-count">Nobody</div>
+                      <div class="reviews__vote-label">don't recommend this product yet</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid">
+              <div class="grid__cell">
+                <fieldset class="reviews__form">
+                  <legend class="reviews__form-title">Do you recommend this product?</legend>
+
+                  <div class="reviews__form-choices">
+                    <div class="grid">
+                      <div class="grid__cell grid__cell--50">
+                        <div class="reviews__form-choice">
+                          <%= label_tag nil, class: 'reviews__form-choice' do %>
+                            <%= radio_button_tag 'recommend', 'yes', nil, class: 'reviews__form-choice-radio reviews__form-choice-radio--upvote', checked: true %>
+                            <div class="reviews__form-choice-content">
+                              <span class="reviews__form-choice-label">Yes</span>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                      <div class="grid__cell grid__cell--50">
+                        <div class="reviews__form-choice">
+                          <%= label_tag nil, class: 'reviews__form-choice' do %>
+                            <%= radio_button_tag 'recommend', 'no', nil, class: 'reviews__form-choice-radio reviews__form-choice-radio--downvote' %>
+                            <div class="reviews__form-choice-content">
+                              <span class="reviews__form-choice-label">No</span>
+                            </div>
+                          <% end %>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="reviews__form-fields">
+                    <%= text_area_tag 'reason', nil, class: 'text-box text-box--multi-line', placeholder: 'Please justify why do you recommend this product ...', required: true %>
+                  </div>
+
+                  <div class="reviews__form-submit">
+                    <%= button_tag 'Submit my opinion', class: 'button button--capitalized' %>
+                  </div>
+
+                </fieldset>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
       </div>
     </div>
   </div>

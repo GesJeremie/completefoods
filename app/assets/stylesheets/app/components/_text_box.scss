@@ -30,4 +30,12 @@
             max-width: 300px;
         }
     }
+
+    .reviews__form & {
+        border: 2px solid $gray--medium;
+    }
+}
+
+.text-box--multi-line {
+    min-height: 200px;
 }

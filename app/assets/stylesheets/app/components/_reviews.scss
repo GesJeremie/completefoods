@@ -1,0 +1,97 @@
+/*------------------------------------*\
+    #REVIEWS
+\*------------------------------------*/
+
+.reviews {}
+
+    .reviews__vote {
+        padding: quadruple($spacing-unit) double($spacing-unit);
+        border-radius: $border-radius;
+    }
+
+    .reviews__vote--upvote {
+        background: darken($gray--x-light, 1%);
+    }
+
+    .reviews__vote--downvote {
+        background: $red--x-light;
+    }
+
+        .reviews__vote-icon {
+            text-align: center;
+        }
+
+
+        .reviews__vote-count {
+            margin-bottom: halve($spacing-unit);
+            font-size: 40px;
+            font-family: $font-numeric;
+        }
+
+        .reviews__vote-label {}
+
+    .reviews__form {
+        margin-top: triple($spacing-unit);
+        padding: double($spacing-unit);
+        border: 1px solid $gray--medium;
+    }
+
+        .reviews__form-title {
+            padding: 0 double($spacing-unit);
+            text-transform: capitalize;
+        }
+
+        .reviews__form-choices {}
+
+            .reviews__form-choice {
+                display: block;
+                margin-bottom: $spacing-unit;
+                font-size: 14px;
+                text-align: center;
+                background: $white;
+                border-radius: $border-radius;
+                vertical-align: middle;
+            }
+
+                .reviews__form-choice-radio {
+                    display: none;
+
+                    &:checked + .reviews__form-choice-content {
+                        box-shadow: $box-shadow--button;
+                    }
+                }
+
+                .reviews__form-choice-radio--upvote {
+                    &:checked + .reviews__form-choice-content {
+                        background: darken($gray--x-light, 1%);
+                        border: 1px solid darken($gray--x-light, 5%);
+                    }
+                }
+
+                .reviews__form-choice-radio--downvote {
+                    &:checked + .reviews__form-choice-content {
+                        background: $red--x-light;
+                        border: 1px solid darken($red--x-light, 5%);
+                    }
+                }
+
+                .reviews__form-choice-content {
+                    display: block;
+                    padding: ($spacing-unit * 1.5) 0;
+                    border: 1px solid $gray--medium;
+                    border-radius: 5px;
+
+                    &:hover {
+                        background-color: $gray--x-light;
+                        cursor: pointer;
+                    }
+                }
+
+                    .reviews__form-choice-label {
+                        font-size: 15px;
+                        vertical-align: middle;
+
+                        &::selection {
+                            background: transparent;
+                        }
+                    }
