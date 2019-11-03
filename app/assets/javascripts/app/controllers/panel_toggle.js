@@ -1,6 +1,11 @@
 (function() {
     'use strict';
 
+    /**
+     * @description
+     * This controller is in charge to open the panel filters on mobile (Browse products)
+     */
+
     window.app.stimulus.register('panel-toggle', new Class({
 
 

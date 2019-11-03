@@ -3,7 +3,7 @@
 
     /**
      * @description
-     * This controller is in charge to give the focus to element given
+     * This controller is in charge to give the focus to the element given
      */
 
     window.app.stimulus.register('focus', new Class({

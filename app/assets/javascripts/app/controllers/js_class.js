@@ -3,7 +3,8 @@
 
     /**
      * @description
-     * This controller is in charge to toggle the header menu on mobile
+     * This controller adds a class .js
+     * to be able to style the app with no javascript in mind
      */
 
     window.app.stimulus.register('js-class', new Class({
