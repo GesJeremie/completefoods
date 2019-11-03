@@ -3,15 +3,15 @@
     <div class="grid__cell grid__cell--50">
       <div class="reviews__vote reviews__vote--upvote">
         <div class="grid grid--center grid--middle">
-          <div class="grid__cell grid__cell--20">
+          <div class="grid__cell grid__cell--20-at-wide">
             <div class="reviews__vote-icon"> <%= inline_svg('upvote.svg', class: 'icon icon--large') %></div>
           </div>
-          <div class="grid__cell grid__cell--80">
+          <div class="grid__cell grid__cell--80-at-wide">
             <div class="reviews__vote-count">
               <% if product.votes.published.upvoted.any? %>
                <%= pluralize(product.votes.upvoted.count, 'shopper') %>
               <% else %>
-                Nobody
+                No shoppers
               <% end %>
             </div>
             <div class="reviews__vote-label">
@@ -28,15 +28,15 @@
     <div class="grid__cell grid__cell--50">
       <div class="reviews__vote reviews__vote--downvote">
         <div class="grid grid--center grid--middle">
-          <div class="grid__cell grid__cell--20">
+          <div class="grid__cell grid__cell--20-at-wide">
             <div class="reviews__vote-icon"> <%= inline_svg('downvote.svg', class: 'icon icon--large') %></div>
           </div>
-          <div class="grid__cell grid__cell--80">
+          <div class="grid__cell grid__cell--80-at-wide">
             <div class="reviews__vote-count">
               <% if product.votes.published.downvoted.any? %>
                <%= pluralize(product.votes.published.downvoted.count, 'shopper') %>
               <% else %>
-                Nobody
+                No shoppers
               <% end %>
             </div>
             <div class="reviews__vote-label">

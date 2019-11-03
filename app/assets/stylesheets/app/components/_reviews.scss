@@ -18,17 +18,34 @@
     }
 
         .reviews__vote-icon {
+            margin-bottom: $spacing-unit;
             text-align: center;
+
+            @include respond-to('wide') {
+                margin-bottom: 0;
+            }
         }
 
 
         .reviews__vote-count {
             margin-bottom: halve($spacing-unit);
-            font-size: 40px;
+            font-size: 23px;
             font-family: $font-numeric;
+            text-align: center;
+
+            @include respond-to('wide') {
+                font-size: 40px;
+                text-align: left;
+            }
         }
 
-        .reviews__vote-label {}
+        .reviews__vote-label {
+            text-align: center;
+
+            @include respond-to('wide') {
+                text-align: left;
+            }
+        }
 
     .reviews__form {
         margin-top: triple($spacing-unit);

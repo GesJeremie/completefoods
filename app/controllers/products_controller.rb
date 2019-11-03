@@ -14,7 +14,7 @@ class ProductsController < BaseController
     if @vote.save
       flash.now[:success] = '<strong>Whoop, whoop!</strong> - Thanks a million for the review, you make this project totally more awesome.'
     else
-      flash.now[:error] = '<strong>Oh No!</strong> - We are unable to save your review'
+      flash.now[:error] = '<strong>Oh No!</strong> - We are unable to save your review.'
     end
 
     render :show
