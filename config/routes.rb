@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  ActiveAdmin.routes(self)
+
   # Redirect www to no-www
   if Rails.env.production?
     constraints subdomain: 'www' do

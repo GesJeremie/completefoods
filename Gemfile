@@ -46,6 +46,10 @@ gem 'will_paginate'
 # Markdown Converter
 gem 'redcarpet'
 
+# Admin
+gem 'activeadmin'
+gem 'formadmin'
+
 # Front-end
 gem 'inline_svg'
 gem 'avalanche-rails', '~> 1.2.0'

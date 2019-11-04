@@ -1,0 +1,53 @@
+/*------------------------------------*\
+    #ACTIVE-ADMIN
+\*------------------------------------*/
+
+// scss-lint:disable all
+
+$color-green: #2ecc71;
+$color-blue: #5352ed;
+$color-red: #ff4757;
+$color-yellow: #ffa502;
+$color-white: white;
+
+$primary-color: $color-blue;
+$positive-color: $color-green;
+$negative-color: $color-red;
+$radius: 5px;
+
+@import 'formadmin/formadmin';
+
+* {
+    text-shadow: none !important;
+}
+
+.title_bar #page_title {
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+.status_tag {
+    &.yes {
+        background-color: $color-green;
+    }
+
+    &.pending {
+        background-color: $color-yellow;
+    }
+
+    &.approved {
+        background-color: $color-green;
+    }
+
+    &.rejected {
+        background-color: $color-red;
+    }
+}
+
+.errors {
+    margin-bottom: 10px;
+    padding: 20px;
+    color: $color-white;
+    border-radius: 5px;
+    background: $color-red;
+}

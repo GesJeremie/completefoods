@@ -50,6 +50,10 @@ class Product < ApplicationRecord
     where(active: true)
   end
 
+  def self.inactive
+    where(active: false)
+  end
+
   def self.search(query)
     joins(brand: :country).where('
       products.name ILIKE ANY (ARRAY[:terms]) OR
