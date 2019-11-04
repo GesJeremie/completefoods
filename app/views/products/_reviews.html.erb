@@ -7,20 +7,32 @@
             <div class="reviews__vote-icon"> <%= inline_svg('upvote.svg', class: 'icon icon--large') %></div>
           </div>
           <div class="grid__cell grid__cell--80-at-wide">
-            <div class="reviews__vote-count">
-              <% if product.votes.published.upvoted.any? %>
-               <%= pluralize(product.votes.upvoted.count, 'shopper') %>
+            <% upvoted_count = product.votes.published.upvoted.count %>
+
+            <% if upvoted_count.positive? %>
+              <% if upvoted_count > 1 %>
+                <div class="reviews__vote-count">
+                  <%= upvoted_count %> Shoppers
+                </div>
+                <div class="reviews__vote-label">
+                  recommend this product
+                </div>
               <% else %>
-                No shoppers
+                <div class="reviews__vote-count">
+                  1 Shopper
+                </div>
+                <div class="reviews__vote-label">
+                  recommends this product
+                </div>
               <% end %>
-            </div>
-            <div class="reviews__vote-label">
-              <% if product.votes.published.upvoted.any? %>
-                recommend this product
-              <% else %>
-                recommend this product yet
-              <% end %>
-            </div>
+            <% else %>
+              <div class="reviews__vote-count">
+                No
+              </div>
+              <div class="reviews__vote-label">
+                positive reviews yet
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
@@ -32,20 +44,32 @@
             <div class="reviews__vote-icon"> <%= inline_svg('downvote.svg', class: 'icon icon--large') %></div>
           </div>
           <div class="grid__cell grid__cell--80-at-wide">
-            <div class="reviews__vote-count">
-              <% if product.votes.published.downvoted.any? %>
-               <%= pluralize(product.votes.published.downvoted.count, 'shopper') %>
+            <% downvoted_count = product.votes.published.downvoted.count %>
+
+            <% if downvoted_count.positive? %>
+              <% if downvoted_count > 1 %>
+                <div class="reviews__vote-count">
+                  <%= downvoted_count %> Shoppers
+                </div>
+                <div class="reviews__vote-label">
+                  don't recommend this product
+                </div>
               <% else %>
-                No shoppers
+                <div class="reviews__vote-count">
+                  1 Shopper
+                </div>
+                <div class="reviews__vote-label">
+                  doesn't recommend this product
+                </div>
               <% end %>
-            </div>
-            <div class="reviews__vote-label">
-              <% if product.votes.published.downvoted.any? %>
-                don't recommend this product
-              <% else %>
-                don't recommend this product yet
-              <% end %>
-            </div>
+            <% else %>
+              <div class="reviews__vote-count">
+                No
+              </div>
+              <div class="reviews__vote-label">
+                negative reviews yet
+              </div>
+            <% end %>
           </div>
         </div>
       </div>
