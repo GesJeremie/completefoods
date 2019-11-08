@@ -48,14 +48,5 @@ Rails.application.routes.draw do
       get 'what-is-a-complete-food'
     end
   end
-
-  namespace :dashboard do
-    root 'brands#index'
-    resources :brands
-    resources :products, param: :slug
-    resources :gurus, only: [:index]
-    resources :newsletters, only: [:index, :destroy]
-    resources :alerts, only: [:index]
-  end
 end
 
