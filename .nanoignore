@@ -1,2 +1,5 @@
 .git/
 .gitignore
+tmp/
+storage/
+log/
