@@ -1,5 +1,4 @@
-Rails.application.configure do
-
+CompleteFoods.configure do |config|
   # How many collections do you want to display on home page
   config.number_items_preview_collections = 8
 

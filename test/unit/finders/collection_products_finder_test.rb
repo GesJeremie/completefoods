@@ -4,7 +4,7 @@ class CollectionProductsFinderTest < ActiveSupport::TestCase
   include Factories::Support::Traits
 
   def collections_made_in
-    @collections_made_in ||= Rails.application.config.collections_made_in
+    @collections_made_in ||= CompleteFoods.config.collections_made_in
   end
 
   def product_price(product)

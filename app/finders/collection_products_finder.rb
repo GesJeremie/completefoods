@@ -22,7 +22,7 @@ class CollectionProductsFinder < ApplicationFinder
   # => made_in_india
   # => ...
   ##
-  Rails.application.config.collections_made_in.each do |country|
+  CompleteFoods.config.collections_made_in.each do |country|
     method_name = "made_in_#{country}"
 
     define_method method_name do

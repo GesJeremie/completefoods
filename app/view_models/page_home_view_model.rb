@@ -30,10 +30,10 @@ class PageHomeViewModel < ApplicationViewModel
   end
 
   def number_items_preview_brands
-    Rails.configuration.number_items_preview_brands
+    CompleteFoods.config.number_items_preview_brands
   end
 
   def number_items_preview_collections
-    Rails.configuration.number_items_preview_collections
+    CompleteFoods.config.number_items_preview_collections
   end
 end

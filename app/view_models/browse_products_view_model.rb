@@ -15,7 +15,7 @@ class BrowseProductsViewModel < ApplicationViewModel
       PagedArray.new(
         products,
         page: options[:page],
-        per_page: Rails.configuration.browse_products_per_page
+        per_page: CompleteFoods.config.browse_products_per_page
       )
     end
   end

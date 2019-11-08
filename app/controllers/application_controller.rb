@@ -20,7 +20,8 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     authenticate_or_request_with_http_basic('Administration') do |user, password|
-      (user == ENV['DASHBOARD_ADMIN_NAME']) && (password == ENV['DASHBOARD_ADMIN_PASSWORD'])
+      basic_auth = CompleteFoods.config.basic_auth
+      (user == basic_auth[:user]) && (password == basic_auth[:password])
     end
   end
 

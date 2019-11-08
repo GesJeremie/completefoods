@@ -273,6 +273,7 @@ GEM
       tilt
     scout_apm (2.4.19)
     sixarm_ruby_unaccent (1.2.0)
+    slack-notifier (2.3.2)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -341,6 +342,7 @@ DEPENDENCIES
   rubocop
   sass-rails (~> 5.0)
   scout_apm
+  slack-notifier
   sqlite3
   uglifier (>= 1.3.0)
   web-console

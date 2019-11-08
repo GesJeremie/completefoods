@@ -50,6 +50,9 @@ gem 'redcarpet'
 gem 'activeadmin'
 gem 'formadmin'
 
+# Slack!
+gem 'slack-notifier'
+
 # Front-end
 gem 'inline_svg'
 gem 'avalanche-rails', '~> 1.2.0'
