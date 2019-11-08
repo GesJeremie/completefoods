@@ -12,7 +12,7 @@ class ProductsController < BaseController
     @vote = ProductVote.new(vote_params)
 
     if @vote.save
-      flash.now[:success] = '<strong>Whoop, whoop!</strong> - Thanks a million for the review, you make this project totally more awesome.'
+      flash.now[:success] = '<strong>Whoop, whoop!</strong> - Thanks for the feedback, an admin will review it!'
     else
       flash.now[:error] = '<strong>Oh No!</strong> - We are unable to save your review.'
     end

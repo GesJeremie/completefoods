@@ -14,6 +14,10 @@ class ProductVote < ApplicationRecord
     where(active: true)
   end
 
+  def self.not_published
+    where(active: false)
+  end
+
   def self.upvoted
     where(recommend: true)
   end
