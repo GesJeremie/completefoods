@@ -22,7 +22,7 @@ class SlackPublisher
   private
 
   def can_notify?
-   true
+   Rails.env.production?
   end
 
   def notifier
